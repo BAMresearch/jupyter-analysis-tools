@@ -135,7 +135,7 @@ class reBin(object):
         # removes unwanted bin values
         # cannot use lists, because:
         # pay heed: http://unspecified.wordpress.com/2009/02/12/thou-shalt-not-modify-a-list-during-iteration/
-        validi = (True - np.isnan(self.IBin))
+        validi = (True ^ np.isnan(self.IBin))
         validi[ np.argwhere(self.binMask > 0) ] = False
         self.QBin = self.QBin[validi]
         self.IBin = self.IBin[validi]
@@ -227,13 +227,13 @@ class reBin(object):
         
 
         # define binning limits
-        (qmin, qmax) = (np.abs(self.Q[True - mask]).min(), 
-                np.abs(self.Q[True - mask]).max())
+        (qmin, qmax) = (np.abs(self.Q[True ^ mask]).min(), 
+                np.abs(self.Q[True ^ mask]).max())
         self.iqMin = np.maximum(qmin, self.qMin)
         self.iqMax = np.minimum(qmax, self.qMax)
-        self.Q = self.Q[True - mask]
-        self.I = self.I[True - mask]
-        self.E = self.E[True - mask]
+        self.Q = self.Q[True ^ mask]
+        self.I = self.I[True ^ mask]
+        self.E = self.E[True ^ mask]
         if self.verbose:
             print('data Q-range: {}, integration Q-range: {}, masked: {} of {} ({}%)'
                     .format((self.Q.min(), self.Q.max()),
