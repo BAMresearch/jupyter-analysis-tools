@@ -1,4 +1,5 @@
-
+# -*- coding: utf-8 -*-
+# readPDH.py
 
 def readPDH(ifname):
     # function for reading SAXS data files in pdh-format
