@@ -37,7 +37,7 @@ def checkRepo():
 #    currentNB = os.path.basename(currentNBpath())
     editedOn = repo.git.show(no_patch=True, format="%cd, version %h by %cn", date="iso")
     editedOn = editedOn.split(', ')
-    opacity = 1.0 if repo.is_dirty() else 0.5
+    opacity = 0.3 # 1.0 if repo.is_dirty() else 0.5
     display(HTML('<div style="opacity: {opacity};">'
                  '<h3>Document updated on {}</h3>'
                  '<h4>({})</h4></div>'.format(*editedOn, opacity=opacity)))
