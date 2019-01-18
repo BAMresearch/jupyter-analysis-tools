@@ -2,18 +2,19 @@
 # git.py
 
 import os
+import sys
 import subprocess
 
 def isRepo(path):
     return os.path.exists(os.path.join(path, ".git"))
 	
 def isNBstripoutInstalled():
-    out = subprocess.run(["nbstripout", "--status"],
+    out = subprocess.run([sys.executable, "-m", "nbstripout", "--status"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.decode("utf-8")
     return len(out) and "not recognized" not in out
 
 def isNBstripoutActivated():
-    out = subprocess.run(["nbstripout", "--status"],
+    out = subprocess.run([sys.executable, "-m", "nbstripout", "--status"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.decode("utf-8")
     return len(out) and "is installed" in out
 	
