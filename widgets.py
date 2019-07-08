@@ -4,6 +4,28 @@
 import os
 import ipywidgets as ui
 
+def showBoolStatus(value, description, invertcolor=False):
+    """Pretty prints the status of a boolean variable *value* along with
+    the provided description in a green color for True and in a red color
+    for False values. *invertcolor* allows to flip the color assignment."""
+    from IPython.display import display, HTML
+    statuscolor = "darkgreen"
+    if value ^ invertcolor:
+        statuscolor = "darkred"
+    descr = description[0].lower() + description[1:-1]
+    if description[-1].isalnum():
+        descr += description[-1]
+    statustext = '<h4 style="color: {};">Yes, {}!</h4>'.format(statuscolor, descr)
+    if value:
+        statustext = '<h4 style="color: {};">Do not {}!</h4>'.format(statuscolor, descr)
+    display(HTML(
+            '<div style="border-style: solid; border-color: {};'.format(statuscolor)
+            + ' border-width: 1px; padding: 0em 1em .5em 1em; margin: 1em 0em; width: {}em;">'
+                .format(len(descr)*.75)
+            + statustext +
+            '</div>'
+    ))
+
 class PathSelector():
 
     def __init__(self,start_dir,select_file=True):
