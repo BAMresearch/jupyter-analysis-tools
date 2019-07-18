@@ -20,7 +20,7 @@ def isNBstripoutActivated():
 	
 def checkRepo():
     if not isRepo("."):
-        print("Not a repo.")
+        print("Not a GIT repository.")
         return
     if not isNBstripoutInstalled():
         print("nbstripout not found!")
@@ -36,7 +36,11 @@ def checkRepo():
     from IPython.display import display, HTML
     repo = git.Repo('.')
 #    currentNB = os.path.basename(currentNBpath())
-    editedOn = repo.git.show(no_patch=True, format="%cd, version %h by %cn", date="iso")
+    try:
+        editedOn = repo.git.show(no_patch=True, format="%cd, version %h by %cn", date="iso")
+    except git.GitCommandError:
+        print("Not a GIT repository.")
+        return
     editedOn = editedOn.split(', ')
     opacity = 0.3 # 1.0 if repo.is_dirty() else 0.5
     display(HTML('<div style="opacity: {opacity};">'
