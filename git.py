@@ -22,6 +22,13 @@ def checkRepo():
     if not isRepo("."):
         print("Not a GIT repository.")
         return
+    # is git installed?
+    try:
+        import git
+    except ImportError:
+        print("Could not load git module, is GIT installed and in PATH?")
+        return
+    # check for nbstripout
     if not isNBstripoutInstalled():
         print("nbstripout not found!")
         print("Please run the 'Anaconda Update Script'.")
@@ -29,10 +36,6 @@ def checkRepo():
         print("nbstripout not active in this repo!")
         print("Jupyter output will be added to GIT (which is bad).")
     # check the repository in detail
-    try:
-        import git
-    except ImportError:
-        return
     from IPython.display import display, HTML
     repo = git.Repo('.')
 #    currentNB = os.path.basename(currentNBpath())
