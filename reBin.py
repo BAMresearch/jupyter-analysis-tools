@@ -61,8 +61,12 @@ def argparser():
     parser.add_argument("fnames", nargs = "*", metavar = "FILENAME",
             action = "store",
             help = "One or more data files to rebin")
-
-    return parser.parse_args()
+    # show help if no files were provided, no arguments at all
+    args = parser.parse_args()
+    if len(args.fnames):
+        return args
+    parser.print_help(sys.stderr)
+    sys.exit(1)
 
 class reBin(object):
     """ all kinds of binning-related functions """
