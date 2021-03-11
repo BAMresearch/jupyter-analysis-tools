@@ -34,16 +34,16 @@ def argparser():
             help = "Minimum Q to clip from original data")
     parser.add_argument("-e", "--minE", type = float, default = 0.01,
             help = "Minimum error is at least this times intensity value.")
-    parser.add_argument("-s", "--scaling", type = unicode, 
+    parser.add_argument("-s", "--scaling", type = str, 
             action = "store", default = 'logarithmic',
             help = "q-axis scaling for binning, can be linear or logarithmic")
     # csv / datafile options
-    parser.add_argument("-d", "--delimiter", type = unicode, 
+    parser.add_argument("-d", "--delimiter", type = str, 
             action = "store", default = ',',
             help = "Delimiter in original file. '\\t' is tab. (with quotes)")
     parser.add_argument("-H", "--headerLines", type = int, default = 0,
             help = "Number of header lines to skip")
-    parser.add_argument("-D", "--outputDelimiter", type = unicode, 
+    parser.add_argument("-D", "--outputDelimiter", type = str, 
             action = "store", default = None,
             help = "Delimiter in final file (defaults to input delimiter)")
     parser.add_argument("-c", "--cleanEmpty", action = "store_true", 
@@ -86,8 +86,8 @@ class reBin(object):
             "scaling" : 'logarithmic',                                         
             "cleanEmpty" : False,                                              
             "minE" : 0.01,                                                     
-            "noBin" : False}                                                   
-
+            "noBin" : False
+    }
 
     def __init__(self, **kwargs):
         # process defaults:
@@ -177,7 +177,7 @@ class reBin(object):
     def writeFile(self, ofname, hstrs = None, append = False):
         sep = self.outputDelimiter 
         #scale if necessary
-        iterData = itertools.izip_longest(
+        iterData = itertools.zip_longest(
                 self.QBin, 
                 self.IBin * float(self.iScale), 
                 self.EBin * float(self.iScale)) 
@@ -187,8 +187,8 @@ class reBin(object):
                 openarg = 'a'
             else:
                 openarg = 'w'
-            with open(filename, openarg, 0) as fh:
-                if isinstance(line,(str,unicode)):
+            with open(filename, openarg) as fh:
+                if isinstance(line, str):
                     fh.write(line)
                 else:
                     # iterable object containing multiple lines
@@ -207,7 +207,7 @@ class reBin(object):
         while moreData:
             try:
                 # generate formatted datastring containing column data
-                wstr = sep.join(['{}'.format(k) for k in iterData.next()]) + "\n"
+                wstr = sep.join(['{}'.format(k) for k in next(iterData)]) + "\n"
             except StopIteration:
                 # end of data reached
                 moreData = False
@@ -284,8 +284,8 @@ class reBin(object):
         qEdges = self.qEdges
         
         #flatten q, intensity and error
-        q = reshape(q, size(q), 0)
-        intensity = reshape(intensity, size(intensity), 0)
+        q = reshape(q, size(q))
+        intensity = reshape(intensity, size(intensity))
 
         # sort q, let intensity and error follow sort
         sortInd = argsort(q, axis = None)
@@ -301,10 +301,10 @@ class reBin(object):
         qebin = zeros(numBins)    
         binMask = zeros(numBins) # set one for masked bin values
         if error is not None:
-            error = reshape(error, size(error), 0)
+            error = reshape(error, size(error))
             error = error[sortInd]
         if qError is not None:
-            qError = reshape(qError, size(qError), 0)
+            qError = reshape(qError, size(qError))
             qError = qError[sortInd]
 
         # now we can fill the bins
