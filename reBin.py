@@ -4,8 +4,8 @@
 """
 Overview
 ========
-1D rebinning. 
-Should take input file, read, rebin and write. 
+1D rebinning.
+Should take input file, read, rebin and write.
 Rebins to log bins.
 
 """
@@ -23,7 +23,7 @@ from numpy import argsort, ones, array, sort, diff, log10, shape
 
 def argparser():
     parser = argparse.ArgumentParser(description = """
-            Re-binning function, reads three-column ASCII input files, 
+            Re-binning function, reads three-column ASCII input files,
             and outputs re-binned three-column ASCII files""")
     # binning options
     parser.add_argument("-n", "--numBins", type = int, default = 50,
@@ -34,19 +34,19 @@ def argparser():
             help = "Minimum Q to clip from original data")
     parser.add_argument("-e", "--minE", type = float, default = 0.01,
             help = "Minimum error is at least this times intensity value.")
-    parser.add_argument("-s", "--scaling", type = str, 
+    parser.add_argument("-s", "--scaling", type = str,
             action = "store", default = 'logarithmic',
             help = "q-axis scaling for binning, can be linear or logarithmic")
     # csv / datafile options
-    parser.add_argument("-d", "--delimiter", type = str, 
+    parser.add_argument("-d", "--delimiter", type = str,
             action = "store", default = ',',
             help = "Delimiter in original file. '\\t' is tab. (with quotes)")
     parser.add_argument("-H", "--headerLines", type = int, default = 0,
             help = "Number of header lines to skip")
-    parser.add_argument("-D", "--outputDelimiter", type = str, 
+    parser.add_argument("-D", "--outputDelimiter", type = str,
             action = "store", default = None,
             help = "Delimiter in final file (defaults to input delimiter)")
-    parser.add_argument("-c", "--cleanEmpty", action = "store_true", 
+    parser.add_argument("-c", "--cleanEmpty", action = "store_true",
             default = True,
             help = "Removes empty bins before writing")
     parser.add_argument("-i", "--iScale", type = float, default = 1.,
@@ -54,9 +54,9 @@ def argparser():
     # program options
     parser.add_argument("-v", "--verbose", action = "store_true",
             help = "Be verbose about the steps")
-    parser.add_argument("-t", "--test", action = "store_true", 
+    parser.add_argument("-t", "--test", action = "store_true",
             help = "Do not save output files, test run only")
-    parser.add_argument("-N", "--noBin", action = "store_true", 
+    parser.add_argument("-N", "--noBin", action = "store_true",
             help = "Do not bin, just input -> output (for translation and scaling)")
     parser.add_argument("fnames", nargs = "*", metavar = "FILENAME",
             action = "store",
@@ -70,7 +70,7 @@ def argparser():
 
 class reBin(object):
     """ all kinds of binning-related functions """
-    
+
     # set defaults for file reading:
     pandasArgs = {
             "skipinitialspace": True,
@@ -79,17 +79,17 @@ class reBin(object):
             "header": None}
     # set defaults for kwargs, in case this is not called from command line:
     reBinArgs = {
-            "delimiter" : ';',                                                 
-            "outputDelimiter" : ';',                                           
-            "headerLines" : 0,                                                 
-            "fnames" : '',                                                     
-            "verbose" : False,                                                 
-            "qMin" : -np.inf,                                                  
-            "qMax" : np.inf,                                                   
-            "numBins" : 100,                                                   
-            "scaling" : 'logarithmic',                                         
-            "cleanEmpty" : False,                                              
-            "minE" : 0.01,                                                     
+            "delimiter" : ';',
+            "outputDelimiter" : ';',
+            "headerLines" : 0,
+            "fnames" : '',
+            "verbose" : False,
+            "qMin" : -np.inf,
+            "qMax" : np.inf,
+            "numBins" : 100,
+            "scaling" : 'logarithmic',
+            "cleanEmpty" : False,
+            "minE" : 0.01,
             "noBin" : False
     }
 
@@ -118,7 +118,7 @@ class reBin(object):
 
         self.pandasArgs.update({
             "delimiter": self.delimiter,
-            "skiprows": self.headerLines}) 
+            "skiprows": self.headerLines})
         # process files individually:
         for filename in self.fnames:
             self.readFile(filename)
@@ -158,7 +158,7 @@ class reBin(object):
         if self.verbose:
             print('output filename: {}'.format(ofname))
         return ofname
-        
+
     def readFile(self, filename):
         if self.verbose:
             print('reading file: {} with settings: {}'
@@ -174,17 +174,17 @@ class reBin(object):
         numChanged = (self.minE * self.I > dval[:,2]).sum()
         if self.verbose:
             print('Minimum uncertainty set for {} out of {} ({} %) datapoints'
-                    .format(numChanged, size(self.Q), 
+                    .format(numChanged, size(self.Q),
                         100. * numChanged / size(self.Q) ))
-    
+
     # writer modified from imp2/modules/Write1D
     def writeFile(self, ofname, hstrs = None, append = False):
-        sep = self.outputDelimiter 
+        sep = self.outputDelimiter
         #scale if necessary
         iterData = itertools.zip_longest(
-                self.QBin, 
-                self.IBin * float(self.iScale), 
-                self.EBin * float(self.iScale)) 
+                self.QBin,
+                self.IBin * float(self.iScale),
+                self.EBin * float(self.iScale))
 
         def writeLine(filename, line = None, append = True):
             if append:
@@ -227,11 +227,10 @@ class reBin(object):
         # appy integration limits:
         iind = np.array((
             (self.Q < self.qMin) + (self.Q > self.qMax) ),dtype=bool)
-        mask[iind] = True 
-        
+        mask[iind] = True
 
         # define binning limits
-        (qmin, qmax) = (np.abs(self.Q[True ^ mask]).min(), 
+        (qmin, qmax) = (np.abs(self.Q[True ^ mask]).min(),
                 np.abs(self.Q[True ^ mask]).max())
         self.iqMin = np.maximum(qmin, self.qMin)
         self.iqMax = np.minimum(qmax, self.qMax)
@@ -250,13 +249,13 @@ class reBin(object):
         # define bin edges
         if self.scaling.lower() in ("linear", "lin"):
             qEdges = np.linspace(
-                    self.iqMin, 
-                    self.iqMax, 
+                    self.iqMin,
+                    self.iqMax,
                     self.numBins + 1)
         else:
             qEdges = np.logspace(
-                    log10(self.iqMin), 
-                    log10(self.iqMax), 
+                    log10(self.iqMin),
+                    log10(self.iqMax),
                     self.numBins + 1)
         self.qEdges = qEdges
         if self.verbose:
@@ -286,7 +285,7 @@ class reBin(object):
         error = self.E.copy()
         numBins = self.numBins
         qEdges = self.qEdges
-        
+
         #flatten q, intensity and error
         q = reshape(q, size(q))
         intensity = reshape(intensity, size(intensity))
@@ -296,13 +295,13 @@ class reBin(object):
         q = q[sortInd]
         intensity = intensity[sortInd]
 
-        #initialise storage: 
+        #initialise storage:
         numBins = len(qEdges) - 1
         ibin = zeros(numBins)
         qbin = zeros(numBins)
-        sdbin = zeros(numBins)    
-        sebin = zeros(numBins)    
-        qebin = zeros(numBins)    
+        sdbin = zeros(numBins)
+        sebin = zeros(numBins)
+        qebin = zeros(numBins)
         binMask = zeros(numBins) # set one for masked bin values
         if error is not None:
             error = reshape(error, size(error))
@@ -343,11 +342,11 @@ class reBin(object):
                 #calculate the standard deviation of the intensity in the bin
                 # according to the definition of sample-standard deviation
                 sdbin = iToBin.std(ddof = 1)
-                #what we want is to have the "standard error of the mean": 
+                #what we want is to have the "standard error of the mean":
                 sdbin = sdbin / sqrt(1.*np.size(iToBin))
                 # maximum between standard error and Poisson statistics
                 sebin[bini] = np.maximum(sebin[bini],sdbin)
-                #qebin is the mean error of the q-values in the bin, should 
+                #qebin is the mean error of the q-values in the bin, should
                 #probably be superseded by the bin width
                 qe = 0.
                 if qError is not None:
