@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 # utils.py
 
-import os
+import os, sys
 import urllib
 import json
 import ipykernel
 from notebook import notebookapp
 import locale
+import platform
+import subprocess
+import contextlib
+
+indent = "    "
 
 def currentNBpath():
     """Returns the absolute path of the Notebook or None if it cannot be determined
@@ -38,3 +43,64 @@ def setLocaleUTF8():
     locNew = locale.getpreferredencoding(False)
     if locOld != locNew:
         print(f"Updated locale from {locOld} -> {locNew}.")
+
+def isLinux():
+    return platform.system().lower() in "linux"
+
+def isMac():
+    return platform.system().lower() in "darwin"
+
+def isWindows():
+    return platform.system().lower() in "windows"
+
+def shortenWinPath(path):
+    if not isWindows():
+        return path
+    import win32api
+    return win32api.GetShortPathName(path)
+
+def appendToPATH(parentPath, subdirs = None):
+    """Adds the given path with each subdirectory to the PATH environment variable."""
+    if not os.path.isdir(parentPath):
+        return # nothing to do
+    if subdirs is None:
+        subdirs = ['.']
+    for path in subdirs:
+        path = os.path.realpath(os.path.join(parentPath, *path.split('/')))
+        print(indent, path, "\t[{}]".format(os.path.isdir(path)))
+        if path in os.environ['PATH']:
+            continue
+        os.environ['PATH'] += ";"+path
+
+def checkWinFor7z():
+    """Extend the PATH environment variable for access to the 7-zip executable."""
+    if not isWindows():
+        return # tests below are intended for Windows
+    sevenzippath = r"C:\Program Files\7-Zip"
+    if not os.path.isdir(sevenzippath):
+        print("7-Zip not found in '{}'.\n".format(sevenzippath)
+              +"7-Zip is required for managing data files and results!.")
+        return
+    print("Adding the following directory to $PATH:")
+    appendToPATH(sevenzippath)
+    print("\nUpdated PATH:")
+    for path in os.environ['PATH'].split(';'):
+        print(indent, path)
+
+def extract7z(fn, workdir=None):
+    assert os.path.isfile(os.path.join(workdir, fn)), \
+        "Provided 7z archive '{}' not found!".format(fn)
+    print("Extracting archived McDLS results:")
+    proc = subprocess.run(["7z", "x", fn], cwd=workdir,
+                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    print(proc.stdout.decode(errors='ignore'))
+    if len(proc.stderr):
+        print("## stderr:\n", proc.stderr.decode(errors='ignore'))
+
+# https://stackoverflow.com/a/13847807
+@contextlib.contextmanager
+def pushd(new_dir):
+    previous_dir = os.getcwd()
+    os.chdir(new_dir)
+    yield
+    os.chdir(previous_dir)
