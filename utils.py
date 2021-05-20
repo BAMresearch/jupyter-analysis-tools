@@ -6,6 +6,7 @@ import urllib
 import json
 import ipykernel
 from notebook import notebookapp
+import locale
 
 def currentNBpath():
     """Returns the absolute path of the Notebook or None if it cannot be determined
@@ -27,3 +28,13 @@ def currentNBpath():
         except:
             pass  # There may be stale entries in the runtime directory 
     return None
+
+def setLocaleUTF8():
+    """Fix the Jupyter locale which is not UTF-8 by default on some systems (older Windows?)."""
+    locOld = locale.getpreferredencoding(False).lower()
+    def getpreferredencoding(do_setlocale = True):
+        return "utf-8"
+    locale.getpreferredencoding = getpreferredencoding
+    locNew = locale.getpreferredencoding(False)
+    if locOld != locNew:
+        print(f"Updated locale from {locOld} -> {locNew}.")
