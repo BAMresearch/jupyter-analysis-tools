@@ -10,6 +10,7 @@ import locale
 import platform
 import subprocess
 import contextlib
+import itertools
 from pathlib import Path
 
 indent = "    "
@@ -121,3 +122,10 @@ def grouper(iterable, n, fillvalue=None):
     """Returns an iterator over a list of tuples (grouping) for a given flat iterable."""
     args = [iter(iterable)] * n
     return itertools.zip_longest(*args, fillvalue=fillvalue)
+
+def fmtErr(val, std, precision = 2, width = None):
+    """Formats a given value and its std. deviation to physics notation, e.g. '1.23(4)'."""
+    if width is None: width = ""
+    fmt = "{:"+str(width)+"."+str(precision)+"f}({:.0f})"
+    #print("fmtErr val:", val, "std:", std)
+    return fmt.format(val, std * 10**(precision))
