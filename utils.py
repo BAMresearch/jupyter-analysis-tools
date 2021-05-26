@@ -10,6 +10,7 @@ import locale
 import platform
 import subprocess
 import contextlib
+from pathlib import Path
 
 indent = "    "
 
@@ -104,3 +105,14 @@ def pushd(new_dir):
     os.chdir(new_dir)
     yield
     os.chdir(previous_dir)
+
+def setPackage(globalsdict):
+    """Sets the current directory of the notebook as python package to make relative module imports work.
+    Usage: `setPackage(globals())`"""
+    path = Path().resolve()
+    searchpath = str(path.parent)
+    if searchpath not in sys.path:
+        sys.path.append(searchpath)
+    globalsdict['__package__'] = path.name
+    globalsdict['__name__'] = path.name
+    print(f"Setting the current directory as package '{path.name}':\n  {path}.")
