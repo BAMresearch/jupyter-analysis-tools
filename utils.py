@@ -116,3 +116,8 @@ def setPackage(globalsdict):
     globalsdict['__package__'] = path.name
     globalsdict['__name__'] = path.name
     print(f"Setting the current directory as package '{path.name}':\n  {path}.")
+
+def grouper(iterable, n, fillvalue=None):
+    """Returns an iterator over a list of tuples (grouping) for a given flat iterable."""
+    args = [iter(iterable)] * n
+    return itertools.zip_longest(*args, fillvalue=fillvalue)
