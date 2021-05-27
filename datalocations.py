@@ -82,17 +82,21 @@ def getDataDirs(dataDir, noWorkDir=False, reuseWorkDir=True, workDir=None):
 
 def getDataFiles(dataDirs, include=None, exclude=None):
     """Return absolute file paths from given directories."""
+    def isList(obj):
+        return isinstance(obj, (list, tuple))
     def getFiles(dn, include=None):
         if not include:
             include = "*"
-        if not isinstance(include, (list, tuple)):
+        if not isList(include):
             include = (include,)
         return [path for inc in include
                      for path in glob.glob(os.path.join(dn, inc))]
     if not exclude:
         exclude = ()
-    if not isinstance(exclude, (list, tuple)):
+    if not isList(exclude):
         exclude = (exclude,)
+    if not isList(dataDirs):
+        dataDirs = (dataDirs,)
 
     files = [fn for dn in dataDirs
                 for fn in getFiles(dn, include)
