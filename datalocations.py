@@ -3,7 +3,7 @@
 
 import os, tempfile, shutil, glob
 from pathlib import Path
-from .utils import indent
+from .utils import indent, isList
 
 def getWorkDir(workDir=None, skip=False):
     """Find a local work dir for temporary files, created during analysis.
@@ -82,8 +82,6 @@ def getDataDirs(dataDir, noWorkDir=False, reuseWorkDir=True, workDir=None):
 
 def getDataFiles(dataDirs, include=None, exclude=None):
     """Return absolute file paths from given directories."""
-    def isList(obj):
-        return isinstance(obj, (list, tuple))
     def getFiles(dn, include=None):
         if not include:
             include = "*"

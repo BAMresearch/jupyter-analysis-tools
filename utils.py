@@ -12,6 +12,7 @@ import subprocess
 import contextlib
 import itertools
 from pathlib import Path
+import numpy as np
 
 indent = "    "
 
@@ -54,6 +55,9 @@ def isMac():
 
 def isWindows():
     return platform.system().lower() in "windows"
+
+def isList(obj):
+    return isinstance(obj, (list, tuple, np.ndarray))
 
 def shortenWinPath(path):
     if not isWindows():
