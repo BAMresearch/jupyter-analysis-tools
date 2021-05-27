@@ -80,12 +80,12 @@ def getDataDirs(dataDir, noWorkDir=False, reuseWorkDir=True, workDir=None):
     printFileList(dirs, numParts=1)
     return dirs
 
-def getDLSfilesFromDir(dn):
-    return sorted(glob.glob(os.path.join(dn, "*.ASC")))
+def getDLSfilesFromDir(dn, filePattern="*"):
+    return sorted(glob.glob(os.path.join(dn, filePattern)))
 
-def getDataFiles(dataDirs):
+def getDataFiles(dataDirs, filePattern="*"):
     """Return absolute file paths from given directories."""
     files = [fn for dn in dataDirs
-                for fn in getDLSfilesFromDir(dn)]
+                for fn in getDLSfilesFromDir(dn, filePattern)]
     print("{} files to be analyzed in subdirectories.".format(len(files)))
     return sorted(files)
