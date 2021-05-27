@@ -3,19 +3,19 @@
 
 import matplotlib.pyplot as plt
 
-def initFigure(fig, width = 80, aspectRatio = 4./3., quiet = False):
+def initFigure(fig, width=80, aspectRatio=4./3., quiet=False):
     mmInch = 25.4
     fig.set_size_inches(width/mmInch, width/aspectRatio/mmInch)
     w, h = fig.get_size_inches()
     if not quiet:
         print("initFigure() with ({w:.1f}x{h:.1f}) mm"
-              .format(w = w*mmInch, h = h*mmInch))
+              .format(w=w*mmInch, h=h*mmInch))
     return fig
 
-def createFigure(width = 80, aspectRatio = 4./3., **kwargs):
+def createFigure(width=80, aspectRatio=4./3., quiet=False, **kwargs):
     """output figure width in mm"""
     fig = plt.figure(
-        #tight_layout = dict(pad = 0.05),
+        #tight_layout=dict(pad=0.05),
         **kwargs
     )
     initFigure(fig, width, aspectRatio, quiet)
