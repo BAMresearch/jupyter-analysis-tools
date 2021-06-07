@@ -21,8 +21,8 @@ def createFigure(width=80, aspectRatio=4./3., quiet=False, **kwargs):
     initFigure(fig, width, aspectRatio, quiet)
     return fig
 
-def plotVertBar(ax, xpos, ymax, color, label=None):
-    ax.plot((xpos, xpos), (0, ymax), color=color, label=label)
+def plotVertBar(ax, xpos, ymax, **kwargs):
+    ax.plot((xpos, xpos), (0, ymax), **kwargs)
 
 def plotColor(idx):
     pltcol = plt.rcParams['axes.prop_cycle'].by_key()['color']
