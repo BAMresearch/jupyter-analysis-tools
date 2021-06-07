@@ -2,6 +2,7 @@
 # utils.py
 
 import os, sys
+import copy
 import urllib
 import json
 import ipykernel
@@ -133,3 +134,9 @@ def fmtErr(val, std, precision = 2, width = None):
     fmt = "{:"+str(width)+"."+str(precision)+"f}({:.0f})"
     #print("fmtErr val:", val, "std:", std)
     return fmt.format(val, std * 10**(precision))
+
+def updatedDict(d, key, value):
+    """Implements the |= operator for dict in Python version <3.9."""
+    dd = copy.copy(d)
+    dd[key] = value
+    return dd
