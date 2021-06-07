@@ -101,12 +101,15 @@ def distrParFromDistrib(mean, var, N=1.):
     return N, sigma, median # return in the order used elsewhere for distrPar
 
 def distrParFromPeakRanges(xvec, yvec, uvec, peakRanges, plot=None):
+    xvec = xvec.values if isinstance(xvec, pd.Series) else xvec
+    yvec = yvec.values if isinstance(yvec, pd.Series) else yvec
+    uvec = uvec.values if isinstance(uvec, pd.Series) else uvec
     distrPar = []
     moments = []
     for i, pr in enumerate(peakRanges): # for each peak
-        x = xvec.values[pr[0]:pr[1]+1]
-        y = yvec.values[pr[0]:pr[1]+1]
-        u = uvec.values[pr[0]:pr[1]+1]
+        x = xvec[pr[0]:pr[1]+1]
+        y = yvec[pr[0]:pr[1]+1]
+        u = uvec[pr[0]:pr[1]+1]
         N = integrate(x, y)
         mom = Moments.fromData(x, y)
         momLo = Moments.fromData(x, np.maximum(0, y-u))
