@@ -4,8 +4,11 @@
 import pandas as pd
 import numpy as np
 import scipy.integrate
+import scipy.interpolate
+import matplotlib.pyplot as plt
 
 from .utils import grouper
+from .plotting import plotVertBar
 
 def integrate(xvec, yvec):
     return abs(scipy.integrate.simps(yvec, x=xvec))
@@ -48,6 +51,57 @@ def findPeakRanges(x, y, tol=1e-16):
     appendPeakRange(istart, indices[-1])
     #print("findPeakRanges", ranges)
     return ranges
+
+def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
+    """Identify local (non-zero) minima within given peak ranges and separate those
+    bimodal ranges into monomodal ranges, thus splitting up the peak range if it contains
+    maxima connected by non-zero minima. Returns a list of index tuples indicating the
+    start and end of each peak. Uses 4th order spline fitting and its derivative
+    for finding positions of local minima."""
+    #print("findLocalMinima", peakRanges)
+    newRanges = []
+    if doPlot:
+        plt.figure(figsize=(15,5))
+    for ip, (istart, iend) in enumerate(peakRanges):
+        if verbose: print((istart, iend), xarr[istart], xarr[iend])
+        while yarr[istart] <= 0. and istart < iend:
+            istart += 1 # exclude leading zero
+        while yarr[iend] <= 0. and istart < iend:
+            iend -= 1 # exclude trailing zero
+        if istart == iend:
+            continue
+        if verbose: print((istart, iend))
+        x, y = xarr[istart:iend+1], yarr[istart:iend+1]
+        spline = scipy.interpolate.InterpolatedUnivariateSpline(x, y, k=4)
+        #if verbose: print(spline(x))
+        deriv = spline.derivative()
+        #if verbose: print(deriv(x))
+        roots = deriv.roots()
+        # get indices of roots and ignore any duplicate indices
+        rootIdx = set(np.argmin(np.abs(xarr[:,np.newaxis]-roots[np.newaxis,:]), axis=0))
+        rootIdx.add(istart); rootIdx.add(iend)
+        rootIdx = sorted(rootIdx)
+        #if rootIdx[0] == istart: # omit the first root at the beginning
+        #    rootIdx = rootIdx[1:]
+        if verbose: print((istart, iend), len(roots), roots, rootIdx)
+        if doPlot:
+            plt.subplot(1,len(peakRanges), ip+1)
+            radGrid = np.linspace(x[0], x[-1], 200)
+            plt.plot(x, y, label="data")
+            plt.plot(radGrid, spline(radGrid), label="spline"),
+            plt.ylabel("data & spline approx.")
+            handles1, labels1 = plt.gca().get_legend_handles_labels()
+            [plotVertBar(plt, xarr[i], spline(radGrid).max(), color="blue", ls=":") for i in rootIdx]
+            plt.gca().twinx()
+            plt.plot(radGrid, deriv(radGrid), label="deriv. spline", color="green")
+            plt.ylabel("1st derivative")
+            handles2, labels2 = plt.gca().get_legend_handles_labels()
+            plt.grid(); plt.legend(handles1+handles2, labels1+labels2)
+        peakBoundaries = rootIdx[::2]
+        if verbose: print(peakBoundaries)
+        newRanges += [tuple(peakBoundaries[i:i+2]) for i in range(len(peakBoundaries)-1)]
+    if verbose: print(newRanges)
+    return newRanges
 
 class Moments(dict):
     @staticmethod
