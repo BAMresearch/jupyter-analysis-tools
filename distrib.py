@@ -38,7 +38,10 @@ def findPeakRanges(x, y, tol=1e-16):
     def appendPeakRange(start, end):
         #print("appending", start, end, end-start)
         start, end = max(start-1, 0), min(end+1, len(x)-1)
-        ranges.append((start, end))
+        monotony = np.sign(np.diff(y[start:end+1]))
+        if not all(monotony == monotony[0]):
+            # avoid monotonously increasing/decreasing peaks -> unwanted artefacts
+            ranges.append((start, end))
     for idx in indexGroups:
         appendPeakRange(istart, indices[idx]) # add the new range to the list
         istart = indices[idx+1]               # start new range
