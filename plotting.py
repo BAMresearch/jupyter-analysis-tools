@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 # plotting.py
 
+import matplotlib
 import matplotlib.pyplot as plt
+
+# increase the limit for the warning to pop up
+matplotlib.rcParams['figure.max_open_warning'] = 50
 
 def initFigure(fig, width=80, aspectRatio=4./3., quiet=False):
     mmInch = 25.4
