@@ -14,6 +14,8 @@ def integrate(xvec, yvec):
     return abs(scipy.integrate.simps(yvec, x=xvec))
 
 def normalizeDistrib(x, y, u=None):
+    x = x.values if isinstance(x, pd.Series) else x
+    y = y.values if isinstance(y, pd.Series) else y
     # normalize the distribution to area of 1
     norm = integrate(x, y)
     #print("CONTINs norm", norm)
