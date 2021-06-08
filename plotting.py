@@ -4,6 +4,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as font_manager
+import numpy as np
 
 # increase the limit for the warning to pop up
 matplotlib.rcParams['figure.max_open_warning'] = 50
