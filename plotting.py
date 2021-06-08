@@ -63,4 +63,5 @@ class GenericResult:
         ax.fill_between(x, np.maximum(0, y-u), y+u,
                         color='red', lw=0, alpha=0.1,
                         label=f"uncertainties (lvl: {1/np.median(y/u):.3g})")
+        ax.set_xlabel(f"Radius (m)")
         ax.legend(prop=font_manager.FontProperties(family='monospace')); ax.grid(True);
