@@ -66,6 +66,9 @@ def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
         plt.figure(figsize=(15,5))
     for ip, (istart, iend) in enumerate(peakRanges):
         if verbose: print((istart, iend), xarr[istart], xarr[iend])
+        if iend-istart < 5: # skip this, can't be fitted and no sub-peaks are likely
+            newRanges.append((istart, iend))
+            continue
         while yarr[istart] <= 0. and istart < iend:
             istart += 1 # exclude leading zero
         while yarr[iend] <= 0. and istart < iend:
