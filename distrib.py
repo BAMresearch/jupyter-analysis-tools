@@ -74,7 +74,12 @@ def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
             continue
         if verbose: print((istart, iend))
         x, y = xarr[istart:iend+1], yarr[istart:iend+1]
-        spline = scipy.interpolate.InterpolatedUnivariateSpline(x, y, k=4)
+        try:
+            spline = scipy.interpolate.InterpolatedUnivariateSpline(x, y, k=4)
+        except:
+            print(f"Warning: Could not findLocalMinima() within {(istart, iend)}!")
+            newRanges.append((istart, iend))
+            continue
         #if verbose: print(spline(x))
         deriv = spline.derivative()
         #if verbose: print(deriv(x))
