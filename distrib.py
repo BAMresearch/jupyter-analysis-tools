@@ -6,6 +6,7 @@ import numpy as np
 import scipy.integrate
 import scipy.interpolate
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as font_manager
 
 from .utils import grouper
 from .plotting import plotVertBar
@@ -113,6 +114,11 @@ def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
     if verbose: print(newRanges)
     return newRanges
 
+def getLargestPeaks(peakRanges, xarr, yarr, count=1):
+    def peakRangeArea(peakRange):
+        return integrate(xarr[peakRange[0]:peakRange[1]+1], yarr[peakRange[0]:peakRange[1]+1])
+    return sorted(peakRanges, key=peakRangeArea)[-count:]
+
 class Moments(dict):
     @staticmethod
     def nthMoment(x, weights, n):
@@ -167,29 +173,93 @@ def distrParFromDistrib(mean, var, N=1.):
     #print("momentToDistrPar", mean, var, "->", median, sigma)
     return N, sigma, median # return in the order used elsewhere for distrPar
 
-def distrParFromPeakRanges(xvec, yvec, uvec, peakRanges, plot=None):
-    xvec = xvec.values if isinstance(xvec, pd.Series) else xvec
-    yvec = yvec.values if isinstance(yvec, pd.Series) else yvec
-    uvec = uvec.values if isinstance(uvec, pd.Series) else uvec
-    distrPar = []
-    moments = []
-    for i, pr in enumerate(peakRanges): # for each peak
-        x = xvec[pr[0]:pr[1]+1]
-        y = yvec[pr[0]:pr[1]+1]
-        u = uvec[pr[0]:pr[1]+1]
-        N = integrate(x, y)
-        mom = Moments.fromData(x, y)
-        momLo = Moments.fromData(x, np.maximum(0, y-u))
-        momHi = Moments.fromData(x, y+u)
-        dptmp = distrParFromDistrib(mom.mean, mom.var, N=N)
-        dptmpLo = distrParFromDistrib(momLo.mean, momLo.var, N=N)
-        dptmpHi = distrParFromDistrib(momHi.mean, momHi.var, N=N)
-        if plot:
-            ax = plot['axes'][i+plot['startIdx']]
-            plot['func'](ax, pr, (x,y,u), (xvec,yvec,uvec), (mom,momLo,momHi), (dptmp,dptmpLo,dptmpHi))
-        distrPar.append(dptmp)
-        moments.append(mom)
-    return distrPar, moments
+class Distribution:
+    x, y, u = None, None, None
+    peaks = None # list of peak (start, end) indices pointing into x,y,u
+    color = None
+    plotAxes, plotAxisIdx = None, 0
+
+    def __init__(self, xvec, yvec, uvec, maxPeakCount=None):
+        xvec = xvec.values if isinstance(xvec, pd.Series) else xvec
+        yvec = yvec.values if isinstance(yvec, pd.Series) else yvec
+        uvec = uvec.values if isinstance(uvec, pd.Series) else uvec
+        self.x, self.y, self.u = normalizeDistrib(xvec, yvec, uvec)
+        self.peaks = findPeakRanges(self.x, self.y, tol=1e-6)
+        # refine the peak ranges containing multiple maxima
+        self.peaks = findLocalMinima(self.peaks, self.x, self.y)
+        # For a given list of peaks (by start/end indices) return only those
+        # whose ratio of amount to uncertainty ratio is always below the given max. ratio
+        #maxRatio = 1.5
+        #self.peakRanges = [(istart, iend) for istart, iend in self.peakRanges
+        #                    if maxRatio > 1/np.median(self.y[istart:iend+1]/self.u[istart:iend+1])]
+        # Sort the peaks by area and use the largest (last) only, assuming monomodal distributions
+        if maxPeakCount:
+            self.peaks = getLargestPeaks(self.peaks, self.x, self.y, count=maxPeakCount)
+
+    def peakData(self, peakRange):
+        return (self.x[peakRange[0]:peakRange[1]+1],
+                self.y[peakRange[0]:peakRange[1]+1],
+                self.u[peakRange[0]:peakRange[1]+1])
+
+    @staticmethod
+    def getBarWidth(xvec):
+        return np.concatenate((np.diff(xvec)[:1], np.diff(xvec)))
+
+    def plotPeak(self, peakRange, moments, distrPar, showFullRange=False, ax=None):
+        """*showFullRange*: Set the x range to cover the whole distribution instead of the peak only."""
+        x, y, u = self.peakData(peakRange)
+        if not ax:
+            ax = plt.gca()
+        mom, momLo, momHi = moments
+        dp, dpLo, dpHi = distrPar
+        #ax.plot(x, y, 'o', color=cls.color)
+        lbl, fmt = [], "{: <7s} {: 9.2g} ±{: 9.2g}"
+        for k in "area", "median", "var", "skew", "kurt":
+            if k == "median":
+                lbl.append(fmt.format("median:", dp[-1], max(abs(dp[-1]-dpLo[-1]), abs(dpHi[-1]-dp[-1]))))
+            else:
+                lbl.append(fmt.format(k+':', mom[k], max(abs(mom[k]-momLo[k]), abs(momHi[k]-mom[k]))))
+        ax.bar(x, y, width=self.getBarWidth(x), color=self.color, alpha=0.5, label="\n".join(lbl))
+        ax.fill_between(x, np.maximum(0, y-u), y+u,
+                        color='red', lw=0, alpha=0.1,
+                        label=f"uncertainties (lvl: {1/np.median(y/u):.3g})")
+        if showFullRange:
+            ax.set_xlim((self.x.min(), self.x.max()))
+        ax.set_xlabel(f"Radius (m)")
+        ax.legend(prop=font_manager.FontProperties(family='monospace')); ax.grid(True);
+
+    def plot(self, ax, distPar, name=""):
+        """plot complete distribution as loaded from file"""
+        lbl = ("from file, " + name
+               + area(self.x, self.y, showArea=True)
+               +"\n"+distrParLatex(distPar[0]))
+        ax.fill_between(self.x, self.y,
+               #width=GenericResult.getBarWidth(self.x),
+               color=self.color, alpha=0.5, label=lbl)
+        #ax.errorbar(self.x, self.y, yerr=self.u, lw=lineWidth()*2, label=lbl)
+        ax.fill_between(self.x, np.maximum(0, self.y-self.u), self.y+self.u,
+                        color='red', lw=0, alpha=0.1, label="uncertainties")
+        ax.set_xlabel(f"Radius (m)")
+        ax.legend(); ax.grid(); ax.set_xscale("log")
+
+    def peakDistrPar(self, plotAxes=None, plotAxisStart=0, **plotPeakKwargs):
+        distrPar = []
+        moments = []
+        for i, peakRange in enumerate(self.peaks): # for each peak
+            x, y, u = self.peakData(peakRange)
+            N = integrate(x, y)
+            mom = Moments.fromData(x, y)
+            momLo = Moments.fromData(x, np.maximum(0, y-u))
+            momHi = Moments.fromData(x, y+u)
+            dptmp = distrParFromDistrib(mom.mean, mom.var, N=N)
+            dptmpLo = distrParFromDistrib(momLo.mean, momLo.var, N=N)
+            dptmpHi = distrParFromDistrib(momHi.mean, momHi.var, N=N)
+            distrPar.append(dptmp)
+            moments.append(mom)
+            if plotAxes is not None:
+                plotPeakKwargs['ax'] = plotAxes[plotAxisStart+i]
+                self.plotPeak(peakRange, (mom,momLo,momHi), (dptmp,dptmpLo,dptmpHi), **plotPeakKwargs)
+        return distrPar, moments
 
 def distrParToText(distrPar):
     numPars = 3

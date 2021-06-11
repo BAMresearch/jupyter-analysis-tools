@@ -38,30 +38,3 @@ def plotColor(idx):
 
 def lineWidth():
     return plt.rcParams["lines.linewidth"]
-
-class GenericResult:
-    color = None
-
-    @staticmethod
-    def getBarWidth(xvec):
-        return np.concatenate((np.diff(xvec)[:1], np.diff(xvec)))
-
-    @classmethod
-    def plotPeakRange(cls, ax, peakRange, peakDistrib, fullDistrib, moments, distrPar):
-        x, y, u = peakDistrib
-        xvec, yvec, uvec = fullDistrib
-        mom, momLo, momHi = moments
-        dp, dpLo, dpHi = distrPar
-        #ax.plot(x, y, 'o', color=cls.color)
-        lbl, fmt = [], "{: <7s} {: 9.2g} ±{: 9.2g}"
-        for k in "area", "median", "var", "skew", "kurt":
-            if k == "median":
-                lbl.append(fmt.format("median:", dp[-1], max(abs(dp[-1]-dpLo[-1]), abs(dpHi[-1]-dp[-1]))))
-            else:
-                lbl.append(fmt.format(k+':', mom[k], max(abs(mom[k]-momLo[k]), abs(momHi[k]-mom[k]))))
-        ax.bar(x, y, width=cls.getBarWidth(x), color=cls.color, alpha=0.5, label="\n".join(lbl))
-        ax.fill_between(x, np.maximum(0, y-u), y+u,
-                        color='red', lw=0, alpha=0.1,
-                        label=f"uncertainties (lvl: {1/np.median(y/u):.3g})")
-        ax.set_xlabel(f"Radius (m)")
-        ax.legend(prop=font_manager.FontProperties(family='monospace')); ax.grid(True);
