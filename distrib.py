@@ -219,6 +219,7 @@ class Distribution:
                 lbl.append(fmt.format("median:", dp[-1], max(abs(dp[-1]-dpLo[-1]), abs(dpHi[-1]-dp[-1]))))
             else:
                 lbl.append(fmt.format(k+':', mom[k], max(abs(mom[k]-momLo[k]), abs(momHi[k]-mom[k]))))
+        lbl.append("LogNorm: "+distrParToText(dp)[0])
         ax.bar(x, y, width=self.getBarWidth(x), color=self.color, alpha=0.5, label="\n".join(lbl))
         ax.fill_between(x, np.maximum(0, y-u), y+u,
                         color='red', lw=0, alpha=0.1,
