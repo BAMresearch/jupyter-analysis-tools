@@ -201,6 +201,10 @@ class Distribution:
                 self.y[peakRange[0]:peakRange[1]+1],
                 self.u[peakRange[0]:peakRange[1]+1])
 
+    def uncertRatioMedian(self, peakRange):
+        _, y, u = self.peakData(peakRange)
+        return 1./np.median(y/u)
+
     @staticmethod
     def getBarWidth(xvec):
         return np.concatenate((np.diff(xvec)[:1], np.diff(xvec)))
@@ -223,7 +227,7 @@ class Distribution:
         ax.bar(x, y, width=self.getBarWidth(x), color=self.color, alpha=0.5, label="\n".join(lbl))
         ax.fill_between(x, np.maximum(0, y-u), y+u,
                         color='red', lw=0, alpha=0.1,
-                        label=f"uncertainties (lvl: {1/np.median(y/u):.3g})")
+                        label=f"uncertainties (lvl: {self.uncertRatioMedian(peakRange):.3g})")
         if showFullRange:
             ax.set_xlim((self.x.min(), self.x.max()))
         ax.set_xlabel(f"Radius (m)")
