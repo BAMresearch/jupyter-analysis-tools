@@ -117,7 +117,7 @@ def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
 def getLargestPeaks(peakRanges, xarr, yarr, count=1):
     def peakRangeArea(peakRange):
         return integrate(xarr[peakRange[0]:peakRange[1]+1], yarr[peakRange[0]:peakRange[1]+1])
-    return sorted(peakRanges, key=peakRangeArea)[-count:]
+    return sorted(peakRanges, key=peakRangeArea, reverse=True)[:count]
 
 class Moments(dict):
     @staticmethod
