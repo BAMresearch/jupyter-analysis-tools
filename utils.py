@@ -58,6 +58,20 @@ def isWindows():
     return platform.system().lower() in "windows"
 
 def isList(obj):
+    """Return true if the provided object is list-like including a numpy array
+    but not a string.
+    >>> isList([1, 2, 'a'])
+    True
+    >>> isList(tuple((1, 2, 'a')))
+    True
+    >>> import numpy
+    >>> isList(numpy.arange(5))
+    True
+    >>> isList("dummy")
+    False
+    >>> isList(None)
+    False
+    """
     return isinstance(obj, (list, tuple, np.ndarray))
 
 def shortenWinPath(path):
