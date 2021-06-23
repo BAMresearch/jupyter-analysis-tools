@@ -31,30 +31,19 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
-      - name: Conda info
-        shell: bash -l {0}
-        run: |
-          conda info
-          conda env list
-          conda list
-          echo "## conda env export --no-builds"
-          conda env export --no-builds
-          echo "## conda list -e"
-          conda list -e
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Setting up environment
         shell: bash -l {0}
         run: |
           echo "## conda env create -f conda_environment.yml"
-          ls -la && pwd
+          ls -la
           conda env create -f conda_environment.yml
           echo "## Showing conda envs"
-          conda info
-          conda env list
           conda activate jupyter_analysis_tools
+          conda env list
       - name: Testing things
         shell: bash -l {0}
         run: |
-          ls -la
+          conda env list
           python -m doctest -v utils.py
