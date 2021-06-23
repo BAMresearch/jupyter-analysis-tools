@@ -34,7 +34,10 @@ jobs:
         run: |
           conda info
           conda list
+          echo "conda env export --no-builds"
           conda env export --no-builds
+          echo "conda list -e"
+          conda list -e
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Testing things
