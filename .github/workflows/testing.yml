@@ -49,8 +49,10 @@ jobs:
           echo "## conda env create -f conda_environment.yml"
           ls -la && pwd
           conda env create -f conda_environment.yml
-          echo "## conda list -e"
-          conda list -e
+          echo "## Showing conda envs"
+          conda info
+          conda env list
+          conda activate jupyter_analysis_tools
       - name: Testing things
         shell: bash -l {0}
         run: |

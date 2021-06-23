@@ -1,4 +1,4 @@
-name: testing
+name: jupyter_analysis_tools
 channels:
   - defaults
 dependencies:
