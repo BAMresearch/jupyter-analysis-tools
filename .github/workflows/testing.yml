@@ -40,6 +40,7 @@ jobs:
           echo "## conda list -e"
           conda list -e
           echo "## conda env create -f conda_environment.yml"
+          ls -la && pwd
           conda env create -f conda_environment.yml
           echo "## conda list -e"
           conda list -e
