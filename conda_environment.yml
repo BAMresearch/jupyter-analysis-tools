@@ -1,0 +1,5 @@
+name: testing
+channels:
+  - defaults
+dependencies:
+  - numpy >= 1.18
