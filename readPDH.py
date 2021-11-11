@@ -14,7 +14,7 @@ def readPDH(ifname):
             inline = ifile.readline()
 
         inline = ifile.readline()
-        while inline != '<?xml version="1.0" encoding="utf-8"?>\n':
+        while (inline != '<?xml version="1.0" encoding="utf-8"?>\n') and (inline != '<fileinfo version="3.80.110606">\n'):
             if ((float(inline.split("  ")[1]) < qlims[1]) & (float(inline.split("  ")[1]) >= qlims[0])):
                 q.append( float(inline.split("  ")[1]) )
                 I.append( float(inline.split("  ")[2]) )
