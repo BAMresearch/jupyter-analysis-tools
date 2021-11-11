@@ -3,7 +3,8 @@
 
 from .readPDH import readPDH
 from .reBin import reBin
-from .utils import currentNBpath, setLocaleUTF8
+from .utils import setLocaleUTF8
+from .notebook_utils import currentNBpath
 from .git import isRepo, isNBstripoutInstalled, isNBstripoutActivated, checkRepo
 from .widgets import PathSelector, showBoolStatus
 
