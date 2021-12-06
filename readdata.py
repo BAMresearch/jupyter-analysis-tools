@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # read1d.py
 
-def readdata(fn, q_range=None, read_csv_args=None):
+import os
+import pandas as pd
+
+def readdata(fn, q_range=None, read_csv_args=None, print_filename=True):
     """Read a datafile pandas Dataframe
     extract a file_name
     select q-range: q_min <= q <= q_max
     """
-    print(f"Reading file '{fn}'")
+    if print_filename:
+        print(f"Reading file '{fn}'")
     if read_csv_args is None:
         read_csv_args = dict()
     if 'sep' not in read_csv_args:
