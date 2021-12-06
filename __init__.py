@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
-from .readPDH import readPDH
+from .readdata import readdata
+from .readdata import readdata as readPDH
 from .reBin import reBin
 from .utils import setLocaleUTF8
 from .notebook_utils import currentNBpath
