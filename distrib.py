@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # distrib.py
 
+from collections.abc import Iterable
+from operator import itemgetter
+from collections import OrderedDict
+import itertools
 import pandas as pd
 import numpy as np
 import scipy.integrate
@@ -165,13 +169,15 @@ class Moments(dict):
             ["{: <4s}: {: 9.2g}".format(k, self[k])
              for k in ("area", "mean", "var", "skew", "kurt")]
         )
+    @staticmethod
+    def logNormParFromMoments(mean, var, N=1.):
+        # SASfit manual, 6.4. Log-Normal distribution
+        median = mean**2/np.sqrt(var + mean**2)
+        sigma = np.sqrt(np.log(mean**2/median**2))
+        return {'N': N, 'sigma': sigma, 'median': median}
 
-def distrParFromDistrib(mean, var, N=1.):
-    # SASfit manual, 6.4. Log-Normal distribution
-    median = mean**2/np.sqrt(var + mean**2)
-    sigma = np.sqrt(np.log(mean**2/median**2))
-    #print("momentToDistrPar", mean, var, "->", median, sigma)
-    return N, sigma, median # return in the order used elsewhere for distrPar
+    def logNormPar(self, N=1.):
+        return self.logNormParFromMoments(self.mean, self.var, N=N)
 
 class Distribution:
     x, y, u = None, None, None
@@ -209,18 +215,18 @@ class Distribution:
     def getBarWidth(xvec):
         return np.concatenate((np.diff(xvec)[:1], np.diff(xvec)))
 
-    def plotPeak(self, peakRange, moments, distrPar, showFullRange=False, ax=None):
+    def plotPeak(self, peakRange, mom, momLo, momHi, dp, dpLo, dpHi, showFullRange=False, ax=None):
         """*showFullRange*: Set the x range to cover the whole distribution instead of the peak only."""
         x, y, u = self.peakData(peakRange)
         if not ax:
             ax = plt.gca()
-        mom, momLo, momHi = moments
-        dp, dpLo, dpHi = distrPar
         #ax.plot(x, y, 'o', color=cls.color)
         lbl, fmt = [], "{: <7s} {: 9.2g} ±{: 9.2g}"
         for k in "area", "median", "var", "skew", "kurt":
             if k == "median":
-                lbl.append(fmt.format("median:", dp[-1], max(abs(dp[-1]-dpLo[-1]), abs(dpHi[-1]-dp[-1]))))
+                lbl.append(fmt.format("median:", dp['median'],
+                                      max(abs(dp['median']-dpLo['median']),
+                                          abs(dpHi['median']-dp['median']))))
             else:
                 lbl.append(fmt.format(k+':', mom[k], max(abs(mom[k]-momLo[k]), abs(momHi[k]-mom[k]))))
         lbl.append("LogNorm: "+distrParToText(dp)[0])
@@ -247,62 +253,85 @@ class Distribution:
         ax.set_xlabel(f"Radius (m)")
         ax.legend(); ax.grid(); ax.set_xscale("log")
 
+    def moments(self):
+        def momentsByPeak():
+            for peakRange in self.peaks:
+                x, y, u = self.peakData(peakRange)
+                N = integrate(x, y)
+                mom   = Moments.fromData(x, y)
+                momLo = Moments.fromData(x, np.maximum(0, y-u))
+                momHi = Moments.fromData(x, y+u)
+                lnp   = mom.logNormPar(N=N)
+                lnpLo = momLo.logNormPar(N=N)
+                lnpHi = momHi.logNormPar(N=N)
+                yield (peakRange, mom,momLo,momHi, lnp,lnpLo,lnpHi)
+        # return a dict of lists, addressable by peak index
+        return dict(zip(['peakRange','mom','momLo','momHi','lnp','lnpLo','lnpHi'],
+                    zip(*[m for m in momentsByPeak()])))
+
     def peakDistrPar(self, plotAxes=None, plotAxisStart=0, **plotPeakKwargs):
-        distrPar = []
-        moments = []
-        for i, peakRange in enumerate(self.peaks): # for each peak
-            x, y, u = self.peakData(peakRange)
-            N = integrate(x, y)
-            mom = Moments.fromData(x, y)
-            momLo = Moments.fromData(x, np.maximum(0, y-u))
-            momHi = Moments.fromData(x, y+u)
-            dptmp = distrParFromDistrib(mom.mean, mom.var, N=N)
-            dptmpLo = distrParFromDistrib(momLo.mean, momLo.var, N=N)
-            dptmpHi = distrParFromDistrib(momHi.mean, momHi.var, N=N)
-            distrPar.append(dptmp)
-            moments.append(mom)
-            if plotAxes is not None:
+        momentsAndLogNormPar = self.moments()
+        if plotAxes is not None:
+            for i, peakRange in enumerate(momentsAndLogNormPar['peakRange']):
                 plotPeakKwargs['ax'] = plotAxes[plotAxisStart+i]
-                self.plotPeak(peakRange, (mom,momLo,momHi), (dptmp,dptmpLo,dptmpHi), **plotPeakKwargs)
-        return distrPar, moments
+                self.plotPeak(*[v[i] for v in momentsAndLogNormPar.values()], **plotPeakKwargs)
+        return momentsAndLogNormPar['lnp'], momentsAndLogNormPar['mom']
 
-def distrParToText(distrPar):
-    numPars = 3
-    if len(distrPar) > numPars:
-        fmt = "R_{i}={:3.0f} s_{i}={:0.2f} N_{i}={:.3g}"
-    else:
-        fmt = "R={:3.0f} s={:0.2f} N={:.3g}"
-    return [fmt.format(p[2]*1e9, p[1], p[0], i = i)
-            for i, p in enumerate(grouper(distrPar, numPars))]
-
-def distrParToFilename(distrPar, prefix=''):
-    return '_'.join([prefix] + distrParToText(distrPar)).replace(' ', '_')
+def distrParToText(logNormPar):
+    """
+    >>> distrParToText({'N':1.1, 'sigma':0.15, 'median':33e-9})
+    ['median= 33 sigma=0.15 N=1.1']
+    
+    >>> distrParToText({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
+    ['median_0= 40 sigma_0=0.20 N_0=1', 'median_1= 70 sigma_1=0.40 N_1=2']
+    """
+    fmt = {'median': "{:3.0f}", 'sigma': "{:.2f}", 'N': "{:.3g}"}
+    order = {key: list(fmt.keys()).index(key) for key in fmt.keys()}
+    return [" ".join(p) for p in grouper(list(zip(*sorted([(i*10+order[key],
+             f"{key}"+(f"_{i}" if isinstance(vals, Iterable) else "")+"="+fmt[key].format(v*1e9 if key in 'median' else v))
+            for key, vals in logNormPar.items()
+            for i, v in enumerate(vals if isinstance(vals, Iterable) else [vals])], key=itemgetter(0))))[-1], 3)]
 
 def distrParLatex(distrPar, *kwargs):
+    r"""
+    >>> distrParLatex({'N':1.1, 'sigma':0.15, 'median':33e-9})
+    '$median=\\;33\\;sigma=0.15\\;N=1.1$'
+    
+    >>> distrParLatex({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
+    '$median_0=\\;40\\;sigma_0=0.20\\;N_0=1$\n$median_1=\\;70\\;sigma_1=0.40\\;N_1=2$'
+    """
     return "\n".join(['$'+txt.replace(' ',r'\;')+'$' for txt in distrParToText(distrPar)])
 
+def distrParToFilename(distrPar, prefix=''):
+    """
+    >>> distrParToFilename({'N':1.1, 'sigma':0.15, 'median':33e-9})
+    '_median=_33_sigma=0.15_N=1.1'
+    
+    >>> distrParToFilename({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
+    '_median_0=_40_sigma_0=0.20_N_0=1_median_1=_70_sigma_1=0.40_N_1=2'
+    """
+    return '_'.join([prefix] + distrParToText(distrPar)).replace(' ', '_')
+
 def distrParFromFilename(fn):
+    """
+    >>> distrParFromFilename('_median=_33_sigma=0.15_N=1.1') == {'N':1.1, 'sigma':0.15, 'median':33e-9}
+    True
+    
+    >>> distrParFromFilename('_median_0=_40_sigma_0=0.20_N_0=1_median_1=_70_sigma_1=0.40_N_1=2') == {'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)}
+    True
+    """
     fn = fn.split('=')
     fn = [elem.lstrip('_') for elem in fn]
     fn = [(elem.split('_', maxsplit=1) if elem[0].isnumeric() else [elem]) for elem in fn]
     fn = list(itertools.chain(*fn))
-    return list(itertools.chain(*[(float(grp[5]), float(grp[3]), float(grp[1])*1e-9)
-                                  for grp in grouper(fn, 6)]))
+    result = {}
+    for k,v in grouper(fn,2):
+        key = k.split('_')[0]
+        value = (float(v)/1e9 if 'median' == key else float(v))
+        result[key] = value if key not in result else (result[key] + (value,)
+                if isinstance(result[key],tuple) else (result[key], value))
+    return result
 
-def test():
-    """Some testing."""
-    distrPar = (1, 0.2, 40e-9)
-    print("distrPar:      ", list(grouper(distrPar, 3)))
-    print("distrParToText:", distrParToText(distrPar))
-    print("distrParLatex: ", distrParLatex(distrPar))
-    print("distrParToFilename:  ", distrParToFilename(distrPar))
-    print("distrParFromFilename:", distrParFromFilename(distrParToFilename(distrPar)))
-    print("distrParFromFilename:", distrParFromFilename(distrParToFilename(distrPar, "lognorm")))
-    print()
-    distrPar = (1, 0.2, 40e-9)+(1, 0.1, 10e-9)
-    print("distrPar:      ", list(grouper(distrPar, 3)))
-    print("distrParToText:", distrParToText(distrPar))
-    print("distrParLatex: ", distrParLatex(distrPar))
-    print("distrParToFilename:  ", distrParToFilename(distrPar))
-    print("distrParFromFilename:", distrParFromFilename(distrParToFilename(distrPar)))
-    print("distrParFromFilename:", distrParFromFilename(distrParToFilename(distrPar, "lognorm")))
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
