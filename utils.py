@@ -107,7 +107,7 @@ def setPackage(globalsdict):
     path = Path().resolve()
     searchpath = str(path.parent)
     if searchpath not in sys.path:
-        sys.path.append(searchpath)
+        sys.path.insert(0, searchpath)
     globalsdict['__package__'] = path.name
     globalsdict['__name__'] = path.name
     print(f"Setting the current directory as package '{path.name}':\n  {path}.")
