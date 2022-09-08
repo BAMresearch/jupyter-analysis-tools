@@ -183,13 +183,17 @@ class Distribution:
     x, y, u = None, None, None
     peaks = None # list of peak (start, end) indices pointing into x,y,u
     color = None
+    xlabel = None
     plotAxes, plotAxisIdx = None, 0
 
-    def __init__(self, xvec, yvec, uvec, maxPeakCount=None):
+    def __init__(self, xvec, yvec, uvec, xlabel=None, maxPeakCount=None):
+        self.xlabel = getattr(xvec, 'name', None)
         xvec = xvec.values if isinstance(xvec, pd.Series) else xvec
         yvec = yvec.values if isinstance(yvec, pd.Series) else yvec
         uvec = uvec.values if isinstance(uvec, pd.Series) else uvec
         self.x, self.y, self.u = normalizeDistrib(xvec, yvec, uvec)
+        if xlabel is not None:
+            self.xlabel = xlabel
         self.peaks = findPeakRanges(self.x, self.y, tol=1e-6)
         # refine the peak ranges containing multiple maxima
         self.peaks = findLocalMinima(self.peaks, self.x, self.y)
@@ -236,7 +240,7 @@ class Distribution:
                         label=f"uncertainties (lvl: {self.uncertRatioMedian(peakRange):.3g})")
         if showFullRange:
             ax.set_xlim((self.x.min(), self.x.max()))
-        ax.set_xlabel(f"Radius (m)")
+        ax.set_xlabel(self.xlabel)
         ax.legend(prop=font_manager.FontProperties(family='monospace')); ax.grid(True);
 
     def plot(self, ax, distPar, name=""):
@@ -250,7 +254,7 @@ class Distribution:
         #ax.errorbar(self.x, self.y, yerr=self.u, lw=lineWidth()*2, label=lbl)
         ax.fill_between(self.x, np.maximum(0, self.y-self.u), self.y+self.u,
                         color='red', lw=0, alpha=0.1, label="uncertainties")
-        ax.set_xlabel(f"Radius (m)")
+        ax.set_xlabel(self.xlabel)
         ax.legend(); ax.grid(); ax.set_xscale("log")
 
     def moments(self):
