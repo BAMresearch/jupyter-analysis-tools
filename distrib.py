@@ -283,45 +283,53 @@ class Distribution:
 
 def distrParToText(logNormPar):
     """
-    >>> distrParToText({'N':1.1, 'sigma':0.15, 'median':33e-9})
-    ['median= 33 sigma=0.15 N=1.1']
-    
+    >>> distrParToText({'N':1.1, 'sigma':0.15, 'median':33.1234e-9})
+    ['median=3.3e-08 sigma=0.15 N=1.1']
+
+    >>> distrParToText({'N':1.2e13, 'sigma':0.15, 'median':3.1234})
+    ['median=3.1 sigma=0.15 N=1.2e+13']
+
     >>> distrParToText({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
-    ['median_0= 40 sigma_0=0.20 N_0=1', 'median_1= 70 sigma_1=0.40 N_1=2']
+    ['median_0=4e-08 sigma_0=0.20 N_0=1', 'median_1=7e-08 sigma_1=0.40 N_1=2']
     """
-    fmt = {'median': "{:3.0f}", 'sigma': "{:.2f}", 'N': "{:.3g}"}
+    fmt = {'median': "{:.2g}", 'sigma': "{:.2f}", 'N': "{:.2g}"}
     order = {key: list(fmt.keys()).index(key) for key in fmt.keys()}
-    return [" ".join(p) for p in grouper(list(zip(*sorted([(i*10+order[key],
-             f"{key}"+(f"_{i}" if isinstance(vals, Iterable) else "")+"="+fmt[key].format(v*1e9 if key in 'median' else v))
-            for key, vals in logNormPar.items()
-            for i, v in enumerate(vals if isinstance(vals, Iterable) else [vals])], key=itemgetter(0))))[-1], 3)]
+    return [" ".join(p) for p in grouper(list(zip(
+        *sorted([(i*10+order[key], f"{key}"
+                  +(f"_{i}" if isinstance(vals, Iterable) else "")
+                  +"="+fmt[key].format(v)
+                 ) for key, vals in logNormPar.items()
+                    for i, v in enumerate(vals if isinstance(vals, Iterable) else [vals])
+                ],
+                key=itemgetter(0))))[-1], 3)]
 
 def distrParLatex(distrPar, *kwargs):
     r"""
     >>> distrParLatex({'N':1.1, 'sigma':0.15, 'median':33e-9})
-    '$median=\\;33\\;sigma=0.15\\;N=1.1$'
+    '$median=3.3e-08\\;sigma=0.15\\;N=1.1$'
     
     >>> distrParLatex({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
-    '$median_0=\\;40\\;sigma_0=0.20\\;N_0=1$\n$median_1=\\;70\\;sigma_1=0.40\\;N_1=2$'
+    '$median_0=4e-08\\;sigma_0=0.20\\;N_0=1$\n$median_1=7e-08\\;sigma_1=0.40\\;N_1=2$'
     """
     return "\n".join(['$'+txt.replace(' ',r'\;')+'$' for txt in distrParToText(distrPar)])
 
 def distrParToFilename(distrPar, prefix=''):
     """
     >>> distrParToFilename({'N':1.1, 'sigma':0.15, 'median':33e-9})
-    '_median=_33_sigma=0.15_N=1.1'
+    '_median=3.3e-08_sigma=0.15_N=1.1'
     
     >>> distrParToFilename({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
-    '_median_0=_40_sigma_0=0.20_N_0=1_median_1=_70_sigma_1=0.40_N_1=2'
+    '_median_0=4e-08_sigma_0=0.20_N_0=1_median_1=7e-08_sigma_1=0.40_N_1=2'
     """
     return '_'.join([prefix] + distrParToText(distrPar)).replace(' ', '_')
 
 def distrParFromFilename(fn):
     """
-    >>> distrParFromFilename('_median=_33_sigma=0.15_N=1.1') == {'N':1.1, 'sigma':0.15, 'median':33e-9}
+    >>> distrParFromFilename('_median=_33_sigma=0.15_N=1.1') == {'N':1.1, 'sigma':0.15, 'median':33}
     True
     
-    >>> distrParFromFilename('_median_0=_40_sigma_0=0.20_N_0=1_median_1=_70_sigma_1=0.40_N_1=2') == {'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)}
+    >>> distrParFromFilename('_median_0=4e-08_sigma_0=0.20_N_0=1_median_1=7e-08_sigma_1=0.40_N_1=2') \
+        == {'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)}
     True
     """
     fn = fn.split('=')
@@ -331,7 +339,7 @@ def distrParFromFilename(fn):
     result = {}
     for k,v in grouper(fn,2):
         key = k.split('_')[0]
-        value = (float(v)/1e9 if 'median' == key else float(v))
+        value = (float(v) if 'median' == key else float(v))
         result[key] = value if key not in result else (result[key] + (value,)
                 if isinstance(result[key],tuple) else (result[key], value))
     return result
