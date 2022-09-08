@@ -31,7 +31,7 @@ def normalizeDistrib(x, y, u=None):
 
 def area(xvec, yvec, showArea = True):
     """Returns a string with the area value of the given discrete curve points."""
-    return " $\int${:.3g}".format(integrate(xvec, yvec)) if showArea else ""
+    return r" $\int${:.3g}".format(integrate(xvec, yvec)) if showArea else ""
 
 def findPeakRanges(x, y, tol=1e-16):
     """Returns the location of data/peak above a base line.
