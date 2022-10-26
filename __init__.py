@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
+from .git import checkRepo
+from .git import isNBstripoutActivated
+from .git import isNBstripoutInstalled
+from .git import isRepo
+from .notebook_utils import currentNBpath
 from .readdata import readdata
 from .readdata import readdata as readPDH
 from .reBin import reBin
 from .utils import setLocaleUTF8
-from .notebook_utils import currentNBpath
-from .git import isRepo, isNBstripoutInstalled, isNBstripoutActivated, checkRepo
-from .widgets import PathSelector, showBoolStatus
+from .widgets import PathSelector
+from .widgets import showBoolStatus
 
 setLocaleUTF8()
 
