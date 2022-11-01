@@ -15,8 +15,8 @@ Overview
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
-.. |docs| image:: https://readthedocs.org/projects/jupyter_analysis_tools/badge/?style=flat
-    :target: https://jupyter_analysis_tools.readthedocs.io/
+.. |docs| image:: https://img.shields.io/github/workflow/status/BAMresearch/jupyter_analysis_tools/Documentation?label=docs
+    :target: https://bamresearch.github.io/jupyter_analysis_tools/
     :alt: Documentation Status
 
 .. |github-actions| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/github-actions.yml/badge.svg
