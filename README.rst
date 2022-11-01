@@ -70,9 +70,7 @@ You can also install the in-development version with::
 Documentation
 =============
 
-
-https://jupyter-analysis-tools.readthedocs.io/
-
+https://bamresearch.github.io/jupyter_analysis_tools/
 
 Development
 ===========
