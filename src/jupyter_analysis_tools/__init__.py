@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
+__version__ = '0.1.0'
+
 from .git import checkRepo
 from .git import isNBstripoutActivated
 from .git import isNBstripoutInstalled
