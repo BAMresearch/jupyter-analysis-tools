@@ -22,6 +22,8 @@ author = 'Ingo Breßler'
 copyright = '{0}, {1}'.format(year, author)
 version = release = '0.1.0'
 
+autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets", "numpy"]
+
 pygments_style = 'trac'
 templates_path = ['.']
 extlinks = {
