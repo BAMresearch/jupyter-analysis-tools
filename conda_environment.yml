@@ -1,5 +1,0 @@
-name: jupyter_analysis_tools
-channels:
-  - defaults
-dependencies:
-  - numpy >= 1.18
