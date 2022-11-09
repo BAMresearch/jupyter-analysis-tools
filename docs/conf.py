@@ -27,8 +27,8 @@ autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets", "numpy"
 pygments_style = 'trac'
 templates_path = ['.']
 extlinks = {
-    'issue': ('https://github.com/BAMresearch/jupyter_analysis_tools/issues/%s', '#'),
-    'pr': ('https://github.com/BAMresearch/jupyter_analysis_tools/pull/%s', 'PR #'),
+    'issue': ('https://github.com/BAMresearch/jupyter_analysis_tools/issues/%s', '#%s'),
+    'pr': ('https://github.com/BAMresearch/jupyter_analysis_tools/pull/%s', 'PR #%s'),
 }
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
