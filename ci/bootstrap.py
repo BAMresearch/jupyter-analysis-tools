@@ -75,6 +75,8 @@ def main():
 
     for root, _, files in os.walk(templates_path):
         for name in files:
+            if name == ".DS_Store":
+                continue
             relative = relpath(root, templates_path)
             with open(join(base_path, relative, name), "w") as fh:
                 fh.write(jinja.get_template(join(relative, name)).render(tox_environments=tox_environments))
