@@ -1,12 +1,11 @@
 [paths]
 source =
    src
-   */site-packages
 
 [run]
 branch = true
 source =
-    jupyter_analysis_tools
+    src/jupyter_analysis_tools
     tests
 parallel = true
 
