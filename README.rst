@@ -4,7 +4,9 @@ Overview
 
 .. start-badges
 
-    |docs| |tests| |requires|
+    - |docs|
+    - |tests|
+    - |requires|
 
 .. list-table::
     :stub-columns: 1
