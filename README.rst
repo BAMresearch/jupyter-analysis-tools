@@ -4,22 +4,24 @@ Overview
 
 .. start-badges
 
+    |docs| |tests| |requires|
+
 .. list-table::
     :stub-columns: 1
 
     * - docs
       - |docs|
     * - tests
-      - | |github-actions| |requires|
+      - | |tests| |requires|
         |
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
-.. |docs| image:: https://img.shields.io/github/workflow/status/BAMresearch/jupyter_analysis_tools/Documentation?label=docs
+.. |docs| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/docs.yml/badge.svg
     :target: https://bamresearch.github.io/jupyter_analysis_tools/
     :alt: Documentation Status
 
-.. |github-actions| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/github-actions.yml/badge.svg
+.. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
     :alt: GitHub Actions Build Status
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
 
