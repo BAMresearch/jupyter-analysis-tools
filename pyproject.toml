@@ -15,4 +15,4 @@ line_length = 100
 known_first_party = 'jupyter_analysis_tools'
 default_section = 'THIRDPARTY'
 forced_separate = 'test_jupyter_analysis_tools'
-skip = ['.tox', '.eggs', 'ci/templates', 'build', 'dist']
+skip = ['.tox', '.eggs', 'ci/templates', 'build', 'dist', '.ipynb_checkpoints']
