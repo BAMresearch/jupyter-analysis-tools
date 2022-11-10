@@ -19,7 +19,7 @@ skip = ['.tox', '.eggs', 'ci/templates', 'build', 'dist', '.ipynb_checkpoints']
 
 [tool.tbump]
 # Uncomment this if your project is hosted on GitHub:
-# github_url = "https://github.com/<user or organization>/<project>/"
+github_url = "https://github.com/BAMresearch/jupyter_analysis_tools"
 
 [tool.tbump.version]
 current = "0.1.0"
