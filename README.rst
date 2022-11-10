@@ -11,10 +11,8 @@ Overview
 .. list-table::
     :stub-columns: 1
 
-    * - docs
-      - |docs|
-    * - tests
-      - | |tests| |requires|
+    * - docs & tests
+      - |docs| |tests| |requires|
         |
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
