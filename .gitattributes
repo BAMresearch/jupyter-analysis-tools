@@ -1,3 +1,3 @@
 *.ipynb -text filter=nbstripout diff=ipynb
-*.ASC   -text 
+*.ASC   -text
 *.xls   -text diff=xls

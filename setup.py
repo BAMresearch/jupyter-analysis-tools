@@ -12,9 +12,11 @@ from os.path import splitext
 from setuptools import find_packages
 from setuptools import setup
 
+
 def read(*names, **kwargs):
     with io.open(join(dirname(__file__), *names), encoding=kwargs.get('encoding', 'utf8')) as fh:
         return fh.read()
+
 
 setup(
     name='jupyter-analysis-tools',
@@ -58,7 +60,7 @@ setup(
     ],
     project_urls={
         'Documentation': 'https://bamresearch.github.io/jupyter_analysis_tools/',
-        'Changelog': 'https://bamresearch.github.io/jupyter_analysis_tools/en/latest/changelog.html',
+        'Changelog': 'https://bamresearch.github.io/jupyter_analysis_tools/changelog.html',
         'Issue Tracker': 'https://github.com/BAMresearch/jupyter_analysis_tools/issues',
     },
     keywords=[

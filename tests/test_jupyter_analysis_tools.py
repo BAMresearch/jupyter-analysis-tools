@@ -1,5 +1,5 @@
+# from jupyter_analysis_tools import *
 
-from jupyter_analysis_tools import *
 
 # dummy test to verify the setup
 def test_main():
