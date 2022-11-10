@@ -4,9 +4,8 @@ Overview
 
 .. start-badges
 
-    - |docs|
-    - |tests|
-    - |requires|
+|  |docs| |tests| |requires|
+|  |license|
 
 .. list-table::
     :stub-columns: 1
@@ -34,6 +33,10 @@ Overview
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
     :alt: PyPI Package latest release
     :target: https://pypi.org/project/jupyter-analysis-tools
+
+.. |license| image:: https://img.shields.io/pypi/l/jupyter-analysis-tools.svg
+    :target: https://pypi.org/project/jupyter-analysis-tools/
+    :alt: License
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg
     :alt: PyPI Wheel
