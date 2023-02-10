@@ -161,7 +161,7 @@ jobs:
       - name: Get total
         id: total
         run: |
-          echo "total=$(python -m coverage report --format=total)" >> $GITHUB_OUTPUT
+          echo "total=$(coverage report --format=total)" >> $GITHUB_OUTPUT
 
   publish:
     name: Publish coverage report
