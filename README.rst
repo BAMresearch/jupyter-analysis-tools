@@ -7,7 +7,7 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 .. start-badges
 
 | |version| |commits-since| |license|
-| |supported-versions| |wheel|
+| |supported-versions| |wheel| |downloads|
 | |tests|
 | |docs|
 
@@ -41,6 +41,10 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 .. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter_analysis_tools/v0.1.0.svg
     :alt: Commits since latest release
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/compare/v0.1.0...main
+
+.. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
+    :target: https://pypi.org/project/jupyter-analysis-tools/
+    :alt: Weekly PyPI downloads
 
 .. end-badges
 
