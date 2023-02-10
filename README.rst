@@ -8,7 +8,7 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 
 | |version| |commits-since| |license|
 | |supported-versions| |wheel| |downloads|
-| |tests|
+| |tests| |coverage|
 | |docs|
 
 .. list-table::
@@ -21,6 +21,10 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 .. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
     :alt: GitHub Actions Build Status
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
+
+.. |coverage| image:: https://img.shields.io/endpoint?url=https://bamresearch.github.io/jupyter_analysis_tools/coverage-reports/cov.json
+    :target: https://bamresearch.github.io/jupyter_analysis_tools/coverage-reports/latest.html
+    :alt: Coverage reports
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
     :alt: PyPI Package latest release
