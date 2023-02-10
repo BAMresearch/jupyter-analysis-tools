@@ -175,7 +175,7 @@ jobs:
           set -xe
           export SHA10=$(echo ${{ github.sha }} | cut -c 1-10)
           export SLUG=$(date +'%Y%m%d')_$SHA10
-          export REPORT_BASE_DIR=coverage-reports
+          export REPORT_BASE_DIR=coverage-report
           export REPORT_DIR=$REPORT_BASE_DIR/$SLUG
           export REF="${{ github.ref }}"
           echo "total=${{ needs.combine.outputs.total }}" >> $GITHUB_ENV

@@ -22,9 +22,9 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
     :alt: GitHub Actions Build Status
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
 
-.. |coverage| image:: https://img.shields.io/endpoint?url=https://bamresearch.github.io/jupyter_analysis_tools/coverage-reports/cov.json
-    :target: https://bamresearch.github.io/jupyter_analysis_tools/coverage-reports/latest.html
-    :alt: Coverage reports
+.. |coverage| image:: https://img.shields.io/endpoint?url=https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/cov.json
+    :target: https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/latest.html
+    :alt: Coverage report
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
     :alt: PyPI Package latest release
