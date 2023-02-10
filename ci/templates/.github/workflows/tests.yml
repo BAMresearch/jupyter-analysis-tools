@@ -55,21 +55,29 @@ jobs:
 {% endfor %}
 {% endfor %}
     steps:
-    - uses: actions/checkout@v2
+
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - uses: actions/setup-python@v2
+
+    - uses: actions/setup-python@v4
       with:
         python-version: {{ '${{ matrix.python }}' }}
         architecture: {{ '${{ matrix.python_arch }}' }}
-    - name: install dependencies
+        cache: pip
+        cache-dependency-path: |
+          'ci/requirements.txt'
+          'tests/requirements.txt'
+
+    - name: Install dependencies
       run: |
-        python -mpip install --progress-bar=off -r ci/requirements.txt
+        python -m pip install --progress-bar=off -r ci/requirements.txt
         virtualenv --version
         pip --version
         tox --version
         pip list --format=freeze
-    - name: test
+
+    - name: Run tests
       env:
         TOXPYTHON: '{{ '${{ matrix.toxpython }}' }}'
       run: >
