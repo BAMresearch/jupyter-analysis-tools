@@ -4,20 +4,14 @@ Overview
 
 .. start-badges
 
-|  |docs| |tests| |requires|
-|  |license|
+| |version| |commits-since| |license|
+| |supported-versions| |wheel|
+| |tests|
+| |docs|
 
 .. list-table::
     :stub-columns: 1
 
-    * - docs
-      - |docs|
-    * - tests
-      - | |tests| |requires|
-        |
-    * - package
-      - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
 .. |docs| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/docs.yml/badge.svg
     :target: https://bamresearch.github.io/jupyter_analysis_tools/
     :alt: Documentation Status
@@ -25,10 +19,6 @@ Overview
 .. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
     :alt: GitHub Actions Build Status
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
-
-.. |requires| image:: https://requires.io/github/BAMresearch/jupyter_analysis_tools/requirements.svg?branch=main
-    :alt: Requirements Status
-    :target: https://requires.io/github/BAMresearch/jupyter_analysis_tools/requirements/?branch=main
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
     :alt: PyPI Package latest release
@@ -46,15 +36,9 @@ Overview
     :alt: Supported versions
     :target: https://pypi.org/project/jupyter-analysis-tools
 
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/jupyter-analysis-tools.svg
-    :alt: Supported implementations
-    :target: https://pypi.org/project/jupyter-analysis-tools
-
 .. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter_analysis_tools/v0.1.0.svg
     :alt: Commits since latest release
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/compare/v0.1.0...main
-
-
 
 .. end-badges
 
