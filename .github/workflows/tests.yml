@@ -165,8 +165,8 @@ jobs:
         architecture: ${{ matrix.python_arch }}
         cache: pip
         cache-dependency-path: |
-          'ci/requirements.txt'
-          'tests/requirements.txt'
+          ci/requirements.txt
+          tests/requirements.txt
 
     - name: Install dependencies
       run: |
