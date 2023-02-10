@@ -2,6 +2,8 @@
 Overview
 ========
 
+Common Python helpers used in data analysis notebooks (.ipynb) with GIT
+
 .. start-badges
 
 | |version| |commits-since| |license|
@@ -42,9 +44,6 @@ Overview
 
 .. end-badges
 
-Common Python helpers used in data analysis notebooks (.ipynb) with GIT
-
-* Free software: MIT license
 
 Installation
 ============
