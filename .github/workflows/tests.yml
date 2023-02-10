@@ -220,13 +220,14 @@ jobs:
           echo "${{ env.url }}" >> commit.txt
           echo "${{ env.sha10 }}: ${{ env.branch }}" >> commit.txt
           # Make badge json
-          COL_MIN=60; COL_MAX=95;
+          COL_MIN=10; COL_MAX=95;
           HUE=$(python3 -c "print(int((${{ env.total }} - $COL_MIN)/($COL_MAX - $COL_MIN) * 120))")
           echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> pages/${{ env.report_base_dir }}/cov.json
           # Commit.
           cd ./pages
+          ls -la ${{ env.report_dir }} # for debugging
           git sparse-checkout set --skip-checks '/*' '${{ env.report_dir }}'
-          git add ${{ env.report_dir }} ${{ env.report_base_dir }}/latest.html ${{ env.report_base_dir }}/cov.json
+          git add ${{ env.report_dir }}/* ${{ env.report_base_dir }}/latest.html ${{ env.report_base_dir }}/cov.json
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit --file=../commit.txt
