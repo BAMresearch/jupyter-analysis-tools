@@ -181,9 +181,10 @@ jobs:
         TOXPYTHON: '${{ matrix.toxpython }}'
       run: |
         tox -e ${{ matrix.tox_env }} -v
-        mv .coverage coverage.${{ matrix.python }}.${{ matrix.os }}
+        [ -f .coverage ] && mv .coverage coverage.${{ matrix.python }}.${{ matrix.os }}
 
     - name: Upload coverage data
+      if: ${{ startsWith(matrix.tox_env, 'py') }}
       uses: actions/upload-artifact@v3
       with:
         name: coverage
