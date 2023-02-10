@@ -225,6 +225,7 @@ jobs:
           echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> pages/${{ env.report_base_dir }}/cov.json
           # Commit.
           cd ./pages
+          rm ${{ env.report_dir }}/.gitignore
           ls -la ${{ env.report_dir }} # for debugging
           git sparse-checkout set --skip-checks '/*' '${{ env.report_dir }}'
           git add ${{ env.report_dir }}/* ${{ env.report_base_dir }}/latest.html ${{ env.report_base_dir }}/cov.json
