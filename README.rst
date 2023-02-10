@@ -14,7 +14,7 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 .. list-table::
     :stub-columns: 1
 
-.. |docs| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/docs.yml/badge.svg
+.. |docs| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
     :target: https://bamresearch.github.io/jupyter_analysis_tools/
     :alt: Documentation Status
 
