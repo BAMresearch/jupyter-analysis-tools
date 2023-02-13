@@ -55,14 +55,6 @@ line-length = 100
 target-version = ['py37']
 skip-string-normalization = true
 
-[tool.isort]
-force_single_line = true
-line_length = 100
-known_first_party = 'jupyter_analysis_tools'
-default_section = 'THIRDPARTY'
-forced_separate = 'test_jupyter_analysis_tools'
-skip = ['.tox', '.eggs', 'ci/templates', 'build', 'dist', '.ipynb_checkpoints']
-
 [tool.tbump]
 # Uncomment this if your project is hosted on GitHub:
 github_url = "https://github.com/BAMresearch/jupyter_analysis_tools"
