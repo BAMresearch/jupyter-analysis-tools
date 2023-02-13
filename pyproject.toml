@@ -1,9 +1,51 @@
+[project]
+name = 'jupyter-analysis-tools'
+description = 'Common Python helpers used in data analysis notebooks (.ipynb) with GIT'
+authors = [{name = 'Ingo Breßler', email = 'dev@ingobressler.net'}]
+dynamic = ['version', 'readme']
+license = {text = 'MIT License'}
+classifiers = [
+  'Development Status :: 4 - Beta',
+  'License :: OSI Approved :: MIT License',
+  'Operating System :: Unix',
+  'Operating System :: POSIX',
+  'Operating System :: MacOS',
+  'Operating System :: Microsoft :: Windows',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3 :: Only',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: Implementation :: CPython',
+  'Framework :: Jupyter :: JupyterLab',
+  'Topic :: Utilities',
+  'Topic :: Scientific/Engineering',
+  'Intended Audience :: Developers',
+  'Intended Audience :: Science/Research',
+]
+
+[project.urls]
+homepage = "https://bamresearch.github.io/jupyter_analysis_tools"
+documentation = "https://bamresearch.github.io/jupyter_analysis_tools"
+repository = "https://github.com/BAMresearch/jupyter_analysis_tools"
+Changelog = "https://bamresearch.github.io/jupyter_analysis_tools/changelog.html"
+Issues = "https://github.com/BAMresearch/jupyter_analysis_tools/issues"
+
 [build-system]
 requires = [
     "setuptools>=30.3.0",
     "wheel",
 ]
 
+[tool.setuptools.packages.find]
+where = ['src']
+include = ['jupyter_analysis_tools*']
+
+[tool.setuptools.dynamic]
+version = {attr = 'jupyter_analysis_tools.__version__'}
+readme = {file = ['README.rst', 'CHANGELOG.rst']}
 [tool.blue]
 line-length = 100
 target-version = ['py37']
