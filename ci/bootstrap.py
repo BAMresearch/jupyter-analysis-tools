@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import absolute_import, print_function, unicode_literals
 
 import os
 import subprocess
 import sys
-from os.path import abspath
-from os.path import dirname
-from os.path import exists
-from os.path import join
-from os.path import relpath
+from os.path import abspath, dirname, exists, join, relpath
 
 import toml
 
@@ -56,7 +50,7 @@ def main():
     import jinja2
 
     print("Project path: {0}".format(base_path))
-    project_meta = toml.load(os.path.join(base_path, 'pyproject.toml'))
+    project_meta = toml.load(join(base_path, 'pyproject.toml'))
 
     jinja = jinja2.Environment(
         loader=jinja2.FileSystemLoader(templates_path),
