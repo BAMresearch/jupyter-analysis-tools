@@ -86,6 +86,13 @@ jobs:
         TOXPYTHON: {{"'${{ matrix.toxpython }}'"}}
       run: tox -e {{'${{ matrix.tox_env }}'}} -v
 
+    - name: Upload generated documentation
+      if: {{"${{ matrix.name == 'docs' }}"}}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: {{"${{ secrets.GITHUB_TOKEN }}"}}
+        publish_dir: ./dist/docs
+
     - name: Rename coverage data uniquely
       if: {{ "${{ startsWith(matrix.tox_env, 'py') }}" }}
       run: {{ 'mv .coverage coverage.${{ matrix.python }}.${{ matrix.os }}' }}
