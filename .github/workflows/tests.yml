@@ -12,57 +12,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_docs:
-    runs-on: ubuntu-latest
-#    env:
-#      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Upgrade pip
-        run: |
-          # install pip=>20.1 to use "pip cache dir"
-          python3 -m pip install --upgrade pip
-
-      # https://github.com/actions/cache/blob/main/examples.md#using-pip-to-get-cache-location
-      - name: Get pip cache dir
-        id: pip-cache
-        run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Install dependencies
-        run: python3 -m pip install -r ./docs/requirements.txt
-
-      - name: Build the Documentation with Sphinx
-        run: |
-          sphinx-build -b html docs build
-          touch build/.nojekyll
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-
   test:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
@@ -71,6 +20,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - name: 'check'
+            python: '3.9'
+            toxpython: 'python3.9'
+            tox_env: 'check'
+            os: 'ubuntu-latest'
+          - name: 'docs'
+            python: '3.9'
+            toxpython: 'python3.9'
+            tox_env: 'docs'
+            os: 'ubuntu-latest'
           - name: 'py38 (ubuntu)'
             python: '3.8'
             toxpython: 'python3.8'
@@ -104,6 +63,13 @@ jobs:
       env:
         TOXPYTHON: '${{ matrix.toxpython }}'
       run: tox -e ${{ matrix.tox_env }} -v
+
+    - name: Upload generated documentation
+      if: ${{ matrix.name == docs }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist/docs
 
     - name: Rename coverage data uniquely
       if: ${{ startsWith(matrix.tox_env, 'py') }}
@@ -165,7 +131,7 @@ jobs:
 
   publish:
     name: Publish coverage report
-    needs: [combine, build_docs]
+    needs: combine
     runs-on: ubuntu-latest
 
     steps:
