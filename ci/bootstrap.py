@@ -13,6 +13,8 @@ from os.path import exists
 from os.path import join
 from os.path import relpath
 
+import toml
+
 base_path = dirname(dirname(abspath(__file__)))
 templates_path = join(base_path, "ci", "templates")
 
@@ -54,6 +56,7 @@ def main():
     import jinja2
 
     print("Project path: {0}".format(base_path))
+    project_meta = toml.load(os.path.join(base_path, 'pyproject.toml'))
 
     jinja = jinja2.Environment(
         loader=jinja2.FileSystemLoader(templates_path),
@@ -83,7 +86,9 @@ def main():
             with open(join(base_path, relative, name), "w") as fh:
                 fh.write(
                     jinja.get_template(join(relative, name)).render(
-                        tox_environments=tox_environments
+                        tox_environments=tox_environments,
+                        url_docs=project_meta['project']['urls']['documentation'],
+                        cov_report_path=project_meta['tool']['coverage']['report']['path'],
                     )
                 )
             print("Wrote {}".format(name))

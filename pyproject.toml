@@ -46,6 +46,10 @@ include = ['jupyter_analysis_tools*']
 [tool.setuptools.dynamic]
 version = {attr = 'jupyter_analysis_tools.__version__'}
 readme = {file = ['README.rst', 'CHANGELOG.rst']}
+
+[tool.coverage.report]
+path = "coverage-report"
+
 [tool.blue]
 line-length = 100
 target-version = ['py37']
