@@ -2,6 +2,12 @@
 from __future__ import unicode_literals
 
 import os
+from os.path import abspath, dirname, join
+
+import toml
+
+base_path = dirname(dirname(abspath(__file__)))
+project_meta = toml.load(join(base_path, 'pyproject.toml'))
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -27,8 +33,8 @@ autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets"]
 pygments_style = 'trac'
 templates_path = ['.']
 extlinks = {
-    'issue': ('https://github.com/BAMresearch/jupyter_analysis_tools/issues/%s', '#%s'),
-    'pr': ('https://github.com/BAMresearch/jupyter_analysis_tools/pull/%s', 'PR #%s'),
+    'issue': (join(project_meta['project']['urls']['repository'], 'issues', '%s'), '#%s'),
+    'pr': (join(project_meta['project']['urls']['repository'], 'pull', '%s'), 'PR #%s'),
 }
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -47,3 +53,11 @@ html_short_title = '%s-%s' % (project, version)
 napoleon_use_ivar = True
 napoleon_use_rtype = False
 napoleon_use_param = False
+
+linkcheck_ignore = [
+    join(
+        project_meta['project']['urls']['documentation'],
+        project_meta['tool']['coverage']['report']['path'],
+    )
+    + r'.*',
+]
