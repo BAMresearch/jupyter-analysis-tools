@@ -142,7 +142,7 @@ jobs:
 
   publish:
     name: Publish coverage report
-    needs: [combine, build_docs]
+    needs: combine
     runs-on: ubuntu-latest
 
     steps:
