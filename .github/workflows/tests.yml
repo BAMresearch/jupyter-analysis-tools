@@ -11,6 +11,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  URL_DOCS: https://bamresearch.github.io/jupyter_analysis_tools
+  COV_REPORT_BASE_DIR: coverage-report
+
 jobs:
   test:
     name: ${{ matrix.name }}
@@ -36,6 +40,72 @@ jobs:
             python_arch: 'x64'
             tox_env: 'py38'
             os: 'ubuntu-latest'
+          - name: 'py38 (windows)'
+            python: '3.8'
+            toxpython: 'python3.8'
+            python_arch: 'x64'
+            tox_env: 'py38'
+            os: 'windows-latest'
+          - name: 'py38 (macos)'
+            python: '3.8'
+            toxpython: 'python3.8'
+            python_arch: 'x64'
+            tox_env: 'py38'
+            os: 'macos-latest'
+          - name: 'py39 (ubuntu)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            os: 'ubuntu-latest'
+          - name: 'py39 (windows)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            os: 'windows-latest'
+          - name: 'py39 (macos)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            os: 'macos-latest'
+          - name: 'py310 (ubuntu)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            os: 'ubuntu-latest'
+          - name: 'py310 (windows)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            os: 'windows-latest'
+          - name: 'py310 (macos)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            os: 'macos-latest'
+          - name: 'py311 (ubuntu)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            os: 'ubuntu-latest'
+          - name: 'py311 (windows)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            os: 'windows-latest'
+          - name: 'py311 (macos)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            os: 'macos-latest'
     steps:
 
     - uses: actions/checkout@v3
@@ -141,15 +211,12 @@ jobs:
           set -xe
           export SHA10=$(echo ${{ github.sha }} | cut -c 1-10)
           export SLUG=$(date +'%Y%m%d')_$SHA10
-          export REPORT_BASE_DIR=coverage-report
-          export REPORT_DIR=$REPORT_BASE_DIR/$SLUG
+          export REPORT_DIR=$COV_REPORT_BASE_DIR/$SLUG
           export REF="${{ github.ref }}"
           echo "total=${{ needs.combine.outputs.total }}" >> $GITHUB_ENV
           echo "sha10=$SHA10" >> $GITHUB_ENV
           echo "slug=$SLUG" >> $GITHUB_ENV
-          echo "report_base_dir=$REPORT_BASE_DIR" >> $GITHUB_ENV
           echo "report_dir=$REPORT_DIR" >> $GITHUB_ENV
-          echo "url=https://bamresearch.github.io/jupyter_analysis_tools/$REPORT_DIR" >> $GITHUB_ENV
           echo "branch=${REF#refs/heads/}" >> $GITHUB_ENV
 
       - name: Summarize
@@ -174,29 +241,30 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          REDIR_HTML: "pages/$COV_REPORT_BASE_DIR/index.html"
         run: |
           set -xe
           # Make the redirect to the latest report.
-          echo "<html><head>" > pages/${{ env.report_base_dir }}/latest.html
-          echo "<meta http-equiv='refresh' content='0;url=${{ env.url }}' />" >> pages/${{ env.report_base_dir }}/latest.html
-          echo "<body>Coverage report redirect..." >> pages/${{ env.report_base_dir }}/latest.html
+          echo "<html><head>" > "$REDIR_HTML"
+          echo "<meta http-equiv='refresh' content='0;url=$URL_DOCS' />" >> "$REDIR_HTML"
+          echo "<body>Coverage report redirect..." >> "$REDIR_HTML"
           # Make the commit message.
           echo "${{ env.total }}% - $COMMIT_MESSAGE" > commit.txt
           echo "" >> commit.txt
-          echo "${{ env.url }}" >> commit.txt
+          echo "$URL_DOCS" >> commit.txt
           echo "${{ env.sha10 }}: ${{ env.branch }}" >> commit.txt
           # Make badge json
           COL_MIN=10; COL_MAX=95;
           HUE=$(python3 -c "print(int((${{ env.total }} - $COL_MIN)/($COL_MAX - $COL_MIN) * 120))")
-          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> pages/${{ env.report_base_dir }}/cov.json
+          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> pages/$COV_REPORT_BASE_DIR/cov.json
           # Commit.
           cd ./pages
           rm ${{ env.report_dir }}/.gitignore
           ls -la ${{ env.report_dir }} # for debugging
           git sparse-checkout set --skip-checks '/*' '${{ env.report_dir }}'
-          git add ${{ env.report_dir }}/* ${{ env.report_base_dir }}/latest.html ${{ env.report_base_dir }}/cov.json
+          git add ${{ env.report_dir }}/* "../$REDIR_HTML" "$COV_REPORT_BASE_DIR/cov.json"
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit --file=../commit.txt
           git push
-          echo '[${{ env.url }}](${{ env.url }})' >> $GITHUB_STEP_SUMMARY
+          echo '[$URL_DOCS]($URL_DOCS)' >> $GITHUB_STEP_SUMMARY
