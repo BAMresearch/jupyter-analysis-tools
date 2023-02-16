@@ -187,6 +187,8 @@ jobs:
           set -x
           pwd && ls -la
           coverage combine coverage.*
+          ls -laR src
+          ls -la '/Users/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src/jupyter_analysis_tools/__init__.py'
           coverage html --debug=config
 
       - name: Upload HTML report
