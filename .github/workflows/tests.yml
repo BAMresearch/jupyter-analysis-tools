@@ -244,6 +244,7 @@ jobs:
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           REDIR_HTML: "pages/${{ env.COV_REPORT_BASE_DIR }}/index.html"
+          BADGE_JSON: "pages/${{ env.COV_REPORT_BASE_DIR }}/cov.json"
         run: |
           set -xe
           # Make the redirect to the latest report.
@@ -258,13 +259,13 @@ jobs:
           # Make badge json
           COL_MIN=10; COL_MAX=95;
           HUE=$(python3 -c "print(int((${{ env.total }} - $COL_MIN)/($COL_MAX - $COL_MIN) * 120))")
-          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> pages/$COV_REPORT_BASE_DIR/cov.json
+          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> "$BADGE_JSON"
           # Commit.
           cd ./pages
           rm ${{ env.report_dir }}/.gitignore
           ls -la ${{ env.report_dir }} # for debugging
           git sparse-checkout set --skip-checks '/*' '${{ env.report_dir }}'
-          git add ${{ env.report_dir }}/* "${REDIR_HTML#*/}" "${REDIR_HTML%/*}/cov.json"
+          git add ${{ env.report_dir }}/* "${REDIR_HTML#*/}" "${BADGE_JSON#*/}/cov.json"
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit --file=../commit.txt
