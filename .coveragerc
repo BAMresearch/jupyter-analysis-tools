@@ -3,6 +3,7 @@ src =
    src
    /Users/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src
    /home/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src
+   */jupyter_analysis_tools/jupyter_analysis_tools/src
 tests =
    tests
    /Users/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/tests
