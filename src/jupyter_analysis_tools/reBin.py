@@ -22,13 +22,7 @@ import sys
 
 import numpy as np
 import pandas
-from numpy import argsort
-from numpy import log10
-from numpy import reshape
-from numpy import shape
-from numpy import size
-from numpy import sqrt
-from numpy import zeros
+from numpy import argsort, log10, reshape, shape, size, sqrt, zeros
 
 
 def argparser():

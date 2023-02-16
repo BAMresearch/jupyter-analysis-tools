@@ -39,8 +39,7 @@ def checkRepo():
         print("Could not load git module, is GIT installed and in PATH?")
         return
     # check the repository in detail
-    from IPython.display import HTML
-    from IPython.display import display
+    from IPython.display import HTML, display
 
     repo = git.Repo('.')
     #    currentNB = os.path.basename(currentNBpath())

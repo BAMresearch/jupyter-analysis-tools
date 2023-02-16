@@ -7,8 +7,7 @@ import shutil
 import tempfile
 from pathlib import Path
 
-from .utils import indent
-from .utils import isList
+from .utils import indent, isList
 
 
 def getWorkDir(workDir=None, skip=False):

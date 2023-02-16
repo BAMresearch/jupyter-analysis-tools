@@ -10,8 +10,7 @@ def showBoolStatus(value, description, invertcolor=False):
     """Pretty prints the status of a boolean variable *value* along with
     the provided description in a green color for True and in a red color
     for False values. *invertcolor* allows to flip the color assignment."""
-    from IPython.display import HTML
-    from IPython.display import display
+    from IPython.display import HTML, display
 
     statuscolor = 'darkgreen'
     if value ^ invertcolor:
