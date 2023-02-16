@@ -54,6 +54,12 @@ line-length = 100
 target-version = ['py37']
 skip-string-normalization = true
 
+[tool.isort]
+line_length = 100
+group_by_package = true
+known_first_party = 'jupyter_analysis_tools'
+extend_skip = ["ci/templates", ".ipynb_checkpoints"]
+
 [tool.tbump]
 # Uncomment this if your project is hosted on GitHub:
 github_url = "https://github.com/BAMresearch/jupyter_analysis_tools"
