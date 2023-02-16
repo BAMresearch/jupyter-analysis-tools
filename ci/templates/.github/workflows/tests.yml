@@ -138,7 +138,7 @@ jobs:
         run: |
           pwd && ls -la
           coverage combine coverage.*
-          coverage html
+          coverage html --skip-empty
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
