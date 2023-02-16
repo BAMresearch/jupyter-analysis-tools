@@ -243,7 +243,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          REDIR_HTML: "pages/$COV_REPORT_BASE_DIR/index.html"
+          REDIR_HTML: "pages/${{ env.COV_REPORT_BASE_DIR }}/index.html"
         run: |
           set -xe
           # Make the redirect to the latest report.
