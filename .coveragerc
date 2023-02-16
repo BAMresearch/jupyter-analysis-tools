@@ -1,6 +1,8 @@
 [paths]
 source =
    src
+   /Users/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src
+   /home/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src
 
 [run]
 branch = true
