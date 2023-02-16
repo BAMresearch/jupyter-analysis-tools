@@ -187,7 +187,7 @@ jobs:
           set -x
           pwd && ls -la
           coverage combine coverage.*
-          ls -laR src
+          python3 -c 'import coverage,pprint; cov=coverage.Coverage(); cov.load();pprint.pprint(list(cov.get_data()._file_map.keys()))'
           coverage html --debug=pathmap
 
       - name: Upload HTML report
