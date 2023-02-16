@@ -188,8 +188,7 @@ jobs:
           pwd && ls -la
           coverage combine coverage.*
           ls -laR src
-          #ls -la '/Users/runner/work/jupyter_analysis_tools/jupyter_analysis_tools/src/jupyter_analysis_tools/__init__.py'
-          coverage html --debug=config
+          coverage html --debug=pathmap
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
