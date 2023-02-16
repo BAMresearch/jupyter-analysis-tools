@@ -245,16 +245,17 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           REDIR_HTML: "pages/${{ env.COV_REPORT_BASE_DIR }}/index.html"
           BADGE_JSON: "pages/${{ env.COV_REPORT_BASE_DIR }}/cov.json"
+          REPORT_URL: "${{ env.URL_DOCS }}/${{ env.report_dir }}"
         run: |
           set -xe
           # Make the redirect to the latest report.
           echo "<html><head>" > "$REDIR_HTML"
-          echo "<meta http-equiv='refresh' content='0;url=$URL_DOCS' />" >> "$REDIR_HTML"
+          echo "<meta http-equiv='refresh' content='0;url=$REPORT_URL' />" >> "$REDIR_HTML"
           echo "<body>Coverage report redirect..." >> "$REDIR_HTML"
           # Make the commit message.
           echo "${{ env.total }}% - $COMMIT_MESSAGE" > commit.txt
           echo "" >> commit.txt
-          echo "$URL_DOCS" >> commit.txt
+          echo "$REPORT_URL" >> commit.txt
           echo "${{ env.sha10 }}: ${{ env.branch }}" >> commit.txt
           # Make badge json
           COL_MIN=10; COL_MAX=95;
@@ -270,4 +271,4 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit --file=../commit.txt
           git push
-          echo '[$URL_DOCS]($URL_DOCS)' >> $GITHUB_STEP_SUMMARY
+          echo '[$REPORT_URL]($REPORT_URL)' >> $GITHUB_STEP_SUMMARY
