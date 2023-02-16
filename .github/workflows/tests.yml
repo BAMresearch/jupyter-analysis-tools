@@ -187,7 +187,7 @@ jobs:
           set -x
           pwd && ls -la
           coverage combine coverage.*
-          coverage html --debug=pathmap
+          coverage html --debug=config
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
