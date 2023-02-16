@@ -184,9 +184,10 @@ jobs:
       - name: Combine and report
         id: combine
         run: |
+          set -x
           pwd && ls -la
           coverage combine coverage.*
-          coverage html --skip-empty
+          coverage html --debug=pathmap
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
