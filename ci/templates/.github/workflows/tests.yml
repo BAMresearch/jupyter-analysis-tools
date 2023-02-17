@@ -14,50 +14,32 @@ on:
 env:
   URL_DOCS: {{ url_docs }}
   COV_REPORT_BASE_DIR: {{ cov_report_path }}
+  # python version for general jobs: docs, coverage combine&publish
+  PYTHON: '3.10'
 
 jobs:
+  docs:
+    # defining this job separately allows to refer to it later
+    # as job.needs dependency plus it provides a badge
+    uses: ./.github/workflows/docs.yml
+
   test:
-    name: {{ '${{ matrix.name }}' }}
-    runs-on: {{ '${{ matrix.os }}' }}
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - name: 'check'
-            python: '3.9'
-            toxpython: 'python3.9'
-            tox_env: 'check'
-            os: 'ubuntu-latest'
-          - name: 'docs'
-            python: '3.9'
-            toxpython: 'python3.9'
-            tox_env: 'docs'
-            os: 'ubuntu-latest'
+        python_arch: ['x64']
+        python:
 {% for env in tox_environments %}
-{% set prefix = env.split('-')[0] -%}
-{% if prefix.startswith('pypy') %}
-{% set python %}pypy-{{ prefix[4] }}.{{ prefix[5] }}{% endset %}
-{% set cpython %}pp{{ prefix[4:5] }}{% endset %}
-{% set toxpython %}pypy{{ prefix[4] }}.{{ prefix[5] }}{% endset %}
-{% else %}
-{% set python %}{{ prefix[2] }}.{{ prefix[3:] }}{% endset %}
-{% set cpython %}cp{{ prefix[2:] }}{% endset %}
-{% set toxpython %}python{{ prefix[2] }}.{{ prefix[3:] }}{% endset %}
-{% endif %}
-{% for os, python_arch in [
-    ['ubuntu', 'x64'],
-    ['windows', 'x64'],
-    ['macos', 'x64'],
-] %}
-          - name: '{{ env }} ({{ os }})'
-            python: '{{ python }}'
-            toxpython: '{{ toxpython }}'
-            python_arch: '{{ python_arch }}'
-            tox_env: '{{ env }}{% if 'cover' in env %},codecov{% endif %}'
-            os: '{{ os }}-latest'
+{% set prefix = env.split('-')[0] %}
+          {{ [prefix[2],prefix[3:]] }}
 {% endfor %}
-{% endfor %}
+        os: ['ubuntu', 'windows', 'macos']
+    env:
+      PYTHON: {{"${{ join(matrix.python, '.') }}"}} # e.g. '3.11'
+      TOX_ENV: {{"${{ format('{0}{1}', 'py', join(matrix.python, '')) }}"}} # e.g. 'py311'
+    runs-on: {{"${{ format('{0}-latest', matrix.os) }}"}}
+    name: {{'"Test py-${{ join(matrix.python, \'.\') }} (${{ matrix.os }})"'}}
     steps:
 
     - uses: actions/checkout@v3
@@ -66,7 +48,7 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: {{ '${{ matrix.python }}' }}
+        python-version: {{ '${{ env.PYTHON }}' }}
         architecture: {{ '${{ matrix.python_arch }}' }}
         cache: pip
         cache-dependency-path: |
@@ -82,23 +64,12 @@ jobs:
         pip list --format=freeze
 
     - name: Run tests
-      env:
-        TOXPYTHON: {{"'${{ matrix.toxpython }}'"}}
-      run: tox -e {{'${{ matrix.tox_env }}'}} -v
-
-    - name: Upload generated documentation
-      if: {{"${{ matrix.name == 'docs' }}"}}
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: {{"${{ secrets.GITHUB_TOKEN }}"}}
-        publish_dir: ./dist/docs
+      run: tox -e {{'${{ env.TOX_ENV }}'}} -v
 
     - name: Rename coverage data uniquely
-      if: {{ "${{ startsWith(matrix.tox_env, 'py') }}" }}
-      run: {{ 'mv .coverage coverage.${{ matrix.python }}.${{ matrix.os }}' }}
+      run: {{ 'mv .coverage coverage.${{ env.TOX_ENV }}.${{ matrix.os }}' }}
 
-    - name: Upload coverage data
-      if: {{ "${{ startsWith(matrix.tox_env, 'py') }}" }}
+    - name: Upload coverage data for next step
       uses: actions/upload-artifact@v3
       with:
         name: coverage
@@ -106,7 +77,7 @@ jobs:
 
   combine:
     name: Combine coverage data
-    needs: test
+    needs: [test, docs]
     runs-on: ubuntu-latest
     outputs:
       total: {{ '${{ steps.total.outputs.total }}' }}
@@ -118,11 +89,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8 # Minimum of PYVERSIONS
+          python-version: {{'${{ env.PYTHON }}'}}
           cache: pip
-          cache-dependency-path: |
-            ci/requirements.txt
-            tests/requirements.txt
+          cache-dependency-path: ci/requirements.txt
 
       - name: Install dependencies
         run: |
