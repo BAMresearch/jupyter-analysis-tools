@@ -55,7 +55,7 @@ jobs:
       fail-fast: false
       matrix:
         python_arch: ['x64']
-        python: ['3 8', '3 9', '3 10', '3 11']
+        python: [[3,8], [3,9], [3,10], [3,11]]
         os: ['ubuntu', 'windows', 'macos']
     env:
       PYTHON: ${{ join(matrix.python, '.') }} # e.g. '3.11'
