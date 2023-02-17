@@ -21,33 +21,7 @@ jobs:
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tox_env: ['check', 'docs']
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON }}
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
-
-    - name: Install dependencies
-      run: python -m pip install --progress-bar=off -r ci/requirements.txt
-
-    - name: Run ${{ matrix.tox_env }} env with tox
-      run: tox -e ${{ matrix.tox_env }} -v
-
-    - name: Upload generated documentation
-      if: ${{ matrix.tox_env == 'docs' }}
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist/docs
+    uses: .github/workflows/docs.yml
 
   test:
     timeout-minutes: 30
