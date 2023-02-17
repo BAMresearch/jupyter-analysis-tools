@@ -16,12 +16,12 @@ env:
   COV_REPORT_BASE_DIR: coverage-report
 
 jobs:
-  env:
-    # python version for general jobs such as upfront checking and docs generation
-    PYVER: '3.10'
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
+    env:
+      # python version for general jobs such as upfront checking and docs generation
+      python: '3.10'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,7 +33,7 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: ${{ env.PYVER }}
+        python-version: ${{ env.python }}
         cache: pip
         cache-dependency-path: ci/requirements.txt
 
@@ -57,8 +57,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: 'py38 (ubuntu)'
-        python: '3.8'
         python_arch: 'x64'
         tox_env: ['py38', 'py39', 'py310', 'py311']
         os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
