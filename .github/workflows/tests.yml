@@ -63,7 +63,7 @@ jobs:
       tox_env: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
       os: ${{ format('{0}-latest', matrix.os) }}
     runs-on: $os
-    name: 'Test py${{ $python }} (${{ matrix.os }})'
+    name: 'Test py$python (${{ matrix.os }})'
     steps:
 
     - uses: actions/checkout@v3
@@ -72,7 +72,7 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: ${{ $python }}
+        python-version: $python
         architecture: ${{ matrix.python_arch }}
         cache: pip
         cache-dependency-path: |
