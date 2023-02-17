@@ -14,8 +14,6 @@ on:
 env:
   URL_DOCS: {{ url_docs }}
   COV_REPORT_BASE_DIR: {{ cov_report_path }}
-  # python version for general jobs: docs, coverage combine&publish
-  PYTHON: '3.10'
 
 jobs:
   docs:
@@ -89,7 +87,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: {{'${{ env.PYTHON }}'}}
+          python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
           cache: pip
           cache-dependency-path: ci/requirements.txt
 

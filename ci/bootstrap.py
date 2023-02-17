@@ -83,6 +83,8 @@ def main():
                         tox_environments=tox_environments,
                         url_docs=project_meta['project']['urls']['documentation'],
                         cov_report_path=project_meta['tool']['coverage']['report']['path'],
+                        # Python version to use for general tasks: docs (when tox did not set one)
+                        py_ver='.'.join(sys.version.split('.')[:2]),
                     )
                 )
             print("Wrote {}".format(name))
