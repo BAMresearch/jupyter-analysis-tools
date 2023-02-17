@@ -32,7 +32,7 @@ jobs:
         python:
 {% for env in tox_environments %}
 {% set prefix = env.split('-')[0] %}
-          {{ [prefix[2],prefix[3:]] }}
+          - [{{prefix[2]}},{{prefix[3:]}}]
 {% endfor %}
         os: ['ubuntu', 'windows', 'macos']
     env:
