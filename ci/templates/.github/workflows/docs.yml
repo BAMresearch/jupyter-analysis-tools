@@ -9,12 +9,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  workflow_call:
+
 env:
   # python version for general jobs: docs, coverage combine&publish
   PYTHON: '3.10'
 
 jobs:
-  on: [workflow_call]
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
