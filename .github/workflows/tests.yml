@@ -51,13 +51,13 @@ jobs:
         publish_dir: ./dist/docs
 
   test:
-    name: 'Test py${{ env.python }} (${{ matrix.os[1] }})'
+    name: 'Test py${{ python }} (${{ matrix.os[1] }})'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        python_arch: 'x64'
+        python_arch: ['x64']
         tox_env: ['py38', 'py39', 'py310', 'py311']
         os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
     env:
