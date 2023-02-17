@@ -14,15 +14,15 @@ on:
 env:
   URL_DOCS: https://bamresearch.github.io/jupyter_analysis_tools
   COV_REPORT_BASE_DIR: coverage-report
+  # python version for general jobs: docs, coverage combine&publish
+  PYTHON: '3.10'
+  OS: ubuntu-latest
 
 jobs:
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
-    env:
-      # python version for general jobs such as upfront checking and docs generation
-      python: '3.10'
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.OS }}
     strategy:
       matrix:
         tox_env: ['check', 'docs']
@@ -33,7 +33,7 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: ${{ env.python }}
+        python-version: ${{ env.PYTHON }}
         cache: pip
         cache-dependency-path: ci/requirements.txt
 
@@ -59,11 +59,11 @@ jobs:
         python: ['3 8', '3 9', '3 10', '3 11']
         os: ['ubuntu', 'windows', 'macos']
     env:
-      python: ${{ join(matrix.python, '.') }} # e.g. '3.11'
-      tox_env: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
-      os: ${{ format('{0}-latest', matrix.os) }}
-    runs-on: $os
-    name: 'Test py$python (${{ matrix.os }})'
+      PYTHON: ${{ join(matrix.python, '.') }} # e.g. '3.11'
+      TOX_ENV: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
+      OS: ${{ format('{0}-latest', matrix.os) }}
+    runs-on: ${{ env.OS }}
+    name: "Test py${{ env.PYTHON }} (${{ matrix.os }})"
     steps:
 
     - uses: actions/checkout@v3
@@ -72,7 +72,7 @@ jobs:
 
     - uses: actions/setup-python@v4
       with:
-        python-version: $python
+        python-version: ${{ env.PYTHON }}
         architecture: ${{ matrix.python_arch }}
         cache: pip
         cache-dependency-path: |
@@ -88,12 +88,12 @@ jobs:
         pip list --format=freeze
 
     - name: Run tests
-      run: tox -e $tox_env -v
+      run: tox -e ${{ env.TOX_ENV }} -v
 
     - name: Rename coverage data uniquely
-      run: mv .coverage coverage.$tox_env.${{ matrix.os }}
+      run: mv .coverage coverage.${{ env.TOX_ENV }}.${{ matrix.os }}
 
-    - name: Upload coverage data
+    - name: Upload coverage data for next step
       uses: actions/upload-artifact@v3
       with:
         name: coverage
@@ -101,8 +101,8 @@ jobs:
 
   combine:
     name: Combine coverage data
-    needs: test
-    runs-on: ubuntu-latest
+    needs: [test, docs]
+    runs-on: ${{ env.OS }}
     outputs:
       total: ${{ steps.total.outputs.total }}
 
@@ -113,11 +113,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8 # Minimum of PYVERSIONS
+          python-version: ${{ env.PYTHON }}
           cache: pip
-          cache-dependency-path: |
-            ci/requirements.txt
-            tests/requirements.txt
+          cache-dependency-path: ci/requirements.txt
 
       - name: Install dependencies
         run: |
@@ -151,7 +149,7 @@ jobs:
   publish:
     name: Publish coverage report
     needs: combine
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.OS }}
 
     steps:
       - name: Compute info for later steps
