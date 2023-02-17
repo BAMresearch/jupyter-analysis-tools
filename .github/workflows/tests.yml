@@ -16,13 +16,12 @@ env:
   COV_REPORT_BASE_DIR: coverage-report
   # python version for general jobs: docs, coverage combine&publish
   PYTHON: '3.10'
-  OS: ubuntu-latest
 
 jobs:
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         tox_env: ['check', 'docs']
@@ -62,7 +61,7 @@ jobs:
       PYTHON: ${{ join(matrix.python, '.') }} # e.g. '3.11'
       TOX_ENV: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
     runs-on: ${{ format('{0}-latest', matrix.os) }}
-    name: "Test py${{ env.PYTHON }} (${{ matrix.os }})"
+    name: "Test py-${{ join(matrix.python, '.') }} (${{ matrix.os }})"
     steps:
 
     - uses: actions/checkout@v3
@@ -101,7 +100,7 @@ jobs:
   combine:
     name: Combine coverage data
     needs: [test, docs]
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     outputs:
       total: ${{ steps.total.outputs.total }}
 
@@ -148,7 +147,7 @@ jobs:
   publish:
     name: Publish coverage report
     needs: combine
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Compute info for later steps
