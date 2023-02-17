@@ -61,8 +61,7 @@ jobs:
     env:
       PYTHON: ${{ join(matrix.python, '.') }} # e.g. '3.11'
       TOX_ENV: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
-      OS: ${{ format('{0}-latest', matrix.os) }}
-    runs-on: ${{ env.OS }}
+    runs-on: ${{ format('{0}-latest', matrix.os) }}
     name: "Test py${{ env.PYTHON }} (${{ matrix.os }})"
     steps:
 
