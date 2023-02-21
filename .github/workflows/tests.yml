@@ -196,4 +196,4 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git commit --file=../commit.txt
           git push
-          echo '[$REPORT_URL]($REPORT_URL)' >> $GITHUB_STEP_SUMMARY
+          echo "[$REPORT_URL]($REPORT_URL)" >> $GITHUB_STEP_SUMMARY
