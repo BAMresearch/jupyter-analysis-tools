@@ -4,7 +4,6 @@ pip>=19.1.1
 setuptools>=18.0.1
 six>=1.14.0
 tox
-#tox-wheel
 # provides the *coverage* command to combine and publish coverage data
 # generated within tox environments
 pytest-cov
