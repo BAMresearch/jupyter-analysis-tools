@@ -21,6 +21,10 @@ jobs:
     # as job.needs dependency plus it provides a badge
     uses: ./.github/workflows/docs.yml
 
+  build:
+    needs: [test]
+    uses: ./.github/workflows/build.yml
+
   test:
     timeout-minutes: 30
     strategy:
