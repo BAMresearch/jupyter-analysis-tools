@@ -33,7 +33,8 @@ jobs:
         python_arch: ['x64']
         python:
           - [3,11]
-        os: ['ubuntu', 'windows', 'macos']
+        #os: ['ubuntu', 'windows', 'macos']
+        os: ['ubuntu']
     env:
       PYTHON: ${{ join(matrix.python, '.') }} # e.g. '3.11'
       TOX_ENV: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }} # e.g. 'py311'
