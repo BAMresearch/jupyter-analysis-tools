@@ -63,9 +63,6 @@ jobs:
   publish:
     needs: [build]
     runs-on: 'ubuntu-latest'
-    env:
-      TWINE_USERNAME: __token__
-      TWINE_PASSWORD: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
     steps:
 
     - uses: actions/checkout@v3
@@ -93,10 +90,15 @@ jobs:
       run: twine check dist/*.*
 
     - name: Debugging
+      env:
+        TWINE_PASSWORD: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
       if: {{'${{ env.TWINE_PASSWORD != null }}'}}
       run: echo "TWINE_PASSWORD != null"
 
     - name: Upload packages
+      shell: bash
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
       run: |
-        echo "TWINE_USERNAME: '$TWINE_USERNAME'"
-        python3 -m twine upload -r testpypi dist/*.*
+        python3 -m twine upload -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r testpypi dist/*.*
