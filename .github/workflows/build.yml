@@ -87,8 +87,11 @@ jobs:
       run: twine check dist/*.*
 
     - name: Debugging
-      if: ${{ secrets.TEST_PYPI_API_TOKEN != null }}
-      run: echo "TEST_PYPI_API_TOKEN != null"
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      if: ${{ env.TWINE_PASSWORD != null }}
+      run: echo "TWINE_PASSWORD != null"
 
     - name: Upload packages
       env:
