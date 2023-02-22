@@ -36,7 +36,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --progress-bar=off -r ci/requirements.txt
 
-    - name: Setup developmental version
+    - name: Setup developmental version number
       if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
       run: sh ci/set_dev_version.sh
 
