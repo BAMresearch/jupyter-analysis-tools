@@ -34,9 +34,11 @@ changelog = "https://bamresearch.github.io/jupyter_analysis_tools/changelog.html
 
 [build-system]
 requires = [
-    "setuptools>=30.3.0",
+    "setuptools>=40.6",
     "wheel",
 ]
+# check-manifest checks that, https://github.com/mgedmin/check-manifest/commit/c9df78
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ['src']
@@ -78,8 +80,8 @@ tag_template = "v{new_version}"
 # section containing the path of the file, relative to the
 # tbump.toml location.
 [[tool.tbump.file]]
-src = "setup.py"
-search = "version='{current_version}'"
+# src = "setup.py"
+# search = "version='{current_version}'"
 
 [[tool.tbump.file]]
 src = "README.rst"
