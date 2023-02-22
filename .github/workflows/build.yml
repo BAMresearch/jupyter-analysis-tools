@@ -92,8 +92,7 @@ jobs:
     - name: Debugging
       env:
         TWINE_PASSWORD: ${{ secrets.PYPI_TEST_TOKEN }}
-      if: ${{ env.TWINE_PASSWORD != null }}
-      run: echo "TWINE_PASSWORD != null"
+      run: echo ${{ env.TWINE_PASSWORD != null }}
 
     - name: Upload packages
       shell: bash
@@ -101,4 +100,4 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: "${{ secrets.TEST }}"
       run: |
-        twine upload -u __token__ -p "$TWINE_PASSWORD" --non-interactive --repository-url https://test.pypi.org/legacy/ --verbose dist/*.*
+        twine upload --non-interactive -r testpypi --verbose dist/*.*
