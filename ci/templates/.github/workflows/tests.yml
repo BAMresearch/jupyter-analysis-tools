@@ -16,6 +16,16 @@ env:
   COV_REPORT_BASE_DIR: {{ cov_report_path }}
 
 jobs:
+  mytest:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: Test
+      env:
+        TEST_GITHUB_TOKEN: {{'${{ secrets.GITHUB_TOKEN }}'}}
+        TEST_SECRET: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
+      run: |
+        echo {{'${#TEST_GITHUB_TOKEN}'}}
+        echo {{'${#PYPI_TEST_TOKEN}'}}
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
