@@ -72,11 +72,10 @@ jobs:
       with:
         fetch-depth: 1
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10' # defined by py_ver in ci/bootstrap.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install --progress-bar=off -r ci/requirements.txt
 
     - name: Download package artifacts
       uses: actions/download-artifact@v3
