@@ -14,6 +14,7 @@ on:
 env:
   URL_DOCS: https://bamresearch.github.io/jupyter_analysis_tools
   COV_REPORT_BASE_DIR: coverage-report
+  TEST_SECRET: ${{ secrets.PYPI_TEST_TOKEN }}
 
 jobs:
   mytest:
