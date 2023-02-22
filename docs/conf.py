@@ -26,7 +26,8 @@ project = 'Jupyter Analysis Tools'
 year = '2022'
 author = 'Ingo Breßler'
 copyright = '{0}, {1}'.format(year, author)
-version = release = '0.1.0'
+version = '0.1.0'
+release = version
 
 autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets"]
 
