@@ -64,15 +64,11 @@ jobs:
       TWINE_PASSWORD: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
     steps:
 
-    # - uses: actions/setup-python@v4
-    #   with:
-    #     python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
-    #     cache: pip
-    #     cache-dependency-path: ci/requirements.txt
-
-    - name: Install dependencies
-      run: |
-        python -m pip install twine
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
+        cache: pip
+        cache-dependency-path: ci/requirements.txt
 
     - name: Download package artifacts
       uses: actions/download-artifact@v3
@@ -96,4 +92,4 @@ jobs:
     - name: Upload packages
       run: |
         echo "TWINE_USERNAME: '$TWINE_USERNAME'"
-        twine upload -r testpypi dist/*.*
+        python3 -m twine upload -r testpypi dist/*.*
