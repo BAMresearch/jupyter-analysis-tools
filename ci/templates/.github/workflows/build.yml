@@ -99,6 +99,6 @@ jobs:
       shell: bash
       env:
         TWINE_USERNAME: __token__
-        TWINE_PASSWORD: {{'"${{ secrets.PYPI_TEST_TOKEN }}"'}}
+        TWINE_PASSWORD: {{'"${{ secrets.TEST }}"'}}
       run: |
-        twine upload -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r testpypi --verbose dist/*.*
+        twine upload -u __token__ -p "$TWINE_PASSWORD" --non-interactive --repository-url https://test.pypi.org/legacy/ --verbose dist/*.*
