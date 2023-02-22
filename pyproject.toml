@@ -51,6 +51,21 @@ readme = {file = ['README.rst', 'CHANGELOG.rst']}
 [tool.coverage.report]
 path = "coverage-report"
 
+[tool.semantic_release]
+#major_on_zero = false # no major release when current major version is zero
+version_variable = [                        # version location
+    'src/jupyter_analysis_tools/__init__.py:__version__',
+    'docs/conf.py:version',
+]
+version_source = "tag"
+branch = "main"                             # branch to make releases of
+changelog_file = "CHANGELOG.rst"            # changelog file
+build_command = "python3 -m build"          # build dists
+upload_to_release = false                   # auto-create GitHub release
+upload_to_pypi = false                      # don't auto-upload to PyPI
+remove_dist = false                         # don't remove dists
+#patch_without_tag = false                   # patch release by default
+
 [tool.blue]
 line-length = 100
 target-version = ['py37']
