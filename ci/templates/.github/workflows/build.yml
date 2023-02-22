@@ -70,7 +70,7 @@ jobs:
         TEST_SECRET: {{'${{ secrets.PYPI_TEST_TOKEN }}'}}
       run: |
         echo {{'${#TEST_GITHUB_TOKEN}'}}
-        echo {{'${#PYPI_TEST_TOKEN}'}}
+        echo {{'${#TEST_SECRET}'}}
 
     - uses: actions/checkout@v3
       with:
