@@ -88,4 +88,7 @@ jobs:
       run: twine check dist/*.*
 
     - name: Upload packages
-      run: twine upload -run testpypi -u __token__ -p ${{ secrets.TEST_PYPI_API_TOKEN }} dist/*.*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      run: twine upload -run testpypi dist/*.*
