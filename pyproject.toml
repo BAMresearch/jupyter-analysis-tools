@@ -52,6 +52,7 @@ readme = {file = ['README.rst', 'CHANGELOG.rst']}
 path = "coverage-report"
 
 # on version numbers: https://peps.python.org/pep-0440/
+# and bottom of https://softwareengineering.stackexchange.com/a/151558
 [tool.semantic_release]
 #major_on_zero = false # no major release when current major version is zero
 version_variable = [                        # version location
