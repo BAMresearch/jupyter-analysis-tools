@@ -14,7 +14,7 @@ env:
 jobs:
   # defining this job separately allows to refer to it later
   # as job.needs dependency plus it provides a badge
-  test:
+  tests:
     timeout-minutes: 30
     strategy:
       fail-fast: false
@@ -70,7 +70,7 @@ jobs:
 
   combine:
     name: Combine coverage data
-    needs: [test, docs]
+    needs: [tests, docs]
     runs-on: ubuntu-latest
     outputs:
       total: {{ '${{ steps.total.outputs.total }}' }}

@@ -17,10 +17,10 @@ jobs:
   docs:
     uses: ./.github/workflows/docs.yml
 
-  test:
-    uses: ./.github/workflows/test.yml
+  tests:
+    uses: ./.github/workflows/tests.yml
 
   build:
-    needs: [test]
+    needs: [tests]
     uses: ./.github/workflows/build.yml
     secrets: inherit
