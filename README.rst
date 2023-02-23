@@ -7,7 +7,7 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 .. start-badges
 
 | |version| |commits-since| |license|
-| |supported-versions| |wheel| |downloads|
+| |build| |supported-versions| |wheel| |downloads|
 | |tests| |coverage|
 | |docs|
 
@@ -15,33 +15,37 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
     :target: https://bamresearch.github.io/jupyter_analysis_tools/
     :alt: Documentation Status
 
-.. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
+.. |build| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/build.yml/badge.svg
+    :target: https://test.pypi.org/project/jupyter-analysis-tools
     :alt: GitHub Actions Build Status
+
+.. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
+    :alt: GitHub Actions Tests Status
 
 .. |coverage| image:: https://img.shields.io/endpoint?url=https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/cov.json
     :target: https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/
     :alt: Coverage report
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
-    :alt: PyPI Package latest release
     :target: https://pypi.org/project/jupyter-analysis-tools
+    :alt: PyPI Package latest release
 
 .. |license| image:: https://img.shields.io/pypi/l/jupyter-analysis-tools.svg
-    :target: https://pypi.org/project/jupyter-analysis-tools/
+    :target: https://en.wikipedia.org/wiki/MIT_License
     :alt: License
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg
+    :target: https://pypi.org/project/jupyter-analysis-tools#files
     :alt: PyPI Wheel
-    :target: https://pypi.org/project/jupyter-analysis-tools
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/jupyter-analysis-tools.svg
-    :alt: Supported versions
     :target: https://pypi.org/project/jupyter-analysis-tools
+    :alt: Supported versions
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter_analysis_tools/v0.1.0.svg
-    :alt: Commits since latest release
     :target: https://github.com/BAMresearch/jupyter_analysis_tools/compare/v0.1.0...main
+    :alt: Commits since latest release
 
 .. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
     :target: https://pypi.org/project/jupyter-analysis-tools/
