@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import os
+import subprocess
 from os.path import abspath, dirname, join
 
 import toml
@@ -28,6 +29,7 @@ author = 'Ingo Breßler'
 copyright = '{0}, {1}'.format(year, author)
 version = '0.1.0'
 release = version
+commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('ascii')
 
 autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets"]
 
@@ -44,7 +46,7 @@ if not on_rtd:  # only set the theme if we're building docs locally
     html_theme = 'furo'
 
 html_use_smartypants = True
-html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = f'%b %d, %Y (git {commit_id})'
 html_split_index = False
 html_short_title = '%s-%s' % (project, version)
 
