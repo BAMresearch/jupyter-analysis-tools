@@ -70,7 +70,7 @@ jobs:
 
   combine:
     name: Combine coverage data
-    needs: [tests, docs]
+    needs: [tests]
     runs-on: ubuntu-latest
     outputs:
       total: {{ '${{ steps.total.outputs.total }}' }}
