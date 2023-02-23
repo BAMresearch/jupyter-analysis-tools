@@ -45,6 +45,7 @@ jobs:
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         semantic-release --prerelease version
+        git push --tags # push tags only, avoid extra commits for prerelease version numbers
 
     - name: Build
       run: python -m build
