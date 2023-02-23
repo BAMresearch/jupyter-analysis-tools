@@ -60,7 +60,7 @@ version_variable = [                        # version location
     'docs/conf.py:version',
 ]
 version_source = "tag"
-prerelease_tag = "a"
+prerelease_tag = "dev"
 branch = "main"                             # branch to make releases of
 changelog_file = "CHANGELOG.rst"            # changelog file
 build_command = "python3 -m build"          # build dists
