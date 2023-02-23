@@ -14,20 +14,12 @@ on:
 env:
   URL_DOCS: https://bamresearch.github.io/jupyter_analysis_tools
   COV_REPORT_BASE_DIR: coverage-report
-  TEST_SECRET: ${{ secrets.PYPI_TEST_TOKEN }}
 
 jobs:
   mytest:
     runs-on: 'ubuntu-latest'
     steps:
-    - name: Test
-      env:
-        TEST_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TEST_SECRET2: ${{ secrets.PYPI_TEST_TOKEN }}
-      run: |
-        echo ${#TEST_GITHUB_TOKEN}
-        echo ${#TEST_SECRET2}
-        echo ${#TEST_SECRET}
+
   docs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
