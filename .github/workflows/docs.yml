@@ -16,11 +16,8 @@ jobs:
     # defining this job separately allows to refer to it later
     # as job.needs dependency plus it provides a badge
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tox_env: ['check', 'docs']
-    name: ${{ matrix.tox_env }}
     steps:
+
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
@@ -38,10 +35,16 @@ jobs:
 
     - name: Setup developmental version number
       if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
-      run: sh ci/set_dev_version.sh
+      run: |
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        semantic-release --prerelease version
 
-    - name: Run ${{ matrix.tox_env }} env with tox
-      run: tox -e ${{ matrix.tox_env }} -v
+    - name: Check
+      run: tox -e check -v
+
+    - name: Generate documentation
+      run: tox -e docs -v
 
     - name: Upload generated documentation
       if: ${{ matrix.tox_env == 'docs' }}
