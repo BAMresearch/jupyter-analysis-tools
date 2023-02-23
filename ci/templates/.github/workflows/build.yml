@@ -41,7 +41,7 @@ jobs:
 
     - name: Setup developmental version number
       if: {{"${{ ! startsWith(github.ref, 'refs/tags/v') }}"}}
-      run: sh ci/set_dev_version.sh
+      run: semantic-release --prerelease version
 
     - name: Build
       run: python -m build
