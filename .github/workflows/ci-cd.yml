@@ -18,8 +18,11 @@ jobs:
     uses: ./.github/workflows/docs.yml
 
   tests:
-    needs: [docs]
     uses: ./.github/workflows/tests.yml
+
+  coverage:
+    needs: [tests, docs]
+    uses: ./.github/workflows/coverage.yml
 
   build:
     needs: [tests]
