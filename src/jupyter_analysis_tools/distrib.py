@@ -359,10 +359,8 @@ def distrParToText(logNormPar):
     """
     >>> distrParToText({'N':1.1, 'sigma':0.15, 'median':33.1234e-9})
     ['median=3.3e-08 sigma=0.15 N=1.1']
-
     >>> distrParToText({'N':1.2e13, 'sigma':0.15, 'median':3.1234})
     ['median=3.1 sigma=0.15 N=1.2e+13']
-
     >>> distrParToText({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     ['median_0=4e-08 sigma_0=0.20 N_0=1', 'median_1=7e-08 sigma_1=0.40 N_1=2']
     """
@@ -398,7 +396,6 @@ def distrParLatex(distrPar, *kwargs):
     r"""
     >>> distrParLatex({'N':1.1, 'sigma':0.15, 'median':33e-9})
     '$median=3.3e-08\\;sigma=0.15\\;N=1.1$'
-
     >>> distrParLatex({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     '$median_0=4e-08\\;sigma_0=0.20\\;N_0=1$\n$median_1=7e-08\\;sigma_1=0.40\\;N_1=2$'
     """
@@ -409,7 +406,6 @@ def distrParToFilename(distrPar, prefix=''):
     """
     >>> distrParToFilename({'N':1.1, 'sigma':0.15, 'median':33e-9})
     '_median=3.3e-08_sigma=0.15_N=1.1'
-
     >>> distrParToFilename({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     '_median_0=4e-08_sigma_0=0.20_N_0=1_median_1=7e-08_sigma_1=0.40_N_1=2'
     """
@@ -420,7 +416,6 @@ def distrParFromFilename(fn):
     """
     >>> distrParFromFilename('_median=_33_sigma=0.15_N=1.1') == {'N':1.1, 'sigma':0.15, 'median':33}
     True
-
     >>> fn = '_median_0=4e-08_sigma_0=0.20_N_0=1_median_1=7e-08_sigma_1=0.40_N_1=2'
     >>> distrParFromFilename(fn) == {'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)}
     True
