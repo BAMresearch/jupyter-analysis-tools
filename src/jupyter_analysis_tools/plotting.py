@@ -4,8 +4,11 @@
 import matplotlib
 import matplotlib.pyplot as plt
 
-# increase the limit for the warning to pop up
-matplotlib.rcParams['figure.max_open_warning'] = 50
+try:
+    # increase the limit for the warning to pop up
+    matplotlib.rcParams['figure.max_open_warning'] = 50
+except TypeError:  # ignore the error with Sphinx
+    pass
 
 
 def initFigure(fig, width=80, aspectRatio=4.0 / 3.0, quiet=False):

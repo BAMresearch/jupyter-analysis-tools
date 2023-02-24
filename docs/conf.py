@@ -32,7 +32,7 @@ version = '0.1.1'
 release = version
 commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('ascii')
 
-autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets"]
+autodoc_mock_imports = ["ipykernel", "notebook", "pandas", "ipywidgets", "matplotlib", "scipy"]
 
 pygments_style = 'trac'
 templates_path = ['.']
