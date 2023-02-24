@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
 from .notebook_utils import currentNBpath
