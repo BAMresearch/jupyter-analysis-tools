@@ -44,6 +44,7 @@ def isWindows():
 def isList(obj):
     """Return true if the provided object is list-like including a numpy array
     but not a string.
+
     >>> isList([1, 2, 'a'])
     True
     >>> isList(tuple((1, 2, 'a')))
@@ -153,7 +154,7 @@ def fmtErr(val, std, precision=2, width=None):
 
 
 def updatedDict(d, key, value):
-    """Implements the |= operator for dict in Python version <3.9."""
+    """Implements the \\|= operator for dict in Python version <3.9."""
     dd = copy.copy(d)
     dd[key] = value
     return dd
