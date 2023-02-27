@@ -118,7 +118,7 @@ jobs:
           # Make badge json
           COL_MIN=10; COL_MAX=95;
           HUE=$(python3 -c "print(int(({{'${{ env.total }}'}} - $COL_MIN)/($COL_MAX - $COL_MIN) * 120))")
-          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"{{'${{ env.total }}'}}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" >> "$BADGE_JSON"
+          echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"{{'${{ env.total }}'}}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" > "$BADGE_JSON"
           # Commit.
           cd ./pages
           rm {{'${{ env.report_dir }}/.gitignore'}}
