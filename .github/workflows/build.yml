@@ -38,13 +38,18 @@ jobs:
     - name: Make some kind of release
       shell: sh
       run: |
+        set -x
+        pwd; ls -la
         # creates a release only if there are relevant changes/commits starting with 'fix/feat()'
         semantic-release publish -D version_source=commit
         if [ -z "$(git tag --points-at HEAD)" ]; then # no release, no relevant changes
           semantic-release version -D version_source=tag --prerelease
         fi
+        git status
         git add -u
-        git push && git push --tags
+        git status
+        git push
+        git push --tags
 
   build:
     # defining this job separately allows to refer to it later
