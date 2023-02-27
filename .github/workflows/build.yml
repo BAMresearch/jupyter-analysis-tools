@@ -82,7 +82,7 @@ jobs:
         python -m pip install --progress-bar=off -r ci/requirements.txt
 
     - name: Set version number
-      if: ${{ ! env.git_tag_head }}  # there is a tag at the latest commit
+      if: ${{ env.git_tag_head }}  # there is a tag at the latest commit
       shell: python
       run: |
         # modify source files to reflect the current version (relevant for pre-releases)
