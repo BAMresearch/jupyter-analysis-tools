@@ -35,7 +35,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --progress-bar=off -r ci/requirements.txt
 
-    - name: Make some kind of release
+    - name: Determine a version number
       shell: sh
       run: |
         set -x
@@ -46,7 +46,6 @@ jobs:
           # no release, no relevant changes, make prerelease tag
           semantic-release version -D version_source=tag --prerelease
         fi
-        git tag
         git push
         git push --tags
 
@@ -66,9 +65,7 @@ jobs:
       run: |
         git pull --tags
         echo "git_tag_head='$(git tag --points-at HEAD)'" >> $GITHUB_ENV
-        git tag --points-at HEAD
         echo "git_tag_head='$(git tag --points-at HEAD)'"
-        git tag
 
     - uses: actions/setup-python@v4
       with:
