@@ -62,8 +62,13 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
-      with:
-        ref: main
+    - name: Get latest tags
+      run: |
+        git pull --tags
+        echo "git_tag_head='$(git tag --points-at HEAD)'" >> $GITHUB_ENV
+        git tag --points-at HEAD
+        echo "git_tag_head='$(git tag --points-at HEAD)'"
+        git tag
 
     - uses: actions/setup-python@v4
       with:
@@ -75,9 +80,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install --progress-bar=off -r ci/requirements.txt
-        echo "git_tag_head='$(git tag --points-at HEAD)'" >> $GITHUB_ENV
-        git tag --points-at HEAD
-        echo "git_tag_head='$(git tag --points-at HEAD)'"
 
     - name: Set version number
       if: {{"${{ ! env.git_tag_head }}"}}  # there is a tag at the latest commit
