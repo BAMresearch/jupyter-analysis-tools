@@ -20,14 +20,14 @@ jobs:
     steps:
 
       - name: Checking out the repo
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Setting up Python 3.10
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10' # defined by py_ver in ci/update.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # defined by py_ver in ci/update.py
+          cache: pip
+          cache-dependency-path: ci/requirements.txt
 
       - name: Install dependencies
         run: |

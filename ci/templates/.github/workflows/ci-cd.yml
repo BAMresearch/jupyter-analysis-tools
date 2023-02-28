@@ -33,19 +33,19 @@ jobs:
 {#- Some Jinja macros for reusing recurring workflow job steps -#}
 
 {% macro checkout(depth=1) -%}
-    - name: Checking out the repo
-      uses: actions/checkout@v3
-      {%- if depth != 1 +%}
-      with:
-        fetch-depth: {{ depth }}
-      {%- endif -%}
+      - name: Checking out the repo
+        uses: actions/checkout@v3
+        {%- if depth != 1 +%}
+        with:
+          fetch-depth: {{ depth }}
+        {%- endif -%}
 {%- endmacro %}
 
 {% macro setup_python() -%}
-    - name: Setting up Python {{ py_ver }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: '{{ py_ver }}' # defined by py_ver in ci/update.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+      - name: Setting up Python {{ py_ver }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: '{{ py_ver }}' # defined by py_ver in ci/update.py
+          cache: pip
+          cache-dependency-path: ci/requirements.txt
 {%- endmacro %}
