@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Updates any files with templates in <project root>/ci/templates directory by
+# running 'python3 ci/update.py --no-env'
+# Typically, github workflow files are generated with the help of tox and its config.
 from __future__ import absolute_import, print_function, unicode_literals
 
 import os
@@ -63,9 +66,6 @@ def main():
         line.strip()
         # 'tox' need not be installed globally, but must be importable
         # by the Python that is running this script.
-        # This uses sys.executable the same way that the call in
-        # cookiecutter-pylibrary/hooks/post_gen_project.py
-        # invokes this bootstrap.py itself.
         for line in subprocess.check_output(
             [sys.executable, '-m', 'tox', '--listenvs'], universal_newlines=True
         ).splitlines()
