@@ -11,7 +11,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
 jobs:
     # defining jobs separately allows to refer to them later
     # as job.needs dependency plus it provides a badge

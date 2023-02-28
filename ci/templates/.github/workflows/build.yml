@@ -7,7 +7,7 @@ on:
 
   workflow_call:
 
-{% import '.github/workflows/ci-cd.yml' as ci -%}{# Use some Jinja macros -#}
+{% import '.github/workflows/ci-cd.yml' as ci with context %}{# Use some Jinja macros -#}
 
 jobs:
   # make a new version first, release or prerelease
@@ -24,11 +24,7 @@ jobs:
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+    {{ ci.setup_python() }}
 
     - name: Install dependencies
       run: |
@@ -68,11 +64,7 @@ jobs:
         echo "git_tag_head='$(git tag --points-at HEAD)'" >> $GITHUB_ENV
         echo "git_tag_head='$(git tag --points-at HEAD)'"
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+    {{ ci.setup_python() }}
 
     - name: Install dependencies
       run: |

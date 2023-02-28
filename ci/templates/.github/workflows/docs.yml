@@ -11,7 +11,7 @@ on:
 
   workflow_call:
 
-{% import '.github/workflows/ci-cd.yml' as ci -%}{# Use some Jinja macros -#}
+{% import '.github/workflows/ci-cd.yml' as ci with context %}{# Use some Jinja macros -#}
 
 jobs:
   docs:
@@ -22,11 +22,7 @@ jobs:
 
     {{ ci.checkout(depth=0) }}
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '{{ py_ver }}' # defined by py_ver in ci/bootstrap.py
-        cache: pip
-        cache-dependency-path: ci/requirements.txt
+    {{ ci.setup_python() }}
 
     - name: Install dependencies
       run: |

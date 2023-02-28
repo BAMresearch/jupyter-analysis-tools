@@ -11,15 +11,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-{% macro checkout(depth=1) -%}
-    - name: Checking out the repo
-      uses: actions/checkout@v3
-      {%- if depth != 1 +%}
-      with:
-        fetch-depth: {{ depth }}
-      {%- endif -%}
-{%- endmacro %}
-
 jobs:
     # defining jobs separately allows to refer to them later
     # as job.needs dependency plus it provides a badge
@@ -38,3 +29,23 @@ jobs:
   coverage:
     needs: [tests, docs] # coverage report is added to the docs webpage
     uses: ./.github/workflows/coverage.yml
+
+{#- Some Jinja macros for reusing recurring workflow job steps -#}
+
+{% macro checkout(depth=1) -%}
+    - name: Checking out the repo
+      uses: actions/checkout@v3
+      {%- if depth != 1 +%}
+      with:
+        fetch-depth: {{ depth }}
+      {%- endif -%}
+{%- endmacro %}
+
+{% macro setup_python() -%}
+    - name: Setting up Python {{ py_ver }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: '{{ py_ver }}' # defined by py_ver in ci/update.py
+        cache: pip
+        cache-dependency-path: ci/requirements.txt
+{%- endmacro %}

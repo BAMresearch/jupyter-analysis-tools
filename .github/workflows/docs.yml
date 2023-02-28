@@ -23,9 +23,10 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/setup-python@v4
+    - name: Setting up Python 3.10
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.10' # defined by py_ver in ci/bootstrap.py
+        python-version: '3.10' # defined by py_ver in ci/update.py
         cache: pip
         cache-dependency-path: ci/requirements.txt
 
