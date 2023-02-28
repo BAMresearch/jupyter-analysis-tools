@@ -7,6 +7,8 @@ on:
 
   workflow_call:
 
+{% import '.github/workflows/ci-cd.yml' as ci -%}{# Use some Jinja macros -#}
+
 env:
   URL_DOCS: {{ url_docs }}
   COV_REPORT_BASE_DIR: {{ cov_report_path }}
@@ -17,10 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       total: {{ '${{ steps.total.outputs.total }}' }}
-
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+
+      {{ ci.checkout() }}
 
       - name: Set up Python
         uses: actions/setup-python@v4

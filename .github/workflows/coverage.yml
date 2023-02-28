@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       total: ${{ steps.total.outputs.total }}
-
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+
+      - name: Checking out the repo
+      uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4

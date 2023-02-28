@@ -7,6 +7,8 @@ on:
 
   workflow_call:
 
+{% import '.github/workflows/ci-cd.yml' as ci -%}{# Use some Jinja macros -#}
+
 jobs:
   # make a new version first, release or prerelease
   release:
@@ -15,9 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+    {{ ci.checkout(depth=0) }}
 
     - name: Setup git user
       run: |
@@ -60,7 +60,8 @@ jobs:
         os: ['ubuntu-latest']
     steps:
 
-    - uses: actions/checkout@v3
+    {{ ci.checkout() }}
+
     - name: Get latest tags
       run: |
         git pull --tags
@@ -109,9 +110,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
 
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
+    {{ ci.checkout() }}
 
     - name: Install dependencies
       run: |

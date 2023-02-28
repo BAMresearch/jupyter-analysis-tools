@@ -11,6 +11,8 @@ on:
 
   workflow_call:
 
+{% import '.github/workflows/ci-cd.yml' as ci -%}{# Use some Jinja macros -#}
+
 jobs:
   docs:
     # defining this job separately allows to refer to it later
@@ -18,9 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+    {{ ci.checkout(depth=0) }}
 
     - uses: actions/setup-python@v4
       with:
