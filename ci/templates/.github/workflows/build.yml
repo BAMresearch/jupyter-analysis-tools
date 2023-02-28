@@ -66,10 +66,7 @@ jobs:
 
       {{ ci.setup_python() }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --progress-bar=off -r ci/requirements.txt
+      {{ ci.pip_install_req() }}
 
       - name: Set version number
         if: {{"${{ env.git_tag_head }}"}}  # there is a tag at the latest commit
@@ -104,10 +101,7 @@ jobs:
 
       {{ ci.checkout() }}
 
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --progress-bar=off -r ci/requirements.txt
+      {{ ci.pip_install_req() }}
 
       - name: Download package artifacts
         uses: actions/download-artifact@v3
