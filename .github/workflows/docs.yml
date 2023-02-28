@@ -2,10 +2,6 @@ name: Docs
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  #push:
-  #  branches: [ main ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -26,7 +22,7 @@ jobs:
       - name: Setting up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # defined by py_ver in ci/update.py
+          python-version: '3.10'  # defined by py_ver in ci/update.py
           cache: pip
           cache-dependency-path: ci/requirements.txt
 
