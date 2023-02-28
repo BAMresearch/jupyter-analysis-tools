@@ -32,10 +32,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v4
+      # see *py_ver* in ci/update.py
+      - name: Setting up Python ${{ env.PYTHON }}
+        uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON }}
-          architecture: ${{ matrix.python_arch }}
+          python-version: '${{ env.PYTHON }}'
+          architecture: '${{ matrix.python_arch }}'
           cache: pip
           cache-dependency-path: |
             ci/requirements.txt

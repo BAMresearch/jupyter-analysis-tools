@@ -41,13 +41,20 @@ jobs:
         {%- endif -%}
 {%- endmacro -%}
 
-{%- macro setup_python() -%}
-      - name: Setting up Python {{ py_ver }}
+{%- macro setup_python(arch, py=py_ver, req=['ci/requirements.txt']) -%}
+      # see *py_ver* in ci/update.py
+      - name: Setting up Python {{ py }}
         uses: actions/setup-python@v4
         with:
-          python-version: '{{ py_ver }}'  # defined by py_ver in ci/update.py
+          python-version: '{{ py }}'
+          {% if arch %}
+          architecture: '{{ arch }}'
+          {% endif %}
           cache: pip
-          cache-dependency-path: ci/requirements.txt
+          cache-dependency-path: |
+          {%- for fn in req +%}
+            {{ fn }}
+          {%- endfor -%}
 {%- endmacro -%}
 
 {% macro pip_install_req() -%}

@@ -34,14 +34,8 @@ jobs:
 
       {{ ci.checkout(depth=0) }}
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: {{ '${{ env.PYTHON }}' }}
-          architecture: {{ '${{ matrix.python_arch }}' }}
-          cache: pip
-          cache-dependency-path: |
-            ci/requirements.txt
-            tests/requirements.txt
+      {{ ci.setup_python(arch='${{ matrix.python_arch }}', py='${{ env.PYTHON }}',
+                         req=['ci/requirements.txt', 'tests/requirements.txt']) }}
 
       {{ ci.pip_install_req() }}
 
