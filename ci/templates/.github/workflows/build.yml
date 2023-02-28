@@ -58,24 +58,11 @@ jobs:
 
       {{ ci.checkout() }}
 
-      - name: Get latest tags
-        run: |
-          git pull --tags
-          echo "git_tag_head='$(git tag --points-at HEAD)'" >> $GITHUB_ENV
-          echo "git_tag_head='$(git tag --points-at HEAD)'"
-
       {{ ci.setup_python() }}
 
       {{ ci.pip_install_req() }}
 
-      - name: Set version number
-        if: {{"${{ env.git_tag_head }}"}}  # there is a tag at the latest commit
-        shell: python
-        run: |
-          # modify source files to reflect the current version (relevant for pre-releases)
-          from semantic_release.history import set_new_version, get_current_version
-          cv = get_current_version()
-          print(f"Setting current version '{cv}':", set_new_version(cv))
+      {{ ci.set_version() }}
 
       - name: Build
         run: tox -e build -v
