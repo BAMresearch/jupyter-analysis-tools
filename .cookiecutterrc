@@ -24,4 +24,4 @@ default_context:
     pypi_host:                 'test.pypi.org'
     license:                   'MIT license'
     sphinx_theme:              'furo'
-    extra_context:             {'exclude_exising': "['AUTHORS.rst', 'CHANGELOG.rst', 'src/jupyter_analysis_tools/__init__.py']"}
+    extra_context:             {'exclude_existing': "['AUTHORS.rst', 'CHANGELOG.rst', 'src/jupyter_analysis_tools/__init__.py']"}
