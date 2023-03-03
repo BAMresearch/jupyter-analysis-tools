@@ -1,3 +1,4 @@
+# configuration for pytest-cov primarily on GitHub runners (hence the paths)
 [paths]
 src =
    src
