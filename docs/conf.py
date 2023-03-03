@@ -27,7 +27,7 @@ project = 'Jupyter Analysis Tools'
 year = '2018-2023'
 author = 'Ingo Breßler'
 copyright = '{0}, {1}'.format(year, author)
-version = '0.1.3'
+version = '0.1.4'
 release = version
 commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('ascii')
 

@@ -5,6 +5,10 @@ Changelog
 ..
   <!--next-version-placeholder-->
 
+## v0.1.4 (2023-03-03)
+### Fix
+* **readme:** License link ([`f98f736`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f))
+
 ## v0.1.3 (2023-03-03)
 ### Fix
 * **tox:** Clean env ([`0135426`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578))
