@@ -28,7 +28,7 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :alt: Coverage report
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
-    :target: https://pypi.org/project/jupyter-analysis-tools
+    :target: https://test.pypi.org/project/jupyter-analysis-tools
     :alt: PyPI Package latest release
 
 .. |license| image:: https://img.shields.io/pypi/l/jupyter-analysis-tools.svg
@@ -36,11 +36,11 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :alt: License
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg
-    :target: https://pypi.org/project/jupyter-analysis-tools#files
+    :target: https://test.pypi.org/project/jupyter-analysis-tools#files
     :alt: PyPI Wheel
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/jupyter-analysis-tools.svg
-    :target: https://pypi.org/project/jupyter-analysis-tools
+    :target: https://test.pypi.org/project/jupyter-analysis-tools
     :alt: Supported versions
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v0.1.2.svg
@@ -48,7 +48,7 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :alt: Commits since latest release
 
 .. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
-    :target: https://pypi.org/project/jupyter-analysis-tools/
+    :target: https://test.pypi.org/project/jupyter-analysis-tools/
     :alt: Weekly PyPI downloads
 
 .. end-badges
