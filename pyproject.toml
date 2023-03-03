@@ -1,6 +1,6 @@
 [project]
 name = 'jupyter-analysis-tools'
-description = 'Common Python helpers used in data analysis notebooks (.ipynb) with GIT'
+description = "Yet another Python library with helpers and utilities for data analysis and processing."
 authors = [{name = 'Ingo Breßler', email = 'dev@ingobressler.net'}]
 dynamic = ['version', 'readme']
 license = {text = 'MIT License'}

@@ -2,7 +2,7 @@
 Overview
 ========
 
-Common Python helpers used in data analysis notebooks (.ipynb) with GIT
+Yet another Python library with helpers and utilities for data analysis and processing.
 
 .. start-badges
 
