@@ -17,7 +17,7 @@ jobs:
       matrix:
         python_arch: ['x64']
         python:
-          - [3, 11]
+          - [3, 10]
         # os: ['ubuntu', 'windows', 'macos']
         os: ['ubuntu']
     env:
