@@ -10,7 +10,7 @@ on:
 {% import '.github/workflows/ci-cd.yml' as ci with context %}{# Use some Jinja macros -#}
 
 env:
-  URL_DOCS: {{ url_docs }}
+  DOCS_URL: {{ docs_url }}
   COV_REPORT_BASE_DIR: {{ cov_report_path }}
 
 jobs:
@@ -96,7 +96,7 @@ jobs:
           COMMIT_MESSAGE: {{'${{ github.event.head_commit.message }}'}}
           REDIR_HTML: {{'"pages/${{ env.COV_REPORT_BASE_DIR }}/index.html"'}}
           BADGE_JSON: {{'"pages/${{ env.COV_REPORT_BASE_DIR }}/cov.json"'}}
-          REPORT_URL: {{'"${{ env.URL_DOCS }}/${{ env.report_dir }}"'}}
+          REPORT_URL: {{'"${{ env.DOCS_URL }}/${{ env.report_dir }}"'}}
         run: |
           set -xe
           # Make the redirect to the latest report.

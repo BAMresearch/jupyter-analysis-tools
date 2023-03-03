@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 env:
-  URL_DOCS: https://bamresearch.github.io/jupyter-analysis-tools
+  DOCS_URL: https://BAMresearch.github.io/jupyter-analysis-tools
   COV_REPORT_BASE_DIR: coverage-report
 
 jobs:
@@ -105,7 +105,7 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           REDIR_HTML: "pages/${{ env.COV_REPORT_BASE_DIR }}/index.html"
           BADGE_JSON: "pages/${{ env.COV_REPORT_BASE_DIR }}/cov.json"
-          REPORT_URL: "${{ env.URL_DOCS }}/${{ env.report_dir }}"
+          REPORT_URL: "${{ env.DOCS_URL }}/${{ env.report_dir }}"
         run: |
           set -xe
           # Make the redirect to the latest report.
