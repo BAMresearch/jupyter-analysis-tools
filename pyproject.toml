@@ -1,29 +1,30 @@
 [project]
-name = 'jupyter-analysis-tools'
+name = "jupyter-analysis-tools"
 description = "Yet another Python library with helpers and utilities for data analysis and processing."
-authors = [{name = 'Ingo Breßler', email = 'dev@ingobressler.net'}]
-dynamic = ['version', 'readme']
-license = {text = 'MIT License'}
+authors = [{ name = "Ingo Breßler", email = "dev@ingobressler.net" }]
+dynamic = ["version", "readme"]
+license = {text = "MIT License"}
 classifiers = [
-  'Development Status :: 4 - Beta',
-  'License :: OSI Approved :: MIT License',
-  'Operating System :: Unix',
-  'Operating System :: POSIX',
-  'Operating System :: MacOS',
-  'Operating System :: Microsoft :: Windows',
-  'Programming Language :: Python',
-  'Programming Language :: Python :: 3',
-  'Programming Language :: Python :: 3 :: Only',
-  'Programming Language :: Python :: 3.8',
-  'Programming Language :: Python :: 3.9',
-  'Programming Language :: Python :: 3.10',
-  'Programming Language :: Python :: 3.11',
-  'Programming Language :: Python :: Implementation :: CPython',
-  'Framework :: Jupyter :: JupyterLab',
-  'Topic :: Utilities',
-  'Topic :: Scientific/Engineering',
-  'Intended Audience :: Developers',
-  'Intended Audience :: Science/Research',
+  # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Unix",
+  "Operating System :: POSIX",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Framework :: Jupyter :: JupyterLab",
+  "Topic :: Utilities",
+  "Topic :: Scientific/Engineering",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
 ]
 
 [project.urls]
@@ -41,12 +42,12 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ['src']
-include = ['jupyter_analysis_tools*']
+where = ["src"]
+include = ["jupyter_analysis_tools*"]
 
 [tool.setuptools.dynamic]
-version = {attr = 'jupyter_analysis_tools.__version__'}
-readme = {file = ['README.rst', 'CHANGELOG.rst']}
+version = {attr = "jupyter_analysis_tools.__version__"}
+readme = {file = ["README.rst", "CHANGELOG.rst"]}
 
 [tool.coverage.report]
 path = "coverage-report"
@@ -56,8 +57,8 @@ path = "coverage-report"
 [tool.semantic_release]
 #major_on_zero = false # no major release when current major version is zero
 version_variable = [                        # version location
-    'src/jupyter_analysis_tools/__init__.py:__version__',
-    'docs/conf.py:version',
+    "src/jupyter_analysis_tools/__init__.py:__version__",
+    "docs/conf.py:version",
 ]
 version_source = "tag"
 prerelease_tag = "dev"
@@ -71,11 +72,11 @@ remove_dist = false                         # don't remove dists
 
 [tool.blue]
 line-length = 100
-target-version = ['py37']
+target-version = ["py37"]
 skip-string-normalization = true
 
 [tool.isort]
 line_length = 100
 group_by_package = true
-known_first_party = 'jupyter_analysis_tools'
+known_first_party = "jupyter_analysis_tools"
 extend_skip = ["ci/templates", ".ipynb_checkpoints"]
