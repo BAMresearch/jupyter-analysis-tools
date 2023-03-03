@@ -32,7 +32,7 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :alt: PyPI Package latest release
 
 .. |license| image:: https://img.shields.io/pypi/l/jupyter-analysis-tools.svg
-    :target: https://en.wikipedia.org/wiki/MIT_License
+    :target: https://en.wikipedia.org/wiki/MIT license
     :alt: License
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg

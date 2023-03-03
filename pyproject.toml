@@ -3,7 +3,7 @@ name = "jupyter-analysis-tools"
 description = "Yet another Python library with helpers and utilities for data analysis and processing."
 authors = [{ name = "Ingo Breßler", email = "dev@ingobressler.net" }]
 dynamic = ["version", "readme"]
-license = {text = "MIT License"}
+license = {text = "MIT license"}
 classifiers = [
   # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
   "Development Status :: 4 - Beta",
