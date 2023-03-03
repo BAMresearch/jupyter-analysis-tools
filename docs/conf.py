@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
-import os
+
 import subprocess
 from os.path import abspath, dirname, join
 
@@ -40,15 +39,16 @@ extlinks = {
     'issue': (join(project_meta['project']['urls']['repository'], 'issues', '%s'), '#%s'),
     'pr': (join(project_meta['project']['urls']['repository'], 'pull', '%s'), 'PR #%s'),
 }
-# on_rtd is whether we are on readthedocs.org
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
-if not on_rtd:  # only set the theme if we're building docs locally
-    html_theme = 'furo'
+html_theme = 'furo'
 
 html_use_smartypants = True
 html_last_updated_fmt = f'%b %d, %Y (git {commit_id})'
 html_split_index = False
+html_sidebars = {
+    '**': [
+        'globaltoc.html',
+    ],
+}
 html_short_title = '%s-%s' % (project, version)
 
 napoleon_use_ivar = True
