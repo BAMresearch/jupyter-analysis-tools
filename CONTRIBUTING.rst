@@ -8,7 +8,7 @@ little bit helps, and credit will always be given.
 Bug reports
 ===========
 
-When `reporting a bug <https://github.com/BAMresearch/jupyter_analysis_tools/issues>`_ please include:
+When `reporting a bug <https://github.com/BAMresearch/jupyter-analysis-tools/issues>`_ please include:
 
     * Your operating system name and version.
     * Any details about your local setup that might be helpful in troubleshooting.
@@ -24,7 +24,7 @@ articles, and such.
 Feature requests and feedback
 =============================
 
-The best way to send feedback is to file an issue at https://github.com/BAMresearch/jupyter_analysis_tools/issues.
+The best way to send feedback is to file an issue at https://github.com/BAMresearch/jupyter-analysis-tools/issues.
 
 If you are proposing a feature:
 
@@ -35,13 +35,13 @@ If you are proposing a feature:
 Development
 ===========
 
-To set up `jupyter_analysis_tools` for local development:
+To set up `jupyter-analysis-tools` for local development:
 
-1. Fork `jupyter_analysis_tools <https://github.com/BAMresearch/jupyter_analysis_tools>`_
+1. Fork `jupyter-analysis-tools <https://github.com/BAMresearch/jupyter-analysis-tools>`_
    (look for the "Fork" button).
 2. Clone your fork locally::
 
-    git clone git@github.com:YOURGITHUBNAME/jupyter_analysis_tools.git
+    git clone git@github.com:YOURGITHUBNAME/jupyter-analysis-tools.git
 
 3. Create a branch for local development::
 
@@ -72,8 +72,6 @@ For merging, you should:
 2. Update documentation when there's new API, functionality etc.
 3. Add a note to ``CHANGELOG.rst`` about the changes.
 4. Add yourself to ``AUTHORS.rst``.
-
-
 
 Tips
 ----

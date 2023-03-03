@@ -27,10 +27,10 @@ classifiers = [
 ]
 
 [project.urls]
-homepage = "https://bamresearch.github.io/jupyter_analysis_tools"
-documentation = "https://bamresearch.github.io/jupyter_analysis_tools"
-repository = "https://github.com/BAMresearch/jupyter_analysis_tools"
-changelog = "https://bamresearch.github.io/jupyter_analysis_tools/changelog.html"
+homepage = "https://BAMresearch.github.io/jupyter-analysis-tools"
+documentation = "https://BAMresearch.github.io/jupyter-analysis-tools"
+repository = "https://github.com/BAMresearch/jupyter-analysis-tools"
+changelog = "https://BAMresearch.github.io/jupyter-analysis-tools/changelog.html"
 
 [build-system]
 requires = [

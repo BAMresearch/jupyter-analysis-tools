@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 env:
-  URL_DOCS: https://bamresearch.github.io/jupyter_analysis_tools
+  URL_DOCS: https://bamresearch.github.io/jupyter-analysis-tools
   COV_REPORT_BASE_DIR: coverage-report
 
 jobs:

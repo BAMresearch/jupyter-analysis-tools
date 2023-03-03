@@ -11,20 +11,20 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
 | |tests| |coverage|
 | |docs|
 
-.. |docs| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/docs.yml/badge.svg
-    :target: https://bamresearch.github.io/jupyter_analysis_tools/
+.. |docs| image:: https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/docs.yml/badge.svg
+    :target: https://BAMresearch.github.io/jupyter-analysis-tools
     :alt: Documentation Status
 
-.. |build| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/build.yml/badge.svg
+.. |build| image:: https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/build.yml/badge.svg
     :target: https://test.pypi.org/project/jupyter-analysis-tools
     :alt: GitHub Actions Build Status
 
-.. |tests| image:: https://github.com/BAMresearch/jupyter_analysis_tools/actions/workflows/tests.yml/badge.svg
-    :target: https://github.com/BAMresearch/jupyter_analysis_tools/actions
+.. |tests| image:: https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/BAMresearch/jupyter-analysis-tools/actions
     :alt: GitHub Actions Tests Status
 
-.. |coverage| image:: https://img.shields.io/endpoint?url=https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/cov.json
-    :target: https://bamresearch.github.io/jupyter_analysis_tools/coverage-report/
+.. |coverage| image:: https://img.shields.io/endpoint?url=https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/cov.json
+    :target: https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/
     :alt: Coverage report
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
@@ -43,8 +43,8 @@ Common Python helpers used in data analysis notebooks (.ipynb) with GIT
     :target: https://pypi.org/project/jupyter-analysis-tools
     :alt: Supported versions
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter_analysis_tools/v0.1.0.svg
-    :target: https://github.com/BAMresearch/jupyter_analysis_tools/compare/v0.1.0...main
+.. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v0.1.2.svg
+    :target: https://github.com/BAMresearch/jupyter-analysis-tools/compare/v0.1.2...main
     :alt: Commits since latest release
 
 .. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
@@ -63,13 +63,13 @@ Installation
 
 You can also install the in-development version with::
 
-    pip install https://github.com/BAMresearch/jupyter_analysis_tools/archive/main.zip
+    pip install https://github.com/BAMresearch/jupyter-analysis-tools/archive/main.zip
 
 
 Documentation
 =============
 
-https://bamresearch.github.io/jupyter_analysis_tools/
+https://BAMresearch.github.io/jupyter-analysis-tools
 
 Development
 ===========
