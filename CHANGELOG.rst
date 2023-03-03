@@ -5,6 +5,19 @@ Changelog
 ..
   <!--next-version-placeholder-->
 
+## v0.1.3 (2023-03-03)
+### Fix
+* **tox:** Clean env ([`0135426`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578))
+* **Package:** Cookiecutterrc updated ([`7b29a17`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2))
+* **tox:** Cleanup env removed pckg build files ([`ecd8648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ecd86485ec0fe67f646d06ca134fe97310f7a3f5))
+* **GitHubAction:** Migrate to pathlib.Path in template rendering ([`d3ae5db`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3))
+
+### Documentation
+* **readme:** Adjust version numbers in readme as well ([`5700694`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000))
+* **readme:** Using test.pypi.org links ([`240e58c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75))
+* **Package:** Update project description ([`704a0b5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/704a0b50a727ef36f685d27ce068103ffa60ca99))
+* **comments:** Add some, remove obsolete ([`efe2689`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640))
+
 ## v0.1.2 (2023-02-24)
 ### Fix
 * **Documentation:** Doctest format in *distrib* ([`5942972`](https://github.com/BAMresearch/jupyter_analysis_tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9))

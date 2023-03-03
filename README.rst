@@ -43,8 +43,8 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :target: https://test.pypi.org/project/jupyter-analysis-tools
     :alt: Supported versions
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v0.1.2.svg
-    :target: https://github.com/BAMresearch/jupyter-analysis-tools/compare/v0.1.2...main
+.. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v0.1.3.svg
+    :target: https://github.com/BAMresearch/jupyter-analysis-tools/compare/v0.1.3...main
     :alt: Commits since latest release
 
 .. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
