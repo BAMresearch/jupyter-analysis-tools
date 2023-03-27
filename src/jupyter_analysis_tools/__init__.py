@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
-__version__ = '0.1.4'
+__version__ = "0.1.4"
 
+from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
 from .notebook_utils import currentNBpath
 from .readdata import readdata
 from .readdata import readdata as readPDH
-from .reBin import reBin
 from .utils import setLocaleUTF8
 from .widgets import PathSelector, showBoolStatus
 
