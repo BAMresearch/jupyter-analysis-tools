@@ -11,8 +11,9 @@ def getModZScore(points):
     """
     Returns a boolean array with True if points are outliers and False
     otherwise.
-    **Note**: Similar to https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.zscore.html
-    but using the median instead of the mean.
+    **Note**:
+    Similar to https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.zscore.html
+    but uses the median instead of the mean.
 
     :param points: An numobservations by numdimensions array of observations
     :param thresh: The modified z-score to use as a threshold. Observations with
