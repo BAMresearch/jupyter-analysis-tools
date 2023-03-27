@@ -7,7 +7,7 @@ from os.path import abspath, dirname, join
 import toml
 
 base_path = dirname(dirname(abspath(__file__)))
-project_meta = toml.load(join(base_path, 'pyproject.toml'))
+project_meta = toml.load(join(base_path, "pyproject.toml"))
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -21,17 +21,17 @@ extensions = [
     "sphinx.ext.viewcode",
     "myst_parser",
 ]
-source_suffix = '.rst'
-master_doc = 'index'
-project = 'Jupyter Analysis Tools'
-year = '2018-2023'
-author = 'Ingo Breßler'
-copyright = '{0}, {1}'.format(year, author)
-version = '0.1.4'
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 templates_path = ["_templates"]
+source_suffix = ".rst"
+master_doc = "index"
+project = "Jupyter Analysis Tools"
+year = "2018-2023"
+author = "Ingo Breßler"
+copyright = "{0}, {1}".format(year, author)
+version = "0.1.4"
 release = version
-commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('ascii')
+commit_id = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).strip().decode("ascii")
 
 autodoc_mock_imports = [
     "ipykernel",
@@ -47,15 +47,16 @@ autodoc_mock_imports = [
 
 pygments_style = "trac"
 extlinks = {
-    'issue': (join(project_meta['project']['urls']['repository'], 'issues', '%s'), '#%s'),
-    'pr': (join(project_meta['project']['urls']['repository'], 'pull', '%s'), 'PR #%s'),
+    "issue": (join(project_meta["project"]["urls"]["repository"], "issues", "%s"), "#%s"),
+    "pr": (join(project_meta["project"]["urls"]["repository"], "pull", "%s"), "PR #%s"),
 }
-html_theme = 'furo'
+html_theme = "furo"
 
 html_use_smartypants = True
-html_last_updated_fmt = f'%b %d, %Y (git {commit_id})'
+html_last_updated_fmt = f"%b %d, %Y (git {commit_id})"
 html_split_index = False
-html_short_title = '%s-%s' % (project, version)
+
+html_short_title = "%s-%s" % (project, version)
 
 napoleon_use_ivar = True
 napoleon_use_rtype = False
@@ -63,8 +64,8 @@ napoleon_use_param = False
 
 linkcheck_ignore = [
     join(
-        project_meta['project']['urls']['documentation'],
-        project_meta['tool']['coverage']['report']['path'],
+        project_meta["project"]["urls"]["documentation"],
+        project_meta["tool"]["coverage"]["report"]["path"],
     )
-    + r'.*',
+    + r".*",
 ]
