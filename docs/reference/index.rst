@@ -1,7 +1,9 @@
 Reference
 =========
 
-.. toctree::
-    :glob:
+.. autosummary::
+   :toctree: autosummary
+   :template: module.rst
+   :recursive:
 
-    jupyter_analysis_tools*
+    jupyter_analysis_tools
