@@ -13,7 +13,7 @@ from pathlib import Path
 
 import numpy as np
 
-indent = '    '
+indent = "    "
 
 
 def setLocaleUTF8():
@@ -21,24 +21,24 @@ def setLocaleUTF8():
     locOld = locale.getpreferredencoding(False).lower()
 
     def getpreferredencoding(do_setlocale=True):
-        return 'utf-8'
+        return "utf-8"
 
     locale.getpreferredencoding = getpreferredencoding
     locNew = locale.getpreferredencoding(False)
     if locOld != locNew:
-        print(f'Updated locale from {locOld} -> {locNew}.')
+        print(f"Updated locale from {locOld} -> {locNew}.")
 
 
 def isLinux():
-    return platform.system().lower() in 'linux'
+    return platform.system().lower() in "linux"
 
 
 def isMac():
-    return platform.system().lower() in 'darwin'
+    return platform.system().lower() in "darwin"
 
 
 def isWindows():
-    return platform.system().lower() in 'windows'
+    return platform.system().lower() in "windows"
 
 
 def isList(obj):
@@ -71,32 +71,32 @@ def shortenWinPath(path):
 def appendToPATH(parentPath, subdirs=None):
     """Adds the given path with each subdirectory to the PATH environment variable."""
     if not os.path.isdir(parentPath):
-        return   # nothing to do
+        return  # nothing to do
     if subdirs is None:
-        subdirs = ['.']
+        subdirs = ["."]
     for path in subdirs:
-        path = os.path.realpath(os.path.join(parentPath, *path.split('/')))
-        print(indent, path, '\t[{}]'.format(os.path.isdir(path)))
-        if path in os.environ['PATH']:
+        path = os.path.realpath(os.path.join(parentPath, *path.split("/")))
+        print(indent, path, "\t[{}]".format(os.path.isdir(path)))
+        if path in os.environ["PATH"]:
             continue
-        os.environ['PATH'] += ';' + path
+        os.environ["PATH"] += ";" + path
 
 
 def checkWinFor7z():
     """Extend the PATH environment variable for access to the 7-zip executable."""
     if not isWindows():
-        return   # tests below are intended for Windows
-    sevenzippath = r'C:\Program Files\7-Zip'
+        return  # tests below are intended for Windows
+    sevenzippath = r"C:\Program Files\7-Zip"
     if not os.path.isdir(sevenzippath):
         print(
             "7-Zip not found in '{}'.\n".format(sevenzippath)
-            + '7-Zip is required for managing data files and results!.'
+            + "7-Zip is required for managing data files and results!."
         )
         return
-    print('Adding the following directory to $PATH:')
+    print("Adding the following directory to $PATH:")
     appendToPATH(sevenzippath)
-    print('\nUpdated PATH:')
-    for path in os.environ['PATH'].split(';'):
+    print("\nUpdated PATH:")
+    for path in os.environ["PATH"].split(";"):
         print(indent, path)
 
 
@@ -104,16 +104,16 @@ def extract7z(fn, workdir=None):
     assert os.path.isfile(os.path.join(workdir, fn)), "Provided 7z archive '{}' not found!".format(
         fn
     )
-    print('Extracting archived McDLS results:')
+    print("Extracting archived McDLS results:")
     proc = subprocess.run(
-        ['7z', 'x', fn],
+        ["7z", "x", fn],
         cwd=workdir,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    print(proc.stdout.decode(errors='ignore'))
+    print(proc.stdout.decode(errors="ignore"))
     if len(proc.stderr):
-        print('## stderr:\n', proc.stderr.decode(errors='ignore'))
+        print("## stderr:\n", proc.stderr.decode(errors="ignore"))
 
 
 # https://stackoverflow.com/a/13847807
@@ -133,8 +133,8 @@ def setPackage(globalsdict):
     searchpath = str(path.parent)
     if searchpath not in sys.path:
         sys.path.insert(0, searchpath)
-    globalsdict['__package__'] = path.name
-    globalsdict['__name__'] = path.name
+    globalsdict["__package__"] = path.name
+    globalsdict["__name__"] = path.name
     print(f"Setting the current directory as package '{path.name}':\n  {path}.")
 
 
@@ -147,8 +147,8 @@ def grouper(iterable, n, fillvalue=None):
 def fmtErr(val, std, precision=2, width=None):
     """Formats a given value and its std. deviation to physics notation, e.g. '1.23(4)'."""
     if width is None:
-        width = ''
-    fmt = '{:' + str(width) + '.' + str(precision) + 'f}({:.0f})'
+        width = ""
+    fmt = "{:" + str(width) + "." + str(precision) + "f}({:.0f})"
     # print("fmtErr val:", val, "std:", std)
     return fmt.format(val, std * 10 ** (precision))
 

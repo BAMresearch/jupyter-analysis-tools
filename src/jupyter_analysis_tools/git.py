@@ -41,20 +41,20 @@ def checkRepo():
     # check the repository in detail
     from IPython.display import HTML, display
 
-    repo = git.Repo('.')
+    repo = git.Repo(".")
     #    currentNB = os.path.basename(currentNBpath())
     try:
         editedOn = repo.git.show(no_patch=True, format="%cd, version %h by %cn", date="iso")
     except git.GitCommandError:
         print("Not a GIT repository.")
         return
-    editedOn = editedOn.split(', ')
-    opacity = 0.3   # 1.0 if repo.is_dirty() else 0.5
+    editedOn = editedOn.split(", ")
+    opacity = 0.3  # 1.0 if repo.is_dirty() else 0.5
     display(
         HTML(
             '<div style="opacity: {opacity};">'
-            '<h3>Document updated on {}</h3>'
-            '<h4>({})</h4></div>'.format(*editedOn, opacity=opacity)
+            "<h3>Document updated on {}</h3>"
+            "<h4>({})</h4></div>".format(*editedOn, opacity=opacity)
         )
     )
     if repo.is_dirty():
@@ -68,7 +68,8 @@ def checkRepo():
                 '<div style="border-style: solid; border-color: darkred; border-width: 1px; '
                 'padding: 0em 1em 1em 1em; margin: 1em 0em;">'
                 '<h4 style="color: darkred;">There are changes in this repository:</h4>'
-                "<pre>" + edits + "</pre>"
-                '</div>'
+                "<pre>"
+                + edits
+                + "</pre></div>"
             )
         )

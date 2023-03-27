@@ -59,8 +59,8 @@ def findPeakRanges(x, y, tol=1e-16):
             ranges.append((start, end))
 
     for idx in indexGroups:
-        appendPeakRange(istart, indices[idx])   # add the new range to the list
-        istart = indices[idx + 1]               # start new range
+        appendPeakRange(istart, indices[idx])  # add the new range to the list
+        istart = indices[idx + 1]  # start new range
     appendPeakRange(istart, indices[-1])
     # print("findPeakRanges", ranges)
     return ranges
@@ -79,13 +79,13 @@ def findLocalMinima(peakRanges, xarr, yarr, doPlot=False, verbose=False):
     for ip, (istart, iend) in enumerate(peakRanges):
         if verbose:
             print((istart, iend), xarr[istart], xarr[iend])
-        if iend - istart < 5:   # skip this, can't be fitted and no sub-peaks are likely
+        if iend - istart < 5:  # skip this, can't be fitted and no sub-peaks are likely
             newRanges.append((istart, iend))
             continue
         while yarr[istart] <= 0.0 and istart < iend:
-            istart += 1   # exclude leading zero
+            istart += 1  # exclude leading zero
         while yarr[iend] <= 0.0 and istart < iend:
-            iend -= 1   # exclude trailing zero
+            iend -= 1  # exclude trailing zero
         if istart == iend:
             continue
         if verbose:
@@ -150,48 +150,48 @@ class Moments(dict):
     def nthMoment(x, weights, n):
         """Calculates the nth moment of the given distribution weights."""
         center = 0
-        if n > 0:   # calculate the mean first
+        if n > 0:  # calculate the mean first
             center = np.average(x, weights=weights) if sum(weights) else 0.0
             #          np.sqrt(u**2)/len(u) # center uncertainty
         if n == 1:
-            return center   # the mean
+            return center  # the mean
         var = 1.0
         if n > 1:
             var = np.sum(weights * (x - center) ** 2) / np.sum(weights)
         if n == 2:
-            return var   # the variance
+            return var  # the variance
         return np.sum(weights * (x - center) ** n) / np.sum(weights) / var**n
 
     @classmethod
     def fromData(cls, x, y):
         store = cls()
         mean, var, skew, kurt = [cls.nthMoment(x, y, i) for i in range(1, 5)]
-        store['area'] = integrate(x, y)
-        store['mean'] = mean
-        store['var'] = var
-        store['skew'] = skew
-        store['kurt'] = kurt
+        store["area"] = integrate(x, y)
+        store["mean"] = mean
+        store["var"] = var
+        store["skew"] = skew
+        store["kurt"] = kurt
         return store
 
     @property
     def area(self):
-        return self['area']
+        return self["area"]
 
     @property
     def mean(self):
-        return self['mean']
+        return self["mean"]
 
     @property
     def var(self):
-        return self['var']
+        return self["var"]
 
     @property
     def skew(self):
-        return self['skew']
+        return self["skew"]
 
     @property
     def kurt(self):
-        return self['kurt']
+        return self["kurt"]
 
     def __str__(self):
         return "\n".join(
@@ -206,7 +206,7 @@ class Moments(dict):
         # SASfit manual, 6.4. Log-Normal distribution
         median = mean**2 / np.sqrt(var + mean**2)
         sigma = np.sqrt(np.log(mean**2 / median**2))
-        return {'N': N, 'sigma': sigma, 'median': median}
+        return {"N": N, "sigma": sigma, "median": median}
 
     def logNormPar(self, N=1.0):
         return self.logNormParFromMoments(self.mean, self.var, N=N)
@@ -214,13 +214,13 @@ class Moments(dict):
 
 class Distribution:
     x, y, u = None, None, None
-    peaks = None   # list of peak (start, end) indices pointing into x,y,u
+    peaks = None  # list of peak (start, end) indices pointing into x,y,u
     color = None
     xlabel = None
     plotAxes, plotAxisIdx = None, 0
 
     def __init__(self, xvec, yvec, uvec, xlabel=None, maxPeakCount=None):
-        self.xlabel = getattr(xvec, 'name', None)
+        self.xlabel = getattr(xvec, "name", None)
         xvec = xvec.values if isinstance(xvec, pd.Series) else xvec
         yvec = yvec.values if isinstance(yvec, pd.Series) else yvec
         uvec = uvec.values if isinstance(uvec, pd.Series) else uvec
@@ -268,13 +268,13 @@ class Distribution:
                 lbl.append(
                     fmt.format(
                         "median:",
-                        dp['median'],
-                        max(abs(dp['median'] - dpLo['median']), abs(dpHi['median'] - dp['median'])),
+                        dp["median"],
+                        max(abs(dp["median"] - dpLo["median"]), abs(dpHi["median"] - dp["median"])),
                     )
                 )
             else:
                 lbl.append(
-                    fmt.format(k + ':', mom[k], max(abs(mom[k] - momLo[k]), abs(momHi[k] - mom[k])))
+                    fmt.format(k + ":", mom[k], max(abs(mom[k] - momLo[k]), abs(momHi[k] - mom[k])))
                 )
         lbl.append("LogNorm: " + distrParToText(dp)[0])
         ax.bar(x, y, width=self.getBarWidth(x), color=self.color, alpha=0.5, label="\n".join(lbl))
@@ -282,7 +282,7 @@ class Distribution:
             x,
             np.maximum(0, y - u),
             y + u,
-            color='red',
+            color="red",
             lw=0,
             alpha=0.1,
             label=f"uncertainties (lvl: {self.uncertRatioMedian(peakRange):.3g})",
@@ -290,7 +290,7 @@ class Distribution:
         if showFullRange:
             ax.set_xlim((self.x.min(), self.x.max()))
         ax.set_xlabel(self.xlabel)
-        ax.legend(prop=font_manager.FontProperties(family='monospace'))
+        ax.legend(prop=font_manager.FontProperties(family="monospace"))
         ax.grid(True)
 
     def plot(self, ax, distPar, name=""):
@@ -315,7 +315,7 @@ class Distribution:
             self.x,
             np.maximum(0, self.y - self.u),
             self.y + self.u,
-            color='red',
+            color="red",
             lw=0,
             alpha=0.1,
             label="uncertainties",
@@ -341,7 +341,7 @@ class Distribution:
         # return a dict of lists, addressable by peak index
         return dict(
             zip(
-                ['peakRange', 'mom', 'momLo', 'momHi', 'lnp', 'lnpLo', 'lnpHi'],
+                ["peakRange", "mom", "momLo", "momHi", "lnp", "lnpLo", "lnpHi"],
                 zip(*[m for m in momentsByPeak()]),
             )
         )
@@ -349,10 +349,10 @@ class Distribution:
     def peakDistrPar(self, plotAxes=None, plotAxisStart=0, **plotPeakKwargs):
         momentsAndLogNormPar = self.moments()
         if plotAxes is not None:
-            for i, peakRange in enumerate(momentsAndLogNormPar['peakRange']):
-                plotPeakKwargs['ax'] = plotAxes[plotAxisStart + i]
+            for i, peakRange in enumerate(momentsAndLogNormPar["peakRange"]):
+                plotPeakKwargs["ax"] = plotAxes[plotAxisStart + i]
                 self.plotPeak(*[v[i] for v in momentsAndLogNormPar.values()], **plotPeakKwargs)
-        return momentsAndLogNormPar['lnp'], momentsAndLogNormPar['mom']
+        return momentsAndLogNormPar["lnp"], momentsAndLogNormPar["mom"]
 
 
 def distrParToText(logNormPar):
@@ -364,7 +364,7 @@ def distrParToText(logNormPar):
     >>> distrParToText({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     ['median_0=4e-08 sigma_0=0.20 N_0=1', 'median_1=7e-08 sigma_1=0.40 N_1=2']
     """
-    fmt = {'median': "{:.2g}", 'sigma': "{:.2f}", 'N': "{:.2g}"}
+    fmt = {"median": "{:.2g}", "sigma": "{:.2f}", "N": "{:.2g}"}
     order = {key: list(fmt.keys()).index(key) for key in fmt.keys()}
     return [
         " ".join(p)
@@ -399,17 +399,17 @@ def distrParLatex(distrPar, *kwargs):
     >>> distrParLatex({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     '$median_0=4e-08\\;sigma_0=0.20\\;N_0=1$\n$median_1=7e-08\\;sigma_1=0.40\\;N_1=2$'
     """
-    return "\n".join(['$' + txt.replace(' ', r'\;') + '$' for txt in distrParToText(distrPar)])
+    return "\n".join(["$" + txt.replace(" ", r"\;") + "$" for txt in distrParToText(distrPar)])
 
 
-def distrParToFilename(distrPar, prefix=''):
+def distrParToFilename(distrPar, prefix=""):
     """
     >>> distrParToFilename({'N':1.1, 'sigma':0.15, 'median':33e-9})
     '_median=3.3e-08_sigma=0.15_N=1.1'
     >>> distrParToFilename({'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)})
     '_median_0=4e-08_sigma_0=0.20_N_0=1_median_1=7e-08_sigma_1=0.40_N_1=2'
     """
-    return '_'.join([prefix] + distrParToText(distrPar)).replace(' ', '_')
+    return "_".join([prefix] + distrParToText(distrPar)).replace(" ", "_")
 
 
 def distrParFromFilename(fn):
@@ -420,14 +420,14 @@ def distrParFromFilename(fn):
     >>> distrParFromFilename(fn) == {'N':(1.,2.), 'sigma':(.2,.4), 'median':(40e-9,7e-8)}
     True
     """
-    fn = fn.split('=')
-    fn = [elem.lstrip('_') for elem in fn]
-    fn = [(elem.split('_', maxsplit=1) if elem[0].isnumeric() else [elem]) for elem in fn]
+    fn = fn.split("=")
+    fn = [elem.lstrip("_") for elem in fn]
+    fn = [(elem.split("_", maxsplit=1) if elem[0].isnumeric() else [elem]) for elem in fn]
     fn = list(itertools.chain(*fn))
     result = {}
     for k, v in grouper(fn, 2):
-        key = k.split('_')[0]
-        value = float(v) if 'median' == key else float(v)
+        key = k.split("_")[0]
+        value = float(v) if "median" == key else float(v)
         result[key] = (
             value
             if key not in result

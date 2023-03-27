@@ -12,9 +12,9 @@ def showBoolStatus(value, description, invertcolor=False):
     for False values. *invertcolor* allows to flip the color assignment."""
     from IPython.display import HTML, display
 
-    statuscolor = 'darkgreen'
+    statuscolor = "darkgreen"
     if value ^ invertcolor:
-        statuscolor = 'darkred'
+        statuscolor = "darkred"
     descr = description[0].lower() + description[1:-1]
     if description[-1].isalnum():
         descr += description[-1]
@@ -24,8 +24,10 @@ def showBoolStatus(value, description, invertcolor=False):
     display(
         HTML(
             f'<div style="border-style: solid; border-color: {statuscolor};'
-            f' border-width: 1px; padding: 0em 1em .5em 1em; margin: 1em 0em;'
-            f' width: {len(descr) * 0.75}em;">' + statustext + '</div>'
+            " border-width: 1px; padding: 0em 1em .5em 1em; margin: 1em 0em;"
+            f' width: {len(descr) * 0.75}em;">'
+            + statustext
+            + "</div>"
         )
     )
 
@@ -35,16 +37,16 @@ class PathSelector:
         self.file = None
         self.select_file = select_file
         self.cwd = start_dir
-        self.select = ui.SelectMultiple(options=['init'], value=(), rows=10, description='')
+        self.select = ui.SelectMultiple(options=["init"], value=(), rows=10, description="")
         self.accord = ui.Accordion(children=[self.select])
 
-        self.accord.selected_index = None   # Start closed (showing path only)
+        self.accord.selected_index = None  # Start closed (showing path only)
         self.refresh(self.cwd)
-        self.select.observe(self.on_update, 'value')
+        self.select.observe(self.on_update, "value")
 
     def on_update(self, change):
-        if len(change['new']) > 0:
-            self.refresh(change['new'][0])
+        if len(change["new"]) > 0:
+            self.refresh(change["new"][0])
 
     def refresh(self, item):
         path = os.path.abspath(os.path.join(self.cwd, item))
@@ -57,17 +59,17 @@ class PathSelector:
             else:
                 self.select.value = ()
 
-        else:   # os.path.isdir(path)
+        else:  # os.path.isdir(path)
             self.file = None
             self.cwd = path
 
             # Build list of files and dirs
-            keys = ['[..]']
+            keys = ["[..]"]
             for item in os.listdir(path):
-                if item[0] == '.':
+                if item[0] == ".":
                     continue
                 elif os.path.isdir(os.path.join(path, item)):
-                    keys.append('[' + item + ']')
+                    keys.append("[" + item + "]")
                 else:
                     keys.append(item)
 
@@ -75,8 +77,8 @@ class PathSelector:
             keys.sort(key=str.lower)
             vals = []
             for k in keys:
-                if k[0] == '[':
-                    vals.append(k[1:-1])   # strip off brackets
+                if k[0] == "[":
+                    vals.append(k[1:-1])  # strip off brackets
                 else:
                     vals.append(k)
 
