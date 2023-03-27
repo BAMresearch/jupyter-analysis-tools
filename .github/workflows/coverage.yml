@@ -2,9 +2,6 @@ name: Coverage
 
 # Controls when the action will run.
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
   workflow_call:
 
 env:
@@ -85,11 +82,18 @@ jobs:
         run: |
           echo '### Total coverage: ${{ env.total }}%' >> $GITHUB_STEP_SUMMARY
 
-      - name: Checkout reports branch
+      - name: Checkout documentation pages branch
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/checkout@v3
         with:
           ref: gh-pages
+          path: pages
+
+      - name: Download previously generated documentation
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: actions/download-artifact@v3
+        with:
+          name: docs
           path: pages
 
       - name: Download coverage HTML report
@@ -125,7 +129,6 @@ jobs:
           cd ./pages
           rm ${{ env.report_dir }}/.gitignore
           ls -la ${{ env.report_dir }} # for debugging
-          git sparse-checkout set --skip-checks '/*' '${{ env.report_dir }}'
           git add ${{ env.report_dir }}/* "${REDIR_HTML#*/}" "${BADGE_JSON#*/}"
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
