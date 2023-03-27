@@ -13,10 +13,10 @@ from .utils import indent, isList
 def getWorkDir(workDir=None, skip=False):
     """Find a local work dir for temporary files, created during analysis.
     The default is *$HOME/data*."""
-    if skip:   # stay in the current directory if desired
-        return os.path.abspath('.')
+    if skip:  # stay in the current directory if desired
+        return os.path.abspath(".")
     if not workDir or not len(workDir):
-        workDir = Path.home() / 'data'
+        workDir = Path.home() / "data"
     else:
         workDir = Path(workDir).resolve()
     if not workDir.is_dir():
@@ -35,16 +35,16 @@ def prepareWorkDir(workDir, srcDir, useExisting=False):
     # no separate work dir requested?
     if os.path.samefile(workDir, os.getcwd()):
         print("Working in current directory '{}'.".format(os.getcwd()))
-        return srcDir   # nothing to do
-    prefix = os.path.basename(srcDir) + '_'
-    if useExisting:   # use an existing work dir, avoid copying
-        dirs = glob.glob(os.path.join(workDir, prefix + '*'))
+        return srcDir  # nothing to do
+    prefix = os.path.basename(srcDir) + "_"
+    if useExisting:  # use an existing work dir, avoid copying
+        dirs = glob.glob(os.path.join(workDir, prefix + "*"))
         if len(dirs):
-            return dirs[0]   # use the first match
-        print('No existing work dir found, creating a new one.')
+            return dirs[0]  # use the first match
+        print("No existing work dir found, creating a new one.")
     # copy all data from src dir to a newly created work dir
     workDir = tempfile.mkdtemp(dir=workDir, prefix=prefix)
-    print('Copying data to {}:'.format(workDir))
+    print("Copying data to {}:".format(workDir))
     for dn in os.listdir(srcDir):
         srcPath = os.path.join(srcDir, dn)
         dstPath = os.path.join(workDir, dn)
@@ -54,7 +54,7 @@ def prepareWorkDir(workDir, srcDir, useExisting=False):
         if os.path.isfile(srcPath):
             shutil.copy(srcPath, dstPath)
             print(indent, dn)
-    print('Done preparing work dir.')
+    print("Done preparing work dir.")
     return workDir
 
 
@@ -67,7 +67,7 @@ def printFileList(fnlst, numParts=2, limit=20):
 
     if len(fnlst) > limit:
         printlst(shorten(fnlst[:3]))
-        print(indent, '[...]')
+        print(indent, "[...]")
         printlst(shorten(fnlst[-3:]))
     else:
         printlst(shorten(fnlst))
@@ -77,11 +77,20 @@ def getDataDirs(dataDir, noWorkDir=False, reuseWorkDir=True, workDir=None):
     """Create a local work dir with a copy of the input data and for storing the results.
     (Data might reside in synced folders which creates massive traffic once batch processing
     results get replaced repeately.)
-    Returns a list of absolute directory paths.
-    *noWorkDir*: False: Copy input data to a new working dir (default),
-                 True: otherwise, use data where it is.
-    *reuseWorkDir*: False: Create a new working dir each time,
-                    True: reuse the work dir if it exists already (default)."""
+
+    Parameters
+    ----------
+    noWorkDir: bool
+        False: Copy input data to a new working dir (default),
+        True: otherwise, use data where it is.
+    reuseWorkDir: bool
+        False: Create a new working dir each time,
+        True: reuse the work dir if it exists already (default).
+
+    Returns
+    -------
+    A list of absolute directory paths.
+    """
     basedir = getWorkDir(workDir=workDir, skip=noWorkDir)
     workDir = prepareWorkDir(basedir, dataDir, useExisting=reuseWorkDir)
     print("Entering '{}':".format(workDir))
@@ -97,7 +106,7 @@ def getDataFiles(dataDirs, include=None, exclude=None):
 
     def getFiles(dn, include=None):
         if not include:
-            include = '*'
+            include = "*"
         if not isList(include):
             include = (include,)
         return [path for inc in include for path in glob.glob(os.path.join(dn, inc))]
@@ -115,5 +124,5 @@ def getDataFiles(dataDirs, include=None, exclude=None):
         for fn in getFiles(dn, include)
         if not any([(ex in fn) for ex in exclude])
     ]
-    print('{} files to be analyzed in subdirectories.'.format(len(files)))
+    print("{} files to be analyzed in subdirectories.".format(len(files)))
     return sorted(files)
