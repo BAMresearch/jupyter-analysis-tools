@@ -63,6 +63,7 @@ version_variable = [                        # version location
 version_pattern = [
     "README.rst:v{version}.svg",
     "README.rst:v{version}...main",
+    ".cookiecutterrc:version:                   '{version}'",
 ]
 version_source = "tag"
 prerelease_tag = "dev"
@@ -74,13 +75,13 @@ upload_to_pypi = false                      # don't auto-upload to PyPI
 remove_dist = false                         # don't remove dists
 #patch_without_tag = false                   # patch release by default
 
-[tool.blue]
+[tool.black]
 line-length = 100
-target-version = ["py37"]
-skip-string-normalization = true
+preview = true
 
 [tool.isort]
 line_length = 100
 group_by_package = true
 known_first_party = "jupyter_analysis_tools"
+ensure_newline_before_comments = true
 extend_skip = ["ci/templates", ".ipynb_checkpoints"]
