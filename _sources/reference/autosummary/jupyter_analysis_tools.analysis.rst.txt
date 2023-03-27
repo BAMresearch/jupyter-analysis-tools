@@ -1,0 +1,30 @@
+jupyter\_analysis\_tools.analysis
+=================================
+
+.. automodule:: jupyter_analysis_tools.analysis
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      getModZScore
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

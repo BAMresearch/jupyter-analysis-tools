@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.plotting.initFigure
+============================================
+
+.. currentmodule:: jupyter_analysis_tools.plotting
+
+.. autofunction:: initFigure

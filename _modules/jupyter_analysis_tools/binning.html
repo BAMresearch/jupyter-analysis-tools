@@ -1,0 +1,759 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
+        <title>jupyter_analysis_tools.binning - Jupyter Analysis Tools 0.1.6-dev.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 0.1.6-dev.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 0.1.6-dev.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../reference/index.html">Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.html">jupyter_analysis_tools</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.analysis.html">jupyter_analysis_tools.analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.analysis.getModZScore.html">jupyter_analysis_tools.analysis.getModZScore</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.binning.html">jupyter_analysis_tools.binning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.binning.argparser.html">jupyter_analysis_tools.binning.argparser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html">jupyter_analysis_tools.binning.reBin</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.html">jupyter_analysis_tools.datalocations</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getDataDirs.html">jupyter_analysis_tools.datalocations.getDataDirs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getDataFiles.html">jupyter_analysis_tools.datalocations.getDataFiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getWorkDir.html">jupyter_analysis_tools.datalocations.getWorkDir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.prepareWorkDir.html">jupyter_analysis_tools.datalocations.prepareWorkDir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.printFileList.html">jupyter_analysis_tools.datalocations.printFileList</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.html">jupyter_analysis_tools.distrib</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.area.html">jupyter_analysis_tools.distrib.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.distrParFromFilename.html">jupyter_analysis_tools.distrib.distrParFromFilename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.distrParLatex.html">jupyter_analysis_tools.distrib.distrParLatex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.distrParToFilename.html">jupyter_analysis_tools.distrib.distrParToFilename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.distrParToText.html">jupyter_analysis_tools.distrib.distrParToText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.findLocalMinima.html">jupyter_analysis_tools.distrib.findLocalMinima</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.findPeakRanges.html">jupyter_analysis_tools.distrib.findPeakRanges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.getLargestPeaks.html">jupyter_analysis_tools.distrib.getLargestPeaks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.integrate.html">jupyter_analysis_tools.distrib.integrate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.normalizeDistrib.html">jupyter_analysis_tools.distrib.normalizeDistrib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.Distribution.html">jupyter_analysis_tools.distrib.Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.distrib.Moments.html">jupyter_analysis_tools.distrib.Moments</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.git.html">jupyter_analysis_tools.git</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.git.checkRepo.html">jupyter_analysis_tools.git.checkRepo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.git.isNBstripoutActivated.html">jupyter_analysis_tools.git.isNBstripoutActivated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.git.isNBstripoutInstalled.html">jupyter_analysis_tools.git.isNBstripoutInstalled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.git.isRepo.html">jupyter_analysis_tools.git.isRepo</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.notebook_utils.html">jupyter_analysis_tools.notebook_utils</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.notebook_utils.currentNBpath.html">jupyter_analysis_tools.notebook_utils.currentNBpath</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.html">jupyter_analysis_tools.plotting</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.createFigure.html">jupyter_analysis_tools.plotting.createFigure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.initFigure.html">jupyter_analysis_tools.plotting.initFigure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.lineWidth.html">jupyter_analysis_tools.plotting.lineWidth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.plotColor.html">jupyter_analysis_tools.plotting.plotColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.plotting.plotVertBar.html">jupyter_analysis_tools.plotting.plotVertBar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.readdata.html">jupyter_analysis_tools.readdata</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.html">jupyter_analysis_tools.utils</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.appendToPATH.html">jupyter_analysis_tools.utils.appendToPATH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.checkWinFor7z.html">jupyter_analysis_tools.utils.checkWinFor7z</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.extract7z.html">jupyter_analysis_tools.utils.extract7z</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.fmtErr.html">jupyter_analysis_tools.utils.fmtErr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.grouper.html">jupyter_analysis_tools.utils.grouper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.isLinux.html">jupyter_analysis_tools.utils.isLinux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.isList.html">jupyter_analysis_tools.utils.isList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.isMac.html">jupyter_analysis_tools.utils.isMac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.isWindows.html">jupyter_analysis_tools.utils.isWindows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.pushd.html">jupyter_analysis_tools.utils.pushd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.setLocaleUTF8.html">jupyter_analysis_tools.utils.setLocaleUTF8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.setPackage.html">jupyter_analysis_tools.utils.setPackage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.shortenWinPath.html">jupyter_analysis_tools.utils.shortenWinPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.utils.updatedDict.html">jupyter_analysis_tools.utils.updatedDict</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.widgets.html">jupyter_analysis_tools.widgets</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.widgets.showBoolStatus.html">jupyter_analysis_tools.widgets.showBoolStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/autosummary/jupyter_analysis_tools.widgets.PathSelector.html">jupyter_analysis_tools.widgets.PathSelector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for jupyter_analysis_tools.binning</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Overview</span>
+<span class="sd">========</span>
+<span class="sd">1D rebinning.</span>
+<span class="sd">Should take input file, read, rebin and write.</span>
+<span class="sd">Rebins to log bins.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># __author__ = &quot;Brian R. Pauw&quot;</span>
+<span class="c1"># __contact__ = &quot;brian@stack.nl&quot;</span>
+<span class="c1"># __license__ = &quot;GPLv3+&quot;</span>
+<span class="c1"># __date__ = &quot;2015/01/09&quot;</span>
+<span class="c1"># __status__ = &quot;beta&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">argsort</span><span class="p">,</span> <span class="n">log10</span><span class="p">,</span> <span class="n">reshape</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">zeros</span>
+
+
+<div class="viewcode-block" id="argparser"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.argparser.html#jupyter_analysis_tools.binning.argparser">[docs]</a><span class="k">def</span> <span class="nf">argparser</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Re-binning function, reads three-column ASCII input files,</span>
+<span class="s2">            and outputs re-binned three-column ASCII files&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="c1"># binning options</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="s2">&quot;--numBins&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of bins to use&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-q&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--qMin&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimum Q to clip from original data&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-Q&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--qMax&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimum Q to clip from original data&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-e&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--minE&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimum error is at least this times intensity value.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--scaling&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;logarithmic&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;q-axis scaling for binning, can be linear or logarithmic&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># csv / datafile options</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--delimiter&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Delimiter in original file. &#39;</span><span class="se">\\</span><span class="s2">t&#39; is tab. (with quotes)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-H&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--headerLines&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of header lines to skip&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-D&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--outputDelimiter&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Delimiter in final file (defaults to input delimiter)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--cleanEmpty&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Removes empty bins before writing&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-i&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--iScale&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Intensity (and error) scaled by this factor on output.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># program options</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-v&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Be verbose about the steps&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-t&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--test&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Do not save output files, test run only&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-N&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--noBin&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Do not bin, just input -&gt; output (for translation and scaling)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;fnames&quot;</span><span class="p">,</span>
+        <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;FILENAME&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;One or more data files to rebin&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># show help if no files were provided, no arguments at all</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fnames</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">args</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="reBin"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin">[docs]</a><span class="k">class</span> <span class="nc">reBin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;all kinds of binning-related functions&quot;&quot;&quot;</span>
+
+    <span class="c1"># set defaults for file reading:</span>
+    <span class="n">pandasArgs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;skipinitialspace&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;skip_blank_lines&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;engine&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;header&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1"># set defaults for kwargs, in case this is not called from command line:</span>
+    <span class="n">reBinArgs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;outputDelimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;headerLines&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;fnames&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;qMin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+        <span class="s2">&quot;qMax&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+        <span class="s2">&quot;numBins&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s2">&quot;scaling&quot;</span><span class="p">:</span> <span class="s2">&quot;logarithmic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cleanEmpty&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;minE&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">&quot;noBin&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="reBin.__init__"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># process defaults:</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reBinArgs</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reBinArgs</span><span class="p">[</span><span class="n">kw</span><span class="p">])</span>
+        <span class="c1"># process kwargs:</span>
+        <span class="k">if</span> <span class="s2">&quot;verbose&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing input argument </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kw</span><span class="p">]))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kw</span><span class="p">])</span>
+
+        <span class="c1"># process delimiter options</span>
+        <span class="c1"># decode no longer necessary in python 3</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;string-escape&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputDelimiter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outputDelimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">outputDelimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputDelimiter</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;string-escape&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pandasArgs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span> <span class="s2">&quot;skiprows&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">headerLines</span><span class="p">})</span>
+        <span class="c1"># process files individually:</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">defineBinEdges</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">binning1D</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanEmpty</span><span class="p">:</span>
+                <span class="c1"># removes bins with no intensity or error</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">:</span>
+                <span class="c1"># generate output file name</span>
+                <span class="n">ofname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputFilename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="c1"># write binned data to file name</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">writeFile</span><span class="p">(</span><span class="n">ofname</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># removes unwanted bin values</span>
+        <span class="c1"># cannot use lists, because:</span>
+        <span class="c1"># http://unspecified.wordpress.com/2009/02/12/thou-shalt-not-modify-a-list-during-iteration</span>
+        <span class="n">validi</span> <span class="o">=</span> <span class="kc">True</span> <span class="o">^</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">IBin</span><span class="p">)</span>
+        <span class="n">validi</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">binMask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">QBin</span><span class="p">[</span><span class="n">validi</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">IBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">IBin</span><span class="p">[</span><span class="n">validi</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EBin</span><span class="p">[</span><span class="n">validi</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QEBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">QEBin</span><span class="p">[</span><span class="n">validi</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valid bins: </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validi</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">validi</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="reBin.outputFilename"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin.outputFilename">[docs]</a>    <span class="k">def</span> <span class="nf">outputFilename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns an output filename based on the input filename&quot;&quot;&quot;</span>
+        <span class="n">of</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># split at extension</span>
+        <span class="n">ob</span><span class="p">,</span> <span class="n">oe</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># add rebin tag and reassemble</span>
+        <span class="n">ofname</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_reBin.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ob</span><span class="p">,</span> <span class="n">oe</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;output filename: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ofname</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ofname</span></div>
+
+    <span class="k">def</span> <span class="nf">readFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reading file: </span><span class="si">{}</span><span class="s2"> with settings: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pandasArgs</span><span class="p">))</span>
+        <span class="n">dval</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">pandasArgs</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dval</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>  <span class="c1"># no problems reading?</span>
+        <span class="k">assert</span> <span class="n">size</span><span class="p">(</span><span class="n">dval</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>  <span class="c1"># Q, I and E can be extracted</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data read: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dval</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">dval</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">dval</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minE</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">I</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">dval</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+        <span class="n">numChanged</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">minE</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">I</span> <span class="o">&gt;</span> <span class="n">dval</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;Minimum uncertainty set for </span><span class="si">{}</span><span class="s2"> out of </span><span class="si">{}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2"> %) datapoints&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">numChanged</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">),</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">numChanged</span> <span class="o">/</span> <span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="c1"># writer modified from imp2/modules/Write1D</span>
+    <span class="k">def</span> <span class="nf">writeFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ofname</span><span class="p">,</span> <span class="n">hstrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">sep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputDelimiter</span>
+        <span class="c1"># scale if necessary</span>
+        <span class="n">iterData</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">zip_longest</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">QBin</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">IBin</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iScale</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EBin</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iScale</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">writeLine</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">append</span><span class="p">:</span>
+                <span class="n">openarg</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">openarg</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">openarg</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># iterable object containing multiple lines</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="c1"># truncate file if exists (i.e. discard)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ofname</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">append</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ofname</span><span class="p">)</span>
+
+        <span class="c1"># write header and data:</span>
+        <span class="k">if</span> <span class="n">hstrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">writeLine</span><span class="p">(</span><span class="n">ofname</span><span class="p">,</span> <span class="n">hstrs</span><span class="p">)</span>
+
+        <span class="c1"># store in file</span>
+        <span class="n">moreData</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">moreData</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># generate formatted datastring containing column data</span>
+                <span class="n">wstr</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterData</span><span class="p">)])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="c1"># end of data reached</span>
+                <span class="n">moreData</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+            <span class="n">writeLine</span><span class="p">(</span><span class="n">ofname</span><span class="p">,</span> <span class="n">wstr</span><span class="p">)</span>
+
+<div class="viewcode-block" id="reBin.validate"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies limits to the data&quot;&quot;&quot;</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span><span class="p">)</span>
+        <span class="c1"># appy integration limits:</span>
+        <span class="n">iind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(((</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">qMin</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">qMax</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">iind</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># define binning limits</span>
+        <span class="p">(</span><span class="n">qmin</span><span class="p">,</span> <span class="n">qmax</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="kc">True</span> <span class="o">^</span> <span class="n">mask</span><span class="p">])</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="kc">True</span> <span class="o">^</span> <span class="n">mask</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iqMin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">qmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">qMin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iqMax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">qmax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">qMax</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="kc">True</span> <span class="o">^</span> <span class="n">mask</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">I</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">I</span><span class="p">[</span><span class="kc">True</span> <span class="o">^</span> <span class="n">mask</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">[</span><span class="kc">True</span> <span class="o">^</span> <span class="n">mask</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;data Q-range: </span><span class="si">{}</span><span class="s2">, integration Q-range: </span><span class="si">{}</span><span class="s2">, masked: </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2">%)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iqMin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iqMax</span><span class="p">),</span>
+                    <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+                    <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="reBin.defineBinEdges"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin.defineBinEdges">[docs]</a>    <span class="k">def</span> <span class="nf">defineBinEdges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;defines binning edges&quot;&quot;&quot;</span>
+        <span class="c1"># define bin edges</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaling</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;lin&quot;</span><span class="p">):</span>
+            <span class="n">qEdges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iqMin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iqMax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">numBins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qEdges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iqMin</span><span class="p">),</span> <span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iqMax</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">numBins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qEdges</span> <span class="o">=</span> <span class="n">qEdges</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bin edges used: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qEdges</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="reBin.binning1D"><a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.binning.reBin.html#jupyter_analysis_tools.binning.reBin.binning1D">[docs]</a>    <span class="k">def</span> <span class="nf">binning1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qError</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;An unweighted binning routine.</span>
+<span class="sd">        imp-version of binning, taking q-bin edges in which binning takes place,</span>
+<span class="sd">        and calculates the mean q uncertainty in the bin as well from the relative</span>
+<span class="sd">        Q uncertainties provided.</span>
+
+<span class="sd">        The intensities are sorted across bins of equal size. If provided error</span>
+<span class="sd">        is empty, the standard deviation of the intensities in the bins is</span>
+<span class="sd">        computed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># no binning requested, just input -&gt; output</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noBin</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">QBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">IBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EBin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">QEBin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">I</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="c1"># set values:</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">numBins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numBins</span>
+        <span class="n">qEdges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qEdges</span>
+
+        <span class="c1"># flatten q, intensity and error</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">intensity</span><span class="p">))</span>
+
+        <span class="c1"># sort q, let intensity and error follow sort</span>
+        <span class="n">sortInd</span> <span class="o">=</span> <span class="n">argsort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">sortInd</span><span class="p">]</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity</span><span class="p">[</span><span class="n">sortInd</span><span class="p">]</span>
+
+        <span class="c1"># initialise storage:</span>
+        <span class="n">numBins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qEdges</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">ibin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>
+        <span class="n">qbin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>
+        <span class="n">sdbin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>
+        <span class="n">sebin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>
+        <span class="n">qebin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>
+        <span class="n">binMask</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">numBins</span><span class="p">)</span>  <span class="c1"># set one for masked bin values</span>
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">error</span><span class="p">[</span><span class="n">sortInd</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">qError</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">qError</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">qError</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">qError</span><span class="p">))</span>
+            <span class="n">qError</span> <span class="o">=</span> <span class="n">qError</span><span class="p">[</span><span class="n">sortInd</span><span class="p">]</span>
+
+        <span class="c1"># now we can fill the bins</span>
+        <span class="k">for</span> <span class="n">bini</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numBins</span><span class="p">):</span>
+            <span class="c1"># limit ourselves to only the bits we&#39;re interested in:</span>
+            <span class="n">limMask</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span> <span class="o">&gt;=</span> <span class="n">qEdges</span><span class="p">[</span><span class="n">bini</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">q</span> <span class="o">&lt;=</span> <span class="n">qEdges</span><span class="p">[</span><span class="n">bini</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">iToBin</span> <span class="o">=</span> <span class="n">intensity</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span>
+            <span class="c1"># sum the intensities in one bin and normalize by number of pixels</span>
+            <span class="k">if</span> <span class="n">limMask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># no pixels in bin</span>
+                <span class="p">(</span><span class="n">ibin</span><span class="p">[</span><span class="n">bini</span><span class="p">],</span> <span class="n">sebin</span><span class="p">[</span><span class="n">bini</span><span class="p">],</span> <span class="n">qebin</span><span class="p">[</span><span class="n">bini</span><span class="p">],</span> <span class="n">qbin</span><span class="p">[</span><span class="n">bini</span><span class="p">])</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">binMask</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
+            <span class="k">elif</span> <span class="n">limMask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ibin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">iToBin</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="n">qbin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">sebin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">error</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">qError</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">qebin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">qError</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ibin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">iToBin</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="n">qbin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">sebin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">error</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="n">limMask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="c1"># now we deal with the Errors:</span>
+                <span class="c1"># calculate the standard deviation of the intensity in the bin</span>
+                <span class="c1"># according to the definition of sample-standard deviation</span>
+                <span class="n">sdbin</span> <span class="o">=</span> <span class="n">iToBin</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># what we want is to have the &quot;standard error of the mean&quot;:</span>
+                <span class="n">sdbin</span> <span class="o">=</span> <span class="n">sdbin</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">iToBin</span><span class="p">))</span>
+                <span class="c1"># maximum between standard error and Poisson statistics</span>
+                <span class="n">sebin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">sebin</span><span class="p">[</span><span class="n">bini</span><span class="p">],</span> <span class="n">sdbin</span><span class="p">)</span>
+                <span class="c1"># qebin is the mean error of the q-values in the bin, should</span>
+                <span class="c1"># probably be superseded by the bin width</span>
+                <span class="n">qe</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="k">if</span> <span class="n">qError</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">qe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">qError</span><span class="p">[</span><span class="n">limMask</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+                <span class="c1"># SSTD of q in bin:</span>
+                <span class="n">qs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">limMask</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># sample standard deviation</span>
+                <span class="n">qebin</span><span class="p">[</span><span class="n">bini</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">qe</span><span class="p">,</span> <span class="n">qs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">QBin</span> <span class="o">=</span> <span class="n">qbin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">IBin</span> <span class="o">=</span> <span class="n">ibin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EBin</span> <span class="o">=</span> <span class="n">sebin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QEBin</span> <span class="o">=</span> <span class="n">qebin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binMask</span> <span class="o">=</span> <span class="n">binMask</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;qbin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qbin</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ibin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ibin</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sebin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sebin</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;qebin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qebin</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;binMask: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">binMask</span><span class="p">))</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># process input arguments</span>
+    <span class="n">adict</span> <span class="o">=</span> <span class="n">argparser</span><span class="p">()</span>
+    <span class="c1"># transmogrify into kwargs object</span>
+    <span class="n">adict</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">adict</span><span class="p">)</span>
+    <span class="c1"># run the reBin program</span>
+    <span class="n">reBin</span><span class="p">(</span><span class="o">**</span><span class="n">adict</span><span class="p">)</span>
+
+<span class="c1"># vim: set ts=4 sts=4 sw=4 tw=0:</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2018-2023, Ingo Breßler
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on Mar 27, 2023 (git c74f6ba)</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    </body>
+</html>

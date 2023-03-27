@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.git.isRepo
+===================================
+
+.. currentmodule:: jupyter_analysis_tools.git
+
+.. autofunction:: isRepo

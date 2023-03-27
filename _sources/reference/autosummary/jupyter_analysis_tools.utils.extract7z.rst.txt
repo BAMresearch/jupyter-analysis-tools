@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.extract7z
+========================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: extract7z

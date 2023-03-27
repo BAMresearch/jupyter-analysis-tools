@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.checkWinFor7z
+============================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: checkWinFor7z

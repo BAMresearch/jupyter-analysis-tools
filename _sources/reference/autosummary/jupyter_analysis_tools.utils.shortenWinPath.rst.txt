@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.shortenWinPath
+=============================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: shortenWinPath

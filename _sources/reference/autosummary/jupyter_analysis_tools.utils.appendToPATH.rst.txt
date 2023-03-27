@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.appendToPATH
+===========================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: appendToPATH

@@ -1,0 +1,43 @@
+jupyter\_analysis\_tools.utils
+==============================
+
+.. automodule:: jupyter_analysis_tools.utils
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      appendToPATH
+      checkWinFor7z
+      extract7z
+      fmtErr
+      grouper
+      isLinux
+      isList
+      isMac
+      isWindows
+      pushd
+      setLocaleUTF8
+      setPackage
+      shortenWinPath
+      updatedDict
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

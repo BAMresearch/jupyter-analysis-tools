@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.updatedDict
+==========================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: updatedDict

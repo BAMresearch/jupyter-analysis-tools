@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.datalocations.prepareWorkDir
+=====================================================
+
+.. currentmodule:: jupyter_analysis_tools.datalocations
+
+.. autofunction:: prepareWorkDir

@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.distrib.distrParFromFilename
+=====================================================
+
+.. currentmodule:: jupyter_analysis_tools.distrib
+
+.. autofunction:: distrParFromFilename

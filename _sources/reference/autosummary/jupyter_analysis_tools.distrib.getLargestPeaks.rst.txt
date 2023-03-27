@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.distrib.getLargestPeaks
+================================================
+
+.. currentmodule:: jupyter_analysis_tools.distrib
+
+.. autofunction:: getLargestPeaks

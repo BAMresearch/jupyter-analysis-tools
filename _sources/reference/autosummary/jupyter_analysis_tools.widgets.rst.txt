@@ -1,0 +1,38 @@
+jupyter\_analysis\_tools.widgets
+================================
+
+.. automodule:: jupyter_analysis_tools.widgets
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      showBoolStatus
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: class.rst
+   
+      PathSelector
+   
+   
+
+   
+   
+   
+
+
+

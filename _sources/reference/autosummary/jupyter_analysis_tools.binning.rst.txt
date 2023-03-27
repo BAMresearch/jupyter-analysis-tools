@@ -1,0 +1,38 @@
+jupyter\_analysis\_tools.binning
+================================
+
+.. automodule:: jupyter_analysis_tools.binning
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      argparser
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: class.rst
+   
+      reBin
+   
+   
+
+   
+   
+   
+
+
+

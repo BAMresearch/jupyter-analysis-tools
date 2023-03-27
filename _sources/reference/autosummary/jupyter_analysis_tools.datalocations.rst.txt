@@ -1,0 +1,34 @@
+jupyter\_analysis\_tools.datalocations
+======================================
+
+.. automodule:: jupyter_analysis_tools.datalocations
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      getDataDirs
+      getDataFiles
+      getWorkDir
+      prepareWorkDir
+      printFileList
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

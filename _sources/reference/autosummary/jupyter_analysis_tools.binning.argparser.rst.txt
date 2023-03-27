@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.binning.argparser
+==========================================
+
+.. currentmodule:: jupyter_analysis_tools.binning
+
+.. autofunction:: argparser

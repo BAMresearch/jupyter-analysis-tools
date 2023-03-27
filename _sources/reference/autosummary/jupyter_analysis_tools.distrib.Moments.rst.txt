@@ -1,0 +1,50 @@
+jupyter\_analysis\_tools.distrib.Moments
+========================================
+
+.. currentmodule:: jupyter_analysis_tools.distrib
+
+.. autoclass:: Moments
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Moments.__init__
+      ~Moments.clear
+      ~Moments.copy
+      ~Moments.fromData
+      ~Moments.fromkeys
+      ~Moments.get
+      ~Moments.items
+      ~Moments.keys
+      ~Moments.logNormPar
+      ~Moments.logNormParFromMoments
+      ~Moments.nthMoment
+      ~Moments.pop
+      ~Moments.popitem
+      ~Moments.setdefault
+      ~Moments.update
+      ~Moments.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Moments.area
+      ~Moments.kurt
+      ~Moments.mean
+      ~Moments.skew
+      ~Moments.var
+   
+   

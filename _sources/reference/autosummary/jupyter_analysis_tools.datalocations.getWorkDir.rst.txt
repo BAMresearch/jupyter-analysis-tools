@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.datalocations.getWorkDir
+=================================================
+
+.. currentmodule:: jupyter_analysis_tools.datalocations
+
+.. autofunction:: getWorkDir

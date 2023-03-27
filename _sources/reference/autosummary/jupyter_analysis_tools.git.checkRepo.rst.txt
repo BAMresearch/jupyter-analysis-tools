@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.git.checkRepo
+======================================
+
+.. currentmodule:: jupyter_analysis_tools.git
+
+.. autofunction:: checkRepo

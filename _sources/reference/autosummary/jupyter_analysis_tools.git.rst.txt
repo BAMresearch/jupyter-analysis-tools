@@ -1,0 +1,33 @@
+jupyter\_analysis\_tools.git
+============================
+
+.. automodule:: jupyter_analysis_tools.git
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      checkRepo
+      isNBstripoutActivated
+      isNBstripoutInstalled
+      isRepo
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

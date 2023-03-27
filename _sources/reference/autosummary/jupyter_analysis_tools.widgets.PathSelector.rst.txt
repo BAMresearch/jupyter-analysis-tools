@@ -1,0 +1,27 @@
+jupyter\_analysis\_tools.widgets.PathSelector
+=============================================
+
+.. currentmodule:: jupyter_analysis_tools.widgets
+
+.. autoclass:: PathSelector
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PathSelector.__init__
+      ~PathSelector.on_update
+      ~PathSelector.refresh
+   
+   
+
+   
+   
+   

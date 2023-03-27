@@ -1,0 +1,45 @@
+jupyter\_analysis\_tools.distrib.Distribution
+=============================================
+
+.. currentmodule:: jupyter_analysis_tools.distrib
+
+.. autoclass:: Distribution
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Distribution.__init__
+      ~Distribution.getBarWidth
+      ~Distribution.moments
+      ~Distribution.peakData
+      ~Distribution.peakDistrPar
+      ~Distribution.plot
+      ~Distribution.plotPeak
+      ~Distribution.uncertRatioMedian
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Distribution.color
+      ~Distribution.peaks
+      ~Distribution.plotAxes
+      ~Distribution.plotAxisIdx
+      ~Distribution.u
+      ~Distribution.x
+      ~Distribution.xlabel
+      ~Distribution.y
+   
+   

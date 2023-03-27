@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.distrib.distrParToText
+===============================================
+
+.. currentmodule:: jupyter_analysis_tools.distrib
+
+.. autofunction:: distrParToText
