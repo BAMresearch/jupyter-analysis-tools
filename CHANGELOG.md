@@ -4,6 +4,15 @@ Changelog
 
 % <!--next-version-placeholder-->
 
+## v0.1.5 (2023-03-27)
+### Fix
+* **reBin:** Module renamed to binning, fixes name clashes with docs gen ([`ec959fb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4))
+
+### Documentation
+* **cleanup:** Removed obsolete module doc, replaced by autosummary generated files ([`c0d4256`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b))
+* **format:** Fix formatting with black ([`5de80d4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19))
+* **General:** Config updated by cookiecutter ([`6c9ddfb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068))
+
 ## v0.1.4 (2023-03-03)
 ### Fix
 * **readme:** License link ([`f98f736`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f))
