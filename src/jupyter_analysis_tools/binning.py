@@ -32,99 +32,99 @@ def argparser():
             and outputs re-binned three-column ASCII files"""
     )
     # binning options
-    parser.add_argument('-n', '--numBins', type=int, default=50, help='Number of bins to use')
+    parser.add_argument("-n", "--numBins", type=int, default=50, help="Number of bins to use")
     parser.add_argument(
-        '-q',
-        '--qMin',
+        "-q",
+        "--qMin",
         type=float,
         default=0.0,
-        help='Minimum Q to clip from original data',
+        help="Minimum Q to clip from original data",
     )
     parser.add_argument(
-        '-Q',
-        '--qMax',
+        "-Q",
+        "--qMax",
         type=float,
         default=np.inf,
-        help='Minimum Q to clip from original data',
+        help="Minimum Q to clip from original data",
     )
     parser.add_argument(
-        '-e',
-        '--minE',
+        "-e",
+        "--minE",
         type=float,
         default=0.01,
-        help='Minimum error is at least this times intensity value.',
+        help="Minimum error is at least this times intensity value.",
     )
     parser.add_argument(
-        '-s',
-        '--scaling',
+        "-s",
+        "--scaling",
         type=str,
-        action='store',
-        default='logarithmic',
-        help='q-axis scaling for binning, can be linear or logarithmic',
+        action="store",
+        default="logarithmic",
+        help="q-axis scaling for binning, can be linear or logarithmic",
     )
     # csv / datafile options
     parser.add_argument(
-        '-d',
-        '--delimiter',
+        "-d",
+        "--delimiter",
         type=str,
-        action='store',
-        default=',',
+        action="store",
+        default=",",
         help="Delimiter in original file. '\\t' is tab. (with quotes)",
     )
     parser.add_argument(
-        '-H',
-        '--headerLines',
+        "-H",
+        "--headerLines",
         type=int,
         default=0,
-        help='Number of header lines to skip',
+        help="Number of header lines to skip",
     )
     parser.add_argument(
-        '-D',
-        '--outputDelimiter',
+        "-D",
+        "--outputDelimiter",
         type=str,
-        action='store',
+        action="store",
         default=None,
-        help='Delimiter in final file (defaults to input delimiter)',
+        help="Delimiter in final file (defaults to input delimiter)",
     )
     parser.add_argument(
-        '-c',
-        '--cleanEmpty',
-        action='store_true',
+        "-c",
+        "--cleanEmpty",
+        action="store_true",
         default=True,
-        help='Removes empty bins before writing',
+        help="Removes empty bins before writing",
     )
     parser.add_argument(
-        '-i',
-        '--iScale',
+        "-i",
+        "--iScale",
         type=float,
         default=1.0,
-        help='Intensity (and error) scaled by this factor on output.',
+        help="Intensity (and error) scaled by this factor on output.",
     )
     # program options
     parser.add_argument(
-        '-v',
-        '--verbose',
-        action='store_true',
-        help='Be verbose about the steps',
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Be verbose about the steps",
     )
     parser.add_argument(
-        '-t',
-        '--test',
-        action='store_true',
-        help='Do not save output files, test run only',
+        "-t",
+        "--test",
+        action="store_true",
+        help="Do not save output files, test run only",
     )
     parser.add_argument(
-        '-N',
-        '--noBin',
-        action='store_true',
-        help='Do not bin, just input -> output (for translation and scaling)',
+        "-N",
+        "--noBin",
+        action="store_true",
+        help="Do not bin, just input -> output (for translation and scaling)",
     )
     parser.add_argument(
-        'fnames',
-        nargs='*',
-        metavar='FILENAME',
-        action='store',
-        help='One or more data files to rebin',
+        "fnames",
+        nargs="*",
+        metavar="FILENAME",
+        action="store",
+        help="One or more data files to rebin",
     )
     # show help if no files were provided, no arguments at all
     args = parser.parse_args()
@@ -139,25 +139,25 @@ class reBin(object):
 
     # set defaults for file reading:
     pandasArgs = {
-        'skipinitialspace': True,
-        'skip_blank_lines': True,
-        'engine': 'python',
-        'header': None,
+        "skipinitialspace": True,
+        "skip_blank_lines": True,
+        "engine": "python",
+        "header": None,
     }
     # set defaults for kwargs, in case this is not called from command line:
     reBinArgs = {
-        'delimiter': ';',
-        'outputDelimiter': ';',
-        'headerLines': 0,
-        'fnames': '',
-        'verbose': False,
-        'qMin': -np.inf,
-        'qMax': np.inf,
-        'numBins': 100,
-        'scaling': 'logarithmic',
-        'cleanEmpty': False,
-        'minE': 0.01,
-        'noBin': False,
+        "delimiter": ";",
+        "outputDelimiter": ";",
+        "headerLines": 0,
+        "fnames": "",
+        "verbose": False,
+        "qMin": -np.inf,
+        "qMax": np.inf,
+        "numBins": 100,
+        "scaling": "logarithmic",
+        "cleanEmpty": False,
+        "minE": 0.01,
+        "noBin": False,
     }
 
     def __init__(self, **kwargs):
@@ -165,24 +165,24 @@ class reBin(object):
         for kw in self.reBinArgs:
             setattr(self, kw, self.reBinArgs[kw])
         # process kwargs:
-        if 'verbose' in kwargs:
-            self.verbose = kwargs.pop('verbose')
+        if "verbose" in kwargs:
+            self.verbose = kwargs.pop("verbose")
         for kw in kwargs:
             if self.verbose:
-                print('Processing input argument {}: {}'.format(kw, kwargs[kw]))
+                print("Processing input argument {}: {}".format(kw, kwargs[kw]))
             setattr(self, kw, kwargs[kw])
 
         # process delimiter options
         # decode no longer necessary in python 3
         if sys.version_info <= (3, 0):
-            self.delimiter = self.delimiter.decode('string-escape')
+            self.delimiter = self.delimiter.decode("string-escape")
         if self.outputDelimiter is None:
             self.outputDelimiter = self.delimiter
         else:
             if sys.version_info <= (3, 0):
-                self.outputDelimiter = self.outputDelimiter.decode('string-escape')
+                self.outputDelimiter = self.outputDelimiter.decode("string-escape")
 
-        self.pandasArgs.update({'delimiter': self.delimiter, 'skiprows': self.headerLines})
+        self.pandasArgs.update({"delimiter": self.delimiter, "skiprows": self.headerLines})
         # process files individually:
         for filename in self.fnames:
             self.readFile(filename)
@@ -210,34 +210,34 @@ class reBin(object):
         self.EBin = self.EBin[validi]
         self.QEBin = self.QEBin[validi]
         if self.verbose:
-            print('valid bins: {} of {}'.format(validi.sum(), len(validi)))
+            print("valid bins: {} of {}".format(validi.sum(), len(validi)))
 
     def outputFilename(self, filename):
         """returns an output filename based on the input filename"""
         of = filename.strip()
         # split at extension
-        ob, oe = of.rsplit('.', 1)
+        ob, oe = of.rsplit(".", 1)
         # add rebin tag and reassemble
-        ofname = '{}_reBin.{}'.format(ob, oe)
+        ofname = "{}_reBin.{}".format(ob, oe)
         if self.verbose:
-            print('output filename: {}'.format(ofname))
+            print("output filename: {}".format(ofname))
         return ofname
 
     def readFile(self, filename):
         if self.verbose:
-            print('reading file: {} with settings: {}'.format(filename, self.pandasArgs))
+            print("reading file: {} with settings: {}".format(filename, self.pandasArgs))
         dval = pandas.read_csv(filename, **self.pandasArgs).values
-        assert isinstance(dval, np.ndarray)   # no problems reading?
-        assert size(dval, axis=1) >= 3   # Q, I and E can be extracted
+        assert isinstance(dval, np.ndarray)  # no problems reading?
+        assert size(dval, axis=1) >= 3  # Q, I and E can be extracted
         if self.verbose:
-            print('data read: {}'.format(dval))
+            print("data read: {}".format(dval))
         self.Q = np.float32(dval[:, 0])
         self.I = np.float32(dval[:, 1])
         self.E = np.maximum(self.minE * self.I, np.float32(dval[:, 2]))
         numChanged = (self.minE * self.I > dval[:, 2]).sum()
         if self.verbose:
             print(
-                'Minimum uncertainty set for {} out of {} ({} %) datapoints'.format(
+                "Minimum uncertainty set for {} out of {} ({} %) datapoints".format(
                     numChanged, size(self.Q), 100.0 * numChanged / size(self.Q)
                 )
             )
@@ -254,9 +254,9 @@ class reBin(object):
 
         def writeLine(filename, line=None, append=True):
             if append:
-                openarg = 'a'
+                openarg = "a"
             else:
-                openarg = 'w'
+                openarg = "w"
             with open(filename, openarg) as fh:
                 if isinstance(line, str):
                     fh.write(line)
@@ -277,7 +277,7 @@ class reBin(object):
         while moreData:
             try:
                 # generate formatted datastring containing column data
-                wstr = sep.join(['{}'.format(k) for k in next(iterData)]) + '\n'
+                wstr = sep.join(["{}".format(k) for k in next(iterData)]) + "\n"
             except StopIteration:
                 # end of data reached
                 moreData = False
@@ -286,7 +286,7 @@ class reBin(object):
 
     def validate(self):
         """Applies limits to the data"""
-        mask = zeros(shape(self.Q), dtype='bool')
+        mask = zeros(shape(self.Q), dtype="bool")
         # appy integration limits:
         iind = np.array(((self.Q < self.qMin) + (self.Q > self.qMax)), dtype=bool)
         mask[iind] = True
@@ -303,7 +303,7 @@ class reBin(object):
         self.E = self.E[True ^ mask]
         if self.verbose:
             print(
-                'data Q-range: {}, integration Q-range: {}, masked: {} of {} ({}%)'.format(
+                "data Q-range: {}, integration Q-range: {}, masked: {} of {} ({}%)".format(
                     (self.Q.min(), self.Q.max()),
                     (self.iqMin, self.iqMax),
                     mask.sum(),
@@ -315,13 +315,13 @@ class reBin(object):
     def defineBinEdges(self):
         """defines binning edges"""
         # define bin edges
-        if self.scaling.lower() in ('linear', 'lin'):
+        if self.scaling.lower() in ("linear", "lin"):
             qEdges = np.linspace(self.iqMin, self.iqMax, self.numBins + 1)
         else:
             qEdges = np.logspace(log10(self.iqMin), log10(self.iqMax), self.numBins + 1)
         self.qEdges = qEdges
         if self.verbose:
-            print('Bin edges used: {}'.format(self.qEdges))
+            print("Bin edges used: {}".format(self.qEdges))
 
     def binning1D(self, qError=None):
         """An unweighted binning routine.
@@ -364,7 +364,7 @@ class reBin(object):
         sdbin = zeros(numBins)
         sebin = zeros(numBins)
         qebin = zeros(numBins)
-        binMask = zeros(numBins)   # set one for masked bin values
+        binMask = zeros(numBins)  # set one for masked bin values
         if error is not None:
             error = reshape(error, size(error))
             error = error[sortInd]
@@ -417,7 +417,7 @@ class reBin(object):
                 if qError is not None:
                     qe = np.sqrt((qError[limMask] ** 2).sum())
                 # SSTD of q in bin:
-                qs = np.std(q[limMask], ddof=1)   # sample standard deviation
+                qs = np.std(q[limMask], ddof=1)  # sample standard deviation
                 qebin[bini] = np.maximum(qe, qs)
 
         self.QBin = qbin.copy()
@@ -426,14 +426,14 @@ class reBin(object):
         self.QEBin = qebin.copy()
         self.binMask = binMask.copy()
         if self.verbose:
-            print('qbin: {}'.format(qbin))
-            print('ibin: {}'.format(ibin))
-            print('sebin: {}'.format(sebin))
-            print('qebin: {}'.format(qebin))
-            print('binMask: {}'.format(binMask))
+            print("qbin: {}".format(qbin))
+            print("ibin: {}".format(ibin))
+            print("sebin: {}".format(sebin))
+            print("qebin: {}".format(qebin))
+            print("binMask: {}".format(binMask))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # process input arguments
     adict = argparser()
     # transmogrify into kwargs object
