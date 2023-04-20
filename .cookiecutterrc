@@ -21,7 +21,7 @@ default_context:
     year_from:                 '2018'
     year_to:                   '2023'
     version:                   '0.1.5'
-    pypi_host:                 'test.pypi.org'
+    pypi_host:                 'pypi.org'
     license:                   'MIT license'
     sphinx_theme:              'furo'
     extra_context:             {'exclude_existing': "['AUTHORS.rst', 'CHANGELOG.md', 'src/jupyter_analysis_tools/__init__.py']"}

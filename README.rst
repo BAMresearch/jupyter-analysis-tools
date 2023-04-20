@@ -11,7 +11,7 @@ Yet another Python library with helpers and utilities for data analysis and proc
 | |cicd| |coverage|
 
 .. |version| image:: https://img.shields.io/pypi/v/jupyter-analysis-tools.svg
-    :target: https://test.pypi.org/project/jupyter-analysis-tools
+    :target: https://pypi.org/project/jupyter-analysis-tools
     :alt: PyPI Package latest release
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v0.1.5.svg
@@ -23,15 +23,15 @@ Yet another Python library with helpers and utilities for data analysis and proc
     :alt: License
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/jupyter-analysis-tools.svg
-    :target: https://test.pypi.org/project/jupyter-analysis-tools
+    :target: https://pypi.org/project/jupyter-analysis-tools
     :alt: Supported versions
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg
-    :target: https://test.pypi.org/project/jupyter-analysis-tools#files
+    :target: https://pypi.org/project/jupyter-analysis-tools#files
     :alt: PyPI Wheel
 
 .. |downloads| image:: https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg
-    :target: https://test.pypi.org/project/jupyter-analysis-tools/
+    :target: https://pypi.org/project/jupyter-analysis-tools/
     :alt: Weekly PyPI downloads
 
 .. |cicd| image:: https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/ci-cd.yml/badge.svg
