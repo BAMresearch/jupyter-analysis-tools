@@ -21,8 +21,6 @@ jobs:
 
       {{ ci.pip_install_req() }}
 
-      {{ ci.set_version() }}
-
       - name: Build
         run: tox -e build -v
 
