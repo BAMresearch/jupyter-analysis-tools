@@ -6,6 +6,7 @@ import os
 import urllib
 
 import ipykernel
+
 try:
     from notebook import notebookapp
 except ImportError:
