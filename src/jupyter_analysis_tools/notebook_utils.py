@@ -6,7 +6,10 @@ import os
 import urllib
 
 import ipykernel
-from notebook import notebookapp
+try:
+    from notebook import notebookapp
+except ImportError:
+    from notebook import app as notebookapp
 
 
 def currentNBpath():
