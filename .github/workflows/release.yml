@@ -37,6 +37,8 @@ jobs:
           python -m pip install --progress-bar=off -r ci/requirements.txt
 
       - name: Determine a version number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: sh
         run: |
           set -x
