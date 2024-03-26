@@ -290,8 +290,11 @@ class Distribution:
         if showFullRange:
             ax.set_xlim((self.x.min(), self.x.max()))
         ax.set_xlabel(self.xlabel)
-        ax.legend(prop=font_manager.FontProperties(family="monospace"))
         ax.grid(True)
+        legend = ax.legend(prop=font_manager.FontProperties(family="monospace"))
+        # make the legend background more transparent
+        legend.get_frame().set_alpha(None)
+        legend.get_frame().set_facecolor((1, 1, 1, 0.2))
 
     def plot(self, ax, distPar, name=""):
         """plot complete distribution as loaded from file"""
