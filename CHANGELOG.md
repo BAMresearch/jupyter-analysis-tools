@@ -2,6 +2,37 @@
 
 
 
+## v0.1.7 (2024-03-26)
+
+### Chore
+
+* chore(CI): bump python ver to 3.11 ([`5625290`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/562529065a6362de09a2a4603a0d230c29efc032))
+
+* chore(CI): upgrade to actions/checkout@v4 ([`7b7e463`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b7e463c902095d5f1ef9425c972daabcb2c1279))
+
+* chore(CI): try to not fail build if pckg exists on PyPi ([`07e837d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/07e837dcead50a8ec67fafbdf97c3f50ce4e4573))
+
+* chore(CI): linkcheck doesn&#39;t test all commit URLs from Changelog for docs build
+
+- avoids getting occasionally &#39;406 Client Error: Not Acceptable for url&#39; ([`cf02f9f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cf02f9f018d9b9a234f7d70e2cf6331047e7a570))
+
+* chore(CI): remove obsolete set_version
+
+- no prerelease versions anymore, all versions already set in repo ([`d740c8a`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d740c8aa3f49af01a747cb935715431223e50520))
+
+* chore(CI): define GH_TOKEN ([`6f0d253`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6f0d25345f8b0b6ed19ddff3a0fe7643a122ba56))
+
+### Fix
+
+* fix(distrib): Distribution.plotPeak() legend background more transparent
+
+- to see more of the curve behind for very narrow plots ([`4a148f1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78))
+
+### Refactor
+
+* refactor(notebook_utils): whitespace ([`30feb51`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b))
+
+
 ## v0.1.6 (2024-03-25)
 
 ### Chore
