@@ -1,5 +1,1 @@
 readme.rst:63: [redirected permanently] https://BAMresearch.github.io/jupyter-analysis-tools to https://bamresearch.github.io/jupyter-analysis-tools/
-changelog.rst:39: [redirected permanently] https://github.com/BAMresearch/jupyter_analysis_tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7 to https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7
-changelog.rst:43: [redirected permanently] https://github.com/BAMresearch/jupyter_analysis_tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b to https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b
-changelog.rst:35: [redirected permanently] https://github.com/BAMresearch/jupyter_analysis_tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9 to https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9
-changelog.rst:38: [redirected permanently] https://github.com/BAMresearch/jupyter_analysis_tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944 to https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944
