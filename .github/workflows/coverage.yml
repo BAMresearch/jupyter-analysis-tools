@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: Checking out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # see *py_ver* in ci/update.py
       - name: Setting up Python 3.10
@@ -84,7 +84,7 @@ jobs:
 
       - name: Checkout documentation pages branch
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: pages

@@ -38,7 +38,7 @@ jobs:
 
 {%- macro checkout(depth=1) -%}
       - name: Checking out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         {%- if depth != 1 +%}
         with:
           fetch-depth: {{ depth }}
