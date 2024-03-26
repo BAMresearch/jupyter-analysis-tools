@@ -72,5 +72,6 @@ jobs:
       - name: Upload packages
         env:
           TWINE_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
+          TWINE_NON_INTERACTIVE: 1
         run: |
-          twine upload -u __token__ -r pypi dist/*.*
+          twine upload --disable-progress-bar --skip-existing -u __token__ -r pypi dist/*.*
