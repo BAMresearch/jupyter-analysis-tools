@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Authors" href="authors.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>CHANGELOG - Jupyter Analysis Tools 0.1.6 documentation</title>
+        <title>CHANGELOG - Jupyter Analysis Tools 0.1.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d10597a4" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Jupyter Analysis Tools 0.1.6 documentation</div></a>
+      <a href="index.html"><div class="brand">Jupyter Analysis Tools 0.1.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Jupyter Analysis Tools 0.1.6 documentation</span>
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 0.1.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -277,10 +277,49 @@
         <article role="main">
           <section id="changelog">
 <h1>CHANGELOG<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
-<section id="v0-1-6-2024-03-25">
-<h2>v0.1.6 (2024-03-25)<a class="headerlink" href="#v0-1-6-2024-03-25" title="Link to this heading">#</a></h2>
+<section id="v0-1-7-2024-03-26">
+<h2>v0.1.7 (2024-03-26)<a class="headerlink" href="#v0-1-7-2024-03-26" title="Link to this heading">#</a></h2>
 <section id="chore">
 <h3>Chore<a class="headerlink" href="#chore" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>chore(CI): bump python ver to 3.11 (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/562529065a6362de09a2a4603a0d230c29efc032"><code class="docutils literal notranslate"><span class="pre">5625290</span></code></a>)</p></li>
+<li><p>chore(CI): upgrade to actions/checkout&#64;v4 (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b7e463c902095d5f1ef9425c972daabcb2c1279"><code class="docutils literal notranslate"><span class="pre">7b7e463</span></code></a>)</p></li>
+<li><p>chore(CI): try to not fail build if pckg exists on PyPi (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/07e837dcead50a8ec67fafbdf97c3f50ce4e4573"><code class="docutils literal notranslate"><span class="pre">07e837d</span></code></a>)</p></li>
+<li><p>chore(CI): linkcheck doesn’t test all commit URLs from Changelog for docs build</p></li>
+</ul>
+<ul class="simple">
+<li><p>avoids getting occasionally ‘406 Client Error: Not Acceptable for url’ (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/cf02f9f018d9b9a234f7d70e2cf6331047e7a570"><code class="docutils literal notranslate"><span class="pre">cf02f9f</span></code></a>)</p></li>
+</ul>
+<ul class="simple">
+<li><p>chore(CI): remove obsolete set_version</p></li>
+</ul>
+<ul class="simple">
+<li><p>no prerelease versions anymore, all versions already set in repo (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d740c8aa3f49af01a747cb935715431223e50520"><code class="docutils literal notranslate"><span class="pre">d740c8a</span></code></a>)</p></li>
+</ul>
+<ul class="simple">
+<li><p>chore(CI): define GH_TOKEN (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6f0d25345f8b0b6ed19ddff3a0fe7643a122ba56"><code class="docutils literal notranslate"><span class="pre">6f0d253</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="fix">
+<h3>Fix<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>fix(distrib): Distribution.plotPeak() legend background more transparent</p></li>
+</ul>
+<ul class="simple">
+<li><p>to see more of the curve behind for very narrow plots (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78"><code class="docutils literal notranslate"><span class="pre">4a148f1</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="refactor">
+<h3>Refactor<a class="headerlink" href="#refactor" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>refactor(notebook_utils): whitespace (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b"><code class="docutils literal notranslate"><span class="pre">30feb51</span></code></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-1-6-2024-03-25">
+<h2>v0.1.6 (2024-03-25)<a class="headerlink" href="#v0-1-6-2024-03-25" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Chore<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(CI): Update semantic-release config</p></li>
 </ul>
@@ -288,8 +327,8 @@
 <li><p>no pre-releases anymore (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d1b4b862694b844db746c90e4280dd73ecbb9c7b"><code class="docutils literal notranslate"><span class="pre">d1b4b86</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="fix">
-<h3>Fix<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Fix<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(notebook_utils): notebookapp import path changed (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/27266db0c62a1e35be8bfb90194b001f29d4534c"><code class="docutils literal notranslate"><span class="pre">27266db</span></code></a>)</p></li>
 </ul>
@@ -297,8 +336,8 @@
 </section>
 <section id="v0-1-6-dev-5-2023-04-20">
 <h2>v0.1.6-dev.5 (2023-04-20)<a class="headerlink" href="#v0-1-6-dev-5-2023-04-20" title="Link to this heading">#</a></h2>
-<section id="id1">
-<h3>Chore<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Chore<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(Packaging): switch from test.pypi.org to pypi.org (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7878db88d36156eefa1c4db807fa3a17e82ea755"><code class="docutils literal notranslate"><span class="pre">7878db8</span></code></a>)</p></li>
 <li><p>chore(GitHub Action): Updated templates (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ff82de6b3ccd06fd5bd8b3728215b901f8a74c39"><code class="docutils literal notranslate"><span class="pre">ff82de6</span></code></a>)</p></li>
@@ -307,8 +346,8 @@
 </section>
 <section id="v0-1-6-dev-4-2023-04-20">
 <h2>v0.1.6-dev.4 (2023-04-20)<a class="headerlink" href="#v0-1-6-dev-4-2023-04-20" title="Link to this heading">#</a></h2>
-<section id="id2">
-<h3>Chore<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Chore<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHub Action): test first, continue on success; some fixes</p></li>
 </ul>
@@ -319,8 +358,8 @@
 </section>
 <section id="v0-1-6-dev-3-2023-03-28">
 <h2>v0.1.6-dev.3 (2023-03-28)<a class="headerlink" href="#v0-1-6-dev-3-2023-03-28" title="Link to this heading">#</a></h2>
-<section id="id3">
-<h3>Chore<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Chore<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHub Action): Remove old doc files first before populating with newly generated docs (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d828528266cd219b9bc4804e2fdb9ad51842cc97"><code class="docutils literal notranslate"><span class="pre">d828528</span></code></a>)</p></li>
 </ul>
@@ -328,8 +367,8 @@
 </section>
 <section id="v0-1-6-dev-2-2023-03-27">
 <h2>v0.1.6-dev.2 (2023-03-27)<a class="headerlink" href="#v0-1-6-dev-2-2023-03-27" title="Link to this heading">#</a></h2>
-<section id="id4">
-<h3>Chore<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>Chore<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHub Action): fix update of gh-pages (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c74f6ba5c4c557cf20d236ee848f31179f75e29c"><code class="docutils literal notranslate"><span class="pre">c74f6ba</span></code></a>)</p></li>
 </ul>
@@ -346,15 +385,15 @@
 </section>
 <section id="v0-1-5-2023-03-27">
 <h2>v0.1.5 (2023-03-27)<a class="headerlink" href="#v0-1-5-2023-03-27" title="Link to this heading">#</a></h2>
-<section id="id5">
-<h3>Documentation<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id7">
+<h3>Documentation<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(cleanup): removed obsolete module doc, replaced by autosummary generated files (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b"><code class="docutils literal notranslate"><span class="pre">c0d4256</span></code></a>)</p></li>
 <li><p>docs(format): fix formatting with black (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19"><code class="docutils literal notranslate"><span class="pre">5de80d4</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id6">
-<h3>Fix<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3>Fix<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(reBin): module renamed to binning, fixes name clashes with docs gen (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4"><code class="docutils literal notranslate"><span class="pre">ec959fb</span></code></a>)</p></li>
 </ul>
@@ -369,8 +408,8 @@
 </section>
 <section id="v0-1-5-dev-2-2023-03-27">
 <h2>v0.1.5-dev.2 (2023-03-27)<a class="headerlink" href="#v0-1-5-dev-2-2023-03-27" title="Link to this heading">#</a></h2>
-<section id="id7">
-<h3>Chore<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>Chore<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(Packaging): coveragerc removed, now in tox.ini (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/01a15c186d661ca27f6b35d19ee6bfc03468b50e"><code class="docutils literal notranslate"><span class="pre">01a15c1</span></code></a>)</p></li>
 </ul>
@@ -378,16 +417,16 @@
 </section>
 <section id="v0-1-5-dev-1-2023-03-27">
 <h2>v0.1.5-dev.1 (2023-03-27)<a class="headerlink" href="#v0-1-5-dev-1-2023-03-27" title="Link to this heading">#</a></h2>
-<section id="id8">
-<h3>Chore<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>Chore<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(cookiecutter): changelog filename changed (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/f2330369ac49bc958067154684c0d5fe612e190a"><code class="docutils literal notranslate"><span class="pre">f233036</span></code></a>)</p></li>
 <li><p>chore(cookiecutter): updated config &amp; version numbering, pytest cfg, black fmt (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ffd69f65d1b3012ed3d1a0031bf498c9f4b0f911"><code class="docutils literal notranslate"><span class="pre">ffd69f6</span></code></a>)</p></li>
 <li><p>chore(GitHub Action): reordered to run docs and tests in parallel (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/1beedd7753ca3b88d510a15536c53e6049ebc4f7"><code class="docutils literal notranslate"><span class="pre">1beedd7</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id9">
-<h3>Documentation<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h3>Documentation<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(General): config updated by cookiecutter</p></li>
 </ul>
@@ -396,8 +435,8 @@
 <li><p>readme: some badges replaced by one for ci-cd (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068"><code class="docutils literal notranslate"><span class="pre">6c9ddfb</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id10">
-<h3>Style<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>Style<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>style(config): string normalization, double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8edbc437b3c6876fae1ff72ad24edbcbe82a8f8"><code class="docutils literal notranslate"><span class="pre">e8edbc4</span></code></a>)</p></li>
 </ul>
@@ -405,8 +444,8 @@
 </section>
 <section id="v0-1-4-2023-03-03">
 <h2>v0.1.4 (2023-03-03)<a class="headerlink" href="#v0-1-4-2023-03-03" title="Link to this heading">#</a></h2>
-<section id="id11">
-<h3>Fix<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>Fix<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(readme): license link (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f"><code class="docutils literal notranslate"><span class="pre">f98f736</span></code></a>)</p></li>
 </ul>
@@ -414,8 +453,8 @@
 </section>
 <section id="v0-1-3-2023-03-03">
 <h2>v0.1.3 (2023-03-03)<a class="headerlink" href="#v0-1-3-2023-03-03" title="Link to this heading">#</a></h2>
-<section id="id12">
-<h3>Chore<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>Chore<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(Package): updated cookiecutterrc (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/822ed3de8a366644a7285c86facc664d787a7361"><code class="docutils literal notranslate"><span class="pre">822ed3d</span></code></a>)</p></li>
 <li><p>chore(Package): cookiecutterrc (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/203a5cc91f83d740b141dc91b9e93b9d25690c90"><code class="docutils literal notranslate"><span class="pre">203a5cc</span></code></a>)</p></li>
@@ -427,8 +466,8 @@
 <li><p>chore(PythonPackage): moved ignored .DS_Store to MANIFEST.in (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/cf01d72028dc1655f59fea084824417dde703ec3"><code class="docutils literal notranslate"><span class="pre">cf01d72</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id13">
-<h3>Documentation<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h3>Documentation<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(readme): adjust version numbers in readme as well (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000"><code class="docutils literal notranslate"><span class="pre">5700694</span></code></a>)</p></li>
 <li><p>docs(readme): using test.pypi.org links (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75"><code class="docutils literal notranslate"><span class="pre">240e58c</span></code></a>)</p></li>
@@ -436,8 +475,8 @@
 <li><p>docs(comments): add some, remove obsolete (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640"><code class="docutils literal notranslate"><span class="pre">efe2689</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id14">
-<h3>Fix<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>Fix<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(tox): clean env (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578"><code class="docutils literal notranslate"><span class="pre">0135426</span></code></a>)</p></li>
 <li><p>fix(Package): cookiecutterrc updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2"><code class="docutils literal notranslate"><span class="pre">7b29a17</span></code></a>)</p></li>
@@ -445,15 +484,15 @@
 <li><p>fix(GitHubAction): migrate to pathlib.Path in template rendering (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3"><code class="docutils literal notranslate"><span class="pre">d3ae5db</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="refactor">
-<h3>Refactor<a class="headerlink" href="#refactor" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h3>Refactor<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>refactor(docs): config adjusted by cookiecutter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/84e00f061bc5780a0b3457ec95847b266dcfa2cc"><code class="docutils literal notranslate"><span class="pre">84e00f0</span></code></a>)</p></li>
 <li><p>refactor(metadata): update project meta data (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/9d6982c960fef68b4c155d05162491f2b6e8b4d0"><code class="docutils literal notranslate"><span class="pre">9d6982c</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id15">
-<h3>Style<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h3>Style<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>style(pyproject.toml): use double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/8f902a25b0578babc6e2ad3b72cc7adff94361e2"><code class="docutils literal notranslate"><span class="pre">8f902a2</span></code></a>)</p></li>
 </ul>
@@ -467,8 +506,8 @@
 </section>
 <section id="v0-1-3-dev-4-2023-02-28">
 <h2>v0.1.3-dev.4 (2023-02-28)<a class="headerlink" href="#v0-1-3-dev-4-2023-02-28" title="Link to this heading">#</a></h2>
-<section id="id16">
-<h3>Chore<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h3>Chore<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(PythonPackage): removed obsolete setuptools requirement (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/a47948497cba680b6a8ccdaf1fa48c4bd5d0878b"><code class="docutils literal notranslate"><span class="pre">a479484</span></code></a>)</p></li>
 <li><p>chore(PythonPackage): removed obsolete version number script (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/84a1309702f361cc6ebae72047cd68b8d4316d69"><code class="docutils literal notranslate"><span class="pre">84a1309</span></code></a>)</p></li>
@@ -477,8 +516,8 @@
 </section>
 <section id="v0-1-3-dev-3-2023-02-28">
 <h2>v0.1.3-dev.3 (2023-02-28)<a class="headerlink" href="#v0-1-3-dev-3-2023-02-28" title="Link to this heading">#</a></h2>
-<section id="id17">
-<h3>Chore<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h3>Chore<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): jinja macro for setup_python() extended</p></li>
 </ul>
@@ -519,8 +558,8 @@
 </section>
 <section id="v0-1-3-dev-2-2023-02-27">
 <h2>v0.1.3-dev.2 (2023-02-27)<a class="headerlink" href="#v0-1-3-dev-2-2023-02-27" title="Link to this heading">#</a></h2>
-<section id="id18">
-<h3>Chore<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h3>Chore<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): debugging build job (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/9eac56850155cb0ce7eb41a4c0c384e7295d0d62"><code class="docutils literal notranslate"><span class="pre">9eac568</span></code></a>)</p></li>
 </ul>
@@ -528,8 +567,8 @@
 </section>
 <section id="v0-1-3-dev-1-2023-02-27">
 <h2>v0.1.3-dev.1 (2023-02-27)<a class="headerlink" href="#v0-1-3-dev-1-2023-02-27" title="Link to this heading">#</a></h2>
-<section id="id19">
-<h3>Chore<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h3>Chore<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): debugging build job (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ad8b345e049a001c82126babf0e3157088fa8892"><code class="docutils literal notranslate"><span class="pre">ad8b345</span></code></a>)</p></li>
 <li><p>chore(GitHubAction): debugging build job (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/650ca3918306c6067012ee21d5eea009629edf09"><code class="docutils literal notranslate"><span class="pre">650ca39</span></code></a>)</p></li>
@@ -546,14 +585,14 @@
 </section>
 <section id="v0-1-2-2023-02-24">
 <h2>v0.1.2 (2023-02-24)<a class="headerlink" href="#v0-1-2-2023-02-24" title="Link to this heading">#</a></h2>
-<section id="id20">
-<h3>Documentation<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<section id="id23">
+<h3>Documentation<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(distrib): generate entries of submodule <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944"><code class="docutils literal notranslate"><span class="pre">c8055c6</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id21">
-<h3>Fix<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h3>Fix<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(Documentation): doctest format in <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9"><code class="docutils literal notranslate"><span class="pre">5942972</span></code></a>)</p></li>
 </ul>
@@ -561,8 +600,8 @@
 </section>
 <section id="v0-1-2-dev-1-2023-02-24">
 <h2>v0.1.2-dev.1 (2023-02-24)<a class="headerlink" href="#v0-1-2-dev-1-2023-02-24" title="Link to this heading">#</a></h2>
-<section id="id22">
-<h3>Documentation<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<section id="id25">
+<h3>Documentation<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(utils): generate entries of submodule <em>utils</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7"><code class="docutils literal notranslate"><span class="pre">762a548</span></code></a>)</p></li>
 </ul>
@@ -576,8 +615,8 @@
 </section>
 <section id="v0-1-1-2023-02-24">
 <h2>v0.1.1 (2023-02-24)<a class="headerlink" href="#v0-1-1-2023-02-24" title="Link to this heading">#</a></h2>
-<section id="id23">
-<h3>Fix<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h3>Fix<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(docs): allow markdown format in changelog (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b"><code class="docutils literal notranslate"><span class="pre">593356b</span></code></a>)</p></li>
 </ul>
@@ -585,8 +624,8 @@
 </section>
 <section id="v0-1-1-dev-5-2023-02-23">
 <h2>v0.1.1-dev.5 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-5-2023-02-23" title="Link to this heading">#</a></h2>
-<section id="id24">
-<h3>Chore<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<section id="id27">
+<h3>Chore<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): use tox to build the wheel for uploading (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/db60a3799124f252bb532dbc576f2f0dc0e784d5"><code class="docutils literal notranslate"><span class="pre">db60a37</span></code></a>)</p></li>
 <li><p>chore(docs): show git commit id in footer (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/b4dc6cbc15f189cd1fa5d47024199dbb333a9bb4"><code class="docutils literal notranslate"><span class="pre">b4dc6cb</span></code></a>)</p></li>
@@ -597,8 +636,8 @@
 </section>
 <section id="v0-1-1-dev-4-2023-02-23">
 <h2>v0.1.1-dev.4 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-4-2023-02-23" title="Link to this heading">#</a></h2>
-<section id="id25">
-<h3>Documentation<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<section id="id28">
+<h3>Documentation<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(readme): updated links and badges (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e0329d510bb5c090d093818c0536993c6292a8a"><code class="docutils literal notranslate"><span class="pre">2e0329d</span></code></a>)</p></li>
 </ul>
@@ -606,8 +645,8 @@
 </section>
 <section id="v0-1-1-dev-3-2023-02-23">
 <h2>v0.1.1-dev.3 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-3-2023-02-23" title="Link to this heading">#</a></h2>
-<section id="id26">
-<h3>Chore<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<section id="id29">
+<h3>Chore<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): split up tests workflow to apply dependency on coverage (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/0b6689765f4e43a8c0c6216489fbe53218479945"><code class="docutils literal notranslate"><span class="pre">0b66897</span></code></a>)</p></li>
 </ul>
@@ -615,8 +654,8 @@
 </section>
 <section id="v0-1-1-dev-2-2023-02-23">
 <h2>v0.1.1-dev.2 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-2-2023-02-23" title="Link to this heading">#</a></h2>
-<section id="id27">
-<h3>Chore<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<section id="id30">
+<h3>Chore<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): fixed workflow dependencies (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/335b82f8ba9637c9a16df8401918da444fc17d4d"><code class="docutils literal notranslate"><span class="pre">335b82f</span></code></a>)</p></li>
 <li><p>chore(GitHubAction): typo fix (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d730a0fa858424b2a68525aa26210ca58a144b55"><code class="docutils literal notranslate"><span class="pre">d730a0f</span></code></a>)</p></li>
@@ -626,8 +665,8 @@
 </section>
 <section id="v0-1-1-dev-1-2023-02-23">
 <h2>v0.1.1-dev.1 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-1-2023-02-23" title="Link to this heading">#</a></h2>
-<section id="id28">
-<h3>Chore<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<section id="id31">
+<h3>Chore<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>chore(GitHubAction): test pushing prerelease version numbers (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/802f015b75dccaf576855d913c026ba807296088"><code class="docutils literal notranslate"><span class="pre">802f015</span></code></a>)</p></li>
 <li><p>chore(GitHubAction): set git identity for creating a tag (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/1c0339e68315aa7a147c4a2ef78f9bdb3b403bb5"><code class="docutils literal notranslate"><span class="pre">1c0339e</span></code></a>)</p></li>
@@ -676,16 +715,16 @@
 <li><p>chore(githubAction): upgrade pip before installing more deps (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/26295b66a6c6c992844e622d7d7ecfc80b76a3f1"><code class="docutils literal notranslate"><span class="pre">26295b6</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id29">
-<h3>Documentation<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<section id="id32">
+<h3>Documentation<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs(config): clean up version definition (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c18c67fae8852f2acdd79ffe3bcb89aa5821c797"><code class="docutils literal notranslate"><span class="pre">c18c67f</span></code></a>)</p></li>
 <li><p>docs: removed disabled config (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/3059ff9fba6a17b845441cd283c0f498c05beab2"><code class="docutils literal notranslate"><span class="pre">3059ff9</span></code></a>)</p></li>
 <li><p>docs: disabled incompatible sidebar config with furo theme (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/61959be18f26e304042c21872f50dda23635caae"><code class="docutils literal notranslate"><span class="pre">61959be</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id30">
-<h3>Fix<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h3>Fix<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>fix(tox): removed tox-wheel settings</p></li>
 </ul>
@@ -693,8 +732,8 @@
 <li><p>tox supports building wheels since v4 (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/cacbfe36af39f613efc4651bed4c8875c80c60c5"><code class="docutils literal notranslate"><span class="pre">cacbfe3</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id31">
-<h3>Unknown<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<section id="id34">
+<h3>Unknown<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GHA: show available tox options (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ccce3b06104f540965bc8b0321e3cc301c826e34"><code class="docutils literal notranslate"><span class="pre">ccce3b0</span></code></a>)</p></li>
 <li><p>GHA: pip cache disabled for testing (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/18371d53beb662f945b7b4d8ff40b3c70163fbb5"><code class="docutils literal notranslate"><span class="pre">18371d5</span></code></a>)</p></li>
@@ -809,8 +848,8 @@
 </section>
 <section id="v0-1-0-2022-11-10">
 <h2>v0.1.0 (2022-11-10)<a class="headerlink" href="#v0-1-0-2022-11-10" title="Link to this heading">#</a></h2>
-<section id="id32">
-<h3>Documentation<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<section id="id35">
+<h3>Documentation<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>docs: let sphinx use numpy directly instead of mockup</p></li>
 </ul>
@@ -829,8 +868,8 @@
 <li><p>docs: updated urls and gh workflow spec (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/66a07049567a524a82633547c8006ed1630238c1"><code class="docutils literal notranslate"><span class="pre">66a0704</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id33">
-<h3>Unknown<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<section id="id36">
+<h3>Unknown<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>tbump config updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e17de9111659992b9419efc7e07c58172737e285"><code class="docutils literal notranslate"><span class="pre">e17de91</span></code></a>)</p></li>
 <li><p>package classifiers and readme updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/4cafdca402cb8171b7ab32de4c93feeb94e00af4"><code class="docutils literal notranslate"><span class="pre">4cafdca</span></code></a>)</p></li>
@@ -1027,7 +1066,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on Mar 26, 2024 (git 4a148f1)</div>
+              Last updated on Apr 02, 2024 (git e2671f6)</div>
           </div>
           <div class="right-details">
             
@@ -1049,25 +1088,31 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">CHANGELOG</a><ul>
-<li><a class="reference internal" href="#v0-1-6-2024-03-25">v0.1.6 (2024-03-25)</a><ul>
+<li><a class="reference internal" href="#v0-1-7-2024-03-26">v0.1.7 (2024-03-26)</a><ul>
 <li><a class="reference internal" href="#chore">Chore</a></li>
 <li><a class="reference internal" href="#fix">Fix</a></li>
+<li><a class="reference internal" href="#refactor">Refactor</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-6-2024-03-25">v0.1.6 (2024-03-25)</a><ul>
+<li><a class="reference internal" href="#id1">Chore</a></li>
+<li><a class="reference internal" href="#id2">Fix</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-6-dev-5-2023-04-20">v0.1.6-dev.5 (2023-04-20)</a><ul>
-<li><a class="reference internal" href="#id1">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-6-dev-4-2023-04-20">v0.1.6-dev.4 (2023-04-20)</a><ul>
-<li><a class="reference internal" href="#id2">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-6-dev-3-2023-03-28">v0.1.6-dev.3 (2023-03-28)</a><ul>
 <li><a class="reference internal" href="#id3">Chore</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-6-dev-2-2023-03-27">v0.1.6-dev.2 (2023-03-27)</a><ul>
+<li><a class="reference internal" href="#v0-1-6-dev-4-2023-04-20">v0.1.6-dev.4 (2023-04-20)</a><ul>
 <li><a class="reference internal" href="#id4">Chore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-6-dev-3-2023-03-28">v0.1.6-dev.3 (2023-03-28)</a><ul>
+<li><a class="reference internal" href="#id5">Chore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-6-dev-2-2023-03-27">v0.1.6-dev.2 (2023-03-27)</a><ul>
+<li><a class="reference internal" href="#id6">Chore</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-6-dev-1-2023-03-27">v0.1.6-dev.1 (2023-03-27)</a><ul>
@@ -1075,90 +1120,90 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-5-2023-03-27">v0.1.5 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id5">Documentation</a></li>
-<li><a class="reference internal" href="#id6">Fix</a></li>
+<li><a class="reference internal" href="#id7">Documentation</a></li>
+<li><a class="reference internal" href="#id8">Fix</a></li>
 <li><a class="reference internal" href="#style">Style</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-5-dev-2-2023-03-27">v0.1.5-dev.2 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id7">Chore</a></li>
+<li><a class="reference internal" href="#id9">Chore</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-5-dev-1-2023-03-27">v0.1.5-dev.1 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id8">Chore</a></li>
-<li><a class="reference internal" href="#id9">Documentation</a></li>
-<li><a class="reference internal" href="#id10">Style</a></li>
+<li><a class="reference internal" href="#id10">Chore</a></li>
+<li><a class="reference internal" href="#id11">Documentation</a></li>
+<li><a class="reference internal" href="#id12">Style</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-4-2023-03-03">v0.1.4 (2023-03-03)</a><ul>
-<li><a class="reference internal" href="#id11">Fix</a></li>
+<li><a class="reference internal" href="#id13">Fix</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-3-2023-03-03">v0.1.3 (2023-03-03)</a><ul>
-<li><a class="reference internal" href="#id12">Chore</a></li>
-<li><a class="reference internal" href="#id13">Documentation</a></li>
-<li><a class="reference internal" href="#id14">Fix</a></li>
-<li><a class="reference internal" href="#refactor">Refactor</a></li>
-<li><a class="reference internal" href="#id15">Style</a></li>
+<li><a class="reference internal" href="#id14">Chore</a></li>
+<li><a class="reference internal" href="#id15">Documentation</a></li>
+<li><a class="reference internal" href="#id16">Fix</a></li>
+<li><a class="reference internal" href="#id17">Refactor</a></li>
+<li><a class="reference internal" href="#id18">Style</a></li>
 <li><a class="reference internal" href="#test">Test</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-3-dev-4-2023-02-28">v0.1.3-dev.4 (2023-02-28)</a><ul>
-<li><a class="reference internal" href="#id16">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-3-dev-3-2023-02-28">v0.1.3-dev.3 (2023-02-28)</a><ul>
-<li><a class="reference internal" href="#id17">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-3-dev-2-2023-02-27">v0.1.3-dev.2 (2023-02-27)</a><ul>
-<li><a class="reference internal" href="#id18">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-3-dev-1-2023-02-27">v0.1.3-dev.1 (2023-02-27)</a><ul>
 <li><a class="reference internal" href="#id19">Chore</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#v0-1-3-dev-3-2023-02-28">v0.1.3-dev.3 (2023-02-28)</a><ul>
+<li><a class="reference internal" href="#id20">Chore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-3-dev-2-2023-02-27">v0.1.3-dev.2 (2023-02-27)</a><ul>
+<li><a class="reference internal" href="#id21">Chore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-3-dev-1-2023-02-27">v0.1.3-dev.1 (2023-02-27)</a><ul>
+<li><a class="reference internal" href="#id22">Chore</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#v0-1-2-2023-02-24">v0.1.2 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id20">Documentation</a></li>
-<li><a class="reference internal" href="#id21">Fix</a></li>
+<li><a class="reference internal" href="#id23">Documentation</a></li>
+<li><a class="reference internal" href="#id24">Fix</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-2-dev-1-2023-02-24">v0.1.2-dev.1 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id22">Documentation</a></li>
+<li><a class="reference internal" href="#id25">Documentation</a></li>
 <li><a class="reference internal" href="#unknown">Unknown</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-1-2023-02-24">v0.1.1 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id23">Fix</a></li>
+<li><a class="reference internal" href="#id26">Fix</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-1-dev-5-2023-02-23">v0.1.1-dev.5 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id24">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-1-dev-4-2023-02-23">v0.1.1-dev.4 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id25">Documentation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-1-dev-3-2023-02-23">v0.1.1-dev.3 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id26">Chore</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-1-dev-2-2023-02-23">v0.1.1-dev.2 (2023-02-23)</a><ul>
 <li><a class="reference internal" href="#id27">Chore</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#v0-1-1-dev-4-2023-02-23">v0.1.1-dev.4 (2023-02-23)</a><ul>
+<li><a class="reference internal" href="#id28">Documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-1-dev-3-2023-02-23">v0.1.1-dev.3 (2023-02-23)</a><ul>
+<li><a class="reference internal" href="#id29">Chore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v0-1-1-dev-2-2023-02-23">v0.1.1-dev.2 (2023-02-23)</a><ul>
+<li><a class="reference internal" href="#id30">Chore</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#v0-1-1-dev-1-2023-02-23">v0.1.1-dev.1 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id28">Chore</a></li>
-<li><a class="reference internal" href="#id29">Documentation</a></li>
-<li><a class="reference internal" href="#id30">Fix</a></li>
-<li><a class="reference internal" href="#id31">Unknown</a></li>
+<li><a class="reference internal" href="#id31">Chore</a></li>
+<li><a class="reference internal" href="#id32">Documentation</a></li>
+<li><a class="reference internal" href="#id33">Fix</a></li>
+<li><a class="reference internal" href="#id34">Unknown</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-0-2022-11-10">v0.1.0 (2022-11-10)</a><ul>
-<li><a class="reference internal" href="#id32">Documentation</a></li>
-<li><a class="reference internal" href="#id33">Unknown</a></li>
+<li><a class="reference internal" href="#id35">Documentation</a></li>
+<li><a class="reference internal" href="#id36">Unknown</a></li>
 </ul>
 </li>
 </ul>
@@ -1172,7 +1217,7 @@
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=6e0256f3"></script>
+</div><script src="_static/documentation_options.js?v=ca7ad2ea"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=32e29ea5"></script>
