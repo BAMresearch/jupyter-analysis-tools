@@ -17,7 +17,10 @@ from .utils import grouper
 
 
 def integrate(xvec, yvec):
-    return abs(scipy.integrate.simps(yvec, x=xvec))
+    try:
+        return abs(scipy.integrate.simps(yvec, x=xvec))
+    except AttributeError:
+        return abs(scipy.integrate.simpson(yvec, x=xvec))
 
 
 def normalizeDistrib(x, y, u=None):
