@@ -16,6 +16,8 @@ jobs:
     steps:
 
       {{ ci.checkout() }}
+      with:
+        ref: main
 
       {{ ci.setup_python() }}
 
