@@ -82,5 +82,5 @@ linkcheck_ignore = [
     join(project_meta["project"]["urls"]["repository"], "commit", r"[0-9a-fA-F]+"),
 ]
 linkcheck_anchors_ignore_for_url = [
-    r"https://pypi\.org/project/[^/]+/\#",
+    r"https://pypi\.org/project/[^/]+/?\#",
 ]
