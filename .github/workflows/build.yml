@@ -15,8 +15,8 @@ jobs:
 
       - name: Checking out the repo
         uses: actions/checkout@v4
-      with:
-        ref: main
+        with:
+          ref: main
 
       # see *py_ver* in ci/update.py
       - name: Setting up Python 3.11
