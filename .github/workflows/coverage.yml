@@ -130,7 +130,7 @@ jobs:
           echo "{\"schemaVersion\":1,\"label\":\"Coverage\",\"message\":\"${{ env.total }}%\",\"color\":\"hsl($HUE, 100%, 40%)\"}" > "$BADGE_JSON"
           # Commit.
           cd ./pages
-          rm ${{ env.report_dir }}/.gitignore
+          rm -f ${{ env.report_dir }}/.gitignore
           # ls -la ${{ env.report_dir }} # for debugging
           # ${{ env.report_dir }}/* "${REDIR_HTML#*/}" "${BADGE_JSON#*/}"
           git add -A
