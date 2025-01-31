@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Authors" href="authors.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>CHANGELOG - Jupyter Analysis Tools 0.1.7 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d10597a4" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>CHANGELOG - Jupyter Analysis Tools 0.1.8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=34bb78ad" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -88,19 +88,6 @@
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
-    </svg>
-  </symbol>
   <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
     <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -141,7 +128,7 @@
       <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
       <path d="M13.5 6.5l4 4" />
       <path d="M20 21l2 -2l-2 -2" />
-      <path d="M17 17l-2 2l2 2" /
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
   <symbol id="svg-eye" viewBox="0 0 24 24">
@@ -179,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Jupyter Analysis Tools 0.1.7 documentation</div></a>
+      <a href="index.html"><div class="brand">Jupyter Analysis Tools 0.1.8 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -203,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Jupyter Analysis Tools 0.1.7 documentation</span>
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 0.1.8 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -341,183 +328,173 @@
         <article role="main" id="furo-main-content">
           <section id="changelog">
 <h1>CHANGELOG<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
-<section id="unreleased">
-<h2>Unreleased<a class="headerlink" href="#unreleased" title="Link to this heading">¶</a></h2>
+<section id="v0-1-8-2025-01-30">
+<h2>v0.1.8 (2025-01-30)<a class="headerlink" href="#v0-1-8-2025-01-30" title="Link to this heading">¶</a></h2>
+<section id="bug-fixes">
+<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>distrib: scipy.integrate.simps does not exist in recent scipy versions (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/b59edc18a6df3bbee23a3ba6e8b8412c294c20d1"><code class="docutils literal notranslate"><span class="pre">b59edc1</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="continuous-integration">
+<h3>Continuous integration<a class="headerlink" href="#continuous-integration" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>changelog: format commit by using their scope only, not repeating the tag (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6b72fe766d121d7ea38c452d093368f84760155e"><code class="docutils literal notranslate"><span class="pre">6b72fe7</span></code></a>)</p></li>
+<li><p>semver: allow message tag <em>enh</em> for enhancements (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/0810b4fd58e1b2383313496b657a800078260c83"><code class="docutils literal notranslate"><span class="pre">0810b4f</span></code></a>)</p></li>
+</ul>
+</section>
 <section id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(Changelog): exclude commit message body from changelog rendering (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e37e82cef2fb27e33d3f0c14d3f38189b97c17d7"><code class="docutils literal notranslate"><span class="pre">e37e82c</span></code></a>)</p></li>
+<li><p>Changelog: use semantic-release detected scope if available, unchange summary otherwise (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ca803e71d1a5915fc72a4a2feea55616533ff54e"><code class="docutils literal notranslate"><span class="pre">ca803e7</span></code></a>)</p></li>
+<li><p>Changelog: omit <em>empty</em> versions without relevant changes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/87b7f2360c5224a6570f8687e8008e2293b81ddb"><code class="docutils literal notranslate"><span class="pre">87b7f23</span></code></a>)</p></li>
+<li><p>index: show link to github project on left sidebar (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/3fad5a870801904a636a114d70ff418886c3f2a6"><code class="docutils literal notranslate"><span class="pre">3fad5a8</span></code></a>)</p></li>
+<li><p>Changelog: don’t show <em>chore</em> changes on automated build config (CI) (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/10c7ee3190969322b3e19b5ff0ce5e1e911bff59"><code class="docutils literal notranslate"><span class="pre">10c7ee3</span></code></a>)</p></li>
+<li><p>Changelog: exclude commit message body from changelog rendering (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e37e82cef2fb27e33d3f0c14d3f38189b97c17d7"><code class="docutils literal notranslate"><span class="pre">e37e82c</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-7-2024-03-26">
 <h2>v0.1.7 (2024-03-26)<a class="headerlink" href="#v0-1-7-2024-03-26" title="Link to this heading">¶</a></h2>
-<section id="fix">
-<h3>Fix<a class="headerlink" href="#fix" title="Link to this heading">¶</a></h3>
+<section id="id1">
+<h3>Bug fixes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(distrib): Distribution.plotPeak() legend background more transparent (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78"><code class="docutils literal notranslate"><span class="pre">4a148f1</span></code></a>)</p></li>
+<li><p>distrib: Distribution.plotPeak() legend background more transparent (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78"><code class="docutils literal notranslate"><span class="pre">4a148f1</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="refactor">
-<h3>Refactor<a class="headerlink" href="#refactor" title="Link to this heading">¶</a></h3>
+<section id="refactoring">
+<h3>Refactoring<a class="headerlink" href="#refactoring" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>refactor(notebook_utils): whitespace (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b"><code class="docutils literal notranslate"><span class="pre">30feb51</span></code></a>)</p></li>
+<li><p>notebook_utils: whitespace (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b"><code class="docutils literal notranslate"><span class="pre">30feb51</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-6-2024-03-25">
 <h2>v0.1.6 (2024-03-25)<a class="headerlink" href="#v0-1-6-2024-03-25" title="Link to this heading">¶</a></h2>
-<section id="id1">
-<h3>Fix<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<section id="id2">
+<h3>Bug fixes<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(notebook_utils): notebookapp import path changed (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/27266db0c62a1e35be8bfb90194b001f29d4534c"><code class="docutils literal notranslate"><span class="pre">27266db</span></code></a>)</p></li>
+<li><p>notebook_utils: notebookapp import path changed (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/27266db0c62a1e35be8bfb90194b001f29d4534c"><code class="docutils literal notranslate"><span class="pre">27266db</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="v0-1-6-dev-5-2023-04-20">
-<h2>v0.1.6-dev.5 (2023-04-20)<a class="headerlink" href="#v0-1-6-dev-5-2023-04-20" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-6-dev-4-2023-04-20">
-<h2>v0.1.6-dev.4 (2023-04-20)<a class="headerlink" href="#v0-1-6-dev-4-2023-04-20" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-6-dev-3-2023-03-28">
-<h2>v0.1.6-dev.3 (2023-03-28)<a class="headerlink" href="#v0-1-6-dev-3-2023-03-28" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-6-dev-2-2023-03-27">
-<h2>v0.1.6-dev.2 (2023-03-27)<a class="headerlink" href="#v0-1-6-dev-2-2023-03-27" title="Link to this heading">¶</a></h2>
-</section>
 <section id="v0-1-6-dev-1-2023-03-27">
 <h2>v0.1.6-dev.1 (2023-03-27)<a class="headerlink" href="#v0-1-6-dev-1-2023-03-27" title="Link to this heading">¶</a></h2>
-<section id="id2">
-<h3>Documentation<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h3>Documentation<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(analysis): minor fix (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/601a6f7dbbf383810add39620748808c51af6fa3"><code class="docutils literal notranslate"><span class="pre">601a6f7</span></code></a>)</p></li>
+<li><p>analysis: minor fix (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/601a6f7dbbf383810add39620748808c51af6fa3"><code class="docutils literal notranslate"><span class="pre">601a6f7</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-5-2023-03-27">
 <h2>v0.1.5 (2023-03-27)<a class="headerlink" href="#v0-1-5-2023-03-27" title="Link to this heading">¶</a></h2>
-<section id="id3">
-<h3>Documentation<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>docs(cleanup): removed obsolete module doc, replaced by autosummary generated files (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b"><code class="docutils literal notranslate"><span class="pre">c0d4256</span></code></a>)</p></li>
-<li><p>docs(format): fix formatting with black (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19"><code class="docutils literal notranslate"><span class="pre">5de80d4</span></code></a>)</p></li>
-</ul>
-</section>
 <section id="id4">
-<h3>Fix<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<h3>Bug fixes<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(reBin): module renamed to binning, fixes name clashes with docs gen (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4"><code class="docutils literal notranslate"><span class="pre">ec959fb</span></code></a>)</p></li>
+<li><p>reBin: module renamed to binning, fixes name clashes with docs gen (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4"><code class="docutils literal notranslate"><span class="pre">ec959fb</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="style">
-<h3>Style<a class="headerlink" href="#style" title="Link to this heading">¶</a></h3>
+<section id="code-style">
+<h3>Code style<a class="headerlink" href="#code-style" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>style(format): fix whitespace and quotes with black (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/b0b7dbaac59528ead6c663165c8d4dab3aabcdfe"><code class="docutils literal notranslate"><span class="pre">b0b7dba</span></code></a>)</p></li>
-<li><p>style(binning): fix quoting by using black formatter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/61603f7de8640437ccd277faefc2d31fa1e1e232"><code class="docutils literal notranslate"><span class="pre">61603f7</span></code></a>)</p></li>
+<li><p>format: fix whitespace and quotes with black (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/b0b7dbaac59528ead6c663165c8d4dab3aabcdfe"><code class="docutils literal notranslate"><span class="pre">b0b7dba</span></code></a>)</p></li>
+<li><p>binning: fix quoting by using black formatter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/61603f7de8640437ccd277faefc2d31fa1e1e232"><code class="docutils literal notranslate"><span class="pre">61603f7</span></code></a>)</p></li>
 </ul>
 </section>
-</section>
-<section id="v0-1-5-dev-2-2023-03-27">
-<h2>v0.1.5-dev.2 (2023-03-27)<a class="headerlink" href="#v0-1-5-dev-2-2023-03-27" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-5-dev-1-2023-03-27">
-<h2>v0.1.5-dev.1 (2023-03-27)<a class="headerlink" href="#v0-1-5-dev-1-2023-03-27" title="Link to this heading">¶</a></h2>
 <section id="id5">
 <h3>Documentation<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(General): config updated by cookiecutter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068"><code class="docutils literal notranslate"><span class="pre">6c9ddfb</span></code></a>)</p></li>
+<li><p>cleanup: removed obsolete module doc, replaced by autosummary generated files (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b"><code class="docutils literal notranslate"><span class="pre">c0d4256</span></code></a>)</p></li>
+<li><p>format: fix formatting with black (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19"><code class="docutils literal notranslate"><span class="pre">5de80d4</span></code></a>)</p></li>
 </ul>
 </section>
+</section>
+<section id="v0-1-5-dev-1-2023-03-27">
+<h2>v0.1.5-dev.1 (2023-03-27)<a class="headerlink" href="#v0-1-5-dev-1-2023-03-27" title="Link to this heading">¶</a></h2>
 <section id="id6">
-<h3>Style<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<h3>Code style<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>style(config): string normalization, double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8edbc437b3c6876fae1ff72ad24edbcbe82a8f8"><code class="docutils literal notranslate"><span class="pre">e8edbc4</span></code></a>)</p></li>
+<li><p>config: string normalization, double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8edbc437b3c6876fae1ff72ad24edbcbe82a8f8"><code class="docutils literal notranslate"><span class="pre">e8edbc4</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Documentation<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>General: config updated by cookiecutter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068"><code class="docutils literal notranslate"><span class="pre">6c9ddfb</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-4-2023-03-03">
 <h2>v0.1.4 (2023-03-03)<a class="headerlink" href="#v0-1-4-2023-03-03" title="Link to this heading">¶</a></h2>
-<section id="id7">
-<h3>Fix<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<h3>Bug fixes<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(readme): license link (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f"><code class="docutils literal notranslate"><span class="pre">f98f736</span></code></a>)</p></li>
+<li><p>readme: license link (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f"><code class="docutils literal notranslate"><span class="pre">f98f736</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-3-2023-03-03">
 <h2>v0.1.3 (2023-03-03)<a class="headerlink" href="#v0-1-3-2023-03-03" title="Link to this heading">¶</a></h2>
-<section id="id8">
-<h3>Documentation<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>docs(readme): adjust version numbers in readme as well (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000"><code class="docutils literal notranslate"><span class="pre">5700694</span></code></a>)</p></li>
-<li><p>docs(readme): using test.pypi.org links (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75"><code class="docutils literal notranslate"><span class="pre">240e58c</span></code></a>)</p></li>
-<li><p>docs(Package): update project description (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/704a0b50a727ef36f685d27ce068103ffa60ca99"><code class="docutils literal notranslate"><span class="pre">704a0b5</span></code></a>)</p></li>
-<li><p>docs(comments): add some, remove obsolete (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640"><code class="docutils literal notranslate"><span class="pre">efe2689</span></code></a>)</p></li>
-</ul>
-</section>
 <section id="id9">
-<h3>Fix<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<h3>Bug fixes<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(tox): clean env (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578"><code class="docutils literal notranslate"><span class="pre">0135426</span></code></a>)</p></li>
-<li><p>fix(Package): cookiecutterrc updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2"><code class="docutils literal notranslate"><span class="pre">7b29a17</span></code></a>)</p></li>
-<li><p>fix(tox): cleanup env removed pckg build files (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ecd86485ec0fe67f646d06ca134fe97310f7a3f5"><code class="docutils literal notranslate"><span class="pre">ecd8648</span></code></a>)</p></li>
-<li><p>fix(GitHubAction): migrate to pathlib.Path in template rendering (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3"><code class="docutils literal notranslate"><span class="pre">d3ae5db</span></code></a>)</p></li>
+<li><p>tox: clean env (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578"><code class="docutils literal notranslate"><span class="pre">0135426</span></code></a>)</p></li>
+<li><p>Package: cookiecutterrc updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2"><code class="docutils literal notranslate"><span class="pre">7b29a17</span></code></a>)</p></li>
+<li><p>tox: cleanup env removed pckg build files (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/ecd86485ec0fe67f646d06ca134fe97310f7a3f5"><code class="docutils literal notranslate"><span class="pre">ecd8648</span></code></a>)</p></li>
+<li><p>GitHubAction: migrate to pathlib.Path in template rendering (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3"><code class="docutils literal notranslate"><span class="pre">d3ae5db</span></code></a>)</p></li>
 </ul>
 </section>
 <section id="id10">
-<h3>Refactor<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<h3>Code style<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>refactor(docs): config adjusted by cookiecutter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/84e00f061bc5780a0b3457ec95847b266dcfa2cc"><code class="docutils literal notranslate"><span class="pre">84e00f0</span></code></a>)</p></li>
-<li><p>refactor(metadata): update project meta data (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/9d6982c960fef68b4c155d05162491f2b6e8b4d0"><code class="docutils literal notranslate"><span class="pre">9d6982c</span></code></a>)</p></li>
+<li><p>pyproject.toml: use double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/8f902a25b0578babc6e2ad3b72cc7adff94361e2"><code class="docutils literal notranslate"><span class="pre">8f902a2</span></code></a>)</p></li>
 </ul>
 </section>
 <section id="id11">
-<h3>Style<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<h3>Documentation<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>style(pyproject.toml): use double quotes (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/8f902a25b0578babc6e2ad3b72cc7adff94361e2"><code class="docutils literal notranslate"><span class="pre">8f902a2</span></code></a>)</p></li>
+<li><p>readme: adjust version numbers in readme as well (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000"><code class="docutils literal notranslate"><span class="pre">5700694</span></code></a>)</p></li>
+<li><p>readme: using test.pypi.org links (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75"><code class="docutils literal notranslate"><span class="pre">240e58c</span></code></a>)</p></li>
+<li><p>Package: update project description (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/704a0b50a727ef36f685d27ce068103ffa60ca99"><code class="docutils literal notranslate"><span class="pre">704a0b5</span></code></a>)</p></li>
+<li><p>comments: add some, remove obsolete (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640"><code class="docutils literal notranslate"><span class="pre">efe2689</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="test">
-<h3>Test<a class="headerlink" href="#test" title="Link to this heading">¶</a></h3>
+<section id="id12">
+<h3>Refactoring<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>test(tox): find sys Python version when generating files if not specified explicitly (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e690193e2a7f3f34dd8457b459c82ec1b9643e0e"><code class="docutils literal notranslate"><span class="pre">e690193</span></code></a>)</p></li>
+<li><p>docs: config adjusted by cookiecutter (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/84e00f061bc5780a0b3457ec95847b266dcfa2cc"><code class="docutils literal notranslate"><span class="pre">84e00f0</span></code></a>)</p></li>
+<li><p>metadata: update project meta data (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/9d6982c960fef68b4c155d05162491f2b6e8b4d0"><code class="docutils literal notranslate"><span class="pre">9d6982c</span></code></a>)</p></li>
 </ul>
 </section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tox: find sys Python version when generating files if not specified explicitly (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e690193e2a7f3f34dd8457b459c82ec1b9643e0e"><code class="docutils literal notranslate"><span class="pre">e690193</span></code></a>)</p></li>
+</ul>
 </section>
-<section id="v0-1-3-dev-4-2023-02-28">
-<h2>v0.1.3-dev.4 (2023-02-28)<a class="headerlink" href="#v0-1-3-dev-4-2023-02-28" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-3-dev-3-2023-02-28">
-<h2>v0.1.3-dev.3 (2023-02-28)<a class="headerlink" href="#v0-1-3-dev-3-2023-02-28" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-3-dev-2-2023-02-27">
-<h2>v0.1.3-dev.2 (2023-02-27)<a class="headerlink" href="#v0-1-3-dev-2-2023-02-27" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-3-dev-1-2023-02-27">
-<h2>v0.1.3-dev.1 (2023-02-27)<a class="headerlink" href="#v0-1-3-dev-1-2023-02-27" title="Link to this heading">¶</a></h2>
 </section>
 <section id="v0-1-2-2023-02-24">
 <h2>v0.1.2 (2023-02-24)<a class="headerlink" href="#v0-1-2-2023-02-24" title="Link to this heading">¶</a></h2>
-<section id="id12">
-<h3>Documentation<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<section id="id13">
+<h3>Bug fixes<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(distrib): generate entries of submodule <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944"><code class="docutils literal notranslate"><span class="pre">c8055c6</span></code></a>)</p></li>
+<li><p>Documentation: doctest format in <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9"><code class="docutils literal notranslate"><span class="pre">5942972</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id13">
-<h3>Fix<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="id14">
+<h3>Documentation<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(Documentation): doctest format in <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9"><code class="docutils literal notranslate"><span class="pre">5942972</span></code></a>)</p></li>
+<li><p>distrib: generate entries of submodule <em>distrib</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944"><code class="docutils literal notranslate"><span class="pre">c8055c6</span></code></a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-1-2-dev-1-2023-02-24">
 <h2>v0.1.2-dev.1 (2023-02-24)<a class="headerlink" href="#v0-1-2-dev-1-2023-02-24" title="Link to this heading">¶</a></h2>
-<section id="id14">
-<h3>Documentation<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<section id="id15">
+<h3>Documentation<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(utils): generate entries of submodule <em>utils</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7"><code class="docutils literal notranslate"><span class="pre">762a548</span></code></a>)</p></li>
+<li><p>utils: generate entries of submodule <em>utils</em> (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7"><code class="docutils literal notranslate"><span class="pre">762a548</span></code></a>)</p></li>
 </ul>
 </section>
 <section id="unknown">
@@ -529,49 +506,40 @@
 </section>
 <section id="v0-1-1-2023-02-24">
 <h2>v0.1.1 (2023-02-24)<a class="headerlink" href="#v0-1-1-2023-02-24" title="Link to this heading">¶</a></h2>
-<section id="id15">
-<h3>Fix<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<section id="id16">
+<h3>Bug fixes<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fix(docs): allow markdown format in changelog (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b"><code class="docutils literal notranslate"><span class="pre">593356b</span></code></a>)</p></li>
+<li><p>docs: allow markdown format in changelog (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b"><code class="docutils literal notranslate"><span class="pre">593356b</span></code></a>)</p></li>
 </ul>
 </section>
-</section>
-<section id="v0-1-1-dev-5-2023-02-23">
-<h2>v0.1.1-dev.5 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-5-2023-02-23" title="Link to this heading">¶</a></h2>
 </section>
 <section id="v0-1-1-dev-4-2023-02-23">
 <h2>v0.1.1-dev.4 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-4-2023-02-23" title="Link to this heading">¶</a></h2>
-<section id="id16">
-<h3>Documentation<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>docs(readme): updated links and badges (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e0329d510bb5c090d093818c0536993c6292a8a"><code class="docutils literal notranslate"><span class="pre">2e0329d</span></code></a>)</p></li>
-</ul>
-</section>
-</section>
-<section id="v0-1-1-dev-3-2023-02-23">
-<h2>v0.1.1-dev.3 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-3-2023-02-23" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-1-dev-2-2023-02-23">
-<h2>v0.1.1-dev.2 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-2-2023-02-23" title="Link to this heading">¶</a></h2>
-</section>
-<section id="v0-1-1-dev-1-2023-02-23">
-<h2>v0.1.1-dev.1 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-1-2023-02-23" title="Link to this heading">¶</a></h2>
 <section id="id17">
 <h3>Documentation<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>docs(config): clean up version definition (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c18c67fae8852f2acdd79ffe3bcb89aa5821c797"><code class="docutils literal notranslate"><span class="pre">c18c67f</span></code></a>)</p></li>
+<li><p>readme: updated links and badges (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e0329d510bb5c090d093818c0536993c6292a8a"><code class="docutils literal notranslate"><span class="pre">2e0329d</span></code></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-1-1-dev-1-2023-02-23">
+<h2>v0.1.1-dev.1 (2023-02-23)<a class="headerlink" href="#v0-1-1-dev-1-2023-02-23" title="Link to this heading">¶</a></h2>
+<section id="id18">
+<h3>Bug fixes<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tox: removed tox-wheel settings (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/cacbfe36af39f613efc4651bed4c8875c80c60c5"><code class="docutils literal notranslate"><span class="pre">cacbfe3</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>Documentation<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>config: clean up version definition (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/c18c67fae8852f2acdd79ffe3bcb89aa5821c797"><code class="docutils literal notranslate"><span class="pre">c18c67f</span></code></a>)</p></li>
 <li><p>docs: removed disabled config (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/3059ff9fba6a17b845441cd283c0f498c05beab2"><code class="docutils literal notranslate"><span class="pre">3059ff9</span></code></a>)</p></li>
 <li><p>docs: disabled incompatible sidebar config with furo theme (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/61959be18f26e304042c21872f50dda23635caae"><code class="docutils literal notranslate"><span class="pre">61959be</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id18">
-<h3>Fix<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>fix(tox): removed tox-wheel settings (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/cacbfe36af39f613efc4651bed4c8875c80c60c5"><code class="docutils literal notranslate"><span class="pre">cacbfe3</span></code></a>)</p></li>
-</ul>
-</section>
-<section id="id19">
-<h3>Unknown<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id20">
+<h3>Unknown<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>added tox-wheel to ci required packages (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/7eae72c4a2e977c3efc56b5d9c8da76d67d44536"><code class="docutils literal notranslate"><span class="pre">7eae72c</span></code></a>)</p></li>
 <li><p>readme: updated badge for docs (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/6e78a50e5b9b7c47498cdb7bc3c4a493a1cacfe3"><code class="docutils literal notranslate"><span class="pre">6e78a50</span></code></a>)</p></li>
@@ -606,8 +574,8 @@
 </section>
 <section id="v0-1-0-2022-11-10">
 <h2>v0.1.0 (2022-11-10)<a class="headerlink" href="#v0-1-0-2022-11-10" title="Link to this heading">¶</a></h2>
-<section id="id20">
-<h3>Documentation<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<section id="id21">
+<h3>Documentation<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>docs: let sphinx use numpy directly instead of mockup (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/9b6ec6d3f4123b8bfb0934cdb2e8a0df0933daee"><code class="docutils literal notranslate"><span class="pre">9b6ec6d</span></code></a>)</p></li>
 <li><p>docs: sphinx extlinks syntax updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/0866ee71cbfa5b8f1134858a44fe8e360707faec"><code class="docutils literal notranslate"><span class="pre">0866ee7</span></code></a>)</p></li>
@@ -621,8 +589,8 @@
 <li><p>docs: updated urls and gh workflow spec (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/66a07049567a524a82633547c8006ed1630238c1"><code class="docutils literal notranslate"><span class="pre">66a0704</span></code></a>)</p></li>
 </ul>
 </section>
-<section id="id21">
-<h3>Unknown<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<section id="id22">
+<h3>Unknown<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>tbump config updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/e17de9111659992b9419efc7e07c58172737e285"><code class="docutils literal notranslate"><span class="pre">e17de91</span></code></a>)</p></li>
 <li><p>package classifiers and readme updated (<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/commit/4cafdca402cb8171b7ab32de4c93feeb94e00af4"><code class="docutils literal notranslate"><span class="pre">4cafdca</span></code></a>)</p></li>
@@ -754,7 +722,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on May 14, 2024 (git ca803e7)</div>
+              Last updated on Jan 31, 2025 (git 5ed5c03)</div>
           </div>
           <div class="right-details">
             
@@ -776,85 +744,75 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">CHANGELOG</a><ul>
-<li><a class="reference internal" href="#unreleased">Unreleased</a><ul>
+<li><a class="reference internal" href="#v0-1-8-2025-01-30">v0.1.8 (2025-01-30)</a><ul>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a></li>
+<li><a class="reference internal" href="#continuous-integration">Continuous integration</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-7-2024-03-26">v0.1.7 (2024-03-26)</a><ul>
-<li><a class="reference internal" href="#fix">Fix</a></li>
-<li><a class="reference internal" href="#refactor">Refactor</a></li>
+<li><a class="reference internal" href="#id1">Bug fixes</a></li>
+<li><a class="reference internal" href="#refactoring">Refactoring</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-6-2024-03-25">v0.1.6 (2024-03-25)</a><ul>
-<li><a class="reference internal" href="#id1">Fix</a></li>
+<li><a class="reference internal" href="#id2">Bug fixes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-6-dev-5-2023-04-20">v0.1.6-dev.5 (2023-04-20)</a></li>
-<li><a class="reference internal" href="#v0-1-6-dev-4-2023-04-20">v0.1.6-dev.4 (2023-04-20)</a></li>
-<li><a class="reference internal" href="#v0-1-6-dev-3-2023-03-28">v0.1.6-dev.3 (2023-03-28)</a></li>
-<li><a class="reference internal" href="#v0-1-6-dev-2-2023-03-27">v0.1.6-dev.2 (2023-03-27)</a></li>
 <li><a class="reference internal" href="#v0-1-6-dev-1-2023-03-27">v0.1.6-dev.1 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id2">Documentation</a></li>
+<li><a class="reference internal" href="#id3">Documentation</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-5-2023-03-27">v0.1.5 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id3">Documentation</a></li>
-<li><a class="reference internal" href="#id4">Fix</a></li>
-<li><a class="reference internal" href="#style">Style</a></li>
+<li><a class="reference internal" href="#id4">Bug fixes</a></li>
+<li><a class="reference internal" href="#code-style">Code style</a></li>
+<li><a class="reference internal" href="#id5">Documentation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-5-dev-2-2023-03-27">v0.1.5-dev.2 (2023-03-27)</a></li>
 <li><a class="reference internal" href="#v0-1-5-dev-1-2023-03-27">v0.1.5-dev.1 (2023-03-27)</a><ul>
-<li><a class="reference internal" href="#id5">Documentation</a></li>
-<li><a class="reference internal" href="#id6">Style</a></li>
+<li><a class="reference internal" href="#id6">Code style</a></li>
+<li><a class="reference internal" href="#id7">Documentation</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-4-2023-03-03">v0.1.4 (2023-03-03)</a><ul>
-<li><a class="reference internal" href="#id7">Fix</a></li>
+<li><a class="reference internal" href="#id8">Bug fixes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-3-2023-03-03">v0.1.3 (2023-03-03)</a><ul>
-<li><a class="reference internal" href="#id8">Documentation</a></li>
-<li><a class="reference internal" href="#id9">Fix</a></li>
-<li><a class="reference internal" href="#id10">Refactor</a></li>
-<li><a class="reference internal" href="#id11">Style</a></li>
-<li><a class="reference internal" href="#test">Test</a></li>
+<li><a class="reference internal" href="#id9">Bug fixes</a></li>
+<li><a class="reference internal" href="#id10">Code style</a></li>
+<li><a class="reference internal" href="#id11">Documentation</a></li>
+<li><a class="reference internal" href="#id12">Refactoring</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-3-dev-4-2023-02-28">v0.1.3-dev.4 (2023-02-28)</a></li>
-<li><a class="reference internal" href="#v0-1-3-dev-3-2023-02-28">v0.1.3-dev.3 (2023-02-28)</a></li>
-<li><a class="reference internal" href="#v0-1-3-dev-2-2023-02-27">v0.1.3-dev.2 (2023-02-27)</a></li>
-<li><a class="reference internal" href="#v0-1-3-dev-1-2023-02-27">v0.1.3-dev.1 (2023-02-27)</a></li>
 <li><a class="reference internal" href="#v0-1-2-2023-02-24">v0.1.2 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id12">Documentation</a></li>
-<li><a class="reference internal" href="#id13">Fix</a></li>
+<li><a class="reference internal" href="#id13">Bug fixes</a></li>
+<li><a class="reference internal" href="#id14">Documentation</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-2-dev-1-2023-02-24">v0.1.2-dev.1 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id14">Documentation</a></li>
+<li><a class="reference internal" href="#id15">Documentation</a></li>
 <li><a class="reference internal" href="#unknown">Unknown</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-1-2023-02-24">v0.1.1 (2023-02-24)</a><ul>
-<li><a class="reference internal" href="#id15">Fix</a></li>
+<li><a class="reference internal" href="#id16">Bug fixes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-1-dev-5-2023-02-23">v0.1.1-dev.5 (2023-02-23)</a></li>
 <li><a class="reference internal" href="#v0-1-1-dev-4-2023-02-23">v0.1.1-dev.4 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id16">Documentation</a></li>
+<li><a class="reference internal" href="#id17">Documentation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-1-1-dev-3-2023-02-23">v0.1.1-dev.3 (2023-02-23)</a></li>
-<li><a class="reference internal" href="#v0-1-1-dev-2-2023-02-23">v0.1.1-dev.2 (2023-02-23)</a></li>
 <li><a class="reference internal" href="#v0-1-1-dev-1-2023-02-23">v0.1.1-dev.1 (2023-02-23)</a><ul>
-<li><a class="reference internal" href="#id17">Documentation</a></li>
-<li><a class="reference internal" href="#id18">Fix</a></li>
-<li><a class="reference internal" href="#id19">Unknown</a></li>
+<li><a class="reference internal" href="#id18">Bug fixes</a></li>
+<li><a class="reference internal" href="#id19">Documentation</a></li>
+<li><a class="reference internal" href="#id20">Unknown</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v0-1-0-2022-11-10">v0.1.0 (2022-11-10)</a><ul>
-<li><a class="reference internal" href="#id20">Documentation</a></li>
-<li><a class="reference internal" href="#id21">Unknown</a></li>
+<li><a class="reference internal" href="#id21">Documentation</a></li>
+<li><a class="reference internal" href="#id22">Unknown</a></li>
 </ul>
 </li>
 </ul>
@@ -868,9 +826,9 @@
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=ca7ad2ea"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+</div><script src="_static/documentation_options.js?v=22607128"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
     </body>
 </html>
