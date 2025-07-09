@@ -42,38 +42,3 @@ jobs:
           path: |
               dist/*.whl
               dist/*.tar.gz
-
-  # publish:
-    # needs: [build]
-    # runs-on: 'ubuntu-latest'
-    # permissions:
-      # id-token: write
-    # steps:
-
-      # - name: Checking out the repo
-        # uses: actions/checkout@v4
-
-      # - name: Install dependencies
-        # run: |
-          # python -m pip install --upgrade pip
-          # python -m pip install --progress-bar=off -r ci/requirements.txt
-
-      # - name: Download package artifacts
-        # uses: actions/download-artifact@v4
-        # with:
-          # pattern: packages-*
-          # merge-multiple: true
-          # path: dist
-
-      # - name: Check generated packages
-        # run: twine check dist/*.*
-
-# #      - name: Upload packages
-# #        env:
-# #          TWINE_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
-# #          TWINE_NON_INTERACTIVE: 1
-# #        run: |
-# #          twine upload --disable-progress-bar --skip-existing -u __token__ -r pypi dist/*.*
-
-      # - name: Publish package distribution to PyPI
-        # uses: pypa/gh-action-pypi-publish@release/v1
