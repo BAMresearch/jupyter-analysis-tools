@@ -46,6 +46,8 @@ jobs:
   publish:
     needs: [build]
     runs-on: 'ubuntu-latest'
+    permissions:
+      id-token: write
     steps:
 
       - name: Checking out the repo
@@ -66,9 +68,12 @@ jobs:
       - name: Check generated packages
         run: twine check dist/*.*
 
-      - name: Upload packages
-        env:
-          TWINE_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
-          TWINE_NON_INTERACTIVE: 1
-        run: |
-          twine upload --disable-progress-bar --skip-existing -u __token__ -r pypi dist/*.*
+#      - name: Upload packages
+#        env:
+#          TWINE_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
+#          TWINE_NON_INTERACTIVE: 1
+#        run: |
+#          twine upload --disable-progress-bar --skip-existing -u __token__ -r pypi dist/*.*
+
+      - name: Publish package distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
