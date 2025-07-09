@@ -45,4 +45,3 @@ def readdata(fn, q_range=None, read_csv_args=None, print_filename=True):
 
     file_name = os.path.basename(fn).split("[")[0]
     return df_data, file_name
-
