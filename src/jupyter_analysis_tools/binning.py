@@ -441,5 +441,3 @@ if __name__ == "__main__":
     adict = vars(adict)
     # run the reBin program
     reBin(**adict)
-
-# vim: set ts=4 sts=4 sw=4 tw=0:
