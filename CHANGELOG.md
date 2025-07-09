@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.0 (2025-07-09)
+
+### Bug fixes
+
+* packaging: add required dependency packages to project config ([`43076e2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/43076e2fd27e511545d8f1ec12752435cf5153c6))
+
 ## v0.1.8 (2025-01-30)
 
 ### Bug fixes
@@ -180,7 +186,7 @@
 
 * docs config: using urls defined in pyproject.toml ([`33d5f23`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/33d5f2338e3a95212c21396d9007bac1495f30a8))
 
-* moving isort config to separate file, not picked up from pyproject  in a pre-commit hook ([`bfaf1e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/bfaf1e0ab5be225e5e4c34ffc8b1ea8bedb59688))
+* moving isort config to separate file, not picked up from pyproject in a pre-commit hook ([`bfaf1e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/bfaf1e0ab5be225e5e4c34ffc8b1ea8bedb59688))
 
 * pre-commit uses pycqa repo for isort ([`4b4a31c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4b4a31c15e9a07455fe9796e17ddbce5f23456ed))
 
