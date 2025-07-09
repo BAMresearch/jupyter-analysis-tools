@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# read1d.py
+# readdata.py
 
 import os
 

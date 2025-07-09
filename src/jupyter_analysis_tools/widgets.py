@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# ui.py
+# widgets.py
 
 import os
 
