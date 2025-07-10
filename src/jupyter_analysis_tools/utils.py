@@ -17,7 +17,7 @@ indent = "    "
 
 
 def setLocaleUTF8():
-    """Fix the Jupyter locale which is not UTF-8 by default on some systems (older Windows?)."""
+    """Fix the Jupyter locale which is not UTF-8 by default on Windows."""
     locOld = locale.getpreferredencoding(False).lower()
 
     def getpreferredencoding(do_setlocale=True):
@@ -42,8 +42,7 @@ def isWindows():
 
 
 def isList(obj):
-    """Return true if the provided object is list-like including a numpy array
-    but not a string.
+    """Return true if the provided object is list-like including a numpy array but not a string.
 
     >>> isList([1, 2, 'a'])
     True
@@ -126,9 +125,11 @@ def pushd(new_dir):
 
 
 def setPackage(globalsdict):
-    """Sets the current directory of the notebook as python package
-    to make relative module imports work.
-    Usage: `setPackage(globals())`"""
+    """Sets the current directory of the notebook as python package to make relative module imports
+    work.
+
+    Usage: `setPackage(globals())`
+    """
     path = Path().resolve()
     searchpath = str(path.parent)
     if searchpath not in sys.path:
@@ -145,7 +146,7 @@ def grouper(iterable, n, fillvalue=None):
 
 
 def fmtErr(val, std, precision=2, width=None):
-    """Formats a given value and its std. deviation to physics notation, e.g. '1.23(4)'."""
+    """Formats a given value and its stdandard deviation to physics notation, e.g. '1.23(4)'."""
     if width is None:
         width = ""
     fmt = "{:" + str(width) + "." + str(precision) + "f}({:.0f})"
