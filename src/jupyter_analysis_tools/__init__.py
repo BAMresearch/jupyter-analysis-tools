@@ -11,5 +11,3 @@ from .utils import setLocaleUTF8
 from .widgets import PathSelector, showBoolStatus
 
 setLocaleUTF8()
-
-# vim: set ts=4 sts=4 sw=4 tw=0:
