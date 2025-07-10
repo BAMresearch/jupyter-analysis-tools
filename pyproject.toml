@@ -84,3 +84,8 @@ group_by_package = true
 known_first_party = "jupyter_analysis_tools"
 ensure_newline_before_comments = true
 extend_skip = ["ci/templates", ".ipynb_checkpoints"]
+
+[tool.docformatter]
+recursive = true
+wrap-summaries = 100
+wrap-descriptions = 100
