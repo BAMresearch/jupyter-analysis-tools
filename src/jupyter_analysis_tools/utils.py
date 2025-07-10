@@ -85,6 +85,25 @@ def appendToPATH(parentPath, subdirs=None, verbose=False):
     os.environ["PATH"] = sep.join(PATH)
 
 
+def addEnvScriptsToPATH():
+    """Prepends the *Scripts* directory of the current Python environment base directory to systems
+    PATH variable.
+
+    It is intended for Conda (Miniforge) environments on Windows that do not have this in their PATH environment variable, causing them to miss many commands provided from this location.
+    """
+    envPath = [p for p in sys.path if p.endswith("Lib")]
+    if not envPath:
+        return  # probably not a Miniforge environment
+    envPath = envPath[0]
+    envPath = Path(envPath).parent / "Scripts"
+    sep = ";" if isWindows() else ":"
+    environPATH = os.environ["PATH"].split(sep)
+    # print(environPATH)
+    if envPath.exists() and str(envPath) not in environPATH:
+        environPATH = [str(envPath)] + environPATH
+        os.environ["PATH"] = sep.join(environPATH)
+
+
 def checkWinFor7z():
     """Extend the PATH environment variable for access to the 7-zip executable."""
     if not isWindows():
