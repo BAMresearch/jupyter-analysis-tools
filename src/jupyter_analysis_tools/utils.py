@@ -67,18 +67,22 @@ def shortenWinPath(path):
     return win32api.GetShortPathName(path)
 
 
-def appendToPATH(parentPath, subdirs=None):
+def appendToPATH(parentPath, subdirs=None, verbose=False):
     """Adds the given path with each subdirectory to the PATH environment variable."""
-    if not os.path.isdir(parentPath):
+    parentPath = Path(parentPath)
+    if not parentPath.is_dir():
         return  # nothing to do
     if subdirs is None:
         subdirs = ["."]
+    sep = ";" if isWindows() else ":"
+    PATH = os.environ["PATH"].split(sep)
     for path in subdirs:
-        path = os.path.realpath(os.path.join(parentPath, *path.split("/")))
-        print(indent, path, "\t[{}]".format(os.path.isdir(path)))
-        if path in os.environ["PATH"]:
-            continue
-        os.environ["PATH"] += ";" + path
+        path = parentPath / path
+        if verbose:
+            print(indent, path, "[exists: {}]".format(path.is_dir()))
+        if path not in PATH:
+            PATH.append(str(path))
+    os.environ["PATH"] = sep.join(PATH)
 
 
 def checkWinFor7z():
