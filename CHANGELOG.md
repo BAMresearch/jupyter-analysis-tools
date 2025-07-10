@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v1.1.0 (2025-07-10)
+
+### Bug fixes
+
+* packaging: add dependencies for project and testing ([`2729a45`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2729a45958893c9acd07af9463bbf7d657db626b))
+
+### Documentation
+
+* utils: reformat doc strings ([`1cf9b9b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1cf9b9b969e075a75a41e19bfb526378b68a0ed7))
+
+### Features
+
+* utils: addEnvScriptsToPATH() ([`a8c22e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a8c22e0d37a5627d5955c1f7f7eebcb0bc99206e))
+
+* notebook_utils: remove method for finding notebook file path currentNBpath() ([`13a5a60`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/13a5a60436c7926c478f2ab3f2c309a86b653218))
+
+### Refactoring
+
+* utils: appendToPATH() using pathlib, verifed test included ([`35f37fc`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/35f37fc19cdcf4b575dc0525400f3c0212bb0faf))
+
+### Testing
+
+* readdata: test data for reading PDH and SSFZ ([`9b919d2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9b919d24e1fa5679b49cebf576e471d6e4e9b655))
+
 ## v1.0.0 (2025-07-09)
 
 ### Bug fixes
