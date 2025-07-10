@@ -27,7 +27,6 @@ classifiers = [
   "Intended Audience :: Science/Research",
 ]
 dependencies = [
-  "notebook",
   "ipywidgets"
 ]
 

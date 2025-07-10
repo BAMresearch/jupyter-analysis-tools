@@ -5,7 +5,6 @@ __version__ = "1.0.0"
 
 from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
-from .notebook_utils import currentNBpath
 from .readdata import readdata
 from .readdata import readdata as readPDH
 from .utils import setLocaleUTF8

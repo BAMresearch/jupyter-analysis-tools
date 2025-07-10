@@ -42,7 +42,6 @@ except subprocess.CalledProcessError as e:
 
 autodoc_mock_imports = [
     "ipykernel",
-    "notebook",
     "pandas",
     "ipywidgets",
     "matplotlib",

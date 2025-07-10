@@ -1,5 +1,4 @@
 ipykernel
-notebook
 pandas
 ipywidgets
 matplotlib
