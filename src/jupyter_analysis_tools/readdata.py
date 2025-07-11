@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # readdata.py
 
-import json
 import warnings
 import xml.etree.ElementTree as et
 from pathlib import Path
@@ -62,6 +61,7 @@ def convertValue(val):
             pass
     return val
 
+
 def xmlPDHToDict(root):
     result = {}
     stack = [(root, result)]
@@ -70,12 +70,15 @@ def xmlPDHToDict(root):
         elemCont = {}
         key = elem.attrib.pop("key", None)
         idx = -1
-        if (not len(list(elem)) and not len(elem.attrib)
-            and not (elem.text and len(elem.text.strip()))):
-            continue # skip empty elements with a key only early
+        if (
+            not len(list(elem)) and
+            not len(elem.attrib) and
+            not (elem.text and len(elem.text.strip()))
+        ):
+            continue  # skip empty elements with a key only early
         if elem.tag == "list":
             elemCont = []
-        else: # add attributes & values to dict
+        else:  # add attributes & values to dict
             # Attach text, if any
             if elem.text and len(elem.text.strip()):
                 if elem.tag in ("value", "reference"):
@@ -84,17 +87,20 @@ def xmlPDHToDict(root):
                     elemCont["#text"] = convertValue(elem.text)
             # Attach attributes, if any
             if elem.attrib:
-                elemCont.update({k: convertValue(v) for k, v in elem.attrib.items() if len(v.strip())})
-            if key == "unit" and "value" in elemCont: # fix some units
+                elemCont.update(
+                    {k: convertValue(v) for k, v in elem.attrib.items() if len(v.strip())}
+                )
+            if key == "unit" and "value" in elemCont:  # fix some units
                 elemCont["value"] = elemCont["value"].replace("_", "")
             if "unit" in elemCont:
                 elemCont["unit"] = elemCont["unit"].replace("_", "")
             # reduce the extracted dict&attributes
-            idx = elemCont.get("index", -1) # insert last/append if no index given
+            idx = elemCont.get("index", -1)  # insert last/append if no index given
             value = elemCont.get("value", None)
-            if value is not None and (len(elemCont) == 1
-                                      or (len(elemCont) == 2 and "index" in elemCont)):
-                elemCont = value # contains value only
+            if value is not None and (
+                len(elemCont) == 1 or (len(elemCont) == 2 and "index" in elemCont)
+            ):
+                elemCont = value  # contains value only
         parentKey = elem.tag
         if key is not None and parentKey in ("list", "value", "group"):
             # skip one level in hierarchy for these generic containers
@@ -103,21 +109,23 @@ def xmlPDHToDict(root):
         try:
             if isinstance(parentCont, list):
                 parentCont.insert(idx, elemCont)
-            elif parentKey not in parentCont: # add as new list
-                if key is None: # make a list
+            elif parentKey not in parentCont:  # add as new list
+                if key is None:  # make a list
                     parentCont[parentKey] = elemCont
-                else: # have a key
+                else:  # have a key
                     parentCont[parentKey] = {key: elemCont}
-            else: # parentKey exists already
-                if (not isinstance(parentCont[parentKey], list) and
-                    not isinstance(parentCont[parentKey], dict)):
+            else:  # parentKey exists already
+                if (
+                    not isinstance(parentCont[parentKey], list) and
+                    not isinstance(parentCont[parentKey], dict)
+                ):
                     # if its a plain value before, make a list out of it and append in next step
                     parentCont[parentKey] = [parentCont[parentKey]]
                 if isinstance(parentCont[parentKey], list):
                     parentCont[parentKey].append(elemCont)
                 elif key is not None:
                     parentCont[parentKey].update({key: elemCont})
-                else: # key is None
+                else:  # key is None
                     parentCont[parentKey].update(elemCont)
         except AttributeError:
             raise
@@ -126,24 +134,27 @@ def xmlPDHToDict(root):
     # fix some entry values, weird Anton Paar PDH format
     try:
         oldts = result["fileinfo"]["parameter"]["DateTime"]["value"]
-        delta = (39*365+10)*24*3600 # timestamp seems to be based on around 2009-01-01 (a day give or take)
+        # timestamp seems to be based on around 2009-01-01 (a day give or take)
+        delta = ((39 * 365 + 10) * 24 * 3600)
         # make it compatible to datetime.datetime routines
-        result["fileinfo"]["parameter"]["DateTime"]["value"] = oldts+delta
+        result["fileinfo"]["parameter"]["DateTime"]["value"] = oldts + delta
     except KeyError:
         pass
     return result
+
 
 def readPDHmeta(fp):
     fp = Path(fp)
     if fp.suffix.lower() != ".pdh":
         warnings.warn("readPDHmeta() supports .pdh files only!")
-        return # for PDH files
+        return  # for PDH files
     lines = ""
     with open(fp) as fd:
         lines = fd.readlines()
     nrows = int(lines[2].split()[0])
-    xml = "".join(lines[nrows+5:])
+    xml = "".join(lines[nrows + 5 :])
     return xmlPDHToDict(et.fromstring(xml))
+
 
 def readSSF(fp):
     fp = Path(fp)
@@ -151,6 +162,6 @@ def readSSF(fp):
         warnings.warn("readSession() supports .ssf files only!")
         return  # for PDH files
     data = ""
-    with open(fp, encoding='utf-8-sig') as fd:
+    with open(fp, encoding="utf-8-sig") as fd:
         data = fd.read()
     return xmlPDHToDict(et.fromstring(data))
