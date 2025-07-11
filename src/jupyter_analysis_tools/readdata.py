@@ -145,12 +145,12 @@ def readPDHmeta(fp):
     xml = "".join(lines[nrows+5:])
     return xmlPDHToDict(et.fromstring(xml))
 
-def readSession(fp):
+def readSSF(fp):
     fp = Path(fp)
     if fp.suffix.lower() != ".ssf":
         warnings.warn("readSession() supports .ssf files only!")
         return  # for PDH files
     data = ""
-    with open(fp) as fd:
+    with open(fp, encoding='utf-8-sig') as fd:
         data = fd.read()
     return xmlPDHToDict(et.fromstring(data))

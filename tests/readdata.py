@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 # tests/readdata.py
 
+import json
+import tempfile
+import zipfile
 from pathlib import Path
 
 import numpy
 
-from jupyter_analysis_tools import readdata
+from jupyter_analysis_tools import readdata, readPDHmeta, readSSF
 
 pathPDH1 = Path("testdata/S2842 water.pdh")
 pathPDH2 = Path("testdata/S2843[9].pdh")  # desmeared silica measurement
+pathSSFZ = Path("testdata/2015-03-20-Silica.ssfz")
 
 
 def test_readdata1(capsys):
@@ -45,3 +49,55 @@ def test_readdata2(capsys):
     assert df.columns.tolist() == ["q", "I", "e"]
     assert numpy.all(df.median().values == numpy.array(
             [1.470428, 0.01907878, 0.01353293]))
+
+
+def test_readPDHmeta1():
+    # read the meta data of the PDH file
+    assert pathPDH1.is_file()
+    data = readPDHmeta(pathPDH1)
+    assert data is not None
+    assert isinstance(data, dict)
+    assert len(data)  # there should be data at all
+
+    # writing the test JSON for comparisons on updates
+    # with open(pathPDH1.with_suffix(".json"), "w") as fd:
+    #    json.dump(data, fd, indent=4)
+
+    # write the JSON formatted metadata to disk, read it back in and compare
+    # it with the expected reference from testdata dir
+    with open(pathPDH1.with_suffix(".json")) as fdRef, tempfile.TemporaryFile("w+") as fdNew:
+        json.dump(data, fdNew, indent=4)
+        fdNew.seek(0)
+        assert fdRef.read() == fdNew.read()
+
+    # if there are changes, use this to investigate:
+    # from difflib import Differ
+    # with open('file1.txt') as f1, open('file2.txt') as f2:
+    #    differ = Differ()
+    #    for line in differ.compare(f1.readlines(), f2.readlines()):
+    #        print(line) # ignore lines starting with ' ' (no change)
+
+
+def test_readSSF():
+    assert pathSSFZ.is_file()
+    # unpack the SSFZ to a temporary dir
+    with tempfile.TemporaryDirectory() as tempdir:
+        with zipfile.ZipFile(pathSSFZ, "r") as zipfd:
+            zipfd.extractall(tempdir)
+        # read the session meta data from the extracted SSF file
+        pathSSF = next(Path(tempdir).glob("*.ssf"))
+        assert pathSSF.is_file()
+        data = readSSF(pathSSF)
+        assert data is not None
+        assert isinstance(data, dict)
+        assert len(data)  # there should be data at all
+        # writing the test JSON for comparisons on updates
+        # with open(pathSSFZ.with_suffix(".ssf.json"), "w") as fd:
+        #    json.dump(data, fd, indent=4)
+        # write the JSON formatted session data to disk
+        # and compare it with the expected JSON file from testdata dir
+        with open(pathSSFZ.with_suffix(".ssf.json")) as fdRef, \
+             tempfile.TemporaryFile("w+") as fdNew:
+            json.dump(data, fdNew, indent=4)
+            fdNew.seek(0)
+            assert fdRef.read() == fdNew.read()
