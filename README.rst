@@ -65,9 +65,9 @@ https://BAMresearch.github.io/jupyter-analysis-tools
 Development
 ===========
 
-To run all the tests run::
+Run all tests with::
 
-    tox
+    tox -e py
 
 Note, to combine the coverage data from all the tox environments run:
 
