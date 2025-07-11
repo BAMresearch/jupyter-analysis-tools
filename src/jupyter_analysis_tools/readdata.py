@@ -50,3 +50,107 @@ def readdata(fpath, q_range=None, read_csv_args=None, print_filename=True):
     filename = fpath.stem.split("[")[0]
     return df, filename
 
+
+def convertValue(val):
+    val = val.strip()
+    try:
+        return int(val)
+    except ValueError:
+        try:
+            return float(val)
+        except ValueError:
+            pass
+    return val
+
+def xmlPDHToDict(root):
+    result = {}
+    stack = [(root, result)]
+    while stack:
+        elem, parentCont = stack.pop()
+        elemCont = {}
+        key = elem.attrib.pop("key", None)
+        idx = -1
+        if (not len(list(elem)) and not len(elem.attrib)
+            and not (elem.text and len(elem.text.strip()))):
+            continue # skip empty elements with a key only early
+        if elem.tag == "list":
+            elemCont = []
+        else: # add attributes & values to dict
+            # Attach text, if any
+            if elem.text and len(elem.text.strip()):
+                if elem.tag in ("value", "reference"):
+                    elemCont["value"] = convertValue(elem.text)
+                else:
+                    elemCont["#text"] = convertValue(elem.text)
+            # Attach attributes, if any
+            if elem.attrib:
+                elemCont.update({k: convertValue(v) for k, v in elem.attrib.items() if len(v.strip())})
+            if key == "unit" and "value" in elemCont: # fix some units
+                elemCont["value"] = elemCont["value"].replace("_", "")
+            if "unit" in elemCont:
+                elemCont["unit"] = elemCont["unit"].replace("_", "")
+            # reduce the extracted dict&attributes
+            idx = elemCont.get("index", -1) # insert last/append if no index given
+            value = elemCont.get("value", None)
+            if value is not None and (len(elemCont) == 1
+                                      or (len(elemCont) == 2 and "index" in elemCont)):
+                elemCont = value # contains value only
+        parentKey = elem.tag
+        if key is not None and parentKey in ("list", "value", "group"):
+            # skip one level in hierarchy for these generic containers
+            parentKey = key
+            key = None
+        try:
+            if isinstance(parentCont, list):
+                parentCont.insert(idx, elemCont)
+            elif parentKey not in parentCont: # add as new list
+                if key is None: # make a list
+                    parentCont[parentKey] = elemCont
+                else: # have a key
+                    parentCont[parentKey] = {key: elemCont}
+            else: # parentKey exists already
+                if (not isinstance(parentCont[parentKey], list) and
+                    not isinstance(parentCont[parentKey], dict)):
+                    # if its a plain value before, make a list out of it and append in next step
+                    parentCont[parentKey] = [parentCont[parentKey]]
+                if isinstance(parentCont[parentKey], list):
+                    parentCont[parentKey].append(elemCont)
+                elif key is not None:
+                    parentCont[parentKey].update({key: elemCont})
+                else: # key is None
+                    parentCont[parentKey].update(elemCont)
+        except AttributeError:
+            raise
+        # reversed for correct order
+        stack += [(child, elemCont) for child in reversed(list(elem))]
+    # fix some entry values, weird Anton Paar PDH format
+    try:
+        oldts = result["fileinfo"]["parameter"]["DateTime"]["value"]
+        delta = (39*365+10)*24*3600 # timestamp seems to be based on around 2009-01-01 (a day give or take)
+        # make it compatible to datetime.datetime routines
+        result["fileinfo"]["parameter"]["DateTime"]["value"] = oldts+delta
+    except KeyError:
+        pass
+    return result
+
+def readPDHmeta(fp):
+    fp = Path(fp)
+    if fp.suffix.lower() != ".pdh":
+        warnings.warn("readPDHmeta() supports .pdh files only!")
+        return # for PDH files
+    lines = ""
+    with open(fp) as fd:
+        lines = fd.readlines()
+    nrows = int(lines[2].split()[0])
+    xml = "".join(lines[nrows+5:])
+    return xmlPDHToDict(et.fromstring(xml))
+
+def readSession(fp):
+    fp = Path(fp)
+    if fp.suffix.lower() != ".ssf":
+        warnings.warn("readSession() supports .ssf files only!")
+        return  # for PDH files
+    data = ""
+    with open(fp) as fd:
+        data = fd.read()
+    return xmlPDHToDict(et.fromstring(data))
