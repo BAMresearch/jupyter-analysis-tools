@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v1.2.0 (2025-07-11)
+
+### Features
+
+* readdata: readSSF() renamed from readSession(), tests added with expected JSON output ([`e2197f6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e2197f6bcb032c1bc1a9a7435e024dda763228c4))
+
+* readPDHmeta: routine for reading metadata part from .PDH and .SSF files ([`ea6a1d5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ea6a1d554f3763fc05022ae8e4e8909f0993cd43))
+
+### Testing
+
+* readdata: path separator depends on platform ([`1b2866f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1b2866f13307c2cf2dedc59f36d7372442ddbfd8))
+
+* readdata: testdata files and testing, using pathlib instead of old os.path ([`aeacfa4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/aeacfa4a949d7293f2cd3ce5e3004fddf20ecc02))
+
 ## v1.1.0 (2025-07-10)
 
 ### Bug fixes
