@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 # tests/utils.py
 
+
+import os
+
 from jupyter_analysis_tools.utils import appendToPATH, isWindows
 
 
 def test_appendToPATH(capsys):
     # Setting up a PATH for testing first (platform dependent).
-    import os
-    import unittest
     testpath = "/usr/local/sbin:/usr/local/bin:/sbin:/usr/games:/usr/local/games:/snap/bin"
     if isWindows():
         testpath = "something else"
