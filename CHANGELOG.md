@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v1.2.1 (2025-07-11)
+
+### Bug fixes
+
+* readme: trigger new version after style changes ([`8b2b5e9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8b2b5e93c0f24ae59afaa764abdc508e994946b4))
+
+### Code style
+
+* __init__: imports format ([`6f07790`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6f07790a04e43736b1c0fbce0eac54d0b661a7cf))
+
+* utils: satisfy flake8 ([`9657474`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9657474e94a4d9887c4a6b653e0ffa403e666d02))
+
+* readdata: satisfy flake8 ([`36bf6e8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/36bf6e8be67a2ebd345c5557c2352710bcebed82))
+
+### Continuous integration
+
+* workflow: publish only if the docs are good ([`a663ed3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a663ed3d1fd87079a4fd7cf419132a129280a562))
+
+### Testing
+
+* utils: fix imports ([`ddd5369`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ddd5369b8037f583c6900aea25522a56126c9d32))
+
 ## v1.2.0 (2025-07-11)
 
 ### Features
