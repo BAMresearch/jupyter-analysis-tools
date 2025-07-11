@@ -14,6 +14,7 @@ jupyter\_analysis\_tools.utils
    .. autosummary::
       :toctree:
    
+      addEnvScriptsToPATH
       appendToPATH
       checkWinFor7z
       extract7z

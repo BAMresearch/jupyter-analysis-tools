@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.utils.addEnvScriptsToPATH
+==================================================
+
+.. currentmodule:: jupyter_analysis_tools.utils
+
+.. autofunction:: addEnvScriptsToPATH

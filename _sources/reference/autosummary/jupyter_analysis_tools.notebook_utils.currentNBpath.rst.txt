@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.notebook\_utils.currentNBpath
-======================================================
-
-.. currentmodule:: jupyter_analysis_tools.notebook_utils
-
-.. autofunction:: currentNBpath

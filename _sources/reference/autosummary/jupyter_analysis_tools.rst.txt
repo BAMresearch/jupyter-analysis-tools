@@ -33,7 +33,6 @@
    datalocations
    distrib
    git
-   notebook_utils
    plotting
    readdata
    utils
