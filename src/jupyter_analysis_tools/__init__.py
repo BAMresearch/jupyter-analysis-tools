@@ -5,8 +5,9 @@ __version__ = "1.2.0"
 
 from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
-from .readdata import readdata, readPDHmeta, readSSF
+from .readdata import readdata
 from .readdata import readdata as readPDH
+from .readdata import readPDHmeta, readSSF
 from .utils import setLocaleUTF8
 from .widgets import PathSelector, showBoolStatus
 
