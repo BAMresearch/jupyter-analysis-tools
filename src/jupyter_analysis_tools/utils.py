@@ -89,7 +89,8 @@ def addEnvScriptsToPATH():
     """Prepends the *Scripts* directory of the current Python environment base directory to systems
     PATH variable.
 
-    It is intended for Conda (Miniforge) environments on Windows that do not have this in their PATH environment variable, causing them to miss many commands provided from this location.
+    It is intended for Conda (Miniforge) environments on Windows that do not have this in their PATH
+    environment variable, causing them to miss many commands provided from this location.
     """
     envPath = [p for p in sys.path if p.endswith("Lib")]
     if not envPath:
