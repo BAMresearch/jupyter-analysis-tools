@@ -2,6 +2,7 @@
 # tests/readdata.py
 
 import json
+import os
 import tempfile
 import zipfile
 from pathlib import Path
@@ -19,7 +20,7 @@ def test_readdata1(capsys):
     assert pathPDH1.is_file()
     df, fn = readdata(pathPDH1)
     captured = capsys.readouterr()
-    assert captured.out == "Reading file 'testdata\\S2842 water.pdh'\n"
+    assert captured.out == f"Reading file 'testdata{os.sep}S2842 water.pdh'\n"
     assert fn == "S2842 water"
     assert df.shape == (1280, 3)
     assert df.columns.tolist() == ["q", "I", "e"]
