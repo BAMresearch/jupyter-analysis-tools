@@ -131,6 +131,7 @@ jobs:
           # Commit.
           cd ./pages
           rm -f ${{ env.report_dir }}/.gitignore
+          touch .nojekyll  # not a jekyll page here, do not ignore _static
           # ls -la ${{ env.report_dir }} # for debugging
           # ${{ env.report_dir }}/* "${REDIR_HTML#*/}" "${BADGE_JSON#*/}"
           git add -A
