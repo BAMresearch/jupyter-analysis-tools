@@ -165,7 +165,6 @@
                 "isdevice": "false",
                 "category": "exp",
                 "sub": "sample",
-                "id": "exp:sample:Default",
                 "ParameterCount": {
                     "value": 0,
                     "counts": "ParameterKey|ParameterName|ParameterValue",
@@ -208,7 +207,6 @@
                 "isdevice": "false",
                 "category": "exp",
                 "sub": "file",
-                "id": "exp:file:Default",
                 "Filename": {
                     "value": "S2842",
                     "type": "String",
@@ -261,7 +259,6 @@
                 "isdevice": "false",
                 "category": "exp",
                 "sub": "vari",
-                "id": "exp:vari:Default",
                 "VariationCount": {
                     "value": 0,
                     "counts": "Parameter|Count|Start|Increment|Positions|Prefix|Digits|NamingOption",
@@ -316,10 +313,9 @@
                     "db": "D"
                 }
             },
-            "custom_generator": {
+            "generator::custom_generator#0": {
                 "isdevice": "true",
                 "category": "generator",
-                "id": "generator::custom_generator#0",
                 "isactive": "true",
                 "Name": {
                     "value": "PW1830",
@@ -453,10 +449,9 @@
                     "type": "String"
                 }
             },
-            "AP_SAXSess": {
+            "camera::AP_SAXSess#0": {
                 "isdevice": "true",
                 "category": "camera",
-                "id": "camera::AP_SAXSess#0",
                 "Name": {
                     "value": "SAXSess",
                     "type": "String",
@@ -573,11 +568,10 @@
                     "type": "String"
                 }
             },
-            "PI_SCX4300": {
+            "detector:ccd:PI_SCX4300#0": {
                 "isdevice": "true",
                 "category": "detector",
                 "sub": "ccd",
-                "id": "detector:ccd:PI_SCX4300#0",
                 "Name": {
                     "value": "CCD",
                     "type": "String",
@@ -897,10 +891,9 @@
                     "Y": 1
                 }
             },
-            "AP_TCS120": {
+            "holder::AP_TCS120#0": {
                 "isdevice": "true",
                 "category": "holder",
-                "id": "holder::AP_TCS120#0",
                 "Name": {
                     "value": "TCS 120",
                     "type": "String",
@@ -957,11 +950,10 @@
                     "type": "String"
                 }
             },
-            "AP_TCU50": {
+            "secu:temp:AP_TCU50#0": {
                 "isdevice": "true",
                 "category": "secu",
                 "sub": "temp",
-                "id": "secu:temp:AP_TCU50#0",
                 "Name": {
                     "value": "TCU 50",
                     "type": "String",
@@ -1158,11 +1150,10 @@
                     "type": "String"
                 }
             },
-            "Dectris_Mythen1K": {
+            "detector:ccd:Dectris_Mythen1K#0": {
                 "isdevice": "true",
                 "category": "detector",
                 "sub": "ccd",
-                "id": "detector:ccd:Dectris_Mythen1K#0",
                 "Name": {
                     "value": "1D diode array",
                     "type": "String",
@@ -1506,11 +1497,10 @@
                     "Y": 1
                 }
             },
-            "Spark_ASXc": {
+            "sampler:auto:Spark_ASXc#0": {
                 "isdevice": "true",
                 "category": "sampler",
                 "sub": "auto",
-                "id": "sampler:auto:Spark_ASXc#0",
                 "Name": {
                     "value": "ASX-c",
                     "type": "String",

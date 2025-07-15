@@ -68,14 +68,18 @@ def xmlPDHToDict(root):
     while stack:
         elem, parentCont = stack.pop()
         elemCont = {}
-        key = elem.attrib.pop("key", None)
         idx = -1
-        if (
-            not len(list(elem)) and
-            not len(elem.attrib) and
-            not (elem.text and len(elem.text.strip()))
+        key = elem.attrib.pop("key", None)
+        if (  # get a unique key, the key can occur in multiple groups in PDH
+            key is not None and elem.tag == "group" and elem.attrib.get("id", None) is not None
         ):
-            continue  # skip empty elements with a key only early
+            key = elem.attrib.pop("id")
+        if (  # skip empty elements with a key only early
+            not len(list(elem))
+            and not len(elem.attrib)
+            and not (elem.text and len(elem.text.strip()))
+        ):
+            continue
         if elem.tag == "list":
             elemCont = []
         else:  # add attributes & values to dict
@@ -115,9 +119,8 @@ def xmlPDHToDict(root):
                 else:  # have a key
                     parentCont[parentKey] = {key: elemCont}
             else:  # parentKey exists already
-                if (
-                    not isinstance(parentCont[parentKey], list) and
-                    not isinstance(parentCont[parentKey], dict)
+                if not isinstance(parentCont[parentKey], list) and not isinstance(
+                    parentCont[parentKey], dict
                 ):
                     # if its a plain value before, make a list out of it and append in next step
                     parentCont[parentKey] = [parentCont[parentKey]]
@@ -135,7 +138,7 @@ def xmlPDHToDict(root):
     try:
         oldts = result["fileinfo"]["parameter"]["DateTime"]["value"]
         # timestamp seems to be based on around 2009-01-01 (a day give or take)
-        delta = ((39 * 365 + 10) * 24 * 3600)
+        delta = (39 * 365 + 10) * 24 * 3600
         # make it compatible to datetime.datetime routines
         result["fileinfo"]["parameter"]["DateTime"]["value"] = oldts + delta
     except KeyError:
