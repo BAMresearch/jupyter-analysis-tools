@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v1.2.2 (2025-07-15)
+
+### Bug fixes
+
+* readPDHmeta: use unique dict keys, the xmk *key* can occur in multiple groups in PDH ([`ef41c81`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ef41c81d40d801b5baf86f56cf9012ca35d2ccde))
+
+### Documentation
+
+* pyproject: revert specify readme+changelog document types ([`1baa762`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1baa762d441fe0a1b7b663b9d0589de857277426))
+
+* pyproject: specify readme+changelog document types to render overview on pypi correctly ([`6e4d1e5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6e4d1e56640b604f971ddca8dabd8d1aff5c9bf1))
+
+* ghpages: make sure .nojekyll exists after purging old html docs ([`4847845`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4847845cc06884b6e589b26897e83411d649ef4d))
+
 ## v1.2.1 (2025-07-11)
 
 ### Bug fixes
