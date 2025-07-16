@@ -36,7 +36,8 @@ jobs:
       - name: Download coverage data
         uses: actions/download-artifact@v4
         with:
-          name: coverage
+          pattern: coverage.*
+          merge-multiple: true
 
       - name: Combine and report
         id: combine
