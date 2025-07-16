@@ -105,6 +105,30 @@ def addEnvScriptsToPATH():
         os.environ["PATH"] = sep.join(environPATH)
 
 
+def networkdriveMapping(cmdOutput:str=None):
+    """Returns a dict of mapping drive letters to network paths (on Windows)."""
+    if isWindows():
+        if cmdOutput is None:
+            proc = subprocess.run(["net", "use"], capture_output=True, text=True, encoding="cp850")
+            cmdOutput = proc.stdout
+        rows = [line.split() for line in cmdOutput.splitlines() if "Windows Network" in line]
+        rows = dict(
+            [row[1:3] for row in rows if row[1].endswith(":") and row[2].startswith("\\\\")]
+        )
+        return rows
+    return {}
+
+
+def makeNetworkdriveAbsolute(filepath, cmdOutput:str=None):
+    """Replaces the drive letter of the given path by the respective network path, if possible."""
+    if isWindows() and not filepath.drive.startswith(r"\\"):
+        drivemap = networkdriveMapping(cmdOutput=cmdOutput)
+        prefix = drivemap.get(filepath.drive, None)
+        if prefix is not None:
+            filepath = Path(prefix).joinpath(*filepath.parts[1:])
+    return filepath
+
+
 def checkWinFor7z():
     """Extend the PATH environment variable for access to the 7-zip executable."""
     if not isWindows():
