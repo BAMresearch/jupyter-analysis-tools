@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v1.3.0 (2025-07-16)
+
+### Bug fixes
+
+* utils.extract7z: informative info message ([`80d2f71`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/80d2f7134992d59f0bfd7f5e7bc27772f77cd452))
+
+### Continuous integration
+
+* coverage: fix coverage artifact name for multiple matrix.os ([`f471599`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f471599b8c86e29fd20b78f7cbd9291c3a6dd98a))
+
+* testing: test on Windows as well ([`4a83c39`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a83c3924bcb820ef0728af40b86a0f6622dfef2))
+
+### Features
+
+* utils.makeNetworkdriveAbsolute: new routines for translating a windows drive letter mount to its network location ([`823a6bf`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/823a6bfe126829381bc14d34578f342f4b9d3e8f))
+
 ## v1.2.2 (2025-07-15)
 
 ### Bug fixes
