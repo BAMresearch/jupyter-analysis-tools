@@ -105,7 +105,7 @@ def addEnvScriptsToPATH():
         os.environ["PATH"] = sep.join(environPATH)
 
 
-def networkdriveMapping(cmdOutput:str=None):
+def networkdriveMapping(cmdOutput: str = None):
     """Returns a dict of mapping drive letters to network paths (on Windows)."""
     if isWindows():
         if cmdOutput is None:
@@ -119,7 +119,7 @@ def networkdriveMapping(cmdOutput:str=None):
     return {}
 
 
-def makeNetworkdriveAbsolute(filepath, cmdOutput:str=None):
+def makeNetworkdriveAbsolute(filepath, cmdOutput: str = None):
     """Replaces the drive letter of the given path by the respective network path, if possible."""
     if isWindows() and not filepath.drive.startswith(r"\\"):
         drivemap = networkdriveMapping(cmdOutput=cmdOutput)
