@@ -127,7 +127,7 @@ def extract7z(fn, workdir=None):
     assert os.path.isfile(os.path.join(workdir, fn)), "Provided 7z archive '{}' not found!".format(
         fn
     )
-    print("Extracting archived McDLS results:")
+    print(f"Extracting '{fn}':")
     proc = subprocess.run(
         ["7z", "x", fn],
         cwd=workdir,
