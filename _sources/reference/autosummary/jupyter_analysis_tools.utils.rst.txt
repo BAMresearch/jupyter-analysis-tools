@@ -24,6 +24,8 @@ jupyter\_analysis\_tools.utils
       isList
       isMac
       isWindows
+      makeNetworkdriveAbsolute
+      networkdriveMapping
       pushd
       setLocaleUTF8
       setPackage
