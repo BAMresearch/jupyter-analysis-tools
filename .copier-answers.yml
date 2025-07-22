@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: b6b373691e831492a0a526312abaf061b9617de6
+_commit: b10bf77
 _src_path: ~/code/yapy-copier-template
 author_count: 1
 author_emails: dev@ingobressler.net
@@ -13,6 +13,10 @@ project_description: Yet another Python library with helpers and utilities for d
     analysis and processing.
 project_name: Jupyter Analysis Tools
 pypi_host: pypi.org
+python_versions:
+- '3.11'
+- '3.12'
+- '3.13'
 release_date_question: today
 repo_hosting_domain: github.com
 repo_main_branch: main
