@@ -24,7 +24,6 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-      # see *py_ver* in ci/update.py
       - name: Setting up Python 3.11
         uses: actions/setup-python@v5
         with:

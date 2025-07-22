@@ -34,7 +34,6 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      # see *py_ver* in ci/update.py
       - name: Setting up Python ${{ env.PYTHON }}
         uses: actions/setup-python@v5
         with:
