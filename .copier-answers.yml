@@ -6,7 +6,7 @@ author_emails: ingo.bressler@bam.de, brian.pauw@bam.de
 author_names: Ingo Breßler, Brian R. Pauw
 author_websites: https://github.com/ibresslerBAM, https://lookingatnothing.com
 copyright_from: 2018
-copyright_to: 2023
+copyright_to: 2025
 docs_url: https://BAMresearch.github.io/jupyter-analysis-tools
 license: MIT
 project_description: Yet another Python library with helpers and utilities for data
