@@ -54,5 +54,5 @@ jobs:
       - name: Upload coverage data for next step
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage.${{ env.TOX_ENV }}.${{ matrix.os }}
           path: coverage.*

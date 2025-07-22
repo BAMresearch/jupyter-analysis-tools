@@ -33,29 +33,3 @@ jobs:
           path: |
               dist/*.whl
               dist/*.tar.gz
-
-  publish:
-    needs: [build]
-    runs-on: 'ubuntu-latest'
-    steps:
-
-      {{ ci.checkout() }}
-
-      {{ ci.pip_install_req() }}
-
-      - name: Download package artifacts
-        uses: actions/download-artifact@v4
-        with:
-          pattern: packages-*
-          merge-multiple: true
-          path: dist
-
-      - name: Check generated packages
-        run: twine check dist/*.*
-
-      - name: Upload packages
-        env:
-          TWINE_PASSWORD: {{'"${{ secrets.'+pypi_token+' }}"'}}
-          TWINE_NON_INTERACTIVE: 1
-        run: |
-          twine upload --disable-progress-bar --skip-existing -u __token__ -r {{ pypi_repo }} dist/*.*

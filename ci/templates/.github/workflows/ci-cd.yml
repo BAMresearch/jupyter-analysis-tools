@@ -34,15 +34,36 @@ jobs:
     needs: [tests, docs]  # coverage report is added to the docs webpage
     uses: ./.github/workflows/coverage.yml
 
+  publish:
+    needs: [build,docs,coverage]
+    runs-on: 'ubuntu-latest'
+    permissions:
+      id-token: write
+    steps:
+
+      {{ ci.checkout() }}
+
+      {{ ci.pip_install_req() }}
+
+      - name: Download package artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: packages-*
+          merge-multiple: true
+          path: dist
+
+      - name: Publish package distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
 {#- Some Jinja macros for reusing recurring workflow job steps -#}
 
-{%- macro checkout(depth=1) -%}
+{%- macro checkout(depth=1, ref="main") -%}
       - name: Checking out the repo
         uses: actions/checkout@v4
-        {%- if depth != 1 +%}
-        with:
+        with: {%- if depth != 1 +%}
           fetch-depth: {{ depth }}
-        {%- endif -%}
+          {%- endif +%}
+          ref: {{ ref }}
 {%- endmacro -%}
 
 {%- macro setup_python(arch, py=py_ver, req=['ci/requirements.txt']) -%}
