@@ -1,7 +1,6 @@
 [project]
 name = "jupyter-analysis-tools"
 description = "Yet another Python library with helpers and utilities for data analysis and processing."
-authors = [{ name = "Ingo Breßler", email = "dev@ingobressler.net" }]
 dynamic = ["version", "readme"]
 license = {text = "MIT license"}
 classifiers = [
@@ -29,6 +28,14 @@ classifiers = [
 dependencies = [
   "numpy", "scipy", "pandas", "matplotlib", "ipywidgets"
 ]
+
+[[project.authors]]
+name = "Ingo Breßler"
+email = "ingo.bressler@bam.de"
+
+[[project.authors]]
+name = "Brian R. Pauw"
+email = "brian.pauw@bam.de"
 
 [project.urls]
 homepage = "https://BAMresearch.github.io/jupyter-analysis-tools"

@@ -2,5 +2,5 @@
 Authors
 =======
 
-* Ingo Breßler - dev <at> ingobressler.net
-* Brian R. Pauw - brian <at> stack.nl
+* Ingo Breßler - ingo.bressler@bam.de
+* Brian R. Pauw - brian.pauw@bam.de

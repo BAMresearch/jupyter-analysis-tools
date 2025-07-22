@@ -1,10 +1,10 @@
 # Changes here will be overwritten by Copier
 _commit: 77712ed
 _src_path: ~/code/yapy-copier-template
-author_count: 1
-author_emails: dev@ingobressler.net
-author_names: Ingo Breßler
-author_websites: https://github.com/ibressler
+author_count: 2
+author_emails: ingo.bressler@bam.de, brian.pauw@bam.de
+author_names: Ingo Breßler, Brian R. Pauw
+author_websites: https://github.com/ibresslerBAM, https://lookingatnothing.com
 copyright_from: 2018
 copyright_to: 2023
 docs_url: https://BAMresearch.github.io/jupyter-analysis-tools
