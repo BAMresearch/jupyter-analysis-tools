@@ -19,8 +19,11 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
+    "sphinx.ext.inheritance_diagram",
+    "sphinx.ext.graphviz",
     "myst_parser",
 ]
+inheritance_edge_attrs = dict(color="gray")  # readable in darkmode too
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 templates_path = ["_templates"]
 source_suffix = ".rst"
@@ -42,6 +45,7 @@ except subprocess.CalledProcessError as e:
 
 autodoc_mock_imports = [
     "ipykernel",
+    "notebook",
     "pandas",
     "ipywidgets",
     "matplotlib",
@@ -49,6 +53,9 @@ autodoc_mock_imports = [
     "h5py",
     "pint",
     "sasmodels",
+    "chempy",
+    "graphviz",
+    "mcsas3",
 ]
 
 pygments_style = "trac"
@@ -78,7 +85,7 @@ linkcheck_ignore = [
     + r".*",
     # attempted fix of '406 Client Error: Not Acceptable for url'
     # https://github.com/sphinx-doc/sphinx/issues/1331
-    join(project_meta["project"]["urls"]["repository"], "commit", r"[0-9a-fA-F]+"),
+    join(project_meta["project"]["urls"]["repository"], "commit", r"[0-9a-fA-F]+")
 ]
 linkcheck_anchors_ignore_for_url = [
     r"https://pypi\.org/project/[^/]+",
