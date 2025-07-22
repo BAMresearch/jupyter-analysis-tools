@@ -35,7 +35,7 @@ jobs:
     uses: ./.github/workflows/coverage.yml
 
   publish:  # needs to be in the top-level .yml for Trusted Publishing to work @pypi
-    needs: [build, docs]
+    needs: [build,docs,coverage]
     runs-on: 'ubuntu-latest'
     permissions:
       id-token: write
