@@ -59,7 +59,7 @@ version = {attr = "jupyter_analysis_tools.__version__"}
 readme = {file = ["README.rst", "CHANGELOG.md"]}
 
 [tool.coverage.report]
-path = "coverage-report"
+path = "coverage-report"  # see coverage.yml github action
 
 # on version numbers: https://peps.python.org/pep-0440/
 # and bottom of https://softwareengineering.stackexchange.com/a/151558

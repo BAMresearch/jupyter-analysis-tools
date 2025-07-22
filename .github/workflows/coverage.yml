@@ -6,7 +6,7 @@ on:
 
 env:
   DOCS_URL: https://BAMresearch.github.io/jupyter-analysis-tools
-  COV_REPORT_BASE_DIR: coverage-report
+  COV_REPORT_BASE_DIR: coverage-report  # see pyproject.toml
 
 jobs:
   combine:
