@@ -10,11 +10,11 @@ include .pre-commit-config.yaml
 include .copier-answers.yml
 include tox.ini
 
-include AUTHORS.rst
+include README.md
 include CHANGELOG.md
+include AUTHORS.rst
 include CONTRIBUTING.rst
 include LICENSE
-include README.rst
 
 global-exclude *.py[cod] __pycache__/* *.so *.dylib .DS_Store */.ipynb_checkpoints/*
 recursive-include templates *.j2

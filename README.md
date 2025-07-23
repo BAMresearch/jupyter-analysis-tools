@@ -17,9 +17,7 @@ Yet another Python library with helpers and utilities for data analysis and proc
 
 You can also install the in-development version with:
 
-
     pip install git+https://github.com/BAMresearch/jupyter-analysis-tools.git@main
-
 
 ## Documentation
 
