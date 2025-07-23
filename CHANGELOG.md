@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v1.3.2 (2025-07-23)
+
+### Bug fixes
+
+* Project: let the template generate supported python versions ([`8acfa6d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8acfa6d337ea4b8b92f8ea623e961af1be9a0f17))
+
+### Continuous integration
+
+* coverage: revert config regression for coverage merging ([`dffe265`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dffe265af9779253a698f241e725d0ea03ea2979))
+
+### Documentation
+
+* readme: additional fix for readme.md ([`795046f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/795046f73ada0ae85b4eb050c8453cc096c43122))
+
+* readme: in markdown format for combining with changelog ([`eb6b904`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/eb6b904136697ddc2427369a605058e464d49351))
+
+* readme: use markdown format to allow combining with changelog on PyPI ([`395b2c0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/395b2c0c72232e9109ca50c5b84a7fce2d423df4))
+
 ## v1.3.1 (2025-07-23)
 
 ### Bug fixes
