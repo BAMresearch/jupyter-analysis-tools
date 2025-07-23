@@ -55,7 +55,7 @@ include = ["jupyter_analysis_tools*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "jupyter_analysis_tools.__version__"}
-readme = {file = ["README.md", "CHANGELOG.md"]}
+readme = {file = ["README.md", "CHANGELOG.md"], content-type = "text/markdown"}
 
 [tool.coverage.report]
 path = "coverage-report"  # see coverage.yml github action
