@@ -41,7 +41,6 @@ jobs:
         with:
           pattern: coverage.*
           merge-multiple: true
-          name: coverage
 
       - name: Combine and report
         id: combine
