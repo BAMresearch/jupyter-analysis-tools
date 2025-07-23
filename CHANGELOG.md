@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## v1.3.1 (2025-07-23)
+
+### Bug fixes
+
+* Project: update manifest and flake8 config, reapplied template ([`c98c648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c98c6489423a45d8a195fda32396ea9d9d18b9eb))
+
+### Code style
+
+* utils: satisfy flake8 ([`2e3dc36`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e3dc36ef21e60f4fe7b8caea567411cc69967c0))
+
+### Continuous integration
+
+* semantic-release: replace .cookiecutterrc by .copier-answers.yml ([`2030c88`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2030c88dfb0ca69ac332380e33b3baed9cb6cf44))
+
+* coverage: coverage-report fix ([`1bd26b7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1bd26b71abcb090ef32cb2fbdd05b978bce5144c))
+
+* GitHub Workflows: remove templates, rendered by *copier update* ([`8a637a5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8a637a5b34df4a3ec6a4e8cae97a9d3e24ad2e5c))
+
+* GitHub Workflow: publish depends on all other job to be successful ([`efc1f22`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efc1f223aa2da882d43b27406a2f20113c2c8879))
+
+* Template: latest GitHub Workflow templates applied ([`7d87906`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7d87906c852cb2b57704c45db0b19c7a1ae513a2))
+
+* coverage: fix path name matching rules ([`37bd2d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/37bd2d93a8fe10a3355feee6779f45bd9161a88b))
+
+### Documentation
+
+* Copyright years: update ([`cee35e6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cee35e6fe92ae27575bd7fb4a7a2638cd1c931b2))
+
+* Contributions: Authors update ([`dd5a5c4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dd5a5c4d81732821057bcc200f462159cffa760b))
+
+### Refactoring
+
+* Project: GitHub Workflow templates fixed ([`b346b28`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b346b282332f0f7f81b724509a4004e6a69d7791))
+
+* Project: GitHub Workflow templates updated ([`235c4d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/235c4d9c53997fdf4c08913361fb57167939cd7c))
+
+* Project: switching to copier for project template with update mechanism ([`0d3064b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0d3064b8cef45667b0964aab248b583424946207))
+
 ## v1.3.0 (2025-07-16)
 
 ### Bug fixes
