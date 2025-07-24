@@ -1,7 +1,3 @@
-ipykernel
-notebook
-pandas
-ipywidgets
-matplotlib
-scipy
-pytest-notebook
+pytest
+pytest-cov
+pytest_notebook @ git+https://github.com/BAMresearch/pytest-notebook@master
