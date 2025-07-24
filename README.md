@@ -1,6 +1,4 @@
-# Overview
-
-Yet another Python library with helpers and utilities for data analysis and processing.
+# Jupyter Analysis Tools (v1.3.2)
 
 [![PyPI Package latest release](https://img.shields.io/pypi/v/jupyter-analysis-tools.svg)](https://pypi.org/project/jupyter-analysis-tools)
 [![Commits since latest release](https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v1.3.2.svg)](https://github.com/BAMresearch/jupyter-analysis-tools/compare/v1.3.1...main)
@@ -10,6 +8,8 @@ Yet another Python library with helpers and utilities for data analysis and proc
 [![Weekly PyPI downloads](https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg)](https://pypi.org/project/jupyter-analysis-tools/)
 [![Continuous Integration and Deployment Status](https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/ci-cd.yml)
 [![Coverage report](https://img.shields.io/endpoint?url=https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/cov.json)](https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/)
+
+Yet another Python library with helpers and utilities for data analysis and processing.
 
 ## Installation
 
@@ -25,20 +25,23 @@ https://BAMresearch.github.io/jupyter-analysis-tools
 
 ## Development
 
+### Testing
+
+See which tests are available (arguments after `--` get passed to *pytest* which runs the tests):
+
+    tox -e py -- --co
+
+Run a specific test only:
+
+    tox -e py -- -k <test_name from listing before>
+
 Run all tests with:
 
     tox -e py
 
-Note, to combine the coverage data from all the tox environments run:
+### Project template
 
-- Windows
-
-        set PYTEST_ADDOPTS=--cov-append tox
-
-- Other
-
-        PYTEST_ADDOPTS=--cov-append tox
-
-### Reapply project template with copier
+Update the project configuration from the *copier* template:
 
     copier update --trust --skip-answered
+
