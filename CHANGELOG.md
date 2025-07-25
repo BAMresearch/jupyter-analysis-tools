@@ -1,290 +1,302 @@
 # CHANGELOG
 
+## Unreleased
+
+### Continuous integration
+
+* **dependencies**: removed unused requirements ([`592bfe1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/592bfe1e592cf3776dc626d0df453d95e527f8b8))
+
+### Documentation
+
+* **readme**: note on reapplying project template ([`a8d0176`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a8d01764645c9996bb1e2af60ba6c2d1ee33363a))
+
+* **readme**: .rst version not needed anymore ([`a59e9a8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a59e9a81b7165c67f6c02906d0266d93f7deaca3))
+
 ## v1.3.2 (2025-07-23)
 
 ### Bug fixes
 
-* Project: let the template generate supported python versions ([`8acfa6d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8acfa6d337ea4b8b92f8ea623e961af1be9a0f17))
+* **Project**: let the template generate supported python versions ([`8acfa6d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8acfa6d337ea4b8b92f8ea623e961af1be9a0f17))
 
 ### Continuous integration
 
-* coverage: revert config regression for coverage merging ([`dffe265`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dffe265af9779253a698f241e725d0ea03ea2979))
+* **coverage**: revert config regression for coverage merging ([`dffe265`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dffe265af9779253a698f241e725d0ea03ea2979))
 
 ### Documentation
 
-* readme: additional fix for readme.md ([`795046f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/795046f73ada0ae85b4eb050c8453cc096c43122))
+* **readme**: additional fix for readme.md ([`795046f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/795046f73ada0ae85b4eb050c8453cc096c43122))
 
-* readme: in markdown format for combining with changelog ([`eb6b904`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/eb6b904136697ddc2427369a605058e464d49351))
+* **readme**: in markdown format for combining with changelog ([`eb6b904`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/eb6b904136697ddc2427369a605058e464d49351))
 
-* readme: use markdown format to allow combining with changelog on PyPI ([`395b2c0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/395b2c0c72232e9109ca50c5b84a7fce2d423df4))
+* **readme**: use markdown format to allow combining with changelog on PyPI ([`395b2c0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/395b2c0c72232e9109ca50c5b84a7fce2d423df4))
 
 ## v1.3.1 (2025-07-23)
 
 ### Bug fixes
 
-* Project: update manifest and flake8 config, reapplied template ([`c98c648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c98c6489423a45d8a195fda32396ea9d9d18b9eb))
+* **Project**: update manifest and flake8 config, reapplied template ([`c98c648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c98c6489423a45d8a195fda32396ea9d9d18b9eb))
 
 ### Code style
 
-* utils: satisfy flake8 ([`2e3dc36`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e3dc36ef21e60f4fe7b8caea567411cc69967c0))
+* **utils**: satisfy flake8 ([`2e3dc36`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e3dc36ef21e60f4fe7b8caea567411cc69967c0))
 
 ### Continuous integration
 
-* semantic-release: replace .cookiecutterrc by .copier-answers.yml ([`2030c88`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2030c88dfb0ca69ac332380e33b3baed9cb6cf44))
+* **semantic-release**: replace .cookiecutterrc by .copier-answers.yml ([`2030c88`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2030c88dfb0ca69ac332380e33b3baed9cb6cf44))
 
-* coverage: coverage-report fix ([`1bd26b7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1bd26b71abcb090ef32cb2fbdd05b978bce5144c))
+* **coverage**: coverage-report fix ([`1bd26b7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1bd26b71abcb090ef32cb2fbdd05b978bce5144c))
 
-* GitHub Workflows: remove templates, rendered by *copier update* ([`8a637a5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8a637a5b34df4a3ec6a4e8cae97a9d3e24ad2e5c))
+* **GitHub Workflows**: remove templates, rendered by *copier update* ([`8a637a5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8a637a5b34df4a3ec6a4e8cae97a9d3e24ad2e5c))
 
-* GitHub Workflow: publish depends on all other job to be successful ([`efc1f22`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efc1f223aa2da882d43b27406a2f20113c2c8879))
+* **GitHub Workflow**: publish depends on all other job to be successful ([`efc1f22`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efc1f223aa2da882d43b27406a2f20113c2c8879))
 
-* Template: latest GitHub Workflow templates applied ([`7d87906`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7d87906c852cb2b57704c45db0b19c7a1ae513a2))
+* **Template**: latest GitHub Workflow templates applied ([`7d87906`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7d87906c852cb2b57704c45db0b19c7a1ae513a2))
 
-* coverage: fix path name matching rules ([`37bd2d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/37bd2d93a8fe10a3355feee6779f45bd9161a88b))
+* **coverage**: fix path name matching rules ([`37bd2d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/37bd2d93a8fe10a3355feee6779f45bd9161a88b))
 
 ### Documentation
 
-* Copyright years: update ([`cee35e6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cee35e6fe92ae27575bd7fb4a7a2638cd1c931b2))
+* **Copyright years**: update ([`cee35e6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cee35e6fe92ae27575bd7fb4a7a2638cd1c931b2))
 
-* Contributions: Authors update ([`dd5a5c4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dd5a5c4d81732821057bcc200f462159cffa760b))
+* **Contributions**: Authors update ([`dd5a5c4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dd5a5c4d81732821057bcc200f462159cffa760b))
 
 ### Refactoring
 
-* Project: GitHub Workflow templates fixed ([`b346b28`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b346b282332f0f7f81b724509a4004e6a69d7791))
+* **Project**: GitHub Workflow templates fixed ([`b346b28`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b346b282332f0f7f81b724509a4004e6a69d7791))
 
-* Project: GitHub Workflow templates updated ([`235c4d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/235c4d9c53997fdf4c08913361fb57167939cd7c))
+* **Project**: GitHub Workflow templates updated ([`235c4d9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/235c4d9c53997fdf4c08913361fb57167939cd7c))
 
-* Project: switching to copier for project template with update mechanism ([`0d3064b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0d3064b8cef45667b0964aab248b583424946207))
+* **Project**: switching to copier for project template with update mechanism ([`0d3064b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0d3064b8cef45667b0964aab248b583424946207))
 
 ## v1.3.0 (2025-07-16)
 
 ### Bug fixes
 
-* utils.extract7z: informative info message ([`80d2f71`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/80d2f7134992d59f0bfd7f5e7bc27772f77cd452))
+* **utils.extract7z**: informative info message ([`80d2f71`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/80d2f7134992d59f0bfd7f5e7bc27772f77cd452))
 
 ### Continuous integration
 
-* coverage: fix coverage artifact name for multiple matrix.os ([`f471599`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f471599b8c86e29fd20b78f7cbd9291c3a6dd98a))
+* **coverage**: fix coverage artifact name for multiple matrix.os ([`f471599`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f471599b8c86e29fd20b78f7cbd9291c3a6dd98a))
 
-* testing: test on Windows as well ([`4a83c39`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a83c3924bcb820ef0728af40b86a0f6622dfef2))
+* **testing**: test on Windows as well ([`4a83c39`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a83c3924bcb820ef0728af40b86a0f6622dfef2))
 
 ### Features
 
-* utils.makeNetworkdriveAbsolute: new routines for translating a windows drive letter mount to its network location ([`823a6bf`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/823a6bfe126829381bc14d34578f342f4b9d3e8f))
+* **utils.makeNetworkdriveAbsolute**: new routines for translating a windows drive letter mount to its network location ([`823a6bf`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/823a6bfe126829381bc14d34578f342f4b9d3e8f))
 
 ## v1.2.2 (2025-07-15)
 
 ### Bug fixes
 
-* readPDHmeta: use unique dict keys, the xmk *key* can occur in multiple groups in PDH ([`ef41c81`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ef41c81d40d801b5baf86f56cf9012ca35d2ccde))
+* **readPDHmeta**: use unique dict keys, the xmk *key* can occur in multiple groups in PDH ([`ef41c81`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ef41c81d40d801b5baf86f56cf9012ca35d2ccde))
 
 ### Documentation
 
-* pyproject: revert specify readme+changelog document types ([`1baa762`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1baa762d441fe0a1b7b663b9d0589de857277426))
+* **pyproject**: revert specify readme+changelog document types ([`1baa762`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1baa762d441fe0a1b7b663b9d0589de857277426))
 
-* pyproject: specify readme+changelog document types to render overview on pypi correctly ([`6e4d1e5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6e4d1e56640b604f971ddca8dabd8d1aff5c9bf1))
+* **pyproject**: specify readme+changelog document types to render overview on pypi correctly ([`6e4d1e5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6e4d1e56640b604f971ddca8dabd8d1aff5c9bf1))
 
-* ghpages: make sure .nojekyll exists after purging old html docs ([`4847845`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4847845cc06884b6e589b26897e83411d649ef4d))
+* **ghpages**: make sure .nojekyll exists after purging old html docs ([`4847845`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4847845cc06884b6e589b26897e83411d649ef4d))
 
 ## v1.2.1 (2025-07-11)
 
 ### Bug fixes
 
-* readme: trigger new version after style changes ([`8b2b5e9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8b2b5e93c0f24ae59afaa764abdc508e994946b4))
+* **readme**: trigger new version after style changes ([`8b2b5e9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8b2b5e93c0f24ae59afaa764abdc508e994946b4))
 
 ### Code style
 
-* __init__: imports format ([`6f07790`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6f07790a04e43736b1c0fbce0eac54d0b661a7cf))
+* **__init__**: imports format ([`6f07790`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6f07790a04e43736b1c0fbce0eac54d0b661a7cf))
 
-* utils: satisfy flake8 ([`9657474`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9657474e94a4d9887c4a6b653e0ffa403e666d02))
+* **utils**: satisfy flake8 ([`9657474`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9657474e94a4d9887c4a6b653e0ffa403e666d02))
 
-* readdata: satisfy flake8 ([`36bf6e8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/36bf6e8be67a2ebd345c5557c2352710bcebed82))
+* **readdata**: satisfy flake8 ([`36bf6e8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/36bf6e8be67a2ebd345c5557c2352710bcebed82))
 
 ### Continuous integration
 
-* workflow: publish only if the docs are good ([`a663ed3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a663ed3d1fd87079a4fd7cf419132a129280a562))
+* **workflow**: publish only if the docs are good ([`a663ed3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a663ed3d1fd87079a4fd7cf419132a129280a562))
 
 ### Testing
 
-* utils: fix imports ([`ddd5369`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ddd5369b8037f583c6900aea25522a56126c9d32))
+* **utils**: fix imports ([`ddd5369`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ddd5369b8037f583c6900aea25522a56126c9d32))
 
 ## v1.2.0 (2025-07-11)
 
 ### Features
 
-* readdata: readSSF() renamed from readSession(), tests added with expected JSON output ([`e2197f6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e2197f6bcb032c1bc1a9a7435e024dda763228c4))
+* **readdata**: readSSF() renamed from readSession(), tests added with expected JSON output ([`e2197f6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e2197f6bcb032c1bc1a9a7435e024dda763228c4))
 
-* readPDHmeta: routine for reading metadata part from .PDH and .SSF files ([`ea6a1d5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ea6a1d554f3763fc05022ae8e4e8909f0993cd43))
+* **readPDHmeta**: routine for reading metadata part from .PDH and .SSF files ([`ea6a1d5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ea6a1d554f3763fc05022ae8e4e8909f0993cd43))
 
 ### Testing
 
-* readdata: path separator depends on platform ([`1b2866f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1b2866f13307c2cf2dedc59f36d7372442ddbfd8))
+* **readdata**: path separator depends on platform ([`1b2866f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1b2866f13307c2cf2dedc59f36d7372442ddbfd8))
 
-* readdata: testdata files and testing, using pathlib instead of old os.path ([`aeacfa4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/aeacfa4a949d7293f2cd3ce5e3004fddf20ecc02))
+* **readdata**: testdata files and testing, using pathlib instead of old os.path ([`aeacfa4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/aeacfa4a949d7293f2cd3ce5e3004fddf20ecc02))
 
 ## v1.1.0 (2025-07-10)
 
 ### Bug fixes
 
-* packaging: add dependencies for project and testing ([`2729a45`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2729a45958893c9acd07af9463bbf7d657db626b))
+* **packaging**: add dependencies for project and testing ([`2729a45`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2729a45958893c9acd07af9463bbf7d657db626b))
 
 ### Documentation
 
-* utils: reformat doc strings ([`1cf9b9b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1cf9b9b969e075a75a41e19bfb526378b68a0ed7))
+* **utils**: reformat doc strings ([`1cf9b9b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1cf9b9b969e075a75a41e19bfb526378b68a0ed7))
 
 ### Features
 
-* utils: addEnvScriptsToPATH() ([`a8c22e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a8c22e0d37a5627d5955c1f7f7eebcb0bc99206e))
+* **utils**: addEnvScriptsToPATH() ([`a8c22e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a8c22e0d37a5627d5955c1f7f7eebcb0bc99206e))
 
-* notebook_utils: remove method for finding notebook file path currentNBpath() ([`13a5a60`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/13a5a60436c7926c478f2ab3f2c309a86b653218))
+* **notebook_utils**: remove method for finding notebook file path currentNBpath() ([`13a5a60`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/13a5a60436c7926c478f2ab3f2c309a86b653218))
 
 ### Refactoring
 
-* utils: appendToPATH() using pathlib, verifed test included ([`35f37fc`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/35f37fc19cdcf4b575dc0525400f3c0212bb0faf))
+* **utils**: appendToPATH() using pathlib, verifed test included ([`35f37fc`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/35f37fc19cdcf4b575dc0525400f3c0212bb0faf))
 
 ### Testing
 
-* readdata: test data for reading PDH and SSFZ ([`9b919d2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9b919d24e1fa5679b49cebf576e471d6e4e9b655))
+* **readdata**: test data for reading PDH and SSFZ ([`9b919d2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9b919d24e1fa5679b49cebf576e471d6e4e9b655))
 
 ## v1.0.0 (2025-07-09)
 
 ### Bug fixes
 
-* packaging: add required dependency packages to project config ([`43076e2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/43076e2fd27e511545d8f1ec12752435cf5153c6))
+* **packaging**: add required dependency packages to project config ([`43076e2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/43076e2fd27e511545d8f1ec12752435cf5153c6))
 
 ## v0.1.8 (2025-01-30)
 
 ### Bug fixes
 
-* distrib: scipy.integrate.simps does not exist in recent scipy versions ([`b59edc1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b59edc18a6df3bbee23a3ba6e8b8412c294c20d1))
+* **distrib**: scipy.integrate.simps does not exist in recent scipy versions ([`b59edc1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b59edc18a6df3bbee23a3ba6e8b8412c294c20d1))
 
 ### Continuous integration
 
-* changelog: format commit by using their scope only, not repeating the tag ([`6b72fe7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6b72fe766d121d7ea38c452d093368f84760155e))
+* **changelog**: format commit by using their scope only, not repeating the tag ([`6b72fe7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6b72fe766d121d7ea38c452d093368f84760155e))
 
-* semver: allow message tag *enh* for enhancements ([`0810b4f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0810b4fd58e1b2383313496b657a800078260c83))
+* **semver**: allow message tag *enh* for enhancements ([`0810b4f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0810b4fd58e1b2383313496b657a800078260c83))
 
 ### Documentation
 
-* Changelog: use semantic-release detected scope if available, unchange summary otherwise ([`ca803e7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ca803e71d1a5915fc72a4a2feea55616533ff54e))
+* **Changelog**: use semantic-release detected scope if available, unchange summary otherwise ([`ca803e7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ca803e71d1a5915fc72a4a2feea55616533ff54e))
 
-* Changelog: omit *empty* versions without relevant changes ([`87b7f23`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/87b7f2360c5224a6570f8687e8008e2293b81ddb))
+* **Changelog**: omit *empty* versions without relevant changes ([`87b7f23`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/87b7f2360c5224a6570f8687e8008e2293b81ddb))
 
-* index: show link to github project on left sidebar ([`3fad5a8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/3fad5a870801904a636a114d70ff418886c3f2a6))
+* **index**: show link to github project on left sidebar ([`3fad5a8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/3fad5a870801904a636a114d70ff418886c3f2a6))
 
-* Changelog: don't show *chore* changes on automated build config (CI) ([`10c7ee3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/10c7ee3190969322b3e19b5ff0ce5e1e911bff59))
+* **Changelog**: don't show *chore* changes on automated build config (CI) ([`10c7ee3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/10c7ee3190969322b3e19b5ff0ce5e1e911bff59))
 
-* Changelog: exclude commit message body from changelog rendering ([`e37e82c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e37e82cef2fb27e33d3f0c14d3f38189b97c17d7))
+* **Changelog**: exclude commit message body from changelog rendering ([`e37e82c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e37e82cef2fb27e33d3f0c14d3f38189b97c17d7))
 
 ## v0.1.7 (2024-03-26)
 
 ### Bug fixes
 
-* distrib: Distribution.plotPeak() legend background more transparent ([`4a148f1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78))
+* **distrib**: Distribution.plotPeak() legend background more transparent ([`4a148f1`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/4a148f1d4ca4b0aa5335f8982c5f8348fb906e78))
 
 ### Refactoring
 
-* notebook_utils: whitespace ([`30feb51`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b))
+* **notebook_utils**: whitespace ([`30feb51`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/30feb51175fa55c694cc88995a94e7ff26303b9b))
 
 ## v0.1.6 (2024-03-25)
 
 ### Bug fixes
 
-* notebook_utils: notebookapp import path changed ([`27266db`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/27266db0c62a1e35be8bfb90194b001f29d4534c))
+* **notebook_utils**: notebookapp import path changed ([`27266db`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/27266db0c62a1e35be8bfb90194b001f29d4534c))
 
 ## v0.1.6-dev.1 (2023-03-27)
 
 ### Documentation
 
-* analysis: minor fix ([`601a6f7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/601a6f7dbbf383810add39620748808c51af6fa3))
+* **analysis**: minor fix ([`601a6f7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/601a6f7dbbf383810add39620748808c51af6fa3))
 
 ## v0.1.5 (2023-03-27)
 
 ### Bug fixes
 
-* reBin: module renamed to binning, fixes name clashes with docs gen ([`ec959fb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4))
+* **reBin**: module renamed to binning, fixes name clashes with docs gen ([`ec959fb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ec959fb9e1b51d69cdceaf7784b27df22aa6f4d4))
 
 ### Code style
 
-* format: fix whitespace and quotes with black ([`b0b7dba`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b0b7dbaac59528ead6c663165c8d4dab3aabcdfe))
+* **format**: fix whitespace and quotes with black ([`b0b7dba`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b0b7dbaac59528ead6c663165c8d4dab3aabcdfe))
 
-* binning: fix quoting by using black formatter ([`61603f7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/61603f7de8640437ccd277faefc2d31fa1e1e232))
+* **binning**: fix quoting by using black formatter ([`61603f7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/61603f7de8640437ccd277faefc2d31fa1e1e232))
 
 ### Documentation
 
-* cleanup: removed obsolete module doc, replaced by autosummary generated files ([`c0d4256`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b))
+* **cleanup**: removed obsolete module doc, replaced by autosummary generated files ([`c0d4256`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c0d4256a5bcbb83a9a9c0ca0dd3001b9d111cb4b))
 
-* format: fix formatting with black ([`5de80d4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19))
+* **format**: fix formatting with black ([`5de80d4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/5de80d4d528bfb2bf106fa38d2cd8f30f6421f19))
 
 ## v0.1.5-dev.1 (2023-03-27)
 
 ### Code style
 
-* config: string normalization, double quotes ([`e8edbc4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8edbc437b3c6876fae1ff72ad24edbcbe82a8f8))
+* **config**: string normalization, double quotes ([`e8edbc4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8edbc437b3c6876fae1ff72ad24edbcbe82a8f8))
 
 ### Documentation
 
-* General: config updated by cookiecutter ([`6c9ddfb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068))
+* **General**: config updated by cookiecutter ([`6c9ddfb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6c9ddfb9777cb344378f5a0d86e204dc016a2068))
 
 ## v0.1.4 (2023-03-03)
 
 ### Bug fixes
 
-* readme: license link ([`f98f736`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f))
+* **readme**: license link ([`f98f736`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f98f7362dd0278210894f138dd7646c8bc92cc9f))
 
 ## v0.1.3 (2023-03-03)
 
 ### Bug fixes
 
-* tox: clean env ([`0135426`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578))
+* **tox**: clean env ([`0135426`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/013542651eb2bd9a7e2d3b2e8ef837c38501b578))
 
-* Package: cookiecutterrc updated ([`7b29a17`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2))
+* **Package**: cookiecutterrc updated ([`7b29a17`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7b29a1764f972379086abb51194604423c9714f2))
 
-* tox: cleanup env removed pckg build files ([`ecd8648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ecd86485ec0fe67f646d06ca134fe97310f7a3f5))
+* **tox**: cleanup env removed pckg build files ([`ecd8648`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ecd86485ec0fe67f646d06ca134fe97310f7a3f5))
 
-* GitHubAction: migrate to pathlib.Path in template rendering ([`d3ae5db`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3))
+* **GitHubAction**: migrate to pathlib.Path in template rendering ([`d3ae5db`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d3ae5db8f657e929f4139bb17bb746f7b03961d3))
 
 ### Code style
 
-* pyproject.toml: use double quotes ([`8f902a2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8f902a25b0578babc6e2ad3b72cc7adff94361e2))
+* **pyproject.toml**: use double quotes ([`8f902a2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8f902a25b0578babc6e2ad3b72cc7adff94361e2))
 
 ### Documentation
 
-* readme: adjust version numbers in readme as well ([`5700694`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000))
+* **readme**: adjust version numbers in readme as well ([`5700694`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/57006942e6625faf9f36dca1bac0719706b4d000))
 
-* readme: using test.pypi.org links ([`240e58c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75))
+* **readme**: using test.pypi.org links ([`240e58c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/240e58c87ef0cf0dc3d195f237a09c8e8a717e75))
 
-* Package: update project description ([`704a0b5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/704a0b50a727ef36f685d27ce068103ffa60ca99))
+* **Package**: update project description ([`704a0b5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/704a0b50a727ef36f685d27ce068103ffa60ca99))
 
-* comments: add some, remove obsolete ([`efe2689`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640))
+* **comments**: add some, remove obsolete ([`efe2689`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/efe2689707f410a18cce331f9cd3732fa2190640))
 
 ### Refactoring
 
-* docs: config adjusted by cookiecutter ([`84e00f0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/84e00f061bc5780a0b3457ec95847b266dcfa2cc))
+* **docs**: config adjusted by cookiecutter ([`84e00f0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/84e00f061bc5780a0b3457ec95847b266dcfa2cc))
 
-* metadata: update project meta data ([`9d6982c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9d6982c960fef68b4c155d05162491f2b6e8b4d0))
+* **metadata**: update project meta data ([`9d6982c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9d6982c960fef68b4c155d05162491f2b6e8b4d0))
 
 ### Testing
 
-* tox: find sys Python version when generating files if not specified explicitly ([`e690193`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e690193e2a7f3f34dd8457b459c82ec1b9643e0e))
+* **tox**: find sys Python version when generating files if not specified explicitly ([`e690193`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e690193e2a7f3f34dd8457b459c82ec1b9643e0e))
 
 ## v0.1.2 (2023-02-24)
 
 ### Bug fixes
 
-* Documentation: doctest format in *distrib* ([`5942972`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9))
+* **Documentation**: doctest format in *distrib* ([`5942972`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/59429724fd41e62c7717fa185e7f5c5c1e5b50d9))
 
 ### Documentation
 
-* distrib: generate entries of submodule *distrib* ([`c8055c6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944))
+* **distrib**: generate entries of submodule *distrib* ([`c8055c6`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c8055c65ac1d49a757ee30f9cd34fc18e8445944))
 
 ## v0.1.2-dev.1 (2023-02-24)
 
 ### Documentation
 
-* utils: generate entries of submodule *utils* ([`762a548`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7))
+* **utils**: generate entries of submodule *utils* ([`762a548`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/762a548a967cf54aed7a58f9d84e4cf6e98e25f7))
 
-### Unknown
+### Unknown Scope
 
 * v0.1.1 ([`738fdd4`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/738fdd44b27881360f51f540f28cda4aed2e9005))
 
@@ -292,29 +304,29 @@
 
 ### Bug fixes
 
-* docs: allow markdown format in changelog ([`593356b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b))
+* **docs**: allow markdown format in changelog ([`593356b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/593356bb0fb6ea7a6c028b99032ed9742708cb6b))
 
 ## v0.1.1-dev.4 (2023-02-23)
 
 ### Documentation
 
-* readme: updated links and badges ([`2e0329d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e0329d510bb5c090d093818c0536993c6292a8a))
+* **readme**: updated links and badges ([`2e0329d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2e0329d510bb5c090d093818c0536993c6292a8a))
 
 ## v0.1.1-dev.1 (2023-02-23)
 
 ### Bug fixes
 
-* tox: removed tox-wheel settings ([`cacbfe3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cacbfe36af39f613efc4651bed4c8875c80c60c5))
+* **tox**: removed tox-wheel settings ([`cacbfe3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cacbfe36af39f613efc4651bed4c8875c80c60c5))
 
 ### Documentation
 
-* config: clean up version definition ([`c18c67f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c18c67fae8852f2acdd79ffe3bcb89aa5821c797))
+* **config**: clean up version definition ([`c18c67f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c18c67fae8852f2acdd79ffe3bcb89aa5821c797))
 
 * docs: removed disabled config ([`3059ff9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/3059ff9fba6a17b845441cd283c0f498c05beab2))
 
 * docs: disabled incompatible sidebar config with furo theme ([`61959be`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/61959be18f26e304042c21872f50dda23635caae))
 
-### Unknown
+### Unknown Scope
 
 * added tox-wheel to ci required packages ([`7eae72c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/7eae72c4a2e977c3efc56b5d9c8da76d67d44536))
 
@@ -396,7 +408,7 @@
 
 * docs: updated urls and gh workflow spec ([`66a0704`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/66a07049567a524a82633547c8006ed1630238c1))
 
-### Unknown
+### Unknown Scope
 
 * tbump config updated ([`e17de91`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e17de9111659992b9419efc7e07c58172737e285))
 
