@@ -328,7 +328,7 @@
           <section id="jupyter-analysis-tools-v1-3-2">
 <h1>Jupyter Analysis Tools (v1.3.2)<a class="headerlink" href="#jupyter-analysis-tools-v1-3-2" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://pypi.org/project/jupyter-analysis-tools"><img alt="PyPI Package latest release" src="https://img.shields.io/pypi/v/jupyter-analysis-tools.svg" /></a>
-<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/compare/v1.3.1...main"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v1.3.2.svg" /></a>
+<a class="reference external" href="https://github.com/BAMresearch/jupyter-analysis-tools/compare/v1.3.2...main"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v1.3.2.svg" /></a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/MIT_license"><img alt="License" src="https://img.shields.io/pypi/l/jupyter-analysis-tools.svg" /></a>
 <a class="reference external" href="https://pypi.org/project/jupyter-analysis-tools"><img alt="Supported versions" src="https://img.shields.io/pypi/pyversions/jupyter-analysis-tools.svg" /></a>
 <a class="reference external" href="https://pypi.org/project/jupyter-analysis-tools#files"><img alt="PyPI Wheel" src="https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg" /></a>
@@ -367,10 +367,23 @@
 </pre></div>
 </div>
 </section>
+<section id="package-version">
+<h3>Package Version<a class="headerlink" href="#package-version" title="Link to this heading">¶</a></h3>
+<p>Get the next version number and how the GIT history would be interpreted for that:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install python-semantic-release
+semantic-release -v version --print
+</pre></div>
+</div>
+<p>This prints its interpretation of the commits in detail. Make sure to supply the <code class="docutils literal notranslate"><span class="pre">--print</span></code>
+argument to not raise the version number which is done automatically by the <em>release</em> job
+of the GitHub Action Workflows.</p>
+</section>
 <section id="project-template">
 <h3>Project template<a class="headerlink" href="#project-template" title="Link to this heading">¶</a></h3>
-<p>Update the project configuration from the <em>copier</em> template:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>copier update --trust --skip-answered
+<p>Update the project configuration from the <em>copier</em> template and make sure the required packages
+are installed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install copier jinja2-time
+copier update --trust --skip-answered
 </pre></div>
 </div>
 </section>
@@ -412,7 +425,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on Jul 24, 2025 (git 422304d)</div>
+              Last updated on Jul 25, 2025 (git ab2efa8)</div>
           </div>
           <div class="right-details">
             
@@ -438,6 +451,7 @@
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#development">Development</a><ul>
 <li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#package-version">Package Version</a></li>
 <li><a class="reference internal" href="#project-template">Project template</a></li>
 </ul>
 </li>
