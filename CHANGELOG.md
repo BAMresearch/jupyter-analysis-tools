@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## v1.4.0 (2025-07-28)
 
 ### Continuous integration
 
@@ -8,9 +8,21 @@
 
 ### Documentation
 
+* **readdata**: function docstrings and clearer function arguments/variables ([`365effa`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/365effa474e700beb5e9194a75f4ceb8eb9c9e7e))
+
+* **Changelog&Readme**: updated by template ([`ab2efa8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ab2efa808b7c96b9bf63fdb333c09f070c19b754))
+
 * **readme**: note on reapplying project template ([`a8d0176`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a8d01764645c9996bb1e2af60ba6c2d1ee33363a))
 
 * **readme**: .rst version not needed anymore ([`a59e9a8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a59e9a81b7165c67f6c02906d0266d93f7deaca3))
+
+### Features
+
+* **plotting**: plotPDH() plots a given .PDH file path with pandas with reasonable defaults for SAXS ([`d592638`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d592638e613527eb471e06291bdbcd401f54c7b6))
+
+* **Utils**: naturalKey() can be used as sort key for natural file sorting ([`a60f186`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a60f1864a87c435a165cebc885f0b55de52db796))
+
+* feat: readSSFZ() convenience function ([`c3e882b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c3e882bc1d26be578b41c60c1f6b0df94cd83025))
 
 ## v1.3.2 (2025-07-23)
 
