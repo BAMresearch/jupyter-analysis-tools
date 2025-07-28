@@ -9,6 +9,7 @@ from jupyter_analysis_tools.utils import (
     appendToPATH,
     isWindows,
     makeNetworkdriveAbsolute,
+    naturalKey,
     networkdriveMapping,
 )
 
@@ -78,3 +79,9 @@ def test_makeNetworkdriveAbsolute():
         newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outNetUse)
         assert filepath != newpath
         assert newpath == Path(r"\\user\drive\uname\some\folders\a file name.ext")
+
+
+def test_naturalKey():
+    filelist = ["test2.ext", "test100.ext", "test1.ext", "test05.ext"]
+    lstSorted = sorted(filelist, key=naturalKey)
+    assert lstSorted == ["test1.ext", "test2.ext", "test05.ext", "test100.ext"]

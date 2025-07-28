@@ -7,6 +7,7 @@ import itertools
 import locale
 import os
 import platform
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -207,3 +208,8 @@ def updatedDict(d, key, value):
     dd = copy.copy(d)
     dd[key] = value
     return dd
+
+
+def naturalKey(name):
+    """Split string into list of strings and integers. Use as *key* function for sorting files."""
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r"(\d+)", name)]
