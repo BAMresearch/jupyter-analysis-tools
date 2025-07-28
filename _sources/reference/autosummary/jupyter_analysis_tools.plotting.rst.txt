@@ -18,6 +18,7 @@ jupyter\_analysis\_tools.plotting
       initFigure
       lineWidth
       plotColor
+      plotPDH
       plotVertBar
    
    

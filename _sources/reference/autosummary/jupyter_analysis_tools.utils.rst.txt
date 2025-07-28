@@ -25,6 +25,7 @@ jupyter\_analysis\_tools.utils
       isMac
       isWindows
       makeNetworkdriveAbsolute
+      naturalKey
       networkdriveMapping
       pushd
       setLocaleUTF8
