@@ -7,7 +7,7 @@ from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
 from .readdata import readdata
 from .readdata import readdata as readPDH
-from .readdata import readPDHmeta, readSSF
+from .readdata import readPDHmeta, readSSF, readSSFZ
 from .utils import setLocaleUTF8
 from .widgets import PathSelector, showBoolStatus
 

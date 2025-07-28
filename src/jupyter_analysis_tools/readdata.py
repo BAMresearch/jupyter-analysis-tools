@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # readdata.py
 
+import tempfile
 import warnings
 import xml.etree.ElementTree as et
+import zipfile
 from pathlib import Path
 
 import pandas as pd
@@ -168,3 +170,19 @@ def readSSF(fp):
     with open(fp, encoding="utf-8-sig") as fd:
         data = fd.read()
     return xmlPDHToDict(et.fromstring(data))
+
+
+def readSSFZ(pathSSFZ):
+    """Extracts and reads the SAXSquant session file (.SSF) to a Python dict.
+    The .SSF is embedded in the .SSFZ provided by *pathSSFZ*."""
+    assert pathSSFZ.is_file()
+    # unpack the SSFZ to a temporary dir
+    data = None
+    with tempfile.TemporaryDirectory() as tempdir:
+        with zipfile.ZipFile(pathSSFZ, "r") as zipfd:
+            zipfd.extractall(tempdir)
+        # read the session metadata from the extracted SSF file
+        pathSSF = next(Path(tempdir).glob("*.ssf"))
+        assert pathSSF.is_file()
+        data = readSSF(pathSSF)
+    return data

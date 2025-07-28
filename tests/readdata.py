@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy
 
-from jupyter_analysis_tools import readdata, readPDHmeta, readSSF
+from jupyter_analysis_tools import readdata, readPDHmeta, readSSF, readSSFZ
 
 pathPDH1 = Path("testdata/S2842 water.pdh")
 pathPDH2 = Path("testdata/S2843[9].pdh")  # desmeared silica measurement
@@ -113,3 +113,12 @@ def test_readSSF():
             json.dump(data, fdNew, indent=4)
             fdNew.seek(0)
             assert fdRef.read() == fdNew.read()
+
+
+def test_readSSFZ():
+    assert pathSSFZ.is_file()
+    data = readSSFZ(pathSSFZ)
+    # compare with the expected JSON file from testdata dir
+    with open(pathSSFZ.with_suffix(".ssf.json")) as fdRef:
+        dataRef = json.load(fdRef)
+        assert dataRef == data
