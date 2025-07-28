@@ -4,6 +4,8 @@
 import matplotlib
 import matplotlib.pyplot as plt
 
+from .readdata import readPDH
+
 try:
     # increase the limit for the warning to pop up
     matplotlib.rcParams["figure.max_open_warning"] = 50
@@ -43,3 +45,26 @@ def plotColor(idx):
 
 def lineWidth():
     return plt.rcParams["lines.linewidth"]
+
+
+def plotPDH(filename, label, **kwargs):
+    """Plot a given .PDH file with the given label (shown in legend) using pandas and readPDH()."""
+    q_range = kwargs.pop("q_range", None)
+    print_filename = kwargs.pop("print_filename", True)  # default value from readdata()
+    df, _ = readPDH(filename, q_range=q_range, print_filename=print_filename)
+    df["e"] = df["e"].clip(lower=0)
+    defaults = dict(
+        yerr="e",
+        logx=True,
+        logy=True,
+        label=label,
+        grid=True,
+        figsize=(10, 5),
+        xlabel=r"$q$ (nm$^{{-1}}$)",
+        ylabel="Intensity",
+        ecolor="lightgray",
+    )
+    for k, v in defaults.items():
+        if k not in kwargs:
+            kwargs[k] = v
+    df.plot("q", "I", **kwargs)

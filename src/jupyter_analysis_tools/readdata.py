@@ -52,6 +52,9 @@ def readdata(fpath, q_range=None, read_csv_args=None, print_filename=True):
     return df, filename
 
 
+readPDH = readdata
+
+
 def convertValue(val):
     val = val.strip()
     try:
