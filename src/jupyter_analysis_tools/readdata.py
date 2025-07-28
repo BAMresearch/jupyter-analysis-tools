@@ -148,26 +148,28 @@ def xmlPDHToDict(root):
     return result
 
 
-def readPDHmeta(fp):
-    fp = Path(fp)
-    if fp.suffix.lower() != ".pdh":
+def readPDHmeta(pathPDH):
+    """Reads the XML metadata at the end of a .PDH file to a Python dict."""
+    pathPDH = Path(pathPDH)
+    if pathPDH.suffix.lower() != ".pdh":
         warnings.warn("readPDHmeta() supports .pdh files only!")
         return  # for PDH files
     lines = ""
-    with open(fp) as fd:
+    with open(pathPDH) as fd:
         lines = fd.readlines()
     nrows = int(lines[2].split()[0])
     xml = "".join(lines[nrows + 5 :])
     return xmlPDHToDict(et.fromstring(xml))
 
 
-def readSSF(fp):
-    fp = Path(fp)
-    if fp.suffix.lower() != ".ssf":
+def readSSF(pathSSF):
+    """Reads the SAXSquant session file *pathSSF* (.SSF) to a Python dict."""
+    pathSSF = Path(pathSSF)
+    if pathSSF.suffix.lower() != ".ssf":
         warnings.warn("readSession() supports .ssf files only!")
         return  # for PDH files
     data = ""
-    with open(fp, encoding="utf-8-sig") as fd:
+    with open(pathSSF, encoding="utf-8-sig") as fd:
         data = fd.read()
     return xmlPDHToDict(et.fromstring(data))
 
