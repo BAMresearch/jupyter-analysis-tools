@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.4.3 (2025-08-01)
+
+### Bug fixes
+
+* **utils**: makeNetworkdriveAbsolute() should return input path if no changes needed ([`2ec96d7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/2ec96d7066a3473c6d27a6e6d01c640f6c142346))
+
 ## v1.4.2 (2025-08-01)
 
 ### Bug fixes
