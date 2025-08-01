@@ -112,18 +112,26 @@ def networkdriveMapping(cmdOutput: str = None, resolveNames: bool = True):
         if cmdOutput is None:
             proc = subprocess.run(["net", "use"], capture_output=True, text=True, encoding="cp850")
             cmdOutput = proc.stdout
+
         def resolveFQDN(uncPath):
             if not resolveNames:
                 return uncPath
             parts = uncPath.split("\\")
             idx = [i for i, part in enumerate(parts) if len(part)][0]
-            proc = subprocess.run(["nslookup", parts[idx]], capture_output=True, text=True, encoding="cp850")
+            proc = subprocess.run(
+                ["nslookup", parts[idx]], capture_output=True, text=True, encoding="cp850"
+            )
             res = [line.split() for line in proc.stdout.splitlines() if line.startswith("Name:")]
             if len(res) and len(res[0]) == 2:
                 parts[idx] = res[0][1]
             return "\\".join(parts)
+
         rows = [line.split() for line in cmdOutput.splitlines() if "Windows Network" in line]
-        rows = {row[1]: resolveFQDN(row[2]) for row in rows if row[1].endswith(":") and row[2].startswith(r"\\")}
+        rows = {
+            row[1]: resolveFQDN(row[2])
+            for row in rows
+            if row[1].endswith(":") and row[2].startswith(r"\\")
+        }
         return rows
     else:  # Linux (tested) or macOS (untested)
         if cmdOutput is None:
