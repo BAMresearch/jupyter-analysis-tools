@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.4.1 (2025-08-01)
+
+### Bug fixes
+
+* **utils**: networkdriveMapping() for Linux, with tests ([`3f4deeb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/3f4deebdf57cc9162121c26d5d7d8484f1f0ec63))
+
+### Testing
+
+* **utils**: remove debug output, should work now ([`1117c89`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/1117c89d4206c6880373e3b8765dff6e48d3ccd5))
+
 ## v1.4.0 (2025-07-28)
 
 ### Continuous integration
