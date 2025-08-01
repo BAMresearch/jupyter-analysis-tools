@@ -83,7 +83,7 @@ def test_appendToPATH(capsys):
 
 def test_networkdriveMapping():
     if isWindows():
-        map = networkdriveMapping(cmdOutput=outNetUse)
+        map = networkdriveMapping(cmdOutput=outNetUse, resolveNames=False)
         assert map == {
             "G:": "\\\\ALPHA\\BETA",
             "K:": "\\\\GAM\\MMA",
@@ -91,7 +91,7 @@ def test_networkdriveMapping():
             "T:": "\\\\test\\foldername",
         }
     else:  # Linux or macOS
-        map = networkdriveMapping(cmdOutput=outMount)
+        map = networkdriveMapping(cmdOutput=outMount, resolveNames=False)
         assert map == {
             "/mnt/gh 12": "//xyz04.fgsd.asd.com/G2S/GH31",
             "/mnt/some (ugly) on type name": "//abc02.def.ault.de/X23/somename",
@@ -101,12 +101,12 @@ def test_networkdriveMapping():
 def test_makeNetworkdriveAbsolute():
     if isWindows():
         filepath = Path(r"M:\some\folders\a file name.ext")
-        newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outNetUse)
+        newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outNetUse, resolveNames=False)
         assert filepath != newpath
         assert newpath == Path(r"\\user\drive\uname\some\folders\a file name.ext")
     else:  # Linux or macOS
         filepath = Path("/mnt/some (ugly) on type name/some/folders/a file name.ext")
-        newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outMount)
+        newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outMount, resolveNames=False)
         assert filepath != newpath
         assert newpath == Path("//abc02.def.ault.de/X23/somename/some/folders/a file name.ext")
 

@@ -106,16 +106,24 @@ def addEnvScriptsToPATH():
         os.environ["PATH"] = sep.join(environPATH)
 
 
-def networkdriveMapping(cmdOutput: str = None):
+def networkdriveMapping(cmdOutput: str = None, resolveNames: bool = True):
     """Returns a dict of mapping drive letters to network paths (on Windows)."""
     if isWindows():
         if cmdOutput is None:
             proc = subprocess.run(["net", "use"], capture_output=True, text=True, encoding="cp850")
             cmdOutput = proc.stdout
+        def resolveFQDN(uncPath):
+            if not resolveNames:
+                return uncPath
+            parts = uncPath.split("\\")
+            idx = [i for i, part in enumerate(parts) if len(part)][0]
+            proc = subprocess.run(["nslookup", parts[idx]], capture_output=True, text=True, encoding="cp850")
+            res = [line.split() for line in proc.stdout.splitlines() if line.startswith("Name:")]
+            if len(res) and len(res[0]) == 2:
+                parts[idx] = res[0][1]
+            return "\\".join(parts)
         rows = [line.split() for line in cmdOutput.splitlines() if "Windows Network" in line]
-        rows = dict(
-            [row[1:3] for row in rows if row[1].endswith(":") and row[2].startswith("\\\\")]
-        )
+        rows = {row[1]: resolveFQDN(row[2]) for row in rows if row[1].endswith(":") and row[2].startswith(r"\\")}
         return rows
     else:  # Linux (tested) or macOS (untested)
         if cmdOutput is None:
@@ -143,17 +151,17 @@ def networkdriveMapping(cmdOutput: str = None):
     return {}
 
 
-def makeNetworkdriveAbsolute(filepath, cmdOutput: str = None):
+def makeNetworkdriveAbsolute(filepath, cmdOutput: str = None, resolveNames: bool = True):
     """Replaces the drive letter of the given path by the respective network path, if possible."""
     if filepath.drive.startswith(r"\\"):
         return  # it's a UNC path already
     if isWindows():
-        drivemap = networkdriveMapping(cmdOutput=cmdOutput)
+        drivemap = networkdriveMapping(cmdOutput=cmdOutput, resolveNames=resolveNames)
         prefix = drivemap.get(filepath.drive, None)
         if prefix is not None:
             filepath = Path(prefix).joinpath(*filepath.parts[1:])
     else:  # Linux or macOS
-        drivemap = networkdriveMapping(cmdOutput=cmdOutput)
+        drivemap = networkdriveMapping(cmdOutput=cmdOutput, resolveNames=resolveNames)
         # search for the mountpoint, starting with the longest, most specific, first
         for mp, target in sorted(drivemap.items(), key=lambda tup: len(tup[0]), reverse=True):
             if filepath.is_relative_to(mp):
