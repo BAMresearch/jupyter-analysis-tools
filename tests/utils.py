@@ -91,8 +91,6 @@ def test_networkdriveMapping():
             "T:": "\\\\test\\foldername",
         }
     else:  # Linux or macOS
-        print(outMount)
-        assert False
         map = networkdriveMapping(cmdOutput=outMount)
         assert map == {
             "/mnt/gh 12": "//xyz04.fgsd.asd.com/G2S/GH31",
