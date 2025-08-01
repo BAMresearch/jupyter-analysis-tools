@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.4.2 (2025-08-01)
+
+### Bug fixes
+
+* **utils**: makeNetworkdriveAbsolute() with FQDN resolution ([`f4591fb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f4591fb46dcfeafbb1f63c4323efbb8aea302a92))
+
 ## v1.4.1 (2025-08-01)
 
 ### Bug fixes
