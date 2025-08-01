@@ -28,6 +28,25 @@ OK                     \\psi\folder              Microsoft Windows Network
 Der Befehl wurde erfolgreich ausgeführt.
 """
 
+# sample output of 'mount' command on Linux
+outMount = (
+    "sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)\n"
+    "proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)\n"
+    "tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=13148680k,mode=755,inode64)\n"
+    "//abc02.def.ault.de/X23/somename on /mnt/some (ugly) on type name type cifs "
+    "(rw,nosuid,nodev,relatime,vers=3.0,cache=strict,upcall_target=app,username=dhdhfh,"
+    "uid=1000,forceuid,gid=1000,forcegid,addr=10.0.1.2,file_mode=0660,dir_mode=0770,soft,nounix,"
+    "mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,"
+    "closetimeo=1)\n"
+    "udev on /dev type devtmpfs (rw,nosuid,relatime,size=65700820k,nr_inodes=16425205,mode=755,"
+    "inode64)\n"
+    "//xyz04.fgsd.asd.com/G2S/GH31 on /mnt/gh 12 type cifs (rw,nosuid,nodev,relatime,vers=3.0,"
+    "cache=strict,upcall_target=app,username=dhdhfh,uid=1000,forceuid,gid=1000,forcegid,"
+    "addr=10.6.1.5,file_mode=0660,dir_mode=0770,soft,nounix,mapposix,rsize=4194304,wsize=4194304,"
+    "bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\n"
+    "devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)"
+)
+
 
 def test_appendToPATH(capsys):
     # Setting up a PATH for testing first (platform dependent).
@@ -71,6 +90,14 @@ def test_networkdriveMapping():
             "M:": "\\\\user\\drive\\uname",
             "T:": "\\\\test\\foldername",
         }
+    else:  # Linux or macOS
+        print(outMount)
+        assert False
+        map = networkdriveMapping(cmdOutput=outMount)
+        assert map == {
+            "/mnt/gh 12": "//xyz04.fgsd.asd.com/G2S/GH31",
+            "/mnt/some (ugly) on type name": "//abc02.def.ault.de/X23/somename",
+        }
 
 
 def test_makeNetworkdriveAbsolute():
@@ -79,6 +106,11 @@ def test_makeNetworkdriveAbsolute():
         newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outNetUse)
         assert filepath != newpath
         assert newpath == Path(r"\\user\drive\uname\some\folders\a file name.ext")
+    else:  # Linux or macOS
+        filepath = Path("/mnt/some (ugly) on type name/some/folders/a file name.ext")
+        newpath = makeNetworkdriveAbsolute(filepath, cmdOutput=outMount)
+        assert filepath != newpath
+        assert newpath == Path("//abc02.def.ault.de/X23/somename/some/folders/a file name.ext")
 
 
 def test_naturalKey():

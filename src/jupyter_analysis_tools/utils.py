@@ -117,16 +117,47 @@ def networkdriveMapping(cmdOutput: str = None):
             [row[1:3] for row in rows if row[1].endswith(":") and row[2].startswith("\\\\")]
         )
         return rows
+    else:  # Linux (tested) or macOS (untested)
+        if cmdOutput is None:
+            proc = subprocess.run(["mount"], capture_output=True, text=True)
+            cmdOutput = proc.stdout
+
+        def parse(line):
+            # position of last opening parenthesis, start of options list
+            lastParen = list(i for i, c in enumerate(line) if "(" == c)[-1]
+            line = line[:lastParen].strip()
+            spaces = list(i for i, c in enumerate(line) if " " == c)
+            fstype = line[spaces[-1] :].strip()  # last remaining word is the filesystem type
+            line = line[: spaces[-2]].strip()  # strip the 'type' indicator as well
+            sepIdx = line.find(" on /")  # separates destination from mount point
+            dest = line[:sepIdx].strip()
+            mountpoint = line[sepIdx + 4 :].strip()
+            yield (mountpoint, dest, fstype)
+
+        return {
+            mp: dst
+            for line in cmdOutput.strip().splitlines()
+            for (mp, dst, fstype) in parse(line)
+            if fstype in ("nfs", "cifs", "sshfs", "afs", "ext4")
+        }
     return {}
 
 
 def makeNetworkdriveAbsolute(filepath, cmdOutput: str = None):
     """Replaces the drive letter of the given path by the respective network path, if possible."""
-    if isWindows() and not filepath.drive.startswith(r"\\"):
+    if filepath.drive.startswith(r"\\"):
+        return  # it's a UNC path already
+    if isWindows():
         drivemap = networkdriveMapping(cmdOutput=cmdOutput)
         prefix = drivemap.get(filepath.drive, None)
         if prefix is not None:
             filepath = Path(prefix).joinpath(*filepath.parts[1:])
+    else:  # Linux or macOS
+        drivemap = networkdriveMapping(cmdOutput=cmdOutput)
+        # search for the mountpoint, starting with the longest, most specific, first
+        for mp, target in sorted(drivemap.items(), key=lambda tup: len(tup[0]), reverse=True):
+            if filepath.is_relative_to(mp):
+                return Path(target).joinpath(filepath.relative_to(mp))
     return filepath
 
 
@@ -152,7 +183,7 @@ def extract7z(fn, workdir=None):
     assert os.path.isfile(os.path.join(workdir, fn)), "Provided 7z archive '{}' not found!".format(
         fn
     )
-    print(f"Extracting '{fn}':")
+    print(f"Extracting '{fn}': ")
     proc = subprocess.run(
         ["7z", "x", fn],
         cwd=workdir,
@@ -185,7 +216,7 @@ def setPackage(globalsdict):
         sys.path.insert(0, searchpath)
     globalsdict["__package__"] = path.name
     globalsdict["__name__"] = path.name
-    print(f"Setting the current directory as package '{path.name}':\n  {path}.")
+    print(f"Setting the current directory as package '{path.name}': \n  {path}.")
 
 
 def grouper(iterable, n, fillvalue=None):
