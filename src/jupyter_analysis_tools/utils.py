@@ -154,7 +154,7 @@ def networkdriveMapping(cmdOutput: str = None, resolveNames: bool = True):
 def makeNetworkdriveAbsolute(filepath, cmdOutput: str = None, resolveNames: bool = True):
     """Replaces the drive letter of the given path by the respective network path, if possible."""
     if filepath.drive.startswith(r"\\"):
-        return  # it's a UNC path already
+        return filepath  # it's a UNC path already
     if isWindows():
         drivemap = networkdriveMapping(cmdOutput=cmdOutput, resolveNames=resolveNames)
         prefix = drivemap.get(filepath.drive, None)
