@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>jupyter_analysis_tools.utils - Jupyter Analysis Tools 1.4.1 documentation</title>
+        <title>jupyter_analysis_tools.utils - Jupyter Analysis Tools 1.4.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.4.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.4.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.4.1 documentation</span>
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.4.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -198,7 +198,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.4.1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.4.3)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../reference/index.html">Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -455,16 +455,32 @@
 
 <div class="viewcode-block" id="networkdriveMapping">
 <a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.utils.networkdriveMapping.html#jupyter_analysis_tools.utils.networkdriveMapping">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">resolveNames</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a dict of mapping drive letters to network paths (on Windows).&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">isWindows</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">cmdOutput</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;net&quot;</span><span class="p">,</span> <span class="s2">&quot;use&quot;</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;cp850&quot;</span><span class="p">)</span>
             <span class="n">cmdOutput</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">resolveFQDN</span><span class="p">(</span><span class="n">uncPath</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">resolveNames</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">uncPath</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">uncPath</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="p">[</span><span class="s2">&quot;nslookup&quot;</span><span class="p">,</span> <span class="n">parts</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;cp850&quot;</span>
+            <span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Name:&quot;</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">parts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+
         <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">cmdOutput</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;Windows Network&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span>
-        <span class="n">rows</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span><span class="p">)]</span>
-        <span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">resolveFQDN</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span>
+            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
         <span class="k">return</span> <span class="n">rows</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># Linux (tested) or macOS (untested)</span>
         <span class="k">if</span> <span class="n">cmdOutput</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -495,17 +511,17 @@
 
 <div class="viewcode-block" id="makeNetworkdriveAbsolute">
 <a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.utils.makeNetworkdriveAbsolute.html#jupyter_analysis_tools.utils.makeNetworkdriveAbsolute">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">makeNetworkdriveAbsolute</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">cmdOutput</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">makeNetworkdriveAbsolute</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">cmdOutput</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">resolveNames</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Replaces the drive letter of the given path by the respective network path, if possible.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">drive</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">):</span>
-        <span class="k">return</span>  <span class="c1"># it&#39;s a UNC path already</span>
+        <span class="k">return</span> <span class="n">filepath</span>  <span class="c1"># it&#39;s a UNC path already</span>
     <span class="k">if</span> <span class="n">isWindows</span><span class="p">():</span>
-        <span class="n">drivemap</span> <span class="o">=</span> <span class="n">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="o">=</span><span class="n">cmdOutput</span><span class="p">)</span>
+        <span class="n">drivemap</span> <span class="o">=</span> <span class="n">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="o">=</span><span class="n">cmdOutput</span><span class="p">,</span> <span class="n">resolveNames</span><span class="o">=</span><span class="n">resolveNames</span><span class="p">)</span>
         <span class="n">prefix</span> <span class="o">=</span> <span class="n">drivemap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">drive</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">filepath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="o">*</span><span class="n">filepath</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># Linux or macOS</span>
-        <span class="n">drivemap</span> <span class="o">=</span> <span class="n">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="o">=</span><span class="n">cmdOutput</span><span class="p">)</span>
+        <span class="n">drivemap</span> <span class="o">=</span> <span class="n">networkdriveMapping</span><span class="p">(</span><span class="n">cmdOutput</span><span class="o">=</span><span class="n">cmdOutput</span><span class="p">,</span> <span class="n">resolveNames</span><span class="o">=</span><span class="n">resolveNames</span><span class="p">)</span>
         <span class="c1"># search for the mountpoint, starting with the longest, most specific, first</span>
         <span class="k">for</span> <span class="n">mp</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">drivemap</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">tup</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">is_relative_to</span><span class="p">(</span><span class="n">mp</span><span class="p">):</span>
@@ -639,7 +655,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on Aug 01, 2025 (git 18a8e34)</div>
+              Last updated on Aug 01, 2025 (git b23f195)</div>
           </div>
           <div class="right-details">
             
@@ -654,7 +670,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=350a9c04"></script>
+</div><script src="../../_static/documentation_options.js?v=a68a9277"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
