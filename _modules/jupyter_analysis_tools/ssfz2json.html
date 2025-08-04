@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>jupyter_analysis_tools.datalocations - Jupyter Analysis Tools 1.5.0 documentation</title>
+        <title>jupyter_analysis_tools.ssfz2json - Jupyter Analysis Tools 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
@@ -324,150 +324,79 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <h1>Source code for jupyter_analysis_tools.datalocations</h1><div class="highlight"><pre>
+          <h1>Source code for jupyter_analysis_tools.ssfz2json</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="c1"># datalocations.py</span>
+<span class="c1"># ssfz2json.py</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">indent</span><span class="p">,</span> <span class="n">isList</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jupyter_analysis_tools.readdata</span><span class="w"> </span><span class="kn">import</span> <span class="n">readSSFZ</span>
 
 
-<div class="viewcode-block" id="getWorkDir">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getWorkDir.html#jupyter_analysis_tools.datalocations.getWorkDir">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">getWorkDir</span><span class="p">(</span><span class="n">workDir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find a local work dir for temporary files, created during analysis.</span>
-<span class="sd">    The default is *$HOME/data*.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>  <span class="c1"># stay in the current directory if desired</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">workDir</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">workDir</span><span class="p">):</span>
-        <span class="n">workDir</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">workDir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">workDir</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">workDir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">workDir</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using &#39;</span><span class="si">{}</span><span class="s2">&#39; as working directory.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workDir</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">workDir</span></div>
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.ssfz2json.main.html#jupyter_analysis_tools.ssfz2json.main">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Reads and parses a .SSFZ file created by Anton Paar SAXSquant software and writes them</span>
+<span class="s2">            back to disk as .JSON file under the same base name if no other output name was given.</span>
 
+<span class="s2">            If two .SSFZ files are provided, a diff-like comparison of metadata is output and the</span>
+<span class="s2">            *outPath* argument is ignored.</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-i&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--inPath&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path of the input .SSFZ file to read.&quot;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--comparePath&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path of a 2nd .SSFZ file to compare its metadata against the 1st one.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-o&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--outPath&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file Path to write the JSON data to.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">json_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Provided file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="si">}</span><span class="s2">&#39; not found!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">in_data</span> <span class="o">=</span> <span class="n">readSSFZ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">comparePath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">difflib</span>
 
-
-<div class="viewcode-block" id="prepareWorkDir">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.prepareWorkDir.html#jupyter_analysis_tools.datalocations.prepareWorkDir">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">prepareWorkDir</span><span class="p">(</span><span class="n">workDir</span><span class="p">,</span> <span class="n">srcDir</span><span class="p">,</span> <span class="n">useExisting</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a temporary working directory and copy</span>
-<span class="sd">    the input data (series) to it if not already present.&quot;&quot;&quot;</span>
-    <span class="c1"># source dir has to exist</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">srcDir</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Provided source directory &#39;</span><span class="si">{}</span><span class="s2">&#39; not found!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">srcDir</span><span class="p">))</span>
-    <span class="n">srcDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">srcDir</span><span class="p">)</span>
-    <span class="c1"># no separate work dir requested?</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">samefile</span><span class="p">(</span><span class="n">workDir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Working in current directory &#39;</span><span class="si">{}</span><span class="s2">&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()))</span>
-        <span class="k">return</span> <span class="n">srcDir</span>  <span class="c1"># nothing to do</span>
-    <span class="n">prefix</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">srcDir</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
-    <span class="k">if</span> <span class="n">useExisting</span><span class="p">:</span>  <span class="c1"># use an existing work dir, avoid copying</span>
-        <span class="n">dirs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workDir</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span><span class="p">))</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dirs</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">dirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># use the first match</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No existing work dir found, creating a new one.&quot;</span><span class="p">)</span>
-    <span class="c1"># copy all data from src dir to a newly created work dir</span>
-    <span class="n">workDir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">workDir</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Copying data to </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workDir</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">srcDir</span><span class="p">):</span>
-        <span class="n">srcPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">srcDir</span><span class="p">,</span> <span class="n">dn</span><span class="p">)</span>
-        <span class="n">dstPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workDir</span><span class="p">,</span> <span class="n">dn</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">srcPath</span><span class="p">):</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">srcPath</span><span class="p">,</span> <span class="n">dstPath</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="n">dn</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">srcPath</span><span class="p">):</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">srcPath</span><span class="p">,</span> <span class="n">dstPath</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="n">dn</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done preparing work dir.&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">workDir</span></div>
-
-
-
-<div class="viewcode-block" id="printFileList">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.printFileList.html#jupyter_analysis_tools.datalocations.printFileList">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">printFileList</span><span class="p">(</span><span class="n">fnlst</span><span class="p">,</span> <span class="n">numParts</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">printlst</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">shorten</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">Path</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="n">numParts</span><span class="p">:])</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fnlst</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
-        <span class="n">printlst</span><span class="p">(</span><span class="n">shorten</span><span class="p">(</span><span class="n">fnlst</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="s2">&quot;[...]&quot;</span><span class="p">)</span>
-        <span class="n">printlst</span><span class="p">(</span><span class="n">shorten</span><span class="p">(</span><span class="n">fnlst</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">printlst</span><span class="p">(</span><span class="n">shorten</span><span class="p">(</span><span class="n">fnlst</span><span class="p">))</span></div>
+        <span class="n">comp_data</span> <span class="o">=</span> <span class="n">readSSFZ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">comparePath</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">unified_diff</span><span class="p">(</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">in_data</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">comp_data</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">fromfile</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="p">),</span>
+            <span class="n">tofile</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">comparePath</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># just write JSON to outPath</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">outPath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">outPath</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">inPath</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outPath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">in_data</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrote &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">outPath</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span></div>
 
 
 
-<div class="viewcode-block" id="getDataDirs">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getDataDirs.html#jupyter_analysis_tools.datalocations.getDataDirs">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">getDataDirs</span><span class="p">(</span><span class="n">dataDir</span><span class="p">,</span> <span class="n">noWorkDir</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reuseWorkDir</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">workDir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a local work dir with a copy of the input data and for storing the results.</span>
-<span class="sd">    (Data might reside in synced folders which creates massive traffic once batch processing</span>
-<span class="sd">    results get replaced repeately.)</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    noWorkDir: bool</span>
-<span class="sd">        False: Copy input data to a new working dir (default),</span>
-<span class="sd">        True: otherwise, use data where it is.</span>
-<span class="sd">    reuseWorkDir: bool</span>
-<span class="sd">        False: Create a new working dir each time,</span>
-<span class="sd">        True: reuse the work dir if it exists already (default).</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    A list of absolute directory paths.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">basedir</span> <span class="o">=</span> <span class="n">getWorkDir</span><span class="p">(</span><span class="n">workDir</span><span class="o">=</span><span class="n">workDir</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">noWorkDir</span><span class="p">)</span>
-    <span class="n">workDir</span> <span class="o">=</span> <span class="n">prepareWorkDir</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="n">dataDir</span><span class="p">,</span> <span class="n">useExisting</span><span class="o">=</span><span class="n">reuseWorkDir</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entering &#39;</span><span class="si">{}</span><span class="s2">&#39;:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workDir</span><span class="p">))</span>
-    <span class="n">dirs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">dn</span> <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">workDir</span><span class="p">)</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">dn</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()])</span>
-    <span class="n">dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">workDir</span><span class="p">))</span>
-    <span class="c1"># [print(os.path.join(*dn.parts[-2:])) for dn in dirs]</span>
-    <span class="n">printFileList</span><span class="p">(</span><span class="n">dirs</span><span class="p">,</span> <span class="n">numParts</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dirs</span></div>
-
-
-
-<div class="viewcode-block" id="getDataFiles">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datalocations.getDataFiles.html#jupyter_analysis_tools.datalocations.getDataFiles">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">getDataFiles</span><span class="p">(</span><span class="n">dataDirs</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return absolute file paths from given directories.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">getFiles</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">include</span><span class="p">:</span>
-            <span class="n">include</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">isList</span><span class="p">(</span><span class="n">include</span><span class="p">):</span>
-            <span class="n">include</span> <span class="o">=</span> <span class="p">(</span><span class="n">include</span><span class="p">,)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">path</span> <span class="k">for</span> <span class="n">inc</span> <span class="ow">in</span> <span class="n">include</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">inc</span><span class="p">))]</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">isList</span><span class="p">(</span><span class="n">exclude</span><span class="p">):</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">(</span><span class="n">exclude</span><span class="p">,)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">isList</span><span class="p">(</span><span class="n">dataDirs</span><span class="p">):</span>
-        <span class="n">dataDirs</span> <span class="o">=</span> <span class="p">(</span><span class="n">dataDirs</span><span class="p">,)</span>
-
-    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">fn</span>
-        <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="n">dataDirs</span>
-        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">getFiles</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">include</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([(</span><span class="n">ex</span> <span class="ow">in</span> <span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">])</span>
-    <span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> files to be analyzed in subdirectories.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)))</span>
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">files</span><span class="p">)</span></div>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
         </article>
       </div>

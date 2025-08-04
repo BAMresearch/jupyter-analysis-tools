@@ -1,0 +1,6 @@
+jupyter\_analysis\_tools.ssfz2json.main
+=======================================
+
+.. currentmodule:: jupyter_analysis_tools.ssfz2json
+
+.. autofunction:: main

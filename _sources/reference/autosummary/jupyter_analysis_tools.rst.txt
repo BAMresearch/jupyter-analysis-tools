@@ -35,6 +35,7 @@
    git
    plotting
    readdata
+   ssfz2json
    utils
    widgets
 
