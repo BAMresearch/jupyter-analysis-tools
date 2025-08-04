@@ -36,6 +36,7 @@
    plotting
    readdata
    ssfz2json
+   ssfz_compare
    utils
    widgets
 

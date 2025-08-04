@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>jupyter_analysis_tools.ssfz2json - Jupyter Analysis Tools 1.5.1 documentation</title>
+        <title>jupyter_analysis_tools.ssfz_compare - Jupyter Analysis Tools 1.5.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
@@ -328,11 +328,12 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <h1>Source code for jupyter_analysis_tools.ssfz2json</h1><div class="highlight"><pre>
+          <h1>Source code for jupyter_analysis_tools.ssfz_compare</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># ssfz2json.py</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">difflib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
@@ -341,48 +342,44 @@
 
 
 <div class="viewcode-block" id="main">
-<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.ssfz2json.main.html#jupyter_analysis_tools.ssfz2json.main">[docs]</a>
+<a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.ssfz_compare.main.html#jupyter_analysis_tools.ssfz_compare.main">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Reads and parses the embedded metadata of a .SSFZ file created by Anton Paar SAXSquant</span>
-<span class="s2">            software, converts it to JSON format and outputs it to &lt;stdout&gt;.</span>
-<span class="s2">            An output file path for the JSON data can be provided by optional argument.</span>
+<span class="s2">            Reads and parses the embedded metadata of two .SSFZ files created by Anton Paar</span>
+<span class="s2">            SAXSquant software, converts them to JSON format and performs a diff-like comparison</span>
+<span class="s2">            which is output on &lt;stdout&gt;.</span>
 <span class="s2">            &quot;&quot;&quot;</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;ssfzPath&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fromfile&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path of the input .SSFZ file to read.&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path of the first .SSFZ file to compare.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-o&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;--out&quot;</span><span class="p">,</span>
-        <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Output file path to write the JSON data to. If the filename is omitted, &quot;</span>
-            <span class="s2">&quot;it is derived from the input file name by adding the .json suffix.&quot;</span>
-        <span class="p">),</span>
+        <span class="s2">&quot;tofile&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path of the second .SSFZ file to compare to.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">json_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
     <span class="c1"># print(args)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">ssfzPath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Provided file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">ssfzPath</span><span class="si">}</span><span class="s2">&#39; not found!&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">fromfile</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Provided file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">fromfile</span><span class="si">}</span><span class="s2">&#39; not found!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">1</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">readSSFZ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ssfzPath</span><span class="p">)</span>
-    <span class="n">json_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">out</span> <span class="o">==</span> <span class="s2">&quot;stdout&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">args</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">ssfzPath</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ssfzPath</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Directory of provided output file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">&#39; does not exist!&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrote &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">tofile</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Provided file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">tofile</span><span class="si">}</span><span class="s2">&#39; not found!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">olddata</span> <span class="o">=</span> <span class="n">readSSFZ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fromfile</span><span class="p">)</span>
+    <span class="n">newdata</span> <span class="o">=</span> <span class="n">readSSFZ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">tofile</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">unified_diff</span><span class="p">(</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">olddata</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">newdata</span><span class="p">,</span> <span class="o">**</span><span class="n">json_args</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">fromfile</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fromfile</span><span class="p">),</span>
+        <span class="n">tofile</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">tofile</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">diff</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">0</span></div>
 
 
