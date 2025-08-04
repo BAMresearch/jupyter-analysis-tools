@@ -42,7 +42,7 @@ repository = "https://github.com/BAMresearch/jupyter-analysis-tools"
 changelog = "https://BAMresearch.github.io/jupyter-analysis-tools/changelog.html"
 
 [project.scripts]
-readSSFZ = "jupyter_analysis_tools.readSSFZ:main"
+ssfz2json = "jupyter_analysis_tools.ssfz2json:main"
 
 [build-system]
 requires = [

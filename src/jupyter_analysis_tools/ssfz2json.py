@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# readSSFZ.py
+# ssfz2json.py
 
 import argparse
 import json
