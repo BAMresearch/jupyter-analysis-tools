@@ -43,6 +43,7 @@ changelog = "https://BAMresearch.github.io/jupyter-analysis-tools/changelog.html
 
 [project.scripts]
 ssfz2json = "jupyter_analysis_tools.ssfz2json:main"
+ssfz-compare = "jupyter_analysis_tools.ssfz_compare:main"
 
 [build-system]
 requires = [

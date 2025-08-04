@@ -12,56 +12,44 @@ from jupyter_analysis_tools.readdata import readSSFZ
 def main():
     parser = argparse.ArgumentParser(
         description="""
-            Reads and parses a .SSFZ file created by Anton Paar SAXSquant software and writes them
-            back to disk as .JSON file under the same base name if no other output name was given.
-
-            If two .SSFZ files are provided, a diff-like comparison of metadata is output and the
-            *outPath* argument is ignored.
+            Reads and parses the embedded metadata of a .SSFZ file created by Anton Paar SAXSquant
+            software, converts it to JSON format and outputs it to <stdout>.
+            An output file path for the JSON data can be provided by optional argument.
             """
     )
     parser.add_argument(
-        "-i",
-        "--inPath",
+        "ssfzPath",
         type=lambda p: Path(p).absolute(),
         help="Path of the input .SSFZ file to read.",
-        required=True,
-    )
-    parser.add_argument(
-        "-c",
-        "--comparePath",
-        type=lambda p: Path(p).absolute(),
-        help="Path of a 2nd .SSFZ file to compare its metadata against the 1st one.",
     )
     parser.add_argument(
         "-o",
-        "--outPath",
-        type=lambda p: Path(p).absolute(),
-        help="Output file Path to write the JSON data to.",
+        "--out",
+        nargs="?",
+        default="stdout",
+        help=(
+            "Output file path to write the JSON data to. If the filename is omitted, "
+            "it is derived from the input file name by adding the .json suffix."
+        ),
     )
-    json_args = dict(sort_keys=True, indent=2)
     args = parser.parse_args()
-    if not args.inPath.is_file():
-        print(f"Provided file '{args.inPath}' not found!")
+    # print(args)
+    if not args.ssfzPath.is_file():
+        print(f"Provided file '{args.ssfzPath}' not found!")
         return 1
-    in_data = readSSFZ(args.inPath)
-    if args.comparePath is not None:
-        import difflib
-
-        comp_data = readSSFZ(args.comparePath)
-        diff = difflib.unified_diff(
-            json.dumps(in_data, **json_args).splitlines(keepends=True),
-            json.dumps(comp_data, **json_args).splitlines(keepends=True),
-            fromfile=str(args.inPath),
-            tofile=str(args.comparePath),
-        )
-        for line in diff:
-            print(line, end="")
-    else:  # just write JSON to outPath
-        if args.outPath is None:
-            args.outPath = args.inPath.with_suffix(args.inPath.suffix + ".json")
-        with open(args.outPath, "w") as fd:
-            json.dump(in_data, fd, **json_args)
-        print(f"Wrote '{args.outPath}'.")
+    data = readSSFZ(args.ssfzPath)
+    json_args = dict(sort_keys=True, indent=2)
+    if args.out == "stdout":
+        print(json.dumps(data, **json_args))
+    else:
+        if args.out is None:
+            args.out = args.ssfzPath.with_suffix(args.ssfzPath.suffix + ".json")
+        if not Path(args.out).parent.is_dir():
+            print(f"Directory of provided output file '{args.out}' does not exist!")
+            return 1
+        with open(args.out, "w") as fd:
+            json.dump(data, fd, **json_args)
+        print(f"Wrote '{args.out}'.")
     return 0
 
 
