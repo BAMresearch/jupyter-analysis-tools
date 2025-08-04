@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.5.1 (2025-08-04)
+
+### Bug fixes
+
+* **readSSFZ**: split in two: ssfz2json for converting, ssfz_compare for diff-like compare ([`e8b24fe`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/e8b24fe796430bb4b09fa23dcd204e6162051f79))
+
 ## v1.5.0 (2025-08-04)
 
 ### Bug fixes
