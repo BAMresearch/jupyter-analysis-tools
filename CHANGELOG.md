@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v1.5.0 (2025-08-04)
+
+### Bug fixes
+
+* **readSSFZ**: rename command readSSFZ -> ssfz2json for avoiding name collision with function in readdata module ([`dde1d10`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dde1d109b70de0cd0cb712cfc4f19a3be2cbd880))
+
+### Features
+
+* **readdata**: jupyter_analysis_tools.readSSFZ cmdline tool to convert .SSFZ to .JSON and diff-compare .SSFZ files (their metadata) ([`46dc633`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/46dc6338052a9dd875326d2a38cc5b6621439270))
+
+### Refactoring
+
+* **utils**: formatting ([`b23f195`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/b23f1957149a9ae77a28f330eba3249d3fe3d2e5))
+
 ## v1.4.3 (2025-08-01)
 
 ### Bug fixes
