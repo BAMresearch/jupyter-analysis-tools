@@ -128,7 +128,7 @@ class DataStore:
             )
             warnings.warn_explicit(msg, UserWarning, prefix, 0)
         else:  # does not exist yet
-            objName = f" '{props["$name"]}'" if len(props.get("$name", "")) else ""
+            objName = f" '{props['$name']}'" if len(props.get("$name", "")) else ""
             print(f"Creating new {objType}{objName} in {dsColl.identifier}")
             obj = self.ds.new_object(type=objType, props=props, collection=dsColl)
         obj.set_props(props)
