@@ -123,12 +123,12 @@ class DataStore:
         if collectionName is None:  # collectionName is required
             return None
         dsColl = self.createCollection(collectionName, dsProject, defaultObjType=objType)
-        obj = None
         obj = self.ds.get_objects(type=objType, where={"$name": props["$name"]}).objects
         if len(obj):
+            obj = obj[0]
             prefix = objType
             msg = "'{}' exists already in {}! Updating ...".format(
-                obj[0].props["$name"], obj[0].project.identifier
+                obj.props["$name"], obj.project.identifier
             )
             warnings.warn_explicit(msg, UserWarning, prefix, 0)
         else:  # does not exist yet
