@@ -16,6 +16,7 @@ class DataStore:
     _userspace = None
 
     def __init__(self, url, username=None):
+        self.url = url
         self.username = username
         if self.username is None:
             self.username = getpass.getuser()
