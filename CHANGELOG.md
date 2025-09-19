@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.6.1 (2025-09-19)
+
+### Bug fixes
+
+* **DataStore**: regression of handling of existing objects ([`28bd44c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/28bd44cf019aea0203ad252fd434860f45a1e54a))
+
+* **DataStore**: proper forwarding of spacePrefix for filtering relevant spaces ([`c4117f3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c4117f3b04b9f6237f6d8471bef2d76c379e6f11))
+
+* **DataStore**: use the URL provided by constructor ([`fcc46fb`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/fcc46fb941006b489054dc492f433e62d77cb605))
+
 ## v1.6.0 (2025-09-19)
 
 ### Bug fixes
