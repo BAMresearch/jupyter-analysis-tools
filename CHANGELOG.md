@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.6.0 (2025-09-19)
+
+### Bug fixes
+
+* **DataStore**: f-string syntax ([`9166382`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/916638264be58e75fdfba15d9c6a6584ace92199))
+
+* **Tests**: pybis module required for collecting in new datastore module ([`ea6a21d`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ea6a21df3656dcc5f926aa7ff67a7136806ded3b))
+
+### Features
+
+* **DataStore**: new module for managing objects in OpenBIS ([`cdf0a27`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/cdf0a27c0ae1412acd5329532ec8ec1fa7e6be94))
+
 ## v1.5.1 (2025-08-04)
 
 ### Bug fixes
