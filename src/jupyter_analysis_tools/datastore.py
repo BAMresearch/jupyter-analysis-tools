@@ -113,7 +113,7 @@ class DataStore:
         self,
         projectName: str,
         collectionName: str = None,
-        space:str = None,
+        space: str = None,
         spacePrefix: str = None,
         objType: str = None,
         props: dict = None,
