@@ -53,13 +53,15 @@ class DataStore:
     def identifier(objects, code):
         return objects[objects.code == code].identifier.tolist()[0]
 
-    def createProject(self, projectName, space, space_prefix=None):
-        """Finds the requested project in the DataStore. If it does not exist,
-        creates a new project with the given code in the given space."""
+    def createProject(self, projectName, space, spacePrefix=None):
+        """Finds the requested project in the DataStore.
+        Matching project names can be limited to a given *spacePrefix*.
+        If the project is not found, a new project with the given code in the given space
+        is created."""
         # get available projects, accessible by the current user
         projectsAvail = self.ds.get_projects()
-        if space_prefix:
-            projectsAvail = [prj for prj in projectsAvail if f"/{space_prefix}_" in prj.identifier]
+        if spacePrefix:
+            projectsAvail = [prj for prj in projectsAvail if f"/{spacePrefix}_" in prj.identifier]
         projects = [prj for prj in projectsAvail if prj.code == projectName]
         assert len(projects) <= 1, f"Multiple projects found for '{projectName}'"
         dsProject = None
@@ -109,13 +111,14 @@ class DataStore:
 
     def createObject(
         self,
-        projectName,
+        projectName: str,
         collectionName: str = None,
-        space=None,
+        space:str = None,
+        spacePrefix: str = None,
         objType: str = None,
         props: dict = None,
     ):
-        dsProject = self.createProject(projectName, space)
+        dsProject = self.createProject(projectName, space, spacePrefix=spacePrefix)
         dsColl = None
         if collectionName is None:  # collectionName is required
             return None
