@@ -24,7 +24,7 @@ classifiers = [
   "Intended Audience :: Science/Research",
 ]
 dependencies = [
-  "numpy", "scipy", "pandas", "matplotlib", "ipywidgets"
+  "numpy", "scipy", "pandas", "matplotlib", "ipywidgets", "pybis"
 ]
 
 [[project.authors]]
