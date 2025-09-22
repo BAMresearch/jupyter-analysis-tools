@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.6.2 (2025-09-22)
+
+### Bug fixes
+
+* **Project**: add pybis dependency, for datastore module ([`80350c7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/80350c7e3f662dd8fa52bbbf46c66104407d930a))
+
+### Code style
+
+* **DataStore**: formatting ([`5afbd91`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/5afbd91080cabe4dea23102a7c9248dc2bee1af4))
+
 ## v1.6.1 (2025-09-19)
 
 ### Bug fixes

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 
-__version__ = "1.6.1"
+__version__ = "1.6.2"
 
 from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
