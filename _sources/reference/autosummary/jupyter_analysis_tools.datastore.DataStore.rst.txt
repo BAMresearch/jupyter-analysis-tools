@@ -1,0 +1,38 @@
+jupyter\_analysis\_tools.datastore.DataStore
+============================================
+
+.. currentmodule:: jupyter_analysis_tools.datastore
+
+.. autoclass:: DataStore
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataStore.__init__
+      ~DataStore.createCollection
+      ~DataStore.createObject
+      ~DataStore.createProject
+      ~DataStore.findObjects
+      ~DataStore.identifier
+      ~DataStore.uploadDataset
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataStore.url
+      ~DataStore.userspace
+   
+   
