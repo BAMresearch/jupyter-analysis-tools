@@ -53,7 +53,7 @@ jobs:
         run: tox -e docs -v
 
       - name: Upload docs for finalization later
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: docs
           path: dist/docs
