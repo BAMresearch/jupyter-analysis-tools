@@ -11,7 +11,7 @@ jobs:
     steps:
 
       - name: Checking out the repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: main
@@ -30,6 +30,7 @@ jobs:
           PLATFORM="$(echo "$RUNNER_OS" | tr '[:upper:]' '[:lower:]')"
           REQFN="ci/requirements_$PLATFORM.txt"
           if [ "$PLATFORM" = "linux" ] && [ -f "$REQFN" ]; then
+            sudo apt-get update  # update package DB, to avoid outdated lists
             sudo apt-get -y install $(sed -e '/^\s*#/d' "$REQFN")
           elif [ "$PLATFORM" = "windows" ] && [ -f "$REQFN" ]; then
             choco install $(sed -e '/^\s*#/d' "$REQFN")
@@ -44,16 +45,12 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --progress-bar=off -r ci/requirements.txt
 
-      - name: Check
-        shell: sh
-        run: tox -e check -v
-
       - name: Generate documentation
         shell: sh
         run: tox -e docs -v
 
       - name: Upload docs for finalization later
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: docs
           path: dist/docs

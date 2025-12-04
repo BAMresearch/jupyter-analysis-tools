@@ -29,7 +29,7 @@ jobs:
     steps:
 
       - name: Checking out the repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: main
@@ -50,6 +50,7 @@ jobs:
           PLATFORM="$(echo "$RUNNER_OS" | tr '[:upper:]' '[:lower:]')"
           REQFN="ci/requirements_$PLATFORM.txt"
           if [ "$PLATFORM" = "linux" ] && [ -f "$REQFN" ]; then
+            sudo apt-get update  # update package DB, to avoid outdated lists
             sudo apt-get -y install $(sed -e '/^\s*#/d' "$REQFN")
           elif [ "$PLATFORM" = "windows" ] && [ -f "$REQFN" ]; then
             choco install $(sed -e '/^\s*#/d' "$REQFN")
@@ -73,6 +74,10 @@ jobs:
           tox --version
           pip list --format=freeze
 
+      - name: Check
+        shell: sh
+        run: tox -e check -v
+
       - name: Run tests
         shell: sh
         run: |
@@ -84,7 +89,7 @@ jobs:
         run: mv .coverage coverage.${{ env.TOX_ENV }}.${{ matrix.os }}
 
       - name: Upload coverage data for next step
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage.${{ env.TOX_ENV }}.${{ matrix.os }}
           path: coverage.*

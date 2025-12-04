@@ -14,7 +14,7 @@ jobs:
     steps:
 
       - name: Checking out the repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: main
 
@@ -37,7 +37,7 @@ jobs:
         run: tox -e build -v
 
       - name: Upload packages for publishing job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: packages-${{ matrix.os }}
           path: |

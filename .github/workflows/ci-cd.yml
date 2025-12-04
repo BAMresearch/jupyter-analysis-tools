@@ -42,7 +42,7 @@ jobs:
     steps:
 
       - name: Checking out the repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: main
 
@@ -54,7 +54,7 @@ jobs:
           python -m pip install --progress-bar=off -r ci/requirements.txt
 
       - name: Download package artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           pattern: packages-*
           merge-multiple: true
@@ -62,3 +62,5 @@ jobs:
 
       - name: Publish package distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          verbose: true
