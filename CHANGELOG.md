@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.6.3 (2025-12-04)
+
+### Bug fixes
+
+* **GitHub Workflow**: maintenance updates ([`59ea72b`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/59ea72b0317d1e696871789bb1f7d585bc29e4c0))
+
 ## v1.6.2 (2025-09-22)
 
 ### Bug fixes
