@@ -12,10 +12,11 @@ from pybis import Openbis
 
 class DataStore:
     url = None
+    token = None
     _availObj = None
     _userspace = None
 
-    def __init__(self, url, username=None):
+    def __init__(self, url, username=None, tokenValidTo=None):
         self.url = url
         self.username = username
         if self.username is None:
@@ -30,7 +31,7 @@ class DataStore:
             save_token=False,
         )
         # create the PAT with the given name, don't store it
-        self.ds.get_or_create_personal_access_token("test-session")
+        self.token = self.ds.get_or_create_personal_access_token("test-session", validTo=tokenValidTo)
 
     @property
     def userspace(self):
