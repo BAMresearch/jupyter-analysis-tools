@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.7.0 (2025-12-11)
+
+### Code style
+
+* **DataStore**: line length ([`8741be2`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8741be28e86990ec18ec946795f2a6b643dcaac6))
+
+### Enh
+
+* **DataStore.init**: remember token and forward how long it should be valid ([`385ecf8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/385ecf8137bbce46f7ed5266de3596b415e4576c))
+
 ## v1.6.3 (2025-12-04)
 
 ### Bug fixes
