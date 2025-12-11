@@ -32,6 +32,7 @@ jupyter\_analysis\_tools.datastore.DataStore
 
    .. autosummary::
    
+      ~DataStore.token
       ~DataStore.url
       ~DataStore.userspace
    
