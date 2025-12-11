@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.7.1 (2025-12-11)
+
+### Bug fixes
+
+* **DataStore.createObject(**: attempt to create new project/collection only if object was not found; save it finally as well ([`95fa9e0`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/95fa9e042a26b423936caac64d3e8b115790e888))
+
 ## v1.7.0 (2025-12-11)
 
 ### Code style
