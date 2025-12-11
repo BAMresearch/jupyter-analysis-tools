@@ -121,11 +121,9 @@ class DataStore:
         objType: str = None,
         props: dict = None,
     ):
-        dsProject = self.createProject(projectName, space, spacePrefix=spacePrefix)
-        dsColl = None
-        if collectionName is None:  # collectionName is required
-            return None
-        dsColl = self.createCollection(collectionName, dsProject, defaultObjType=objType)
+        assert space and len(space), "space is required!"
+        assert projectName and len(projectName), "projectName is required!"
+        assert collectionName and len(collectionName), "collectionName is required!"
         obj = self.ds.get_objects(type=objType, where={"$name": props["$name"]}).objects
         if len(obj):
             obj = obj[0]
@@ -135,10 +133,13 @@ class DataStore:
             )
             warnings.warn_explicit(msg, UserWarning, prefix, 0)
         else:  # does not exist yet
+            dsProject = self.createProject(projectName, space, spacePrefix=spacePrefix)
+            dsColl = self.createCollection(collectionName, dsProject, defaultObjType=objType)
             objName = f" '{props['$name']}'" if len(props.get("$name", "")) else ""
             print(f"Creating new {objType}{objName} in {dsColl.identifier}")
             obj = self.ds.new_object(type=objType, props=props, collection=dsColl)
         obj.set_props(props)
+        obj.save()
         return obj
 
     def findObjects(self, *args, **kwargs):
