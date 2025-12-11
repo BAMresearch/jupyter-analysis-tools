@@ -31,7 +31,9 @@ class DataStore:
             save_token=False,
         )
         # create the PAT with the given name, don't store it
-        self.token = self.ds.get_or_create_personal_access_token("test-session", validTo=tokenValidTo)
+        self.token = self.ds.get_or_create_personal_access_token(
+            "test-session", validTo=tokenValidTo
+        )
 
     @property
     def userspace(self):
