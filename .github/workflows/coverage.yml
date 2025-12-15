@@ -53,7 +53,7 @@ jobs:
           coverage html --debug=pathmap
 
       - name: Upload HTML report
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: html_report
           path: htmlcov
