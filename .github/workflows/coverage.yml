@@ -37,7 +37,7 @@ jobs:
           python -m pip install --progress-bar=off -r ci/requirements.txt
 
       - name: Download coverage data
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           pattern: coverage.*
           merge-multiple: true
@@ -103,14 +103,14 @@ jobs:
 
       - name: Download previously generated documentation
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: docs
           path: pages
 
       - name: Download coverage HTML report
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: html_report
           path: pages/${{ env.report_dir }}
