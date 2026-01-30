@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>jupyter_analysis_tools.datastore - Jupyter Analysis Tools 1.7.1 documentation</title>
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>jupyter_analysis_tools.datastore - Jupyter Analysis Tools 1.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     
@@ -161,7 +161,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.7.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.7.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -182,7 +182,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.7.1 documentation</span>
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.7.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -191,7 +191,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.7.1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.7.2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../reference/index.html">Reference</a><input aria-label="Toggle navigation of Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -346,7 +346,29 @@
 
 <div class="viewcode-block" id="DataStore.__init__">
 <a class="viewcode-back" href="../../reference/autosummary/jupyter_analysis_tools.datastore.DataStore.html#jupyter_analysis_tools.datastore.DataStore.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tokenValidTo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tokenValidTo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the datastore connection and authenticate with openBIS.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url (str): The URL of the openBIS server.</span>
+<span class="sd">            username (str, optional): The username for authentication.</span>
+<span class="sd">                Defaults to the current system user if not provided.</span>
+<span class="sd">                It will as for the password interactively.</span>
+<span class="sd">            token (str, optional): A personal access token as retrieved by DataStore.token earlier</span>
+<span class="sd">                as alternative to username/password authentication.</span>
+<span class="sd">            tokenValidTo (str, optional): The expiration datetime for the new personal access token</span>
+<span class="sd">                when it is created using username/password authentication.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If authentication fails or connection to the server cannot be established.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            - If username is not provided, it defaults to the current system user.</span>
+<span class="sd">            - Password is prompted interactively via getpass.</span>
+<span class="sd">            - A personal access token named &quot;test-session&quot; is automatically created/retrieved.</span>
+<span class="sd">            - Token is not persisted to disk.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -355,11 +377,16 @@
         <span class="c1"># to generate PAT you need to login normally</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="n">Openbis</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">verify_certificates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># arg. *save_token* saves the openBIS token to ~/.pybis permanently</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-            <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Password for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">),</span>
-            <span class="n">save_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="s2">&quot;permId&quot;</span><span class="p">):</span>
+                <span class="n">token</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">permId</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">set_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># username/password login</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Password for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">),</span>
+                <span class="n">save_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="c1"># create the PAT with the given name, don&#39;t store it</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">get_or_create_personal_access_token</span><span class="p">(</span>
             <span class="s2">&quot;test-session&quot;</span><span class="p">,</span> <span class="n">validTo</span><span class="o">=</span><span class="n">tokenValidTo</span>
@@ -525,7 +552,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on Dec 11, 2025 (git 77d7686)</div>
+              Last updated on Jan 30, 2026 (git 66689a8)</div>
           </div>
           <div class="right-details">
             
@@ -540,9 +567,9 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=a77542ef"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+</div><script src="../../_static/documentation_options.js?v=908dc885"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>

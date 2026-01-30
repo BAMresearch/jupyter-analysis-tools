@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="jupyter_analysis_tools.distrib" href="jupyter_analysis_tools.distrib.html"><link rel="prev" title="jupyter_analysis_tools.datastore" href="jupyter_analysis_tools.datastore.html">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>jupyter_analysis_tools.datastore.DataStore - Jupyter Analysis Tools 1.7.1 documentation</title>
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>jupyter_analysis_tools.datastore.DataStore - Jupyter Analysis Tools 1.7.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.7.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Jupyter Analysis Tools 1.7.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -183,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.7.1 documentation</span>
+  <span class="sidebar-brand-text">Jupyter Analysis Tools 1.7.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -192,7 +192,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.7.1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Jupyter Analysis Tools (v1.7.2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Reference</a><input aria-label="Toggle navigation of Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
@@ -334,19 +334,46 @@
 <h1>jupyter_analysis_tools.datastore.DataStore<a class="headerlink" href="#jupyter-analysis-tools-datastore-datastore" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="jupyter_analysis_tools.datastore.DataStore">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jupyter_analysis_tools.datastore.</span></span><span class="sig-name descname"><span class="pre">DataStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenValidTo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_analysis_tools/datastore.html#DataStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jupyter_analysis_tools.datastore.DataStore" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jupyter_analysis_tools.datastore.</span></span><span class="sig-name descname"><span class="pre">DataStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenValidTo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_analysis_tools/datastore.html#DataStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jupyter_analysis_tools.datastore.DataStore" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="jupyter_analysis_tools.datastore.DataStore.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenValidTo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_analysis_tools/datastore.html#DataStore.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jupyter_analysis_tools.datastore.DataStore.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenValidTo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_analysis_tools/datastore.html#DataStore.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jupyter_analysis_tools.datastore.DataStore.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the datastore connection and authenticate with openBIS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL of the openBIS server.</p></li>
+<li><p><strong>username</strong> (<em>str, optional</em>) – The username for authentication.
+Defaults to the current system user if not provided.
+It will as for the password interactively.</p></li>
+<li><p><strong>token</strong> (<em>str, optional</em>) – A personal access token as retrieved by DataStore.token earlier
+as alternative to username/password authentication.</p></li>
+<li><p><strong>tokenValidTo</strong> (<em>str, optional</em>) – The expiration datetime for the new personal access token
+when it is created using username/password authentication.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If authentication fails or connection to the server cannot be established.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>If username is not provided, it defaults to the current system user.</p></li>
+<li><p>Password is prompted interactively via getpass.</p></li>
+<li><p>A personal access token named “test-session” is automatically created/retrieved.</p></li>
+<li><p>Token is not persisted to disk.</p></li>
+</ul>
+</div>
+</dd></dl>
 
 <p class="rubric">Methods</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#jupyter_analysis_tools.datastore.DataStore.__init__" title="jupyter_analysis_tools.datastore.DataStore.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(url[, username, tokenValidTo])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#jupyter_analysis_tools.datastore.DataStore.__init__" title="jupyter_analysis_tools.datastore.DataStore.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(url[, username, token, tokenValidTo])</p></td>
+<td><p>Initialize the datastore connection and authenticate with openBIS.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">createCollection</span></code>(collName, projectObj[, ...])</p></td>
 <td><p></p></td>
@@ -433,7 +460,7 @@ is created.</p>
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on Dec 11, 2025 (git 77d7686)</div>
+              Last updated on Jan 30, 2026 (git 66689a8)</div>
           </div>
           <div class="right-details">
             
@@ -471,9 +498,9 @@ is created.</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=a77542ef"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+</div><script src="../../_static/documentation_options.js?v=908dc885"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>
