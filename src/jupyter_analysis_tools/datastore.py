@@ -16,7 +16,26 @@ class DataStore:
     _availObj = None
     _userspace = None
 
-    def __init__(self, url, username=None, tokenValidTo=None):
+    def __init__(self, url, username=None, token=None, tokenValidTo=None):
+        """
+        Initialize the datastore connection and authenticate with openBIS.
+        
+        Args:
+            url (str): The URL of the openBIS server.
+            username (str, optional): The username for authentication. 
+                Defaults to the current system user if not provided. It will as for the password interactively.
+            token (str, optional): A personal access token as retrieved by DataStore.token earlier as alternative to username/password authentication.
+            tokenValidTo (str, optional): The expiration datetime for the new personal access token when it is created using username/password authentication.
+        
+        Raises:
+            Exception: If authentication fails or connection to the server cannot be established.
+        
+        Note:
+            - If username is not provided, it defaults to the current system user.
+            - Password is prompted interactively via getpass.
+            - A personal access token named "test-session" is automatically created/retrieved.
+            - Token is not persisted to disk.
+        """
         self.url = url
         self.username = username
         if self.username is None:
@@ -25,11 +44,16 @@ class DataStore:
         # to generate PAT you need to login normally
         self.ds = Openbis(url=self.url, verify_certificates=True)
         # arg. *save_token* saves the openBIS token to ~/.pybis permanently
-        self.ds.login(
-            self.username,
-            getpass.getpass(prompt=f"Password for {self.username}: "),
-            save_token=False,
-        )
+        if token is not None:
+            if hasattr(token, "permId"):
+                token = token.permId
+            self.ds.set_token(token)
+        else:  # username/password login            
+            self.ds.login(
+                self.username,
+                getpass.getpass(prompt=f"Password for {self.username}: "),
+                save_token=False,
+            )
         # create the PAT with the given name, don't store it
         self.token = self.ds.get_or_create_personal_access_token(
             "test-session", validTo=tokenValidTo
