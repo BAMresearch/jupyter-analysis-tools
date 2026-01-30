@@ -19,17 +19,20 @@ class DataStore:
     def __init__(self, url, username=None, token=None, tokenValidTo=None):
         """
         Initialize the datastore connection and authenticate with openBIS.
-        
+
         Args:
             url (str): The URL of the openBIS server.
-            username (str, optional): The username for authentication. 
-                Defaults to the current system user if not provided. It will as for the password interactively.
-            token (str, optional): A personal access token as retrieved by DataStore.token earlier as alternative to username/password authentication.
-            tokenValidTo (str, optional): The expiration datetime for the new personal access token when it is created using username/password authentication.
-        
+            username (str, optional): The username for authentication.
+                Defaults to the current system user if not provided.
+                It will as for the password interactively.
+            token (str, optional): A personal access token as retrieved by DataStore.token earlier
+                as alternative to username/password authentication.
+            tokenValidTo (str, optional): The expiration datetime for the new personal access token
+                when it is created using username/password authentication.
+
         Raises:
             Exception: If authentication fails or connection to the server cannot be established.
-        
+
         Note:
             - If username is not provided, it defaults to the current system user.
             - Password is prompted interactively via getpass.
@@ -48,7 +51,7 @@ class DataStore:
             if hasattr(token, "permId"):
                 token = token.permId
             self.ds.set_token(token)
-        else:  # username/password login            
+        else:  # username/password login
             self.ds.login(
                 self.username,
                 getpass.getpass(prompt=f"Password for {self.username}: "),
