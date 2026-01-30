@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.7.2 (2026-01-30)
+
+### Bug fixes
+
+* **DataStore.__init__**: allow token-based auth, docs added ([`d64f92f`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d64f92fdcba4851497ff6782e4beee1109eb86bd))
+
+### Code style
+
+* **DataStore**: whitespace errors ([`f599040`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/f5990401c80ec30a2748a5e2952ab806def207ac))
+
 ## v1.7.1 (2025-12-11)
 
 ### Bug fixes
