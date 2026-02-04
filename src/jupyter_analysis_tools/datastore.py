@@ -57,10 +57,10 @@ class DataStore:
                 getpass.getpass(prompt=f"Password for {self.username}: "),
                 save_token=False,
             )
-        # create the PAT with the given name, don't store it
-        self.token = self.ds.get_or_create_personal_access_token(
-            "test-session", validTo=tokenValidTo
-        )
+            # create the PAT with the given name, don't store it
+            self.token = self.ds.get_or_create_personal_access_token(
+                "test-session", validTo=tokenValidTo
+            )
 
     @property
     def userspace(self):
