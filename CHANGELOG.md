@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.7.3 (2026-02-04)
+
+### Bug fixes
+
+* **DataStore**: do not attempt to create a token when logged in via token, not allowed ([`6beeddd`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/6beeddd2d778ed44080401700b223d3dc3eeebfc))
+
 ## v1.7.2 (2026-01-30)
 
 ### Bug fixes
