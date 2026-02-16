@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.ssfz\_compare.main
-===========================================
-
-.. currentmodule:: jupyter_analysis_tools.ssfz_compare
-
-.. autofunction:: main

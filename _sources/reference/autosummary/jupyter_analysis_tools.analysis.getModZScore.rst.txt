@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.analysis.getModZScore
-==============================================
-
-.. currentmodule:: jupyter_analysis_tools.analysis
-
-.. autofunction:: getModZScore

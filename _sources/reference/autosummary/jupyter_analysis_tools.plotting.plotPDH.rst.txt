@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.plotting.plotPDH
-=========================================
-
-.. currentmodule:: jupyter_analysis_tools.plotting
-
-.. autofunction:: plotPDH

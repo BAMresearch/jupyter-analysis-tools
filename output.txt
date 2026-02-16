@@ -1,0 +1,3 @@
+changelog.rst:391: [redirected permanently] http://test.pypi.org to https://test.pypi.org/
+readme.rst:24: [redirected permanently] https://BAMresearch.github.io/jupyter-analysis-tools to https://bamresearch.github.io/jupyter-analysis-tools/
+changelog.rst:151: [redirected with Found] http://readme.md to https://dealsbe.com

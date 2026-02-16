@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.plotting.createFigure
-==============================================
-
-.. currentmodule:: jupyter_analysis_tools.plotting
-
-.. autofunction:: createFigure

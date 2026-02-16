@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.utils.grouper
-======================================
-
-.. currentmodule:: jupyter_analysis_tools.utils
-
-.. autofunction:: grouper

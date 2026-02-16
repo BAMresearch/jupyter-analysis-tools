@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.datalocations.getDataDirs
-==================================================
-
-.. currentmodule:: jupyter_analysis_tools.datalocations
-
-.. autofunction:: getDataDirs

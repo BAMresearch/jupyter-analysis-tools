@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.plotting.lineWidth
-===========================================
-
-.. currentmodule:: jupyter_analysis_tools.plotting
-
-.. autofunction:: lineWidth

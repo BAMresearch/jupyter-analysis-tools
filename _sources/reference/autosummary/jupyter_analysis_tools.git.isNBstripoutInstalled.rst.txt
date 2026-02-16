@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.git.isNBstripoutInstalled
-==================================================
-
-.. currentmodule:: jupyter_analysis_tools.git
-
-.. autofunction:: isNBstripoutInstalled

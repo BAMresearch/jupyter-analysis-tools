@@ -1,6 +1,0 @@
-jupyter\_analysis\_tools.distrib.distrParLatex
-==============================================
-
-.. currentmodule:: jupyter_analysis_tools.distrib
-
-.. autofunction:: distrParLatex
