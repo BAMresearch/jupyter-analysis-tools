@@ -15,7 +15,6 @@ jobs:
 
       - name: Checking out the repo
         uses: actions/checkout@v6
-        with:
 
       - name: Setting up Python 3.11
         uses: actions/setup-python@v6

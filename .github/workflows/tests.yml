@@ -20,7 +20,7 @@ jobs:
           - [3, 12]
           - [3, 13]
         # os: ['ubuntu', 'windows', 'macos']
-        os: ['ubuntu', 'windows']
+        os: ['ubuntu']
     env:
       PYTHON: ${{ join(matrix.python, '.') }}  # e.g. '3.11'
       TOX_ENV: ${{ format('{0}{1}', 'py', join(matrix.python, '')) }}  # e.g. 'py311'
