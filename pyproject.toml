@@ -24,7 +24,32 @@ classifiers = [
   "Intended Audience :: Science/Research",
 ]
 dependencies = [
-  "numpy", "scipy", "pandas", "matplotlib", "ipywidgets", "pybis"
+    "numpy", "scipy", "pandas", "matplotlib", "ipywidgets", "pybis"
+]
+[project.optional-dependencies]
+tests = [
+    "tox",
+    "pytest",
+    "pytest-cov",
+    "pytest_notebook @ git+https://github.com/BAMresearch/pytest-notebook@master",
+    "ipykernel"
+]
+docs = [
+    "sphinx>=6.2",
+    "myst-parser>=2.0",
+    "furo",
+    "linkify-it-py",
+    "sphinxcontrib-mermaid",
+    "toml"
+]
+ci = [
+    "tox",
+    "build",
+    "toml",
+    "python-semantic-release",
+    # provides the *coverage* command to combine and publish coverage data
+    # generated within tox environments
+    "pytest-cov"
 ]
 
 [[project.authors]]
@@ -67,7 +92,7 @@ path = "coverage-report"  # see coverage.yml github action
 # on version numbers: https://peps.python.org/pep-0440/
 # and bottom of https://softwareengineering.stackexchange.com/a/151558
 [tool.semantic_release]
-#major_on_zero = false # no major release when current major version is zero
+allow_zero_version = true
 version_variables = [                        # version location
     "src/jupyter_analysis_tools/__init__.py:__version__",
     "docs/conf.py:version",

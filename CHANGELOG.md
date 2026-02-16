@@ -476,7 +476,7 @@
 
 * docs switching theme to furo ([`ceab414`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ceab4148b9fbac53f5ffd936da15f39bedfad968))
 
-* moved project meta data from setup.py to pyproject.toml ([`a73f9a7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a73f9a7c52df781bffcf388a2e5932573bbc51a7))
+* moved project meta data from `setup.py` to pyproject.toml ([`a73f9a7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a73f9a7c52df781bffcf388a2e5932573bbc51a7))
 
 * removed obsolete dependency from github action template ([`0d071bc`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0d071bc80d627395a569d007f05ba26e880ad28b))
 

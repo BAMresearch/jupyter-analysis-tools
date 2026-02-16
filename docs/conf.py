@@ -22,14 +22,26 @@ extensions = [
     "sphinx.ext.inheritance_diagram",
     "sphinx.ext.graphviz",
     "myst_parser",
+    "sphinxcontrib.mermaid",
 ]
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+    "linkify",
+]
+myst_heading_anchors = 3
 inheritance_edge_attrs = dict(color="gray")  # readable in darkmode too
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
+autosummary_generate = ["reference/index"]  # Generate stubs for the reference landing page
+autosummary_generate_overwrite = True
 templates_path = ["_templates"]
-source_suffix = ".rst"
+source_suffix = {
+    ".md": "markdown",
+    ".rst": "restructuredtext",
+}
 master_doc = "index"
 project = "Jupyter Analysis Tools"
-year = "2018-2025"
+year = "2018-2026"
 author = "Ingo Breßler and Brian R. Pauw"
 copyright = "{0}, {1}".format(year, author)
 version = "1.7.3"
@@ -85,7 +97,7 @@ linkcheck_ignore = [
     + r".*",
     # attempted fix of '406 Client Error: Not Acceptable for url'
     # https://github.com/sphinx-doc/sphinx/issues/1331
-    join(project_meta["project"]["urls"]["repository"], "commit", r"[0-9a-fA-F]+")
+    join(project_meta["project"]["urls"]["repository"], "commit", r"[0-9a-fA-F]+"),
 ]
 linkcheck_anchors_ignore_for_url = [
     r"https://pypi\.org/project/[^/]+",

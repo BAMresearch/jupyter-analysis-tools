@@ -19,7 +19,6 @@ jobs:
       - name: Checking out the repo
         uses: actions/checkout@v6
         with:
-          ref: main
 
       - name: Setting up Python 3.11
         uses: actions/setup-python@v6
@@ -27,14 +26,14 @@ jobs:
           python-version: '3.11'
           cache: pip
           cache-dependency-path: |
-            ci/requirements.txt
+            pyproject.toml
 
       - name: Install dependencies
         shell: sh
         run: |
           [ -d "/c/miniconda" ] && /c/miniconda/condabin/activate.bat
           python -m pip install --upgrade pip
-          python -m pip install --progress-bar=off -r ci/requirements.txt
+          python -m pip install --progress-bar=off .[ci]
 
       - name: Download coverage data
         uses: actions/download-artifact@v6

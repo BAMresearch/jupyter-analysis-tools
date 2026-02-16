@@ -2,12 +2,8 @@ name: CI-CD
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -40,18 +36,6 @@ jobs:
     permissions:
       id-token: write
     steps:
-
-      - name: Checking out the repo
-        uses: actions/checkout@v6
-        with:
-          ref: main
-
-      - name: Install dependencies
-        shell: sh
-        run: |
-          [ -d "/c/miniconda" ] && /c/miniconda/condabin/activate.bat
-          python -m pip install --upgrade pip
-          python -m pip install --progress-bar=off -r ci/requirements.txt
 
       - name: Download package artifacts
         uses: actions/download-artifact@v6

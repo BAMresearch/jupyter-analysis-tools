@@ -12,8 +12,7 @@ include tox.ini
 include templates/*.j2
 include notebooks/*.ipynb
 
-include README.md
-include CHANGELOG.md
+include *.md
 include AUTHORS.rst
 include CONTRIBUTING.rst
 include LICENSE
