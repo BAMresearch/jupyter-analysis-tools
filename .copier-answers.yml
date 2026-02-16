@@ -1,6 +1,6 @@
 # Changes here will be overwritten by Copier
 _commit: v1.1.12
-_src_path: https://github.com/BAMresearch/yapy-copier-template.git
+_src_path: yapy-copier-template
 author_count: 2
 author_emails: ingo.bressler@bam.de, brian.pauw@bam.de
 author_names: Ingo Breßler, Brian R. Pauw
