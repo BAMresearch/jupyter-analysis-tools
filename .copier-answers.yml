@@ -22,4 +22,4 @@ repo_main_branch: main
 repo_name: jupyter-analysis-tools
 repo_userorg: BAMresearch
 sphinx_theme: furo
-version: 1.7.3
+version: 1.7.4

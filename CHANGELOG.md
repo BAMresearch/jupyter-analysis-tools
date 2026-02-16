@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.7.4 (2026-02-16)
+
+### Bug fixes
+
+* **GitHub Workflows**: prevent empty 'with:' ([`553e518`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/553e51879313a97cdb4b72b8637e0ac3d907bbec))
+
+* **Project Template**: recent version applied ([`71f7367`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/71f7367b716543c29d804d9cb46ed3018fccacd6))
+
+### Testing
+
+* **Windows**: enable on GitHub Workflows again ([`be287a9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/be287a928a3092c472873c8e92182f5919771425))
+
 ## v1.7.3 (2026-02-04)
 
 ### Bug fixes
@@ -476,7 +488,7 @@
 
 * docs switching theme to furo ([`ceab414`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/ceab4148b9fbac53f5ffd936da15f39bedfad968))
 
-* moved project meta data from `setup.py` to pyproject.toml ([`a73f9a7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a73f9a7c52df781bffcf388a2e5932573bbc51a7))
+* moved project meta data from setup.py to pyproject.toml ([`a73f9a7`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/a73f9a7c52df781bffcf388a2e5932573bbc51a7))
 
 * removed obsolete dependency from github action template ([`0d071bc`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/0d071bc80d627395a569d007f05ba26e880ad28b))
 

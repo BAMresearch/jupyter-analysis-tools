@@ -44,7 +44,7 @@ project = "Jupyter Analysis Tools"
 year = "2018-2026"
 author = "Ingo Breßler and Brian R. Pauw"
 copyright = "{0}, {1}".format(year, author)
-version = "1.7.3"
+version = "1.7.4"
 release = version
 commit_id = None
 try:
