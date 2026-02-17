@@ -31,7 +31,6 @@ tests = [
     "tox",
     "pytest",
     "pytest-cov",
-    "ipykernel"
 ]
 docs = [
     "sphinx>=6.2",
