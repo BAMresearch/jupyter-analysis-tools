@@ -23,6 +23,7 @@
                 <div class="keyhelp">
                     <p>
                         <kbd>f</kbd>
+                        <kbd>n</kbd>
                         <kbd>s</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
@@ -50,13 +51,13 @@
             </div>
         </form>
         <h2>
-                <a class="button current">Files</a>
+                <a class="button" href="index.html">Files</a>
                 <a class="button" href="function_index.html">Functions</a>
-                <a class="button" href="class_index.html">Classes</a>
+                <a class="button current">Classes</a>
         </h2>
         <p class="text">
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.4">coverage.py v7.13.4</a>,
-            created at 2026-02-17 12:00 +0000
+            created at 2026-02-17 13:00 +0000
         </p>
     </div>
 </header>
@@ -64,6 +65,7 @@
     <table class="index" data-sortable>
         <thead>
             <tr class="tablehead grouphead">
+                <th class="spacer">&nbsp;</th>
                 <th class="spacer">&nbsp;</th>
                 <th class="spacer">&nbsp;</th>
                 <th class="left" colspan="4">Statements</th>
@@ -74,6 +76,7 @@
             </tr>
             <tr class="tablehead" title="Click to sort">
                 <th id="file" class="name" aria-sort="none" data-shortcut="f">File<span class="arrows"></span></th>
+                <th id="region" class="name" aria-sort="none" data-default-sort-order="ascending" data-shortcut="n">class<span class="arrows"></span></th>
                 <th class="spacer">&nbsp;</th>
                 <th id="statements_coverage" aria-sort="none" data-default-sort-order="descending">coverage<span class="arrows"></span></th>
                 <th id="statements" aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements<span class="arrows"></span></th>
@@ -90,6 +93,7 @@
         <tbody>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af___init___py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;__init__.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af___init___py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="8 8">100.00%</td>
                 <td>8</td>
@@ -104,6 +108,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_analysis_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;analysis.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_analysis_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="2 9">22.22%</td>
                 <td>9</td>
@@ -117,21 +122,38 @@
                 <td data-ratio="2 11">18.18%</td>
             </tr>
             <tr class="region">
-                <td class="name"><a href="z_5d167b41016707af_binning_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;binning.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_binning_py.html#t138">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;binning.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_binning_py.html#t138"><data value='reBin'>reBin</data></a></td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="20 200">10.00%</td>
-                <td>200</td>
-                <td>180</td>
+                <td data-ratio="0 157">0.00%</td>
+                <td>157</td>
+                <td>157</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="1 72">1.39%</td>
-                <td>72</td>
+                <td data-ratio="0 68">0.00%</td>
+                <td>68</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 225">0.00%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_5d167b41016707af_binning_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;binning.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_binning_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="20 43">46.51%</td>
+                <td>43</td>
+                <td>23</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="1 4">25.00%</td>
+                <td>4</td>
                 <td>1</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="21 272">7.72%</td>
+                <td data-ratio="21 47">44.68%</td>
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_datalocations_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;datalocations.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_datalocations_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="11 76">14.47%</td>
                 <td>76</td>
@@ -145,10 +167,11 @@
                 <td data-ratio="11 108">10.19%</td>
             </tr>
             <tr class="region">
-                <td class="name"><a href="z_5d167b41016707af_datastore_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;datastore.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_datastore_py.html#t13">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;datastore.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_datastore_py.html#t13"><data value='DataStore'>DataStore</data></a></td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="23 120">19.17%</td>
-                <td>120</td>
+                <td data-ratio="0 97">0.00%</td>
+                <td>97</td>
                 <td>97</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
@@ -156,24 +179,71 @@
                 <td>38</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="23 158">14.56%</td>
+                <td data-ratio="0 135">0.00%</td>
             </tr>
             <tr class="region">
-                <td class="name"><a href="z_5d167b41016707af_distrib_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;distrib.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_datastore_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;datastore.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_datastore_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="70 241">29.05%</td>
-                <td>241</td>
-                <td>171</td>
+                <td data-ratio="23 23">100.00%</td>
+                <td>23</td>
+                <td>0</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="2 58">3.45%</td>
+                <td data-ratio="0 0">100.00%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="23 23">100.00%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html#t151">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;distrib.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html#t151"><data value='Moments'>Moments</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 29">0.00%</td>
+                <td>29</td>
+                <td>29</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 8">0.00%</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 37">0.00%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html#t218">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;distrib.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html#t218"><data value='Distribution'>Distribution</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 58">0.00%</td>
+                <td>58</td>
                 <td>58</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="72 299">24.08%</td>
+                <td data-ratio="0 18">0.00%</td>
+                <td>18</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 76">0.00%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;distrib.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_distrib_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="70 154">45.45%</td>
+                <td>154</td>
+                <td>84</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="2 32">6.25%</td>
+                <td>32</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="72 186">38.71%</td>
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_git_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;git.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_git_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="7 36">19.44%</td>
                 <td>36</td>
@@ -188,6 +258,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_plotting_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;plotting.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_plotting_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="11 36">30.56%</td>
                 <td>36</td>
@@ -202,6 +273,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_readdata_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;readdata.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_readdata_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="117 125">93.60%</td>
                 <td>125</td>
@@ -216,6 +288,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_ssfz2json_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;ssfz2json.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_ssfz2json_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="7 28">25.00%</td>
                 <td>28</td>
@@ -230,6 +303,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_ssfz_compare_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;ssfz_compare.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_ssfz_compare_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="8 26">30.77%</td>
                 <td>26</td>
@@ -244,6 +318,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_utils_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;utils.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_utils_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="85 151">56.29%</td>
                 <td>151</td>
@@ -257,21 +332,38 @@
                 <td data-ratio="103 201">51.24%</td>
             </tr>
             <tr class="region">
+                <td class="name"><a href="z_5d167b41016707af_widgets_py.html#t35">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;widgets.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_widgets_py.html#t35"><data value='PathSelector'>PathSelector</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 36">0.00%</td>
+                <td>36</td>
+                <td>36</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 16">0.00%</td>
+                <td>16</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 52">0.00%</td>
+            </tr>
+            <tr class="region">
                 <td class="name"><a href="z_5d167b41016707af_widgets_py.html">src&#8201;/&#8201;jupyter_analysis_tools&#8201;/&#8201;widgets.py</a></td>
+                <td class="name"><a href="z_5d167b41016707af_widgets_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="7 54">12.96%</td>
-                <td>54</td>
-                <td>47</td>
+                <td data-ratio="7 18">38.89%</td>
+                <td>18</td>
+                <td>11</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="0 22">0.00%</td>
-                <td>22</td>
+                <td data-ratio="0 6">0.00%</td>
+                <td>6</td>
                 <td>0</td>
                 <td class="spacer">&nbsp;</td>
-                <td data-ratio="7 76">9.21%</td>
+                <td data-ratio="7 24">29.17%</td>
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_a44f0ac069e85531_readdata_py.html">tests&#8201;/&#8201;readdata.py</a></td>
+                <td class="name"><a href="z_a44f0ac069e85531_readdata_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="62 62">100.00%</td>
                 <td>62</td>
@@ -286,6 +378,7 @@
             </tr>
             <tr class="region">
                 <td class="name"><a href="z_a44f0ac069e85531_utils_py.html">tests&#8201;/&#8201;utils.py</a></td>
+                <td class="name"><a href="z_a44f0ac069e85531_utils_py.html"><data value=''><span class='no-noun'>(no class)</span></data></a></td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="40 40">100.00%</td>
                 <td>40</td>
@@ -302,6 +395,7 @@
         <tfoot>
             <tr class="total">
                 <td class="name">Total</td>
+                <td class="name">&nbsp;</td>
                 <td class="spacer">&nbsp;</td>
                 <td data-ratio="478 1212">39.44%</td>
                 <td>1212</td>
@@ -324,12 +418,12 @@
     <div class="content">
         <p>
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.4">coverage.py v7.13.4</a>,
-            created at 2026-02-17 12:00 +0000
+            created at 2026-02-17 13:00 +0000
         </p>
     </div>
     <aside class="hidden">
-        <a id="prevFileLink" class="nav" href="z_a44f0ac069e85531_utils_py.html"></a>
-        <a id="nextFileLink" class="nav" href="z_5d167b41016707af___init___py.html"></a>
+        <a id="prevFileLink" class="nav" href=""></a>
+        <a id="nextFileLink" class="nav" href=""></a>
         <button type="button" class="button_prev_file" data-shortcut="["></button>
         <button type="button" class="button_next_file" data-shortcut="]"></button>
         <button type="button" class="button_show_hide_help" data-shortcut="?"></button>

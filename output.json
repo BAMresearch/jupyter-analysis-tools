@@ -257,23 +257,23 @@
 {"filename": "authors.rst", "lineno": 6, "status": "unchecked", "code": 0, "uri": "mailto:brian.pauw@bam.de", "info": ""}
 {"filename": "authors.rst", "lineno": 5, "status": "unchecked", "code": 0, "uri": "mailto:ingo.bressler@bam.de", "info": ""}
 {"filename": "changelog.rst", "lineno": 403, "status": "redirected", "code": 301, "uri": "http://test.pypi.org", "info": "https://test.pypi.org/"}
+{"filename": "changelog.rst", "lineno": 491, "status": "broken", "code": 0, "uri": "http://setup.py", "info": "HTTPConnectionPool(host='setup.py', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPConnection(host='setup.py', port=80): Failed to resolve 'setup.py' ([Errno -2] Name or service not known)\"))"}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://en.wikipedia.org/wiki/MIT_license", "info": ""}
 {"filename": "readme.rst", "lineno": 24, "status": "redirected", "code": 301, "uri": "https://BAMresearch.github.io/jupyter-analysis-tools", "info": "https://bamresearch.github.io/jupyter-analysis-tools/"}
-{"filename": "changelog.rst", "lineno": 491, "status": "broken", "code": 0, "uri": "http://setup.py", "info": "HTTPConnectionPool(host='setup.py', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPConnection(host='setup.py', port=80): Failed to resolve 'setup.py' ([Errno -2] Name or service not known)\"))"}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/ci-cd.yml/badge.svg", "info": ""}
 {"filename": "contributing.rst", "lineno": 40, "status": "working", "code": 0, "uri": "https://github.com/BAMresearch/jupyter-analysis-tools", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://github.com/BAMresearch/jupyter-analysis-tools/compare/v1.7.4...main", "info": ""}
+{"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/endpoint?url=https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/cov.json", "info": ""}
 {"filename": "contributing.rst", "lineno": 11, "status": "working", "code": 0, "uri": "https://github.com/BAMresearch/jupyter-analysis-tools/issues", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/pypi/dw/jupyter-analysis-tools.svg", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/pypi/l/jupyter-analysis-tools.svg", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/pypi/pyversions/jupyter-analysis-tools.svg", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/pypi/v/jupyter-analysis-tools.svg", "info": ""}
-{"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/endpoint?url=https://BAMresearch.github.io/jupyter-analysis-tools/coverage-report/cov.json", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/pypi/wheel/jupyter-analysis-tools.svg", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://pypi.org/project/jupyter-analysis-tools", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://pypi.org/project/jupyter-analysis-tools/", "info": ""}
+{"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v1.7.4.svg", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://pypi.org/project/jupyter-analysis-tools#files", "info": ""}
 {"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://github.com/BAMresearch/jupyter-analysis-tools/actions/workflows/ci-cd.yml", "info": ""}
-{"filename": "readme.rst", "lineno": 3, "status": "working", "code": 0, "uri": "https://img.shields.io/github/commits-since/BAMresearch/jupyter-analysis-tools/v1.7.4.svg", "info": ""}
 {"filename": "contributing.rst", "lineno": 52, "status": "broken", "code": 0, "uri": "https://tox.wiki/en/latest/installation.html", "info": "404 Client Error: Not Found for url: https://tox.wiki/en/latest/installation.html"}
 {"filename": "changelog.rst", "lineno": 163, "status": "redirected", "code": 302, "uri": "http://readme.md", "info": "https://dealsbe.com"}
