@@ -1,3 +1,5 @@
-changelog.rst:391: [redirected permanently] http://test.pypi.org to https://test.pypi.org/
+changelog.rst:403: [redirected permanently] http://test.pypi.org to https://test.pypi.org/
 readme.rst:24: [redirected permanently] https://BAMresearch.github.io/jupyter-analysis-tools to https://bamresearch.github.io/jupyter-analysis-tools/
-changelog.rst:151: [redirected with Found] http://readme.md to https://dealsbe.com
+changelog.rst:491: [broken] http://setup.py: HTTPConnectionPool(host='setup.py', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='setup.py', port=80): Failed to resolve 'setup.py' ([Errno -2] Name or service not known)"))
+contributing.rst:52: [broken] https://tox.wiki/en/latest/installation.html: 404 Client Error: Not Found for url: https://tox.wiki/en/latest/installation.html
+changelog.rst:163: [redirected with Found] http://readme.md to https://dealsbe.com
