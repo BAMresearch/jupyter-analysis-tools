@@ -28,11 +28,9 @@ def normalizeDistrib(x, y, u=None):
     y = y.values if isinstance(y, pd.Series) else y
     # normalize the distribution to area of 1
     norm = integrate(x, y)
-    # print("CONTINs norm", norm)
-    y /= norm
-    if u is not None:
-        u /= norm
-    return x, y, u
+    return (x,
+            y/norm,
+            u/norm if u is not None else u)
 
 
 def area(xvec, yvec, showArea=True):
