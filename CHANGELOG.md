@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.7.5 (2026-07-09)
+
+### Bug fixes
+
+* **requirements**: switch to renamed fork of pytest-notebook ([`04437d5`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/04437d5a1e62e70aeefd2a6709576a2f63a38c1b))
+
+* **distrib**: read-only series view in normalizeDistrib() ([`113ea21`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/113ea21addcf5e89b23ee00038bc3857f13fd9b0))
+
 ## v1.7.4 (2026-02-16)
 
 ### Bug fixes
