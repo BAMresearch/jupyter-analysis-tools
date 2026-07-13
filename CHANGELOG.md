@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.7.6 (2026-07-13)
+
+### Bug fixes
+
+* **getDataFiles**: case sensitivity kwarg ([`bb36bff`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/bb36bff4ebd522beda5b219e8411ba60e0baa414))
+
+### Continuous integration
+
+* **GitHub**: always checkout the latest commit of the current branch to cover new version commits ([`5f02e46`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/5f02e465dd9d9e88789471eb71a2e1f15e2c5fd5))
+
 ## v1.7.5 (2026-07-09)
 
 ### Bug fixes
