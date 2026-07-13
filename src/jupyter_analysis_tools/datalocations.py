@@ -101,7 +101,7 @@ def getDataDirs(dataDir, noWorkDir=False, reuseWorkDir=True, workDir=None):
     return dirs
 
 
-def getDataFiles(dataDirs, include=None, exclude=None):
+def getDataFiles(dataDirs, include=None, exclude=None, caseSensitive=False):
     """Return absolute file paths from given directories."""
 
     def getFiles(dn, include=None):
@@ -109,7 +109,9 @@ def getDataFiles(dataDirs, include=None, exclude=None):
             include = "*"
         if not isList(include):
             include = (include,)
-        return [path for inc in include for path in glob.glob(os.path.join(dn, inc))]
+        return [
+            path for inc in include for path in Path(dn).glob(inc, case_sensitive=caseSensitive)
+        ]
 
     if not exclude:
         exclude = ()
@@ -122,7 +124,7 @@ def getDataFiles(dataDirs, include=None, exclude=None):
         fn
         for dn in dataDirs
         for fn in getFiles(dn, include)
-        if not any([(ex in fn) for ex in exclude])
+        if not any([(ex in str(fn)) for ex in exclude])
     ]
     print("{} files to be analyzed in subdirectories.".format(len(files)))
     return sorted(files)
