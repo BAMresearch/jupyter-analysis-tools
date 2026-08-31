@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.7.9 (2026-08-31)
+
+### Bug fixes
+
+* **datalocations.prepareWorkDir**: glob result handling ([`696765c`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/696765c669159122f56d7ca9eb6311b580a059f2))
+
 ## v1.7.8 (2026-08-31)
 
 ### Bug fixes
