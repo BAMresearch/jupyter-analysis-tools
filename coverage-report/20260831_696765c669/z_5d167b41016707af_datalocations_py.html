@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_5d167b41016707af_datastore_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-08-31 14:45 +0000
+            created at 2026-08-31 15:18 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -138,9 +138,9 @@
     <p class="mis show_mis"><span class="n"><a id="t54" href="#t54">54</a></span><span class="t">        <span class="key">return</span> <span class="nam">srcDir</span>  <span class="com"># nothing to do</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t55" href="#t55">55</a></span><span class="t">    <span class="nam">prefix</span> <span class="op">=</span> <span class="nam">srcDir</span><span class="op">.</span><span class="nam">name</span> <span class="op">+</span> <span class="str">&quot;_&quot;</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t56" href="#t56">56</a></span><span class="t">    <span class="key">if</span> <span class="nam">useExisting</span><span class="op">:</span>  <span class="com"># use an existing work dir, avoid copying</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t57" href="#t57">57</a></span><span class="t">        <span class="nam">dirs</span> <span class="op">=</span> <span class="nam">workDir</span><span class="op">.</span><span class="nam">glob</span><span class="op">(</span><span class="nam">prefix</span> <span class="op">+</span> <span class="str">&quot;*&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t58" href="#t58">58</a></span><span class="t">        <span class="key">if</span> <span class="nam">dirs</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t59" href="#t59">59</a></span><span class="t">            <span class="key">return</span> <span class="nam">list</span><span class="op">(</span><span class="nam">dirs</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>  <span class="com"># use the first match</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t57" href="#t57">57</a></span><span class="t">        <span class="nam">dirs</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="nam">workDir</span><span class="op">.</span><span class="nam">glob</span><span class="op">(</span><span class="nam">prefix</span> <span class="op">+</span> <span class="str">&quot;*&quot;</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t58" href="#t58">58</a></span><span class="t">        <span class="key">if</span> <span class="nam">len</span><span class="op">(</span><span class="nam">dirs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t59" href="#t59">59</a></span><span class="t">            <span class="key">return</span> <span class="nam">dirs</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>  <span class="com"># use the first match</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t60" href="#t60">60</a></span><span class="t">        <span class="nam">print</span><span class="op">(</span><span class="str">&quot;No existing work dir found, creating a new one.&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t61" href="#t61">61</a></span><span class="t">    <span class="com"># copy all data from src dir to a newly created work dir</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t62" href="#t62">62</a></span><span class="t">    <span class="nam">workDir</span> <span class="op">=</span> <span class="nam">tempfile</span><span class="op">.</span><span class="nam">mkdtemp</span><span class="op">(</span><span class="nam">dir</span><span class="op">=</span><span class="nam">workDir</span><span class="op">,</span> <span class="nam">prefix</span><span class="op">=</span><span class="nam">prefix</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -228,7 +228,7 @@
             <a class="nav" href="z_5d167b41016707af_datastore_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.16.0">coverage.py v7.16.0</a>,
-            created at 2026-08-31 14:45 +0000
+            created at 2026-08-31 15:18 +0000
         </p>
     </div>
 </footer>
