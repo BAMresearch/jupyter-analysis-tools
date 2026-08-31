@@ -1,4 +1,4 @@
-changelog.rst:427: [redirected permanently] http://test.pypi.org to https://test.pypi.org/
+changelog.rst:437: [redirected permanently] http://test.pypi.org to https://test.pypi.org/
 readme.rst:24: [redirected permanently] https://BAMresearch.github.io/jupyter-analysis-tools to https://bamresearch.github.io/jupyter-analysis-tools/
-changelog.rst:515: [broken] http://setup.py: HTTPConnectionPool(host='setup.py', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='setup.py', port=80): Failed to resolve 'setup.py' ([Errno -2] Name or service not known)"))
-changelog.rst:187: [redirected with Found] http://readme.md to https://dealsbe.com
+changelog.rst:525: [broken] http://setup.py: HTTPConnectionPool(host='setup.py', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='setup.py', port=80): Failed to resolve 'setup.py' ([Errno -2] Name or service not known)"))
+changelog.rst:197: [redirected with Found] http://readme.md to https://dealsbe.com
