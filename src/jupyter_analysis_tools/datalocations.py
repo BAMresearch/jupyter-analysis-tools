@@ -54,9 +54,9 @@ def prepareWorkDir(workDir, srcDir, useExisting=False):
         return srcDir  # nothing to do
     prefix = srcDir.name + "_"
     if useExisting:  # use an existing work dir, avoid copying
-        dirs = workDir.glob(prefix + "*")
-        if dirs:
-            return list(dirs)[0]  # use the first match
+        dirs = list(workDir.glob(prefix + "*"))
+        if len(dirs):
+            return dirs[0]  # use the first match
         print("No existing work dir found, creating a new one.")
     # copy all data from src dir to a newly created work dir
     workDir = tempfile.mkdtemp(dir=workDir, prefix=prefix)
