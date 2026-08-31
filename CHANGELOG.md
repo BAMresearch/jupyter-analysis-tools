@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.7.8 (2026-08-31)
+
+### Bug fixes
+
+* **datalocations**: comment update ([`9c258ac`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/9c258ac1d642e9360b5c4213f046f704747534fa))
+
+### Refactoring
+
+* **datalocations.prepareWorkDir**: use copy_tree_without_metadata() ([`c305c45`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/c305c4547bb6910359420e125a0220bb67d56a2e))
+
 ## v1.7.7 (2026-08-31)
 
 ### Bug fixes
