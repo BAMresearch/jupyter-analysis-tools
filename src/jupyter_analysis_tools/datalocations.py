@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # datalocations.py
 
-import glob
 import os
 import shutil
 import tempfile
@@ -14,47 +13,54 @@ def getWorkDir(workDir=None, skip=False):
     """Find a local work dir for temporary files, created during analysis.
     The default is *$HOME/data*."""
     if skip:  # stay in the current directory if desired
-        return os.path.abspath(".")
+        return Path(".").absolute()
     if not workDir or (isinstance(workDir, str) and not len(workDir)):
         workDir = Path.home() / "data"
     else:
         workDir = Path(workDir).resolve()
     if not workDir.is_dir():
-        os.mkdir(workDir)
+        workDir.mkdir(workDir, parents=True, exist_ok=True)
     print("Using '{}' as working directory.".format(workDir))
     return workDir
+
+
+def copy_tree_without_metadata(source, destination):
+    source = Path(source)
+    destination = Path(destination)
+
+    for path in source.rglob("*"):
+        relative = path.relative_to(source)
+        target = destination / relative
+
+        if path.is_dir():
+            target.mkdir(parents=True, exist_ok=True)
+        elif path.is_file():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)  # contents only; no timestamps or permissions
 
 
 def prepareWorkDir(workDir, srcDir, useExisting=False):
     """Create a temporary working directory and copy
     the input data (series) to it if not already present."""
+    workDir = Path(workDir)
+    srcDir = Path(srcDir)
     # source dir has to exist
-    if not os.path.isdir(srcDir):
-        raise RuntimeError("Provided source directory '{}' not found!".format(srcDir))
-    srcDir = os.path.realpath(srcDir)
+    if not srcDir.is_dir():
+        raise RuntimeError(f"Provided source directory '{srcDir}' not found!")
     # no separate work dir requested?
-    if os.path.samefile(workDir, os.getcwd()):
-        print("Working in current directory '{}'.".format(os.getcwd()))
+    if workDir.samefile(Path()):
+        print(f"Working in current directory '{workDir}'.")
         return srcDir  # nothing to do
-    prefix = os.path.basename(srcDir) + "_"
+    prefix = srcDir.name + "_"
     if useExisting:  # use an existing work dir, avoid copying
-        dirs = glob.glob(os.path.join(workDir, prefix + "*"))
-        if len(dirs):
-            return dirs[0]  # use the first match
+        dirs = workDir.glob(prefix + "*")
+        if dirs:
+            return list(dirs)[0]  # use the first match
         print("No existing work dir found, creating a new one.")
     # copy all data from src dir to a newly created work dir
     workDir = tempfile.mkdtemp(dir=workDir, prefix=prefix)
     print("Copying data to {}:".format(workDir))
-    for dn in os.listdir(srcDir):
-        srcPath = os.path.join(srcDir, dn)
-        dstPath = os.path.join(workDir, dn)
-        if os.path.isdir(srcPath):
-            shutil.copytree(srcPath, dstPath)
-            print(indent, dn)
-        if os.path.isfile(srcPath):
-            shutil.copy(srcPath, dstPath)
-            print(indent, dn)
-    print("Done preparing work dir.")
+    copy_tree_without_metadata(srcDir, workDir)
     return workDir
 
 
