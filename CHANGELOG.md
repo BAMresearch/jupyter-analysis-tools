@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.7.7 (2026-08-31)
+
+### Bug fixes
+
+* **datalocations.getWorkDir**: given workDir can be Path() ([`8166af9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/8166af967ee7e64b6f0bd891ac59388e1ef7571f))
+
 ## v1.7.6 (2026-07-13)
 
 ### Bug fixes
