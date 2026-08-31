@@ -15,7 +15,7 @@ def getWorkDir(workDir=None, skip=False):
     The default is *$HOME/data*."""
     if skip:  # stay in the current directory if desired
         return os.path.abspath(".")
-    if not workDir or not len(workDir):
+    if not workDir or (isinstance(workDir, str) and not len(workDir)):
         workDir = Path.home() / "data"
     else:
         workDir = Path(workDir).resolve()
