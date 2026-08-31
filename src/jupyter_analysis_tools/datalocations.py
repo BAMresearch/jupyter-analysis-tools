@@ -36,7 +36,8 @@ def copy_tree_without_metadata(source, destination):
             target.mkdir(parents=True, exist_ok=True)
         elif path.is_file():
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(path, target)  # contents only; no timestamps or permissions
+            # contents only; no timestamps or permissions
+            shutil.copyfile(path, target)
 
 
 def prepareWorkDir(workDir, srcDir, useExisting=False):
