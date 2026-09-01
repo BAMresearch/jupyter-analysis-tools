@@ -19,7 +19,7 @@ def getWorkDir(workDir=None, skip=False):
     else:
         workDir = Path(workDir).resolve()
     if not workDir.is_dir():
-        workDir.mkdir(workDir, parents=True, exist_ok=True)
+        workDir.mkdir(parents=True, exist_ok=True)
     print("Using '{}' as working directory.".format(workDir))
     return workDir
 
