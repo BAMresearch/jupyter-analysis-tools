@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.7.10 (2026-09-01)
+
+### Bug fixes
+
+* **datalocations.getWorkDir**: pathlib mkdir args ([`d1cfca9`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d1cfca9e31f2be07602a5ebba8eb6e0f2f3027f0))
+
 ## v1.7.9 (2026-08-31)
 
 ### Bug fixes
