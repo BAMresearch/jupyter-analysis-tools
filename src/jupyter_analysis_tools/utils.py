@@ -4,12 +4,10 @@
 import contextlib
 import copy
 import itertools
-import locale
 import os
 import platform
 import re
 import subprocess
-import sys
 from pathlib import Path
 
 import numpy as np
