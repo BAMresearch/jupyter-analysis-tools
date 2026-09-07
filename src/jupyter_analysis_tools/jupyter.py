@@ -40,6 +40,32 @@ def addEnvScriptsToPATH():
         os.environ["PATH"] = sep.join(environPATH)
 
 
+def ensureMiniforgeInPATH():
+    """Ensure the active Miniforge environment is on PATH for Jupyter/Conda commands on Windows."""
+    if not isWindows():
+        return
+
+    envpath = Path(sys.executable).parent
+    paths = os.environ["PATH"].split(";")
+    if "miniforge" not in str(envpath):
+        return
+    if any(envpath.name in item for item in paths):
+        return
+
+    lst = [
+        str(envpath),
+        str(envpath / "Library/mingw-w64/bin"),
+        str(envpath / "Library/usr/bin"),
+        str(envpath / "Library/bin"),
+        str(envpath / "Scripts"),
+        str(envpath / "bin"),
+        str(envpath.parent.parent / "condabin"),
+    ]
+    os.environ["PATH"] = ";".join(lst + paths)
+    os.environ["CONDA_PREFIX"] = str(envpath)
+    os.environ["CONDA_DEFAULT_ENV"] = envpath.name
+
+
 def setPackage(globalsdict):
     """Sets the current directory of the notebook as python package to make relative module imports
     work.
