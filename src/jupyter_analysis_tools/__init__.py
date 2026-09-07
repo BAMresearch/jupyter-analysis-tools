@@ -7,7 +7,8 @@ from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
 from .plotting import createFigure, plotPDH
 from .readdata import readdata, readPDH, readPDHmeta, readSSF, readSSFZ
-from .utils import naturalKey, setLocaleUTF8
+from .jupyter import setLocaleUTF8
+from .utils import naturalKey
 from .widgets import PathSelector, showBoolStatus
 
 setLocaleUTF8()

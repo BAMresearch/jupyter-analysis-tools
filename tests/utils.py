@@ -5,6 +5,11 @@
 import os
 from pathlib import Path
 
+from jupyter_analysis_tools.jupyter import (
+    addEnvScriptsToPATH as jupyter_addEnvScriptsToPATH,
+    setLocaleUTF8 as jupyter_setLocaleUTF8,
+    setPackage as jupyter_setPackage,
+)
 from jupyter_analysis_tools.utils import (
     appendToPATH,
     isWindows,
@@ -46,6 +51,12 @@ outMount = (
     "bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\n"
     "devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)"
 )
+
+
+def test_jupyter_helpers_are_exposed_from_jupyter_module():
+    assert callable(jupyter_setLocaleUTF8)
+    assert callable(jupyter_addEnvScriptsToPATH)
+    assert callable(jupyter_setPackage)
 
 
 def test_appendToPATH(capsys):

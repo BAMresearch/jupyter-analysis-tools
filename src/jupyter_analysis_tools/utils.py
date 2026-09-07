@@ -17,19 +17,6 @@ import numpy as np
 indent = "    "
 
 
-def setLocaleUTF8():
-    """Fix the Jupyter locale which is not UTF-8 by default on Windows."""
-    locOld = locale.getpreferredencoding(False).lower()
-
-    def getpreferredencoding(do_setlocale=True):
-        return "utf-8"
-
-    locale.getpreferredencoding = getpreferredencoding
-    locNew = locale.getpreferredencoding(False)
-    if locOld != locNew:
-        print(f"Updated locale from {locOld} -> {locNew}.")
-
-
 def isLinux():
     return platform.system().lower() in "linux"
 
@@ -84,26 +71,6 @@ def appendToPATH(parentPath, subdirs=None, verbose=False):
         if path not in PATH:
             PATH.append(str(path))
     os.environ["PATH"] = sep.join(PATH)
-
-
-def addEnvScriptsToPATH():
-    """Prepends the *Scripts* directory of the current Python environment base directory to systems
-    PATH variable.
-
-    It is intended for Conda (Miniforge) environments on Windows that do not have this in their PATH
-    environment variable, causing them to miss many commands provided from this location.
-    """
-    envPath = [p for p in sys.path if p.endswith("Lib")]
-    if not envPath:
-        return  # probably not a Miniforge environment
-    envPath = envPath[0]
-    envPath = Path(envPath).parent / "Scripts"
-    sep = ";" if isWindows() else ":"
-    environPATH = os.environ["PATH"].split(sep)
-    # print(environPATH)
-    if envPath.exists() and str(envPath) not in environPATH:
-        environPATH = [str(envPath)] + environPATH
-        os.environ["PATH"] = sep.join(environPATH)
 
 
 def networkdriveMapping(cmdOutput: str = None, resolveNames: bool = True):
@@ -218,21 +185,6 @@ def pushd(new_dir):
     os.chdir(new_dir)
     yield
     os.chdir(previous_dir)
-
-
-def setPackage(globalsdict):
-    """Sets the current directory of the notebook as python package to make relative module imports
-    work.
-
-    Usage: `setPackage(globals())`
-    """
-    path = Path().resolve()
-    searchpath = str(path.parent)
-    if searchpath not in sys.path:
-        sys.path.insert(0, searchpath)
-    globalsdict["__package__"] = path.name
-    globalsdict["__name__"] = path.name
-    print(f"Setting the current directory as package '{path.name}': \n  {path}.")
 
 
 def grouper(iterable, n, fillvalue=None):
