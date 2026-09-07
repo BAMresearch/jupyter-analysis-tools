@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v1.8.0 (2026-09-07)
+
+### Bug fixes
+
+* **requirements**: update pytest_notebook_next dependency ([`dd06baf`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/dd06baf4a31c56cffd370c044f4e976a4a95131a))
+
+### Features
+
+* **jupyter**: add ensureMiniforgeInPATH function to manage PATH for Miniforge environments on Windows ([`87685d8`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/87685d8125a9d9366e9d96be12bb54119ad589f9))
+
+### Refactoring
+
+* **jupyter**: reorder import statements for clarity ([`eab05e3`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/eab05e3f2f4993416e6ff6cd4956d867e6dcae9a))
+
+* **utils**: remove unused imports from utils.py ([`d69298a`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/d69298a7cd281f939bf0a2c69e044e92613eeb14))
+
+* **utils**: move locale and path helper functions to new jupyter module ([`54acefd`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/54acefd57d9527c42fd817a475accf5bff60e907))
+
+### Testing
+
+* **jupyter**: add tests for ensureMiniforgeInPATH and expose jupyter helpers; moved from tests/utils ([`3a5d393`](https://github.com/BAMresearch/jupyter-analysis-tools/commit/3a5d393d3893f7ea3085375e48c4149b71c91c78))
+
 ## v1.7.10 (2026-09-01)
 
 ### Bug fixes
