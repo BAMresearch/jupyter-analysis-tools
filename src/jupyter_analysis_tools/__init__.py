@@ -5,9 +5,9 @@ __version__ = "1.7.10"
 
 from .binning import reBin
 from .git import checkRepo, isNBstripoutActivated, isNBstripoutInstalled, isRepo
+from .jupyter import setLocaleUTF8
 from .plotting import createFigure, plotPDH
 from .readdata import readdata, readPDH, readPDHmeta, readSSF, readSSFZ
-from .jupyter import setLocaleUTF8
 from .utils import naturalKey
 from .widgets import PathSelector, showBoolStatus
 

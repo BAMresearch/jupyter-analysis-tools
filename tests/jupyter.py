@@ -4,12 +4,10 @@
 import os
 from pathlib import Path
 
-from jupyter_analysis_tools.jupyter import (
-    addEnvScriptsToPATH as jupyter_addEnvScriptsToPATH,
-    ensureMiniforgeInPATH,
-    setLocaleUTF8 as jupyter_setLocaleUTF8,
-    setPackage as jupyter_setPackage,
-)
+from jupyter_analysis_tools.jupyter import addEnvScriptsToPATH as jupyter_addEnvScriptsToPATH
+from jupyter_analysis_tools.jupyter import ensureMiniforgeInPATH
+from jupyter_analysis_tools.jupyter import setLocaleUTF8 as jupyter_setLocaleUTF8
+from jupyter_analysis_tools.jupyter import setPackage as jupyter_setPackage
 
 
 def test_jupyter_helpers_are_exposed_from_jupyter_module():
